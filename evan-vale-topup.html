@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Evan Vale | เว็บเติมเกม</title>
+<meta name="description" content="เว็บเติมเกม รวดเร็ว ปลอดภัย มีแอดมินดูแล — รองรับ PromptPay / TrueMoney / โอนธนาคาร" />
+<style>
+  :root{
+    --bg:#0b0f14; 
+    --card:#111720;
+    --muted:#7b8a97;
+    --text:#e8f0f7;
+    --brand:#49a6ff;
+    --brand-2:#7df9ff;
+    --accent:#22c55e;
+    --danger:#ef4444;
+    --warn:#f59e0b;
+    --ring: 0 0 0 3px rgba(73,166,255,0.25);
+    --shadow: 0 15px 30px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:linear-gradient(180deg,#0b0f14 0%,#0b0f14 40%,#0f1722 100%);color:var(--text);font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,"Noto Sans Thai",Tahoma,Arial}
+  a{color:var(--brand);text-decoration:none}
+  .container{max-width:1100px;margin:0 auto;padding:24px}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0;position:sticky;top:0;background:rgba(11,15,20,.7);backdrop-filter: blur(10px);z-index:50;border-bottom:1px dashed rgba(255,255,255,.07)}
+  .brand{display:flex;gap:10px;align-items:center;font-weight:800;letter-spacing:.3px}
+  .brand .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;color:#00152a;font-weight:900;box-shadow:var(--shadow)}
+  .nav-actions{display:flex;gap:10px;flex-wrap:wrap}
+  .btn{border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,#0f1623,#0b111a);padding:10px 14px;border-radius:12px;color:var(--text);cursor:pointer;transition:.2s}
+  .btn:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
+  .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#00182e;border:none}
+  .badge{border:1px solid rgba(255,255,255,.08);padding:6px 10px;border-radius:999px;color:var(--muted);display:inline-flex;gap:8px;align-items:center}
+  .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding:24px 0}
+  .hero-card{background:radial-gradient(1200px 450px at -10% -10%, rgba(73,166,255,.06), transparent),var(--card);border:1px solid rgba(255,255,255,.06);padding:24px;border-radius:20px;box-shadow:var(--shadow)}
+  .hero h1{font-size:clamp(28px,4vw,40px);margin:6px 0 10px}
+  .hero p{color:var(--muted);margin:0 0 14px}
+  .hero-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+  .stat{background:#0b111a;border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:12px;text-align:center}
+  .stat b{font-size:18px}
+  .panel{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:18px}
+  .section{margin-top:28px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .card{background:#0d1420;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px}
+  .price{font-size:28px;font-weight:900;letter-spacing:.3px}
+  .muted{color:var(--muted)}
+  .k{display:flex;align-items:center;gap:10px}
+  .k svg{flex:0 0 auto}
+  .input{background:#0a1018;border:1px solid rgba(255,255,255,.08);color:var(--text);padding:12px;border-radius:12px;width:100%}
+  .select{appearance:none}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+  label{display:block;margin-bottom:6px;color:#b8c1ca}
+  .help{font-size:12px;color:var(--muted);margin-top:6px}
+  .summary{position:sticky;top:76px}
+  .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);margin:14px 0}
+  .list{display:flex;flex-direction:column;gap:8px}
+  .list .item{display:flex;justify-content:space-between;gap:10px}
+  .total{font-size:22px;font-weight:800}
+  .faq details{background:#0d1420;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px}
+  .faq details[open]{box-shadow:var(--shadow)}
+  .footer{margin:40px 0 14px;color:#94a3b8;font-size:14px;text-align:center}
+  .pill{padding:6px 10px;border-radius:999px;background:#0e1622;border:1px solid rgba(255,255,255,.08)}
+  .methods{display:flex;gap:8px;flex-wrap:wrap}
+  .accent{color:var(--accent)}
+  .warn{color:var(--warn)}
+  .danger{color:var(--danger)}
+  @media (max-width: 940px){
+    .hero{grid-template-columns:1fr;gap:16px}
+    .grid{grid-template-columns:1fr}
+    .row,.row-3{grid-template-columns:1fr}
+    .summary{position:static}
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+      <div class="brand">
+        <div class="logo">EV</div>
+        <div>
+          <div>Evan Vale</div>
+          <small class="muted">บริการเติมเกม • เร็ว ปลอดภัย</small>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <a class="btn" href="#packages">แพ็กเกจ</a>
+        <a class="btn" href="#order">สั่งเติม</a>
+        <a class="btn primary" href="https://forms.gle/Fxdh4aB6kuD13awk7" target="_blank" rel="noopener">ติดต่อแอดมิน</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-card">
+        <span class="badge">✅ เปิดรับออเดอร์ <span class="pill">24/7</span></span>
+        <h1>เว็บเติมเกมของมึง — <span class="accent">เร็ว</span> โปร่งใส <span class="warn">มีแอดมินดูแล</span></h1>
+        <p>รองรับ PromptPay / TrueMoney Wallet / โอนธนาคาร อัปเดตราคาอัตโนมัติจากแพ็กเกจที่เลือก มีสรุปบิลให้ก่อนยืนยัน</p>
+        <div class="hero-grid">
+          <div class="stat"><b>3–10 นาที*</b><div class="muted">โดยเฉลี่ย</div></div>
+          <div class="stat"><b>1000+</b><div class="muted">รายการสำเร็จ</div></div>
+          <div class="stat"><b>0% </b><div class="muted">ยึด UID</div></div>
+        </div>
+        <p class="help">*เวลาอาจช้ากว่าปกติช่วงพีคหรือเกมปิดปรับปรุง</p>
+      </div>
+      <div class="panel">
+        <div class="k"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 1l3 7h7l-5.5 4.5L18 20l-6-4-6 4 1.5-7.5L2 8h7l3-7z" stroke="white" opacity=".6"/></svg><b>รับเกมยอดนิยม</b></div>
+        <div class="methods" style="margin-top:10px">
+          <span class="pill">Genshin Impact</span>
+          <span class="pill">Honkai: Star Rail</span>
+          <span class="pill">Free Fire</span>
+          <span class="pill">RoV</span>
+          <span class="pill">PUBG Mobile</span>
+        </div>
+        <div class="divider"></div>
+        <div class="k"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="white" opacity=".6"/><path d="M12 7v6l4 2" stroke="white" opacity=".6"/></svg><b>ช่องทางชำระเงิน</b></div>
+        <div class="methods" style="margin-top:10px">
+          <span class="pill">PromptPay</span>
+          <span class="pill">TrueMoney Wallet</span>
+          <span class="pill">โอนธนาคาร</span>
+        </div>
+        <p class="help">ชำระเสร็จ อัปหลักฐานได้ในฟอร์มหรือทักแชทแอดมิน</p>
+      </div>
+    </section>
+
+    <section id="packages" class="section">
+      <h2>แพ็กเกจยอดฮิต</h2>
+      <p class="muted">คลิกเลือกเพื่อใส่แพ็กเกจในฟอร์ม</p>
+      <div class="grid" id="pkg-grid">
+        <!-- Packages will be injected by JS -->
+      </div>
+    </section>
+
+    <section id="order" class="section">
+      <div class="grid" style="align-items:start">
+        <div class="card">
+          <h2 style="margin-top:0">สั่งเติมเกม</h2>
+          <div class="row">
+            <div>
+              <label for="game">เกม</label>
+              <select id="game" class="input select">
+                <option>Genshin Impact</option>
+                <option>Honkai: Star Rail</option>
+                <option>Free Fire</option>
+                <option>RoV</option>
+                <option>PUBG Mobile</option>
+              </select>
+            </div>
+            <div>
+              <label for="server">โซน/เซิร์ฟเวอร์</label>
+              <select id="server" class="input select">
+                <option>SEA</option>
+                <option>Asia</option>
+                <option>Global</option>
+                <option>อื่นๆ</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="uid">UID / Player ID</label>
+              <input id="uid" class="input" placeholder="เช่น 812345678 หรือ ชื่อในเกม"/>
+              <div class="help">ตรวจให้ชัวร์ก่อนยืนยันนะเพื่อน!</div>
+            </div>
+            <div>
+              <label for="package">แพ็กเกจ</label>
+              <select id="package" class="input select"></select>
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="promo">โค้ดส่วนลด (ถ้ามี)</label>
+              <input id="promo" class="input" placeholder="เช่น EVAN10" />
+              <div class="help">*โค้ดบางตัวใช้ได้เฉพาะช่วงโปรโมชัน</div>
+            </div>
+            <div>
+              <label for="method">วิธีชำระเงิน</label>
+              <select id="method" class="input select">
+                <option>PromptPay</option>
+                <option>TrueMoney Wallet</option>
+                <option>โอนธนาคาร</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="name">ชื่อลูกค้า</label>
+              <input id="name" class="input" placeholder="ชื่อเล่นก็ได้" />
+            </div>
+            <div>
+              <label for="contact">ช่องทางติดต่อ</label>
+              <input id="contact" class="input" placeholder="เช่น Line/FB/Tel หรืออีเมล" />
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="row">
+            <button class="btn" id="btnReset" type="button">ล้างฟอร์ม</button>
+            <button class="btn primary" id="btnSubmit" type="button">ยืนยันและสร้างบิล</button>
+          </div>
+          <p class="help">ถ้าต้องการส่งหลักฐานชำระ/ทักแอดมิน กดปุ่ม “ติดต่อแอดมิน” ขวาบนได้เลย</p>
+        </div>
+
+        <aside class="panel summary">
+          <h3 style="margin-top:0">สรุปบิล</h3>
+          <div class="list">
+            <div class="item"><span class="muted">เกม</span><span id="sum-game">-</span></div>
+            <div class="item"><span class="muted">เซิร์ฟเวอร์</span><span id="sum-server">-</span></div>
+            <div class="item"><span class="muted">UID</span><span id="sum-uid">-</span></div>
+            <div class="item"><span class="muted">แพ็กเกจ</span><span id="sum-pkg">-</span></div>
+            <div class="item"><span class="muted">วิธีชำระ</span><span id="sum-method">-</span></div>
+          </div>
+          <div class="divider"></div>
+          <div class="item"><span class="muted">ยอดสุทธิ</span><span class="total" id="sum-total">฿0</span></div>
+          <div class="help">ราคานี้รวมค่าธรรมเนียมระบบแล้ว (ถ้ามี)</div>
+          <div class="divider"></div>
+          <a class="btn" href="https://forms.gle/Fxdh4aB6kuD13awk7" target="_blank" rel="noopener">ส่งออเดอร์ผ่านฟอร์ม</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section faq">
+      <h2>คำถามที่พบบ่อย</h2>
+      <div class="grid">
+        <details>
+          <summary>โอนไปแล้วกี่นาทีจะเข้าเกม?</summary>
+          <p class="muted">ปกติ 3–10 นาที ถ้าเกมปิดปรับปรุง/คิวเยอะอาจนานขึ้น แอดมินจะแจ้งสถานะให้ทราบ</p>
+        </details>
+        <details>
+          <summary>ถ้าใส่ UID ผิดทำยังไง?</summary>
+          <p class="muted">ทักแอดมินทันที ถ้ายังไม่ยิงยอดจะแก้ให้ได้ แต่ถ้าเครดิตเข้าบัญชีผิดแล้วจะช่วยติดตามเท่าที่ทำได้</p>
+        </details>
+        <details>
+          <summary>ขอใบเสร็จ/สลิปบิลได้ไหม?</summary>
+          <p class="muted">ได้ มีเลขที่ออเดอร์/เวลาชำระ ชัดเจน กด “ยืนยันและสร้างบิล” เพื่อดูบิลตัวอย่างก่อน</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="footer">
+      © <span id="year"></span> Evan Vale • ทำด้วยใจคนเล่นเกมเหมือนกัน 🖤 | 
+      <a href="https://forms.gle/Fxdh4aB6kuD13awk7" target="_blank" rel="noopener">ติดต่อแอดมิน</a>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <dialog id="modal" style="border:none;border-radius:18px;background:#0d1420;color:var(--text);padding:0;max-width:560px;width:90%">
+    <div style="padding:18px 18px 6px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08)">
+      <b>พรีวิวบิล</b>
+      <button id="modalClose" class="btn">ปิด</button>
+    </div>
+    <div style="padding:18px">
+      <div class="list">
+        <div class="item"><span class="muted">ชื่อ</span><span id="pv-name">-</span></div>
+        <div class="item"><span class="muted">ติดต่อ</span><span id="pv-contact">-</span></div>
+        <div class="item"><span class="muted">เกม</span><span id="pv-game">-</span></div>
+        <div class="item"><span class="muted">เซิร์ฟเวอร์</span><span id="pv-server">-</span></div>
+        <div class="item"><span class="muted">UID</span><span id="pv-uid">-</span></div>
+        <div class="item"><span class="muted">แพ็กเกจ</span><span id="pv-pkg">-</span></div>
+        <div class="item"><span class="muted">ชำระเงิน</span><span id="pv-method">-</span></div>
+      </div>
+      <div class="divider"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span class="muted">ยอดสุทธิ</span>
+        <span class="total" id="pv-total">฿0</span>
+      </div>
+      <p class="help">นี่เป็นบิลตัวอย่างสำหรับตรวจสอบก่อนกดยืนยันจริงในฟอร์มหรือแชทแอดมิน</p>
+    </div>
+    <div style="padding:0 18px 18px;display:flex;gap:10px;justify-content:flex-end">
+      <a class="btn" href="https://forms.gle/Fxdh4aB6kuD13awk7" target="_blank" rel="noopener">ไปยังฟอร์มออเดอร์</a>
+      <button class="btn primary" id="btnCopy">คัดลอกรายการ</button>
+    </div>
+  </dialog>
+
+<script>
+  // ======= Config =======
+  const PACKAGES = [
+    // label, price (THB)
+    ["เล็กซิ่ง 49", 49],
+    ["คุ้มจัด 99", 99],
+    ["ฮิตสุด 149", 149],
+    ["คุ้มเวอร์ 249", 249],
+    ["หนักแน่น 349", 349],
+    ["เทพทรู 499", 499],
+    ["โปรใหญ่ 699", 699],
+    ["จัดเต็ม 999", 999]
+  ];
+
+  const YEAR_EL = document.getElementById('year');
+  YEAR_EL.textContent = new Date().getFullYear();
+
+  // Build package cards
+  const grid = document.getElementById('pkg-grid');
+  const pkgSelect = document.getElementById('package');
+  function money(n){ return '฿' + (n||0).toLocaleString('th-TH'); }
+
+  function buildPackages(){
+    grid.innerHTML = '';
+    pkgSelect.innerHTML = '';
+    PACKAGES.forEach(([label,price], idx)=>{
+      // grid cards
+      const el = document.createElement('div');
+      el.className = 'card';
+      el.innerHTML = `
+        <div class="k" style="justify-content:space-between">
+          <div><b>${label}</b><div class="muted">เติมไวในไม่กี่นาที</div></div>
+          <div class="price">${money(price)}</div>
+        </div>
+        <div class="divider"></div>
+        <div class="row">
+          <button class="btn" data-pick="${idx}">เลือกแพ็กเกจ</button>
+          <button class="btn primary" data-pick="${idx}">เลือก & ไปกรอกฟอร์ม</button>
+        </div>
+      `;
+      grid.appendChild(el);
+      // select options
+      const opt = document.createElement('option');
+      opt.value = String(price);
+      opt.textContent = `${label} — ${money(price)}`;
+      pkgSelect.appendChild(opt);
+    });
+  }
+  buildPackages();
+
+  grid.addEventListener('click', (e)=>{
+    const btn = e.target.closest('button[data-pick]');
+    if(!btn) return;
+    const idx = Number(btn.dataset.pick);
+    const price = PACKAGES[idx][1];
+    pkgSelect.value = String(price);
+    // scroll to form
+    document.getElementById('order').scrollIntoView({behavior:'smooth', block:'start'});
+    updateSummary();
+  });
+
+  // Summary binding
+  const state = {
+    game:'Genshin Impact',
+    server:'SEA',
+    uid:'',
+    pkg: Number(pkgSelect.value||0),
+    method:'PromptPay',
+    name:'',
+    contact:'',
+    promo:''
+  };
+
+  const ids = (x)=>document.getElementById(x);
+  const inputs = {
+    game: ids('game'),
+    server: ids('server'),
+    uid: ids('uid'),
+    package: ids('package'),
+    method: ids('method'),
+    name: ids('name'),
+    contact: ids('contact'),
+    promo: ids('promo'),
+  };
+
+  Object.entries(inputs).forEach(([k,el])=>{
+    el.addEventListener('input',()=>{
+      if(k==='package'){ state.pkg = Number(el.value||0); }
+      else state[k] = el.value;
+      updateSummary();
+    });
+  });
+
+  function applyPromo(amount, code){
+    if(!code) return amount;
+    const c = code.trim().toUpperCase();
+    if(c==='EVAN10') return Math.max(0, Math.round(amount * 0.9)); // 10% off
+    if(c==='RYU50') return Math.max(0, amount - 50);               // 50 THB off
+    return amount;
+  }
+
+  function updateSummary(){
+    ids('sum-game').textContent = inputs.game.value || '-';
+    ids('sum-server').textContent = inputs.server.value || '-';
+    ids('sum-uid').textContent = inputs.uid.value || '-';
+    ids('sum-pkg').textContent = inputs.package.selectedOptions[0]?.textContent || '-';
+    ids('sum-method').textContent = inputs.method.value || '-';
+    const raw = Number(inputs.package.value||0);
+    const total = applyPromo(raw, inputs.promo.value);
+    ids('sum-total').textContent = money(total);
+  }
+  updateSummary();
+
+  // Reset
+  ids('btnReset').addEventListener('click', ()=>{
+    Object.values(inputs).forEach(el=>{
+      if(el.tagName==='SELECT'){ el.selectedIndex = 0; }
+      else el.value='';
+    });
+    state.pkg = Number(pkgSelect.value||0);
+    updateSummary();
+  });
+
+  // Submit (Preview + copy)
+  const modal = ids('modal');
+  ids('modalClose').addEventListener('click', ()=> modal.close());
+
+  function validate(){
+    if(!inputs.uid.value.trim()) return "กรอก UID / Player ID ก่อนเพื่อน";
+    if(!inputs.name.value.trim()) return "กรอกชื่อไว้ให้แอดมินติดต่อหน่อย";
+    if(!inputs.contact.value.trim()) return "ใส่ช่องทางติดต่อ (Line/FB/Tel/อีเมล) ด้วย";
+    const price = Number(inputs.package.value||0);
+    if(!price) return "เลือกแพ็กเกจด้วย";
+    return null;
+  }
+
+  function buildReceipt(){
+    const raw = Number(inputs.package.value||0);
+    const total = applyPromo(raw, inputs.promo.value);
+    const lines = [
+      "— รายการสั่งเติมเกม —",
+      `ชื่อ: ${inputs.name.value}`,
+      `ติดต่อ: ${inputs.contact.value}`,
+      `เกม: ${inputs.game.value}`,
+      `เซิร์ฟเวอร์: ${inputs.server.value}`,
+      `UID/ID: ${inputs.uid.value}`,
+      `แพ็กเกจ: ${inputs.package.selectedOptions[0].textContent}`,
+      `วิธีชำระ: ${inputs.method.value}`,
+      `โค้ด: ${inputs.promo.value || "-"}`,
+      `ยอดสุทธิ: ${money(total)}`,
+      `เวลา: ${new Date().toLocaleString('th-TH')}`
+    ];
+    return { total, text: lines.join("\n") };
+  }
+
+  ids('btnSubmit').addEventListener('click', ()=>{
+    const err = validate();
+    if(err){ alert(err); return; }
+    const { total, text } = buildReceipt();
+    ids('pv-name').textContent = inputs.name.value || '-';
+    ids('pv-contact').textContent = inputs.contact.value || '-';
+    ids('pv-game').textContent = inputs.game.value || '-';
+    ids('pv-server').textContent = inputs.server.value || '-';
+    ids('pv-uid').textContent = inputs.uid.value || '-';
+    ids('pv-pkg').textContent = inputs.package.selectedOptions[0]?.textContent || '-';
+    ids('pv-method').textContent = inputs.method.value || '-';
+    ids('pv-total').textContent = money(total);
+    modal.showModal();
+  });
+
+  ids('btnCopy').addEventListener('click', async ()=>{
+    const { text } = buildReceipt();
+    try{
+      await navigator.clipboard.writeText(text);
+      alert("คัดลอกบิลไปที่คลิปบอร์ดแล้ว — แปะในแชทแอดมินได้เลย");
+    }catch(e){
+      alert("คัดลอกไม่สำเร็จ ลองกดค้างเลือกข้อความแทนได้นะ");
+    }
+  });
+</script>
+</body>
+</html>
