@@ -1,89 +1,106 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>เว็บเติมเกมของ Evan Vale | ราคาดี โปร่งใส มีแอดมินดูแล</title>
-  <meta name="description" content="เว็บเติมเกม Evan Vale ราคาดี โปร่งใส ปลอดภัย มีแอดมินดูแล 24 ชั่วโมง รองรับ TrueMoney, PromptPay และธนาคาร" />
-  <meta name="keywords" content="เติมเกม, เว็บเติมเกม, Evan Vale, Free Fire, Genshin Impact, RoV, PUBG Mobile, เติมเกมราคาถูก" />
-  <style>
-    :root{
-      --bg:#070b12; --bg2:#0b1220;
-      --glass:#0f1729aa; --panel:#0f1624; --card:#10192b;
-      --text:#eaf1ff; --muted:#96a3ba; --muted2:#7d8aa2;
-      --brand:#58a8ff; --brand2:#9ef0ff; --accent:#7df9ff;
-      --border:#223048; --shadow:0 18px 50px rgba(0,0,0,.45);
-      --radius:18px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; color:var(--text); font-family:system-ui,Segoe UI,Prompt,sans-serif;
-      background:
-        radial-gradient(1200px 600px at -10% -10%, #15203a 0%, transparent 60%),
-        radial-gradient(1000px 800px at 110% -10%, #142b45 0%, transparent 60%),
-        radial-gradient(900px 900px at 50% 120%, #102037 0%, transparent 60%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
-    }
-    a{color:var(--accent); text-decoration:none}
-    .wrap{max-width:1100px;margin:auto;padding:20px}
-    .nav{
-      display:flex;justify-content:space-between;align-items:center;gap:12px;
-      background:linear-gradient(180deg,#0b1424,#0a1020);
-      border:1px solid var(--border); border-radius:20px; padding:10px 14px;
-      box-shadow:var(--shadow); backdrop-filter: blur(8px);
-    }
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{
-      width:42px;height:42px;border-radius:12px;
-      background:conic-gradient(from 220deg, #58a8ff, #7df9ff, #6ee7ff, #58a8ff);
-      display:grid;place-items:center; font-weight:900; color:#001627;
-    }
-    .btn{
-      padding:9px 14px; border-radius:12px; border:1px solid var(--border);
-      background:linear-gradient(180deg,#0b1524,#0a1220); color:#dbe9ff; font-weight:600;
-    }
-    .btn.primary{
-      background:linear-gradient(90deg,var(--brand),var(--brand2));
-      color:#00121e; border:none; box-shadow:0 6px 20px rgba(100,200,255,.35);
-    }
-    .hero{
-      margin-top:16px; display:grid; grid-template-columns:2fr 1fr; gap:18px;
-    }
-    .glass{
-      background:linear-gradient(180deg,#0d1525cc,#0b1220cc);
-      border:1px solid var(--border); border-radius:var(--radius); padding:18px;
-      box-shadow:var(--shadow); backdrop-filter: blur(10px);
-    }
-    .badge{padding:6px 10px;border-radius:999px;background:#0f1a2d;border:1px solid var(--border);display:inline-block}
-    h1{margin:10px 0 8px; font-size:28px}
-    .statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
-    .stat{background:#0d1424;border:1px solid var(--border);border-radius:14px;text-align:center;padding:14px}
-    .muted{color:var(--muted)}
-    .muted2{color:var(--muted2)}
-    .section{margin-top:22px}
-    .grid{display:grid;gap:16px}
-    .grid.pkg{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
-    .grid.two{grid-template-columns:2fr 1fr}
-    .card{background:#0f1729;border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
-    label{display:block;margin-bottom:6px;color:#b7c6dd}
-    input,select,textarea{
-      width:100%; background:#0a111f; border:1px solid var(--border); color:var(--text);
-      padding:12px; border-radius:12px;
-    }
-    .price{font-size:22px;font-weight:900}
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .summary{position:sticky; top:84px}
-    .list{display:flex;flex-direction:column;gap:8px}
-    .item{display:flex;justify-content:space-between;gap:10px}
-    .total{font-size:22px;font-weight:900}
-    .footer{margin:36px 0 14px;color:#9db0c9;text-align:center}
-    @media (max-width:980px){
-      .hero{grid-template-columns:1fr}
-      .grid.two{grid-template-columns:1fr}
-      .summary{position:static}
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>เว็บเติมเกมของ Evan Vale | เน้นเกมราคาดี มีแอดมินดูแล</title>
+<meta name="description" content="เว็บเติมเกม Evan Vale ราคาดี โปร่งใส ปลอดภัย มีแอดมินดูแล 24 ชั่วโมง รองรับ TrueMoney, PromptPay และธนาคาร" />
+<meta name="keywords" content="เติมเกม, เว็บเติมเกม, Evan Vale, Free Fire, Genshin Impact, RoV, PUBG Mobile, เติมเกมราคาถูก" />
+
+<!-- ฟอนต์หัวข้อแนวเกม + ตัวหนังสืออ่านง่าย -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    /* โทนม่วง-ฟ้าแบบโปสเตอร์ */
+    --bg1:#1a1333; --bg2:#10243e;
+    --g1:#6e54ff; --g2:#7df9ff;
+    --card: rgba(255,255,255,.06);
+    --card-border: rgba(255,255,255,.18);
+    --text:#eef6ff; --muted:#b6c2d0;
+    --accent:#98e7ff; --warn:#ffd166;
+    --shadow: 0 20px 40px rgba(0,0,0,.45), inset 0 0 30px rgba(125,249,255,.12);
+    --glow: 0 0 0 1px rgba(125,249,255,.35), 0 0 24px rgba(125,249,255,.35);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; color:var(--text); font-family:"Prompt",system-ui,Segoe UI,sans-serif;
+    /* พื้นหลังกราเดียนท์ + ลายเส้นเอียงจาง ๆ */
+    background:
+      radial-gradient(1200px 600px at 90% -10%, rgba(125,249,255,.12), transparent 60%),
+      radial-gradient(900px 600px at 10% 110%, rgba(110,84,255,.18), transparent 60%),
+      linear-gradient(135deg,var(--bg1),var(--bg2));
+    min-height:100svh;
+  }
+
+  .wrap{max-width:1040px;margin:auto;padding:18px}
+  .glass{background:var(--card); border:1px solid var(--card-border); backdrop-filter: blur(10px); border-radius:16px; box-shadow:var(--shadow)}
+
+  /* NAV */
+  .nav{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .brand{display:flex;gap:12px;align-items:center}
+  .logo{
+    width:44px;height:44px;border-radius:12px;
+    background:linear-gradient(180deg, rgba(110,84,255,.9), rgba(16,36,62,.9));
+    display:grid;place-items:center;font-weight:900;letter-spacing:.5px;
+    box-shadow: var(--glow);
+    font-family:"Bebas Neue",system-ui; font-size:22px; color:#00151c;
+  }
+  .name{font-family:"Bebas Neue",system-ui; letter-spacing:.5px; font-size:24px}
+  .muted{color:var(--muted)}
+
+  /* ปุ่มนีออน */
+  .btn{
+    --pad:10px 14px;
+    padding:var(--pad); border-radius:12px; border:1px solid var(--card-border);
+    color:var(--text); text-decoration:none; display:inline-block;
+    background:rgba(0,0,0,.2)
+  }
+  .btn.primary{
+    background:linear-gradient(90deg,var(--g1),var(--g2)); color:#05111a; font-weight:800; border:none;
+    box-shadow: var(--glow);
+  }
+
+  /* HERO */
+  .hero{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-top:16px}
+  .hero .left{padding:20px}
+  h1{margin:0; font-family:"Bebas Neue"; font-size:40px; line-height:1; letter-spacing:.5px}
+  .accent{color:var(--accent)} .warn{color:var(--warn)}
+  .badges{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+  .pill{padding:6px 12px;border-radius:999px;border:1px solid var(--card-border); background:rgba(0,0,0,.25)}
+  .statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+  .stat{padding:14px;text-align:center;border-radius:14px;border:1px solid var(--card-border);background:rgba(0,0,0,.15)}
+
+  /* SECTIONs */
+  .section{margin-top:18px}
+  .title{font-weight:800}
+  .grid{display:grid;gap:14px}
+  .grid.pkg{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+  .grid.two{grid-template-columns:2fr 1fr}
+  .card{padding:16px;border-radius:16px}
+  .price{font-size:22px;font-weight:900}
+
+  /* FORM */
+  label{display:block;margin-bottom:6px;color:#cfe3ff}
+  input,select,textarea{
+    width:100%; padding:12px; border-radius:12px; border:1px solid var(--card-border);
+    color:var(--text); background:rgba(0,0,0,.25)
+  }
+  .list{display:flex;flex-direction:column;gap:8px}
+  .item{display:flex;justify-content:space-between;gap:10px}
+  .total{font-size:24px;font-weight:900}
+
+  /* FOOTER */
+  .footer{margin:34px 0 12px;color:#c1ccda;font-size:14px;text-align:center}
+
+  /* คอมพ์เล็ก */
+  @media (max-width:960px){
+    .hero{grid-template-columns:1fr}
+    .grid.two{grid-template-columns:1fr}
+  }
+</style>
 </head>
 <body>
   <div class="wrap">
@@ -92,8 +109,8 @@
       <div class="brand">
         <div class="logo">EV</div>
         <div>
-          <div style="font-weight:900;letter-spacing:.5px">EVAN VALE</div>
-          <small class="muted2">บริการเติมเกม • เร็ว ปลอดภัย</small>
+          <div class="name">Evan Vale</div>
+          <small class="muted">บริการเติมเกม • เร็ว ปลอดภัย</small>
         </div>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -105,141 +122,143 @@
 
     <!-- HERO -->
     <section class="hero">
-      <div class="glass">
-        <span class="badge">✅ เปิดรับออเดอร์ 24/7</span>
-        <h1>เว็บเติมเกมของ <span style="color:var(--brand2)">EVAN VALE</span> — ราคาดี โปร่งใส <span style="color:#ffd166">มีแอดมินดูแล</span></h1>
-        <p class="muted">รองรับ PromptPay / TrueMoney Wallet / โอนธนาคาร • มีสรุปบิลก่อนยืนยัน • ไม่ยึด UID</p>
-        <div class="statgrid">
-          <div class="stat"><div style="font-size:20px;font-weight:900">3–10 นาที*</div><div class="muted2">โดยเฉลี่ย</div></div>
-          <div class="stat"><div style="font-size:20px;font-weight:900">1000+</div><div class="muted2">รายการสำเร็จ</div></div>
-          <div class="stat"><div style="font-size:20px;font-weight:900">0%</div><div class="muted2">ยึด UID</div></div>
+      <div class="glass left">
+        <div class="muted">✅ เปิดรับออเดอร์ <span class="pill">24/7</span></div>
+        <h1>เว็บเติมเกมของ <span class="accent">Evan Vale</span> — ราคาดี โปร่งใส <span class="warn">มีแอดมินดูแล</span></h1>
+        <div class="badges">
+          <span class="pill">PromptPay</span>
+          <span class="pill">TrueMoney Wallet</span>
+          <span class="pill">โอนธนาคาร</span>
         </div>
-        <p class="muted2" style="margin-top:8px">*ช่วงพีค/เกมปิดปรับปรุงอาจช้ากว่าปกติ</p>
+        <div class="statgrid">
+          <div class="stat glass"><b>3–10 นาที*</b><div class="muted">โดยเฉลี่ย</div></div>
+          <div class="stat glass"><b>1000+</b><div class="muted">รายการสำเร็จ</div></div>
+          <div class="stat glass"><b>0%</b><div class="muted">ยึด UID</div></div>
+        </div>
+        <small class="muted">*เวลาอาจช้ากว่าปกติช่วงพีค/เกมปิดปรับปรุง</small>
       </div>
-      <div class="glass" style="display:grid;place-items:center;text-align:center">
-        <div style="font-weight:800">แอดมินตอบไว</div>
-        <div class="muted2">กดปุ่มด้านขวาบนเพื่อติดต่อทันที</div>
+      <div class="glass" style="padding:0;overflow:hidden">
+        <!-- อยากวางโปสเตอร์ใหญ่ ไฟล์เดียววางแทนภาพนี้ได้ -->
+        <div style="aspect-ratio:1/1.2; background:
+            radial-gradient(600px 400px at 70% 20%, rgba(125,249,255,.35), transparent 40%),
+            radial-gradient(500px 400px at 30% 80%, rgba(110,84,255,.28), transparent 40%),
+            linear-gradient(160deg, rgba(10,20,32,.6), rgba(10,20,32,.2));">
+        </div>
       </div>
     </section>
 
     <!-- PACKAGES -->
     <section id="packages" class="section">
-      <div class="card">
-        <h2 style="margin:0 0 6px">แพ็กเกจยอดฮิต (Free Fire)</h2>
-        <p class="muted2" style="margin:0 0 10px">คลิก “เลือกแพ็ก” เพื่อกรอกฟอร์มให้อัตโนมัติ</p>
+      <div class="glass card">
+        <h2 style="margin:0 0 6px">แพ็กเกจ Free Fire</h2>
+        <p class="muted" style="margin-top:0">คลิกเลือกเพื่อใส่แพ็กเกจในฟอร์ม</p>
         <div class="grid pkg" id="pkg-grid"></div>
       </div>
     </section>
 
     <!-- ORDER -->
-    <section id="order" class="section grid two" style="align-items:start">
-      <div class="card">
-        <h2 style="margin-top:0">สั่งเติมเกม</h2>
-        <div class="row">
-          <div>
-            <label>เกม</label>
-            <select id="game">
-              <option>Free Fire</option>
-              <option>Genshin Impact</option>
-              <option>Honkai: Star Rail</option>
-              <option>RoV</option>
-              <option>PUBG Mobile</option>
-            </select>
+    <section id="order" class="section">
+      <div class="grid two" style="align-items:start">
+        <div class="glass card">
+          <h2 style="margin-top:0">สั่งเติมเกม</h2>
+          <div class="grid" style="grid-template-columns:1fr 1fr">
+            <div>
+              <label>เกม</label>
+              <select id="game">
+                <option>Free Fire</option>
+                <option>Genshin Impact</option>
+                <option>Honkai: Star Rail</option>
+                <option>RoV</option>
+                <option>PUBG Mobile</option>
+              </select>
+            </div>
+            <div>
+              <label>โซน/เซิร์ฟเวอร์</label>
+              <select id="server">
+                <option>SEA</option><option>Asia</option><option>Global</option><option>อื่นๆ</option>
+              </select>
+            </div>
+            <div>
+              <label>UID / Player ID</label>
+              <input id="uid" placeholder="เช่น 812345678 หรือชื่อในเกม">
+            </div>
+            <div>
+              <label>แพ็กเกจ</label>
+              <select id="package"></select>
+            </div>
+            <div>
+              <label>วิธีชำระ</label>
+              <select id="method">
+                <option>PromptPay</option>
+                <option>TrueMoney Wallet</option>
+                <option>โอนธนาคาร</option>
+              </select>
+            </div>
+            <div>
+              <label>โค้ดส่วนลด (ถ้ามี)</label>
+              <input id="promo" placeholder="เช่น EVAN10">
+            </div>
+            <div>
+              <label>ชื่อลูกค้า</label>
+              <input id="name" placeholder="ชื่อเล่นก็ได้">
+            </div>
+            <div>
+              <label>ช่องทางติดต่อ</label>
+              <input id="contact" placeholder="Line/FB/Tel">
+            </div>
           </div>
-          <div>
-            <label>โซน/เซิร์ฟเวอร์</label>
-            <select id="server">
-              <option>SEA</option><option>Asia</option><option>Global</option><option>อื่นๆ</option>
-            </select>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+            <button class="btn" id="btnReset" type="button">ล้างฟอร์ม</button>
+            <button class="btn primary" id="btnSubmit" type="button">ยืนยันและสร้างบิล</button>
           </div>
-        </div>
-        <div class="row">
-          <div>
-            <label>UID / Player ID</label>
-            <input id="uid" placeholder="เช่น 812345678 หรือชื่อในเกม">
-          </div>
-          <div>
-            <label>แพ็กเกจ</label>
-            <select id="package"></select>
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label>วิธีชำระ</label>
-            <select id="method">
-              <option>PromptPay</option>
-              <option>TrueMoney Wallet</option>
-              <option>โอนธนาคาร</option>
-            </select>
-          </div>
-          <div>
-            <label>โค้ดส่วนลด (ถ้ามี)</label>
-            <input id="promo" placeholder="เช่น EVAN10">
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label>ชื่อลูกค้า</label>
-            <input id="name" placeholder="ชื่อเล่นก็ได้">
-          </div>
-          <div>
-            <label>ช่องทางติดต่อ</label>
-            <input id="contact" placeholder="Line/FB/Tel">
-          </div>
+          <p class="muted" style="margin-top:6px">หลังชำระเงิน ระบบจะคัดลอกข้อความสรุปให้ แล้วเปิดแชทแอดมินอัตโนมัติ</p>
         </div>
 
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
-          <button class="btn" id="btnReset" type="button">ล้างฟอร์ม</button>
-          <button class="btn primary" id="btnSubmit" type="button">ยืนยันและสร้างบิล</button>
-        </div>
-        <p class="muted2" style="margin-top:8px">กดยืนยันแล้วจะเลื่อนไปส่วน “ชำระเงิน” อัตโนมัติ</p>
+        <aside class="glass card" id="summary">
+          <h3 style="margin-top:0">สรุปบิล</h3>
+          <div class="list">
+            <div class="item"><span class="muted">เลขบิล</span><span id="sum-bill">-</span></div>
+            <div class="item"><span class="muted">เกม</span><span id="sum-game">-</span></div>
+            <div class="item"><span class="muted">เซิร์ฟเวอร์</span><span id="sum-server">-</span></div>
+            <div class="item"><span class="muted">UID</span><span id="sum-uid">-</span></div>
+            <div class="item"><span class="muted">แพ็กเกจ</span><span id="sum-pkg">-</span></div>
+            <div class="item"><span class="muted">วิธีชำระ</span><span id="sum-method">-</span></div>
+          </div>
+          <div class="item" style="margin-top:8px"><span class="muted">ยอดสุทธิ</span><span class="total" id="sum-total">฿0</span></div>
+        </aside>
       </div>
-
-      <aside class="card summary">
-        <h3 style="margin-top:0">สรุปบิล</h3>
-        <div class="list">
-          <div class="item"><span class="muted2">เลขบิล</span><span id="sum-bill">-</span></div>
-          <div class="item"><span class="muted2">เกม</span><span id="sum-game">-</span></div>
-          <div class="item"><span class="muted2">เซิร์ฟเวอร์</span><span id="sum-server">-</span></div>
-          <div class="item"><span class="muted2">UID</span><span id="sum-uid">-</span></div>
-          <div class="item"><span class="muted2">แพ็กเกจ</span><span id="sum-pkg">-</span></div>
-          <div class="item"><span class="muted2">วิธีชำระ</span><span id="sum-method">-</span></div>
-        </div>
-        <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:10px 0"></div>
-        <div class="item"><span class="muted2">ยอดสุทธิ</span><span class="total" id="sum-total">฿0</span></div>
-      </aside>
     </section>
 
     <!-- PAYMENT -->
     <section id="pay" class="section" style="display:none">
-      <div class="card">
+      <div class="glass card">
         <h2 style="margin-top:0">ชำระเงิน</h2>
-        <p class="muted2">เลือกหนึ่งช่องทางด้านล่าง แล้วแนบสลิป/เลขอ้างอิง จากนั้นกด “ชำระแล้ว • ส่งหาแอดมิน”</p>
+        <p class="muted">สแกนเพื่อจ่าย เลือกหนึ่งช่องทาง แล้วอัปโหลดสลิป/ใส่เลขอ้างอิง</p>
         <div class="grid pkg">
-          <div class="glass" style="text-align:center">
-            <div style="font-weight:800;margin-bottom:8px">TrueMoney Wallet</div>
-            <!-- ใช้ชื่อไฟล์ที่อยู่ราก repo -->
-            <img src="truemoney.png" alt="TrueMoney QR" style="max-width:100%;border-radius:12px">
-            <div class="muted2" style="margin-top:6px">สแกนด้วยแอป TrueMoney</div>
+          <div class="glass card" style="text-align:center">
+            <div class="title" style="margin-bottom:8px">TrueMoney Wallet</div>
+            <img src="truemoney.png" alt="TrueMoney QR" style="max-width:100%;border-radius:12px;box-shadow:var(--glow)">
+            <div class="muted" style="margin-top:6px">สแกนด้วยแอป TrueMoney</div>
           </div>
-          <div class="glass" style="text-align:center">
-            <div style="font-weight:800;margin-bottom:8px">พร้อมเพย์ / ธนาคาร</div>
-            <img src="promptpay.png" alt="PromptPay QR" style="max-width:100%;border-radius:12px">
-            <div class="muted2" style="margin-top:6px">สแกนด้วยแอปธนาคาร</div>
+          <div class="glass card" style="text-align:center">
+            <div class="title" style="margin-bottom:8px">พร้อมเพย์ / ธนาคาร</div>
+            <img src="พร้อมเพย์.png" alt="PromptPay QR" style="max-width:100%;border-radius:12px;box-shadow:var(--glow)">
+            <div class="muted" style="margin-top:6px">สแกนด้วยแอปธนาคาร</div>
           </div>
         </div>
 
-        <div class="glass" style="margin-top:14px">
+        <div class="glass card" style="margin-top:14px">
           <h3 style="margin-top:0">แนบหลักฐาน</h3>
-          <div class="row">
+          <div class="grid" style="grid-template-columns:1fr 1fr">
             <div>
               <label>อัปโหลดสลิป</label>
               <input id="slip" type="file" accept="image/*">
-              <div class="muted2" style="margin-top:6px">เว็บสแตติกจะไม่เก็บไฟล์ ให้แนบอีกครั้งในแชทถ้าจำเป็น</div>
+              <div class="muted" style="margin-top:6px">บนเว็บสแตติก รูปจะไม่อัปโหลดไปไหน ให้ลูกค้าแนบในแชทกับแอดมิน</div>
             </div>
             <div>
               <label>เลขอ้างอิง (ถ้ามี)</label>
-              <input id="ref" placeholder="เช่น 2025-XX-XX">
+              <input id="ref" placeholder="เช่น 2025-XX-XXXXXX">
             </div>
           </div>
           <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
@@ -253,127 +272,127 @@
     <div class="footer">© 2025 Evan Vale • เว็บเติมเกมราคาดี โปร่งใส มีแอดมินดูแล</div>
   </div>
 
-  <script>
-    // -------------- CONFIG --------------
-    const ADMIN_URL = "https://www.facebook.com/share/172YddmwsY/";
-    const PACKS = [
-      {name:"33 เพชร",  price:11},
-      {name:"68 เพชร",  price:21},
-      {name:"172 เพชร", price:49},
-      {name:"310 เพชร", price:87},
-      {name:"517 เพชร", price:145},
-      {name:"690 เพชร", price:195},
-      {name:"1052 เพชร",price:290},
-      {name:"1800 เพชร",price:480},
-      {name:"3698 เพชร",price:950},
-      {name:"7396 เพชร",price:1900},
-    ];
+<script>
+  // ===== CONFIG =====
+  const ADMIN_URL = "https://www.facebook.com/share/172YddmwsY/"; // ลิงก์แอดมิน
 
-    // -------------- UI: แพ็กเกจ --------------
-    const pkgGrid = document.getElementById('pkg-grid');
-    const pkgSelect = document.getElementById('package');
+  // แพ็กเกจตามป้ายราคา
+  const PACKS = [
+    {name:"33 เพชร",  price:11},
+    {name:"68 เพชร",  price:21},
+    {name:"172 เพชร", price:49},
+    {name:"310 เพชร", price:87},
+    {name:"517 เพชร", price:145},
+    {name:"690 เพชร", price:195},
+    {name:"1052 เพชร",price:290},
+    {name:"1800 เพชร",price:480},
+    {name:"3698 เพชร",price:950},
+    {name:"7396 เพชร",price:1900},
+  ];
 
-    function renderPacks(){
-      pkgGrid.innerHTML = "";
-      pkgSelect.innerHTML = "<option value='' disabled selected>— เลือกแพ็กเกจ —</option>";
-      PACKS.forEach(p=>{
-        const el = document.createElement('div');
-        el.className = "glass";
-        el.innerHTML = `
-          <div style="font-weight:800">${p.name}</div>
-          <div class="price">฿${p.price}</div>
-          <div style="margin-top:10px">
-            <a href="#order" class="btn primary" data-pkg="${p.name} – ฿${p.price}">เลือกแพ็ก</a>
-          </div>`;
-        pkgGrid.appendChild(el);
+  // ===== เติมแพ็กเกจในหน้า =====
+  const pkgGrid = document.getElementById('pkg-grid');
+  const pkgSelect = document.getElementById('package');
 
-        const opt = document.createElement('option');
-        opt.value = ${p.name} – ฿${p.price};
-        opt.textContent = ${p.name} – ฿${p.price};
-        pkgSelect.appendChild(opt);
-      });
+  function renderPacks(){
+    pkgGrid.innerHTML = "";
+    pkgSelect.innerHTML = "<option value='' disabled selected>— เลือกแพ็กเกจ —</option>";
+    PACKS.forEach(p=>{
+      const card = document.createElement('div');
+      card.className = "glass card";
+      card.innerHTML = `
+        <div>${p.name}</div>
+        <div class="price">฿${p.price}</div>
+        <div style="margin-top:8px">
+          <a href="#order" class="btn primary" data-pkg="${p.name} – ฿${p.price}">เลือกแพ็ก</a>
+        </div>`;
+      pkgGrid.appendChild(card);
 
-      pkgGrid.querySelectorAll('a[data-pkg]').forEach(a=>{
-        a.addEventListener('click',e=>{
-          e.preventDefault();
-          pkgSelect.value = a.getAttribute('data-pkg');
-          document.getElementById('order').scrollIntoView({behavior:'smooth'});
-          updateSummary();
-        });
-      });
-    }
-    renderPacks();
-
-    // -------------- สรุปบิล --------------
-    const pad = n=>n.toString().padStart(2,'0');
-    function genInvoice(){
-      const d=new Date();
-      const ts = ${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())};
-      const rnd = Math.floor(Math.random()*8999)+1000;
-      return EV-${ts}-${rnd};
-    }
-
-    function money(n){ return "฿"+(n||0); }
-
-    function updateSummary(){
-      const g  = document.getElementById('game').value;
-      const s  = document.getElementById('server').value;
-      const u  = document.getElementById('uid').value || "-";
-      const p  = document.getElementById('package').value || "-";
-      const m  = document.getElementById('method').value;
-
-      document.getElementById('sum-game').innerText   = g;
-      document.getElementById('sum-server').innerText = s;
-      document.getElementById('sum-uid').innerText    = u;
-      document.getElementById('sum-pkg').innerText    = p;
-      document.getElementById('sum-method').innerText = m;
-
-      const price = Number((p.split("฿")[1]||"0").replace(/[^\d]/g,""));
-      document.getElementById('sum-total').innerText = money(price);
-    }
-
-    ["game","server","uid","package","method"].forEach(id=>{
-      document.getElementById(id).addEventListener('input',updateSummary);
-      document.getElementById(id).addEventListener('change',updateSummary);
+      const opt = document.createElement('option');
+      opt.value = `${p.name} – ฿${p.price}`;
+      opt.textContent = `${p.name} – ฿${p.price}`;
+      pkgSelect.appendChild(opt);
     });
+
+    pkgGrid.querySelectorAll('a[data-pkg]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        e.preventDefault();
+        pkgSelect.value = a.getAttribute('data-pkg');
+        document.getElementById('order').scrollIntoView({behavior:'smooth'});
+        updateSummary();
+      });
+    });
+  }
+  renderPacks();
+
+  // ===== สรุปบิล =====
+  const pad = n=>n.toString().padStart(2,'0');
+  function genInvoice(){
+    const d=new Date();
+    const ts = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
+    const rnd = Math.floor(Math.random()*8999)+1000;
+    return `EV-${ts}-${rnd}`;
+  }
+  let invoiceId = "-";
+
+  function money(n){ return "฿"+(n||0).toString(); }
+
+  function updateSummary(){
+    const g  = document.getElementById('game').value;
+    const s  = document.getElementById('server').value;
+    const u  = document.getElementById('uid').value || "-";
+    const p  = document.getElementById('package').value || "-";
+    const m  = document.getElementById('method').value;
+    document.getElementById('sum-game').innerText = g;
+    document.getElementById('sum-server').innerText = s;
+    document.getElementById('sum-uid').innerText = u;
+    document.getElementById('sum-pkg').innerText = p;
+    document.getElementById('sum-method').innerText = m;
+
+    const price = Number((p.split("฿")[1]||"0").replace(/[, ]/g,""));
+    document.getElementById('sum-total').innerText = money(price);
+  }
+  ["game","server","uid","package","method"].forEach(id=>{
+    document.getElementById(id).addEventListener('input',updateSummary);
+    document.getElementById(id).addEventListener('change',updateSummary);
+  });
+  updateSummary();
+
+  // ล้างฟอร์ม
+  document.getElementById('btnReset').addEventListener('click', ()=>{
+    document.querySelectorAll('#order input').forEach(i=>i.value="");
+    document.querySelectorAll('#order select').forEach((s,idx)=>{ if(idx!==0) s.selectedIndex=0; });
+    pkgSelect.selectedIndex=0;
     updateSummary();
+  });
 
-    // ล้างฟอร์ม
-    document.getElementById('btnReset').addEventListener('click', ()=>{
-      document.querySelectorAll('#order input').forEach(i=>i.value="");
-      document.querySelectorAll('#order select').forEach((s,idx)=>{ s.selectedIndex=0; });
-      updateSummary();
-    });
+  // ยืนยันและสร้างบิล -> เปิดชำระเงิน
+  document.getElementById('btnSubmit').addEventListener('click', ()=>{
+    invoiceId = genInvoice();
+    document.getElementById('sum-bill').innerText = invoiceId;
+    document.getElementById('pay').style.display = "";
+    document.getElementById('pay').scrollIntoView({behavior:'smooth'});
+  });
 
-    // ยืนยันและสร้างบิล -> เปิดส่วนชำระเงิน
-    let invoiceId = "-";
-    document.getElementById('btnSubmit').addEventListener('click', ()=>{
-      invoiceId = genInvoice();
-      document.getElementById('sum-bill').innerText = invoiceId;
-      const pay = document.getElementById('pay');
-      pay.style.display = "";
-      pay.scrollIntoView({behavior:'smooth'});
-    });
+  // กลับไปแก้ฟอร์ม
+  document.getElementById('btnBackToForm').addEventListener('click', ()=>{
+    document.getElementById('pay').style.display = "none";
+    document.getElementById('order').scrollIntoView({behavior:'smooth'});
+  });
 
-    // กลับไปแก้ฟอร์ม
-    document.getElementById('btnBackToForm').addEventListener('click', ()=>{
-      document.getElementById('pay').style.display = "none";
-      document.getElementById('order').scrollIntoView({behavior:'smooth'});
-    });
+  // สร้างข้อความสรุปเพื่อส่งหาแอดมิน
+  function buildMessage(){
+    const g=document.getElementById('game').value;
+    const s=document.getElementById('server').value;
+    const u=document.getElementById('uid').value || "-";
+    const p=document.getElementById('package').value || "-";
+    const m=document.getElementById('method').value;
+    const name=document.getElementById('name').value || "-";
+    const contact=document.getElementById('contact').value || "-";
+    const total=document.getElementById('sum-total').innerText || "฿0";
+    const ref=(document.getElementById('ref')?.value||"").trim();
 
-    // สร้างข้อความสรุปเพื่อส่งหาแอดมิน
-    function buildMessage(){
-      const g=document.getElementById('game').value;
-      const s=document.getElementById('server').value;
-      const u=document.getElementById('uid').value || "-";
-      const p=document.getElementById('package').value || "-";
-      const m=document.getElementById('method').value;
-      const name=document.getElementById('name').value || "-";
-      const contact=document.getElementById('contact').value || "-";
-      const total=document.getElementById('sum-total').innerText || "฿0";
-      const ref=(document.getElementById('ref')?.value||"").trim();
-
-      return `ออร์เดอร์เติมเกม Evan Vale
+    return `ออร์เดอร์เติมเกม Evan Vale
 เลขบิล: ${invoiceId}
 เกม: ${g}
 เซิร์ฟเวอร์/โซน: ${s}
@@ -385,20 +404,20 @@ UID/Player ID: ${u}
 ติดต่อ: ${contact}
 เลขอ้างอิง: ${ref||"-"}
 โปรดตรวจสอบสลิปที่แนบด้วยครับ`;
-    }
+  }
 
-    // ส่งหาแอดมินหลังชำระเงิน
-    document.getElementById('btnSendToAdmin').addEventListener('click', async ()=>{
-      const msg = buildMessage();
-      const url = ADMIN_URL + (ADMIN_URL.includes('?') ? '&' : '?') + 'text=' + encodeURIComponent(msg);
-      window.open(url, '_blank');
-      try{
-        await navigator.clipboard.writeText(msg);
-        alert("คัดลอกสรุปบิลให้แล้ว! ถ้าข้อความไม่ขึ้นในแชท ให้กดวาง (Paste) และแนบสลิปด้วย");
-      }catch{
-        prompt("คัดลอกข้อความนี้แล้วไปวางในแชทแอดมิน:", msg);
-      }
-    });
-  </script>
+  // ส่งหาแอดมินหลังชำระเงิน
+  document.getElementById('btnSendToAdmin').addEventListener('click', async ()=>{
+    const msg = buildMessage();
+    const url = ADMIN_URL + (ADMIN_URL.includes('?') ? '&' : '?') + 'text=' + encodeURIComponent(msg);
+    window.open(url, '_blank');
+    try{
+      await navigator.clipboard.writeText(msg);
+      alert("คัดลอกสรุปบิลให้แล้ว! ถ้าข้อความไม่ขึ้นในแชท ให้กดวาง (Paste) และแนบสลิปด้วย");
+    }catch{
+      prompt("คัดลอกข้อความนี้แล้วไปวางในแชทแอดมิน:", msg);
+    }
+  });
+</script>
 </body>
 </html>
