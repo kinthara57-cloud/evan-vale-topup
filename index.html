@@ -1,39 +1,171 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Evan Vale | เว็บเติมเกม</title>
-<meta name="description" content="เว็บเติมเกม รวดเร็ว ปลอดภัย มีแอดมินดูแล — รองรับ PromptPay / TrueMoney / โอนธนาคาร" />
-<style>
-  :root{
-    --bg:#0b0f14; 
-    --card:#111720;
-    --muted:#7b8a97;
-    --text:#e8f0f7;
-    --brand:#49a6ff;
-    --brand-2:#7df9ff;
-    --accent:#22c55e;
-    --danger:#ef4444;
-    --warn:#f59e0b;
-    --ring: 0 0 0 3px rgba(73,166,255,0.25);
-    --shadow: 0 15px 30px rgba(0,0,0,.35);
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;background:linear-gradient(180deg,#0b0f14 0%,#0b0f14 40%,#0f1722 100%);color:var(--text);font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,"Noto Sans Thai",Tahoma,Arial}
-  a{color:var(--brand);text-decoration:none}
-  .container{max-width:1100px;margin:0 auto;padding:24px}
-  .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0;position:sticky;top:0;background:rgba(11,15,20,.7);backdrop-filter: blur(10px);z-index:50;border-bottom:1px dashed rgba(255,255,255,.07)}
-  .brand{display:flex;gap:10px;align-items:center;font-weight:800;letter-spacing:.3px}
-  .brand .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;color:#00152a;font-weight:900;box-shadow:var(--shadow)}
-  .nav-actions{display:flex;gap:10px;flex-wrap:wrap}
-  .btn{border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,#0f1623,#0b111a);padding:10px 14px;border-radius:12px;color:var(--text);cursor:pointer;transition:.2s}
-  .btn:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
-  .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#00182e;border:none}
-  .badge{border:1px solid rgba(255,255,255,.08);padding:6px 10px;border-radius:999px;color:var(--muted);display:inline-flex;gap:8px;align-items:center}
-  .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding:24px 0}
-  .hero-card{background:radial-gradient(1200px 450px at -10% -10%, rgba(73,166,255,.06), transparent),var(--card);border:1px solid rgba(255,255,255,.06);padding:24px;border-radius:20px;box-shadow:var(--shadow)}
-  .hero h1{font-size:clamp(28px,4vw,40px);margin:6px 0 10px}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>เว็บเติมเกมของ Evan Vale | เน้นเกมราคาดี มีแอดมินดูแล</title>
+  <meta name="description" content="เว็บเติมเกมของ Evan Vale — เร็ว โปร่งใส ราคาดี มีแอดมินดูแล 24/7 รองรับ PromptPay / TrueMoney Wallet / โอนธนาคาร">
+  <style>
+    :root{--bg:#0b0f14;--card:#111720;--text:#e8f0f7;--brand:#49a6ff;--muted:#8aa0b2;--line:#1b2430}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,Segoe UI,Arial}
+    .wrap{max-width:1040px;margin:auto;padding:24px}
+    .nav{display:flex;gap:12px;align-items:center;justify-content:space-between}
+    .btn{padding:10px 16px;border-radius:12px;border:1px solid #2a3340;background:#121826;color:#e8f0f7;cursor:pointer;text-decoration:none;display:inline-block}
+    .btn.brand{background:var(--brand);border-color:var(--brand);color:#04131d;font-weight:700}
+    .btn.ghost{background:transparent}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
+    .grid{display:grid;gap:14px}
+    .grid.pkg{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+    .price{font-size:20px;font-weight:800}
+    .muted{color:var(--muted);font-size:14px}
+    .title{font-size:28px;font-weight:800;line-height:1.25;margin:8px 0}
+    h3{margin:22px 0 10px}
+    input,select,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:#0e141b;color:var(--text)}
+    label{font-size:13px;color:var(--muted)}
+    footer{opacity:.7;font-size:12px;margin:28px 0 8px;text-align:center}
+    .two{grid-template-columns:1fr 1fr}
+    @media (max-width:800px){.two{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- NAV -->
+    <div class="nav">
+      <div style="display:flex;gap:10px;align-items:center">
+        <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(180deg,#49a6ff,#7fd4ff)"></div>
+        <div>
+          <div style="font-weight:800">Evan Vale</div>
+          <div class="muted">เว็บเติมเกมราคาดี • มีแอดมินดูแล</div>
+        </div>
+      </div>
+      <!-- TODO: เปลี่ยน/ยืนยันลิงก์แอดมินที่นี่ -->
+      <a class="btn brand" href="https://www.facebook.com/share/172YddmwsY/"
+         target="_blank" rel="noopener">ติดต่อแอดมิน</a>
+    </div>
+
+    <!-- HERO -->
+    <div class="card" style="margin-top:16px">
+      <div class="muted">เปิดรับออเดอร์ 24/7</div>
+      <div class="title">เว็บเติมเกมของ Evan Vale — เร็ว โปร่งใส ราคาดี มีแอดมินดูแล</div>
+      <div class="muted">รองรับ PromptPay / TrueMoney Wallet / โอนธนาคาร • ไม่ยึด UID</div>
+      <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+        <a class="btn ghost" href="#packages">ดูแพ็กเกจ</a>
+        <a class="btn brand" href="#order">ไปสั่งเติม</a>
+      </div>
+    </div>
+
+    <!-- PACKAGES -->
+    <h3 id="packages">แพ็กเกจ Free Fire (อ้างอิงตามป้ายราคา)</h3>
+    <div class="grid pkg">
+      <!-- เซ็ตนี้มาจากรูปที่ส่งมา จะปรับเพิ่ม/ลดได้เลย -->
+      <div class="card"><div>33 เพชร</div><div class="price">฿11</div><a class="btn brand" href="#order" onclick="pick('33 เพชร – ฿11')">เลือกแพ็ก</a></div>
+      <div class="card"><div>68 เพชร</div><div class="price">฿21</div><a class="btn brand" href="#order" onclick="pick('68 เพชร – ฿21')">เลือกแพ็ก</a></div>
+      <div class="card"><div>172 เพชร</div><div class="price">฿49</div><a class="btn brand" href="#order" onclick="pick('172 เพชร – ฿49')">เลือกแพ็ก</a></div>
+      <div class="card"><div>310 เพชร</div><div class="price">฿87</div><a class="btn brand" href="#order" onclick="pick('310 เพชร – ฿87')">เลือกแพ็ก</a></div>
+      <div class="card"><div>517 เพชร</div><div class="price">฿145</div><a class="btn brand" href="#order" onclick="pick('517 เพชร – ฿145')">เลือกแพ็ก</a></div>
+      <div class="card"><div>690 เพชร</div><div class="price">฿195</div><a class="btn brand" href="#order" onclick="pick('690 เพชร – ฿195')">เลือกแพ็ก</a></div>
+      <div class="card"><div>1052 เพชร</div><div class="price">฿290</div><a class="btn brand" href="#order" onclick="pick('1052 เพชร – ฿290')">เลือกแพ็ก</a></div>
+      <div class="card"><div>1800 เพชร</div><div class="price">฿480</div><a class="btn brand" href="#order" onclick="pick('1800 เพชร – ฿480')">เลือกแพ็ก</a></div>
+      <div class="card"><div>3698 เพชร</div><div class="price">฿950</div><a class="btn brand" href="#order" onclick="pick('3698 เพชร – ฿950')">เลือกแพ็ก</a></div>
+      <div class="card"><div>7396 เพชร</div><div class="price">฿1900</div><a class="btn brand" href="#order" onclick="pick('7396 เพชร – ฿1900')">เลือกแพ็ก</a></div>
+    </div>
+
+    <h3 style="margin-top:20px">แพ็กเกจเสริม</h3>
+    <div class="grid pkg">
+      <div class="card"><div>รายวัน</div><div class="price">฿32</div></div>
+      <div class="card"><div>รายสัปดาห์</div><div class="price">฿63</div></div>
+      <div class="card"><div>รายเดือน</div><div class="price">฿287</div></div>
+      <div class="card"><div>บูสต์เพจ</div><div class="price">฿90</div></div>
+    </div>
+
+    <!-- ORDER FORM -->
+    <h3 id="order">สั่งเติมเกม</h3>
+    <div class="grid two">
+      <form class="card" onsubmit="sendOrder(event)">
+        <div class="muted" style="margin-bottom:8px">กรอกข้อมูลให้ครบ แล้วกด “ส่งหาแอดมิน”</div>
+        <label>เกม</label>
+        <select id="game" style="margin:6px 0 10px">
+          <option>Free Fire</option>
+          <option>Genshin Impact</option>
+          <option>Honkai: Star Rail</option>
+          <option>RoV</option>
+          <option>PUBG Mobile</option>
+        </select>
+        <label>เซิร์ฟเวอร์/โซน</label>
+        <input id="server" placeholder="เช่น SEA หรือ โซนที่เล่น" style="margin:6px 0 10px">
+        <label>UID / Player ID</label>
+        <input id="uid" placeholder="เช่น 812345678" style="margin:6px 0 10px">
+        <label>แพ็กเกจ</label>
+        <input id="package" placeholder="เช่น 172 เพชร – ฿49" style="margin:6px 0 10px">
+        <label>ช่องทางติดต่อ</label>
+        <input id="contact" placeholder="Line / FB / โทร" style="margin:6px 0 10px">
+        <label>หมายเหตุ (ถ้ามี)</label>
+        <textarea id="note" rows="3" placeholder="ตัวเลือก/คำขอพิเศษ" style="margin:6px 0 12px"></textarea>
+        <button class="btn brand" type="submit">ยืนยัน & ส่งหาแอดมิน</button>
+        <div class="muted" style="margin-top:10px">
+          *ระบบจะเปิดลิงก์ไปหาแอดมินบน Facebook; ถ้าข้อความไม่ติด ให้กดวาง (paste) ข้อความที่คัดลอกไว้
+        </div>
+      </form>
+
+      <div class="card">
+        <div class="title" style="font-size:18px">ขั้นตอนหลังยืนยัน</div>
+        <ol class="muted">
+          <li>ระบบเปิดแชทแอดมิน Facebook อัตโนมัติ</li>
+          <li>ข้อความสรุปออร์เดอร์ถูกคัดลอกไว้ให้แล้ว</li>
+          <li>ถ้าข้อความไม่ขึ้น ให้กดวางในแชท</li>
+        </ol>
+        <a class="btn" style="margin-top:8px" target="_blank" rel="noopener"
+           href="https://www.facebook.com/share/172YddmwsY/">เปิดแชทแอดมินอีกครั้ง</a>
+      </div>
+    </div>
+
+    <footer>© Evan Vale • GitHub Pages demo</footer>
+  </div>
+
+  <script>
+    // TODO: ถ้ามีเพจ/โปรไฟล์ Messenger แบบ m.me/USERNAME ให้เปลี่ยนลิงก์นี้จะพรีฟิลล์ได้ดีกว่า
+    const ADMIN_URL = "https://www.facebook.com/share/172YddmwsY/"; // ลิงก์ที่ให้มา
+
+    function pick(txt){ document.getElementById('package').value = txt; }
+
+    function buildMessage(){
+      const g = document.getElementById('game').value.trim();
+      const s = document.getElementById('server').value.trim();
+      const u = document.getElementById('uid').value.trim();
+      const p = document.getElementById('package').value.trim();
+      const c = document.getElementById('contact').value.trim();
+      const n = document.getElementById('note').value.trim();
+      return `ออร์เดอร์เติมเกม Evan Vale
+เกม: ${g}
+โซน/เซิร์ฟเวอร์: ${s}
+UID/Player ID: ${u}
+แพ็กเกจ: ${p}
+ติดต่อ: ${c}
+หมายเหตุ: ${n || "-"}
+โปรดแจ้งวิธีชำระเงินและเวลาที่คาดว่าจะเติมให้ด้วยครับ`;
+    }
+
+    async function sendOrder(e){
+      e.preventDefault();
+      const txt = buildMessage();
+
+      // 1) พยายามเปิดลิงก์ไปหาแอดมิน + แนบข้อความผ่าน query ?text=
+      // (บางครั้ง Facebook ไม่อ่านพารามฯ เราเลยทำข้อ 2 เป็น backup)
+      const tryUrl = ADMIN_URL + (ADMIN_URL.includes("?") ? "&" : "?") + "text=" + encodeURIComponent(txt);
+      window.open(tryUrl, "_blank");
+
+      // 2) ทำสำเนาข้อความไว้ให้เผื่อ FB ไม่พรีฟิลล์
+      try{
+        await navigator.clipboard.writeText(txt);
+        alert("คัดลอกสรุปออร์เดอร์ให้แล้ว ถ้าข้อความไม่ขึ้นในแชท ให้กดวาง (Paste) ได้เลย!");
+      }catch(err){
+        // ถ้าบางเบราว์เซอร์ห้าม ก็โชว์สรุปให้ก็อปเอง
+        prompt("คัดลอกข้อความนี้แล้วไปวางในแชทแอดมิน:", txt);
+      }
+    }
+  </script>
+</body>
+</html>
   .hero p{color:var(--muted);margin:0 0 14px}
   .hero-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
   .stat{background:#0b111a;border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:12px;text-align:center}
