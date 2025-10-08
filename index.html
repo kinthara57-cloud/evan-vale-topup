@@ -4,46 +4,197 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>เว็บเติมเกมของ Evan Vale | เน้นเกมราคาดี มีแอดมินดูแล</title>
-  <meta name="description" content="เว็บเติมเกมของ Evan Vale — เร็ว โปร่งใส ราคาดี มีแอดมินดูแล 24/7 รองรับ PromptPay / TrueMoney Wallet / โอนธนาคาร">
+  <meta name="description" content="เว็บเติมเกม Evan Vale ราคาดี โปร่งใส ปลอดภัย มีแอดมินดูแล 24 ชั่วโมง รองรับ TrueMoney, PromptPay และธนาคาร" />
+  <meta name="keywords" content="เติมเกม, เว็บเติมเกม, Evan Vale, Free Fire, Genshin Impact, RoV, เกมมือถือ, เติมเกมราคาถูก" />
+
   <style>
-    :root{--bg:#0b0f14;--card:#111720;--text:#e8f0f7;--brand:#49a6ff;--muted:#8aa0b2;--line:#1b2430}
-    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,Segoe UI,Arial}
-    .wrap{max-width:1040px;margin:auto;padding:24px}
-    .nav{display:flex;gap:12px;align-items:center;justify-content:space-between}
-    .btn{padding:10px 16px;border-radius:12px;border:1px solid #2a3340;background:#121826;color:#e8f0f7;cursor:pointer;text-decoration:none;display:inline-block}
-    .btn.brand{background:var(--brand);border-color:var(--brand);color:#04131d;font-weight:700}
-    .btn.ghost{background:transparent}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
-    .grid{display:grid;gap:14px}
-    .grid.pkg{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
-    .price{font-size:20px;font-weight:800}
-    .muted{color:var(--muted);font-size:14px}
-    .title{font-size:28px;font-weight:800;line-height:1.25;margin:8px 0}
-    h3{margin:22px 0 10px}
-    input,select,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:#0e141b;color:var(--text)}
-    label{font-size:13px;color:var(--muted)}
-    footer{opacity:.7;font-size:12px;margin:28px 0 8px;text-align:center}
-    .two{grid-template-columns:1fr 1fr}
-    @media (max-width:800px){.two{grid-template-columns:1fr}}
+    body {
+      background: #0b0f14;
+      color: #e8f0f7;
+      font-family: "Prompt", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #111720;
+      padding: 16px;
+      text-align: center;
+      border-bottom: 1px solid #333;
+    }
+
+    h1 {
+      color: #49a6ff;
+      font-size: 22px;
+      margin: 0;
+    }
+
+    .desc {
+      color: #7b8a97;
+      font-size: 14px;
+    }
+
+    .packages {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 14px;
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .card {
+      background: #111720;
+      border: 1px solid #2a2f35;
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .card h2 {
+      margin: 0;
+      color: #49a6ff;
+      font-size: 18px;
+    }
+
+    .card p {
+      margin: 6px 0;
+      color: #e8f0f7;
+      font-size: 14px;
+    }
+
+    .btn {
+      background: linear-gradient(90deg, #49a6ff, #7df9ff);
+      color: #000;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: none;
+      margin-top: 6px;
+    }
+
+    footer {
+      text-align: center;
+      color: #7b8a97;
+      font-size: 13px;
+      padding: 20px;
+      border-top: 1px solid #222;
+      margin-top: 20px;
+    }
+
+    .contact {
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    .contact a {
+      color: #7df9ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
   </style>
 </head>
-<body>
-  <div class="wrap">
-    <!-- NAV -->
-    <div class="nav">
-      <div style="display:flex;gap:10px;align-items:center">
-        <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(180deg,#49a6ff,#7fd4ff)"></div>
-        <div>
-          <div style="font-weight:800">Evan Vale</div>
-          <div class="muted">เว็บเติมเกมราคาดี • มีแอดมินดูแล</div>
-        </div>
-      </div>
-      <!-- TODO: เปลี่ยน/ยืนยันลิงก์แอดมินที่นี่ -->
-      <a class="btn brand" href="https://www.facebook.com/share/172YddmwsY/"
-         target="_blank" rel="noopener">ติดต่อแอดมิน</a>
-    </div>
 
-    <!-- HERO -->
+<body>
+  <header>
+    <h1>เว็บเติมเกมของ Evan Vale</h1>
+    <p class="desc">เร็ว โปร่งใส มีแอดมินดูแล 24 ชั่วโมง 🔥</p>
+  </header>
+
+  <section class="packages">
+    <div class="card">
+      <h2>33 เพชร</h2>
+      <p>ราคา 11 บาท</p>
+      <button class="btn">เลือก & ไปกรอกฟอร์ม</button>
+    </div>
+    <div class="card">
+      <h2>68 เพชร</h2>
+      <p>ราคา 21 บาท</p>
+      <button class="btn">เลือก & ไปกรอกฟอร์ม</button>
+    </div>
+    <div class="card">
+      <h2>172 เพชร</h2>
+      <p>ราคา 49 บาท</p>
+      <button class="btn">เลือก & ไปกรอกฟอร์ม</button>
+    </div>
+    <div class="card">
+      <h2>310 เพชร</h2>
+      <p>ราคา 87 บาท</p>
+      <button class="btn">เลือก & ไปกรอกฟอร์ม</button>
+    </div>
+  </section>
+
+  <div class="contact">
+    📞 ติดต่อแอดมินได้ที่  
+    <a href="https://www.facebook.com/share/172YddmwsY/" target="_blank">Facebook: Evan Vale</a>
+  </div>
+
+  <footer>
+    © 2025 Evan Vale | เว็บเติมเกมราคาดี โปร่งใส มีแอดมินดูแล
+  </footer>
+</body>
+</html>
+    footer {
+      text-align: center;
+      color: #7b8a97;
+      font-size: 13px;
+      padding: 20px;
+      border-top: 1px solid #222;
+      margin-top: 20px;
+    }
+
+    .contact {
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    .contact a {
+      color: #7df9ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>เว็บเติมเกมของ Evan Vale</h1>
+    <p class="desc">เร็ว โปร่งใส มีแอดมินดูแล 24 ชั่วโมง 🔥</p>
+  </header>
+
+  <section class="packages">
+    <div class="card">
+      <h2>33 เพชร</h2>
+      <p>ราคา 11 บาท</p>
+      <button class="btn">เลือก & ไปกรอกฟอร์ม</button>
+    </div>
+    <div class="card">
+      <h2>68 เพชร</h2>
+      <p>ราคา 21 บาท</p>
+      <button class="btn">เลือก & ไปกรอกฟอร์ม</button>
+    </div>
+    <div class="card">
+      <h2>172 เพชร</h2>
+      <p>ราคา 49 บาท</p>
+      <button class="btn">เลือก & ไปกรอกฟอร์ม</button>
+    </div>
+    <div class="card">
+      <h2>310 เพชร</h2>
+      <p>ราคา 87 บาท</p>
+      <button class="btn">เลือก & ไปกรอกฟอร์ม</button>
+    </div>
+  </section>
+
+  <div class="contact">
+    📞 ติดต่อแอดมินได้ที่  
+    <a href="https://www.facebook.com/share/172YddmwsY/" target="_blank">Facebook: Evan Vale</a>
+  </div>
+
+  <footer>
+    © 2025 Evan Vale | เว็บเติมเกมราคาดี โปร่งใส มีแอดมินดูแล
+  </footer>
+</body>
+</html>    <!-- HERO -->
     <div class="card" style="margin-top:16px">
       <div class="muted">เปิดรับออเดอร์ 24/7</div>
       <div class="title">เว็บเติมเกมของ Evan Vale — เร็ว โปร่งใส ราคาดี มีแอดมินดูแล</div>
