@@ -126,11 +126,21 @@ input,select,textarea{width:100%;background:#0a111f;border:1px solid var(--borde
 
         <!-- ข้อความแจ้งเตือน Roblox -->
         <p id="gameNote"
-           style="display:none;color:#00bfff;font-size:14px;margin:6px 0 0;"></p>
+           style="display:none;
+                  color:#00bfff;
+                  font-size:14px;
+                  margin:6px 0 0;"></p>
 
         <!-- ข้อความเตือนเฉพาะเกมไทย -->
         <p id="thaiOnlyNote"
-           style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0;background:#1a1a1a;padding:6px 10px;border-radius:6px;border-left:3px solid #00bfff;">
+           style="display:none;
+                  color:#ffd166;
+                  font-size:14px;
+                  margin:6px 0 0;
+                  background:#1a1a1a;
+                  padding:6px 10px;
+                  border-radius:6px;
+                  border-left:3px solid #00bfff;">
           ⚠️ เกมนี้รองรับเฉพาะ <b>เซิร์ฟเวอร์ไทย</b> เท่านั้น
           (Free Fire / RoV / PUBG Mobile / Roblox)
         </p>
@@ -149,64 +159,60 @@ input,select,textarea{width:100%;background:#0a111f;border:1px solid var(--borde
       </div>
       <div>
         <label>แพ็กเกจ</label>
-        <!-- ต้องชื่อ package ให้ตรงกับ JS -->
         <select id="package"></select>
       </div>
     </div>
-  </div>
-</section>
 
-          <label>แพ็กเกจ</label>
-          <select id="package"></select>
-        </div>
+    <div class="row">
+      <div>
+        <label>วิธีชำระ</label>
+        <select id="method">
+          <option>PromptPay</option>
+          <option>TrueMoney Wallet</option>
+          <option>โอนธนาคาร</option>
+        </select>
       </div>
-      <div class="row">
-        <div>
-          <label>วิธีชำระ</label>
-          <select id="method">
-            <option>PromptPay</option>
-            <option>TrueMoney Wallet</option>
-            <option>โอนธนาคาร</option>
-          </select>
-        </div>
-        <div>
-          <label>โค้ดส่วนลด (ถ้ามี)</label>
-          <input id="promo" placeholder="เช่น EVAN10">
-        </div>
+      <div>
+        <label>โค้ดส่วนลด (ถ้ามี)</label>
+        <input id="promo" placeholder="เช่น EVAN10">
       </div>
-      <div class="row">
-        <div>
-          <label>ชื่อลูกค้า</label>
-          <input id="name" placeholder="ชื่อเล่นก็ได้">
-        </div>
-        <div>
-          <label>ช่องทางติดต่อ</label>
-          <input id="contact" placeholder="Line/FB/Tel">
-        </div>
-      </div>
-
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
-        <button class="btn" id="btnReset" type="button">ล้างฟอร์ม</button>
-        <button class="btn primary" id="btnSubmit" type="button">ยืนยันและสร้างบิล</button>
-      </div>
-      <p class="muted2" style="margin-top:8px">กดยืนยันแล้วจะเลื่อนไปส่วน “ชำระเงิน” อัตโนมัติ</p>
     </div>
 
-    <aside class="card summary">
-      <h3 style="margin-top:0">สรุปบิล</h3>
-      <div class="list">
-        <div class="item"><span class="muted2">เลขบิล</span><span id="sum-bill">-</span></div>
-        <div class="item"><span class="muted2">เกม</span><span id="sum-game">-</span></div>
-        <div class="item"><span class="muted2">เซิร์ฟเวอร์</span><span id="sum-server">-</span></div>
-        <div class="item"><span class="muted2">UID</span><span id="sum-uid">-</span></div>
-        <div class="item"><span class="muted2">แพ็กเกจ</span><span id="sum-pkg">-</span></div>
-        <div class="item"><span class="muted2">วิธีชำระ</span><span id="sum-method">-</span></div>
+    <div class="row">
+      <div>
+        <label>ชื่อลูกค้า</label>
+        <input id="name" placeholder="ชื่อเล่นก็ได้">
       </div>
-      <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:10px 0"></div>
-      <div class="item"><span class="muted2">ยอดสุทธิ</span><span class="total" id="sum-total">฿0</span></div>
-    </aside>
-  </section>
+      <div>
+        <label>ช่องทางติดต่อ</label>
+        <input id="contact" placeholder="Line/FB/Tel">
+      </div>
+    </div>
 
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+      <button class="btn" id="btnReset" type="button">ล้างฟอร์ม</button>
+      <button class="btn primary" id="btnSubmit" type="button">ยืนยันและสร้างบิล</button>
+    </div>
+
+    <p class="muted2" style="margin-top:8px">
+      กดยืนยันแล้วจะเลื่อนไปส่วน “ชำระเงิน” อัตโนมัติ
+    </p>
+  </div>
+
+  <aside class="card summary">
+    <h3 style="margin-top:0">สรุปบิล</h3>
+    <div class="list">
+      <div class="item"><span class="muted2">เลขบิล</span><span id="sum-bill">-</span></div>
+      <div class="item"><span class="muted2">เกม</span><span id="sum-game">-</span></div>
+      <div class="item"><span class="muted2">เซิร์ฟเวอร์</span><span id="sum-server">-</span></div>
+      <div class="item"><span class="muted2">UID</span><span id="sum-uid">-</span></div>
+      <div class="item"><span class="muted2">แพ็กเกจ</span><span id="sum-pkg">-</span></div>
+      <div class="item"><span class="muted2">วิธีชำระ</span><span id="sum-method">-</span></div>
+    </div>
+    <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:10px 0"></div>
+    <div class="item"><span class="muted2">ยอดสุทธิ</span><span class="total" id="sum-total">฿0</span></div>
+  </aside>
+</section>
   <!-- PAYMENT -->
   <section id="pay" class="section" style="display:none">
     <div class="card">
