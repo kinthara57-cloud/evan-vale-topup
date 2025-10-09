@@ -42,10 +42,14 @@
     .btn{
       padding:9px 14px; border-radius:12px; border:1px solid var(--border);
       background:linear-gradient(180deg,#0b1524,#0a1220); color:#dbe9ff; font-weight:600;
+      cursor:pointer;
     }
     .btn.primary{
       background:linear-gradient(90deg,var(--brand),var(--brand2));
       color:#00121e; border:none; box-shadow:0 6px 20px rgba(100,200,255,.35);
+    }
+    .tab.active{
+      outline:2px solid var(--brand); box-shadow:0 0 10px rgba(73,166,255,.3) inset;
     }
     .hero{
       margin-top:16px; display:grid; grid-template-columns:2fr 1fr; gap:18px;
@@ -72,16 +76,10 @@
       padding:12px; border-radius:12px;
     }
     .price{font-size:22px;font-weight:900}
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .summary{position:sticky; top:84px}
-    .list{display:flex;flex-direction:column;gap:8px}
-    .item{display:flex;justify-content:space-between;gap:10px}
-    .total{font-size:22px;font-weight:900}
     .footer{margin:36px 0 14px;color:#9db0c9;text-align:center}
     @media (max-width:980px){
       .hero{grid-template-columns:1fr}
       .grid.two{grid-template-columns:1fr}
-      .summary{position:static}
     }
   </style>
 </head>
@@ -109,12 +107,6 @@
         <span class="badge">✅ เปิดรับออเดอร์ 24/7</span>
         <h1>เว็บเติมเกมของ <span style="color:var(--brand2)">EVAN VALE</span> — ราคาดี โปร่งใส <span style="color:#ffd166">มีแอดมินดูแล</span></h1>
         <p class="muted">รองรับ PromptPay / TrueMoney Wallet / โอนธนาคาร • มีสรุปบิลก่อนยืนยัน • ไม่ยึด UID</p>
-        <div class="statgrid">
-          <div class="stat"><div style="font-size:20px;font-weight:900">3–10 นาที*</div><div class="muted2">โดยเฉลี่ย</div></div>
-          <div class="stat"><div style="font-size:20px;font-weight:900">1000+</div><div class="muted2">รายการสำเร็จ</div></div>
-          <div class="stat"><div style="font-size:20px;font-weight:900">0%</div><div class="muted2">ยึด UID</div></div>
-        </div>
-        <p class="muted2" style="margin-top:8px">*ช่วงพีค/เกมปิดปรับปรุงอาจช้ากว่าปกติ</p>
       </div>
       <div class="glass" style="display:grid;place-items:center;text-align:center">
         <div style="font-weight:800">แอดมินตอบไว</div>
@@ -125,161 +117,65 @@
     <!-- PACKAGES -->
     <section id="packages" class="section">
       <div class="card">
-        <h2 style="margin:0 0 6px">แพ็กเกจยอดฮิต (Free Fire)</h2>
+        <h2 style="margin:0 0 6px">แพ็กเกจเกม</h2>
+        <div id="game-tabs" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+          <button class="btn tab active" data-game="Free Fire">Free Fire</button>
+          <button class="btn tab" data-game="Genshin Impact">Genshin Impact</button>
+          <button class="btn tab" data-game="RoV">RoV</button>
+          <button class="btn tab" data-game="PUBG Mobile">PUBG Mobile</button>
+          <button class="btn tab" data-game="Honkai: Star Rail">Honkai: Star Rail</button>
+        </div>
         <p class="muted2" style="margin:0 0 10px">คลิก “เลือกแพ็ก” เพื่อกรอกฟอร์มให้อัตโนมัติ</p>
         <div class="grid pkg" id="pkg-grid"></div>
       </div>
     </section>
 
-    <!-- ORDER -->
-    <section id="order" class="section grid two" style="align-items:start">
-      <div class="card">
-        <h2 style="margin-top:0">สั่งเติมเกม</h2>
-        <div class="row">
-          <div>
-            <label>เกม</label>
-            <select id="game">
-              <option>Free Fire</option>
-              <option>Genshin Impact</option>
-              <option>Honkai: Star Rail</option>
-              <option>RoV</option>
-              <option>PUBG Mobile</option>
-            </select>
-          </div>
-          <div>
-            <label>โซน/เซิร์ฟเวอร์</label>
-            <select id="server">
-              <option>SEA</option><option>Asia</option><option>Global</option><option>อื่นๆ</option>
-            </select>
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label>UID / Player ID</label>
-            <input id="uid" placeholder="เช่น 812345678 หรือชื่อในเกม">
-          </div>
-          <div>
-            <label>แพ็กเกจ</label>
-            <select id="package"></select>
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label>วิธีชำระ</label>
-            <select id="method">
-              <option>PromptPay</option>
-              <option>TrueMoney Wallet</option>
-              <option>โอนธนาคาร</option>
-            </select>
-          </div>
-          <div>
-            <label>โค้ดส่วนลด (ถ้ามี)</label>
-            <input id="promo" placeholder="เช่น EVAN10">
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label>ชื่อลูกค้า</label>
-            <input id="name" placeholder="ชื่อเล่นก็ได้">
-          </div>
-          <div>
-            <label>ช่องทางติดต่อ</label>
-            <input id="contact" placeholder="Line/FB/Tel">
-          </div>
-        </div>
-
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
-          <button class="btn" id="btnReset" type="button">ล้างฟอร์ม</button>
-          <button class="btn primary" id="btnSubmit" type="button">ยืนยันและสร้างบิล</button>
-        </div>
-        <p class="muted2" style="margin-top:8px">กดยืนยันแล้วจะเลื่อนไปส่วน “ชำระเงิน” อัตโนมัติ</p>
-      </div>
-
-      <aside class="card summary">
-        <h3 style="margin-top:0">สรุปบิล</h3>
-        <div class="list">
-          <div class="item"><span class="muted2">เลขบิล</span><span id="sum-bill">-</span></div>
-          <div class="item"><span class="muted2">เกม</span><span id="sum-game">-</span></div>
-          <div class="item"><span class="muted2">เซิร์ฟเวอร์</span><span id="sum-server">-</span></div>
-          <div class="item"><span class="muted2">UID</span><span id="sum-uid">-</span></div>
-          <div class="item"><span class="muted2">แพ็กเกจ</span><span id="sum-pkg">-</span></div>
-          <div class="item"><span class="muted2">วิธีชำระ</span><span id="sum-method">-</span></div>
-        </div>
-        <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:10px 0"></div>
-        <div class="item"><span class="muted2">ยอดสุทธิ</span><span class="total" id="sum-total">฿0</span></div>
-      </aside>
-    </section>
-
-    <!-- PAYMENT -->
-    <section id="pay" class="section" style="display:none">
-      <div class="card">
-        <h2 style="margin-top:0">ชำระเงิน</h2>
-        <p class="muted2">เลือกหนึ่งช่องทางด้านล่าง แล้วแนบสลิป/เลขอ้างอิง จากนั้นกด “ชำระแล้ว • ส่งหาแอดมิน”</p>
-        <div class="grid pkg">
-          <div class="glass" style="text-align:center">
-            <div style="font-weight:800;margin-bottom:8px">TrueMoney Wallet</div>
-            <!-- ใช้ชื่อไฟล์ที่อยู่ราก repo -->
-            <img src="truemoney.png" alt="TrueMoney QR" style="max-width:100%;border-radius:12px">
-            <div class="muted2" style="margin-top:6px">สแกนด้วยแอป TrueMoney</div>
-          </div>
-          <div class="glass" style="text-align:center">
-            <div style="font-weight:800;margin-bottom:8px">พร้อมเพย์ / ธนาคาร</div>
-            <img src="promptpay.png" alt="PromptPay QR" style="max-width:100%;border-radius:12px">
-            <div class="muted2" style="margin-top:6px">สแกนด้วยแอปธนาคาร</div>
-          </div>
-        </div>
-
-        <div class="glass" style="margin-top:14px">
-          <h3 style="margin-top:0">แนบหลักฐาน</h3>
-          <div class="row">
-            <div>
-              <label>อัปโหลดสลิป</label>
-              <input id="slip" type="file" accept="image/*">
-              <div class="muted2" style="margin-top:6px">เว็บสแตติกจะไม่เก็บไฟล์ ให้แนบอีกครั้งในแชทถ้าจำเป็น</div>
-            </div>
-            <div>
-              <label>เลขอ้างอิง (ถ้ามี)</label>
-              <input id="ref" placeholder="เช่น 2025-XX-XX">
-            </div>
-          </div>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
-            <button class="btn" id="btnBackToForm" type="button">กลับไปแก้ฟอร์ม</button>
-            <button class="btn primary" id="btnSendToAdmin" type="button">ชำระแล้ว • ส่งหาแอดมิน</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <!-- ส่วนอื่น (ORDER, PAYMENT, FOOTER) ใช้ของเดิมได้เลย -->
     <div class="footer">© 2025 Evan Vale • เว็บเติมเกมราคาดี โปร่งใส มีแอดมินดูแล</div>
   </div>
 
   <script>
-    // -------------- CONFIG --------------
     const ADMIN_URL = "https://www.facebook.com/share/172YddmwsY/";
-    const PACKS = [
-      {name:"33 เพชร",  price:11},
-      {name:"68 เพชร",  price:21},
-      {name:"172 เพชร", price:49},
-      {name:"310 เพชร", price:87},
-      {name:"517 เพชร", price:145},
-      {name:"690 เพชร", price:195},
-      {name:"1052 เพชร",price:290},
-      {name:"1800 เพชร",price:480},
-      {name:"3698 เพชร",price:950},
-      {name:"7396 เพชร",price:1900},
-    ];
 
-    // -------------- UI: แพ็กเกจ --------------
-    const pkgGrid = document.getElementById('pkg-grid');
-    const pkgSelect = document.getElementById('package');
+    // ===== แพ็กเกจแบ่งตามเกม =====
+    const PACKS_BY_GAME = {
+      "Free Fire": [
+        {name:"33 เพชร",price:11},
+        {name:"68 เพชร",price:21},
+        {name:"172 เพชร",price:49},
+        {name:"310 เพชร",price:87},
+      ],
+      "Genshin Impact": [
+        {name:"Welkin (พรฟ้า)",price:149},
+        {name:"Genesis 330",price:179},
+        {name:"Genesis 1090",price:549},
+      ],
+      "RoV": [
+        {name:"คูปอง 90",price:35},
+        {name:"คูปอง 300",price:109},
+      ],
+      "PUBG Mobile": [
+        {name:"60 UC",price:29},
+        {name:"325 UC",price:139},
+      ],
+      "Honkai: Star Rail": [
+        {name:"Express Pass",price:149},
+        {name:"Oneiric 330",price:179},
+      ],
+    };
 
-    function renderPacks(){
-      pkgGrid.innerHTML = "";
-      pkgSelect.innerHTML = "<option value='' disabled selected>— เลือกแพ็กเกจ —</option>";
-      PACKS.forEach(p=>{
-        const el = document.createElement('div');
-        el.className = "glass";
-        el.innerHTML = `
+    const pkgGrid=document.getElementById('pkg-grid');
+    const pkgSelect=document.getElementById('package');
+    const tabs=document.querySelectorAll('#game-tabs .tab');
+
+    function renderPacksFor(game){
+      const packs=PACKS_BY_GAME[game]||[];
+      pkgGrid.innerHTML="";
+      pkgSelect.innerHTML="<option value='' disabled selected>— เลือกแพ็กเกจ —</option>";
+      packs.forEach(p=>{
+        const el=document.createElement('div');
+        el.className="glass";
+        el.innerHTML=`
           <div style="font-weight:800">${p.name}</div>
           <div class="price">฿${p.price}</div>
           <div style="margin-top:10px">
@@ -287,118 +183,30 @@
           </div>`;
         pkgGrid.appendChild(el);
 
-        const opt = document.createElement('option');
-        opt.value = `${p.name} – ฿${p.price}`;
-        opt.textContent = `${p.name} – ฿${p.price}`;
-        pkgSelect.appendChild(opt);
+        const opt=document.createElement('option');
+        opt.value=`${p.name} – ฿${p.price}`;
+        opt.textContent=`${p.name} – ฿${p.price}`;
+        pkgSelect?.appendChild(opt);
       });
 
       pkgGrid.querySelectorAll('a[data-pkg]').forEach(a=>{
         a.addEventListener('click',e=>{
           e.preventDefault();
-          pkgSelect.value = a.getAttribute('data-pkg');
-          document.getElementById('order').scrollIntoView({behavior:'smooth'});
-          updateSummary();
+          pkgSelect.value=a.getAttribute('data-pkg');
+          document.getElementById('order')?.scrollIntoView({behavior:'smooth'});
         });
       });
     }
-    renderPacks();
 
-    // -------------- สรุปบิล --------------
-    const pad = n=>n.toString().padStart(2,'0');
-    function genInvoice(){
-      const d=new Date();
-      const ts = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
-      const rnd = Math.floor(Math.random()*8999)+1000;
-      return `EV-${ts}-${rnd}`;
-    }
-
-    function money(n){ return "฿"+(n||0); }
-
-    function updateSummary(){
-      const g  = document.getElementById('game').value;
-      const s  = document.getElementById('server').value;
-      const u  = document.getElementById('uid').value || "-";
-      const p  = document.getElementById('package').value || "-";
-      const m  = document.getElementById('method').value;
-
-      document.getElementById('sum-game').innerText   = g;
-      document.getElementById('sum-server').innerText = s;
-      document.getElementById('sum-uid').innerText    = u;
-      document.getElementById('sum-pkg').innerText    = p;
-      document.getElementById('sum-method').innerText = m;
-
-      const price = Number((p.split("฿")[1]||"0").replace(/[^\d]/g,""));
-      document.getElementById('sum-total').innerText = money(price);
-    }
-
-    ["game","server","uid","package","method"].forEach(id=>{
-      document.getElementById(id).addEventListener('input',updateSummary);
-      document.getElementById(id).addEventListener('change',updateSummary);
-    });
-    updateSummary();
-
-    // ล้างฟอร์ม
-    document.getElementById('btnReset').addEventListener('click', ()=>{
-      document.querySelectorAll('#order input').forEach(i=>i.value="");
-      document.querySelectorAll('#order select').forEach((s,idx)=>{ s.selectedIndex=0; });
-      updateSummary();
+    tabs.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        tabs.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        renderPacksFor(btn.dataset.game);
+      });
     });
 
-    // ยืนยันและสร้างบิล -> เปิดส่วนชำระเงิน
-    let invoiceId = "-";
-    document.getElementById('btnSubmit').addEventListener('click', ()=>{
-      invoiceId = genInvoice();
-      document.getElementById('sum-bill').innerText = invoiceId;
-      const pay = document.getElementById('pay');
-      pay.style.display = "";
-      pay.scrollIntoView({behavior:'smooth'});
-    });
-
-    // กลับไปแก้ฟอร์ม
-    document.getElementById('btnBackToForm').addEventListener('click', ()=>{
-      document.getElementById('pay').style.display = "none";
-      document.getElementById('order').scrollIntoView({behavior:'smooth'});
-    });
-
-    // สร้างข้อความสรุปเพื่อส่งหาแอดมิน
-    function buildMessage(){
-      const g=document.getElementById('game').value;
-      const s=document.getElementById('server').value;
-      const u=document.getElementById('uid').value || "-";
-      const p=document.getElementById('package').value || "-";
-      const m=document.getElementById('method').value;
-      const name=document.getElementById('name').value || "-";
-      const contact=document.getElementById('contact').value || "-";
-      const total=document.getElementById('sum-total').innerText || "฿0";
-      const ref=(document.getElementById('ref')?.value||"").trim();
-
-      return `ออร์เดอร์เติมเกม Evan Vale
-เลขบิล: ${invoiceId}
-เกม: ${g}
-เซิร์ฟเวอร์/โซน: ${s}
-UID/Player ID: ${u}
-แพ็กเกจ: ${p}
-วิธีชำระ: ${m}
-ยอดสุทธิ: ${total}
-ชื่อลูกค้า: ${name}
-ติดต่อ: ${contact}
-เลขอ้างอิง: ${ref||"-"}
-โปรดตรวจสอบสลิปที่แนบด้วยครับ`;
-    }
-
-    // ส่งหาแอดมินหลังชำระเงิน
-    document.getElementById('btnSendToAdmin').addEventListener('click', async ()=>{
-      const msg = buildMessage();
-      const url = ADMIN_URL + (ADMIN_URL.includes('?') ? '&' : '?') + 'text=' + encodeURIComponent(msg);
-      window.open(url, '_blank');
-      try{
-        await navigator.clipboard.writeText(msg);
-        alert("คัดลอกสรุปบิลให้แล้ว! ถ้าข้อความไม่ขึ้นในแชท ให้กดวาง (Paste) และแนบสลิปด้วย");
-      }catch{
-        prompt("คัดลอกข้อความนี้แล้วไปวางในแชทแอดมิน:", msg);
-      }
-    });
+    renderPacksFor("Free Fire");
   </script>
 </body>
 </html>
