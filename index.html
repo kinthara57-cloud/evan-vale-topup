@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>เว็บเติมเกมของ EVAN VALE | ราคาดี โปร่งใส มีแอดมินดูแล</title>
 <meta name="description" content="เว็บเติมเกม Evan Vale ราคาดี โปร่งใส ปลอดภัย มีแอดมินดูแล 24 ชั่วโมง รองรับ TrueMoney, PromptPay และธนาคาร" />
-<meta name="keywords" content="เติมเกม, Free Fire, RoV, Genshin Impact, Honkai Star Rail, PUBG Mobile, เติมเกมราคาถูก" />
+<meta name="keywords" content="เติมเกม, Free Fire, RoV, Genshin Impact, Honkai Star Rail, PUBG Mobile, Roblox, เติมเกมราคาถูก" />
 <style>
 :root{
   --bg:#070b12; --bg2:#0b1220;
@@ -25,17 +25,28 @@ body{
     linear-gradient(180deg, var(--bg), var(--bg2));
 }
 a{color:var(--accent); text-decoration:none}
+img{max-width:100%; display:block}
 .wrap{max-width:1100px;margin:auto;padding:20px}
+
+/* NAV */
 .nav{
   display:flex;justify-content:space-between;align-items:center;gap:12px;
   background:linear-gradient(180deg,#0b1424,#0a1020);
   border:1px solid var(--border); border-radius:20px; padding:10px 14px;
   box-shadow:var(--shadow); backdrop-filter: blur(8px);
+  position:sticky; top:12px; z-index:10;
 }
 .brand{display:flex;gap:12px;align-items:center}
-.logo{width:42px;height:42px;border-radius:12px;background:conic-gradient(from 220deg,#58a8ff,#7df9ff,#6ee7ff,#58a8ff);display:grid;place-items:center;font-weight:900;color:#001627}
+.logo{
+  width:42px;height:42px;border-radius:12px;
+  background:conic-gradient(from 220deg,#58a8ff,#7df9ff,#6ee7ff,#58a8ff);
+  display:grid;place-items:center;font-weight:900;color:#001627
+}
+.nav a.btn{white-space:nowrap}
 .btn{padding:9px 14px;border-radius:12px;border:1px solid var(--border);background:linear-gradient(180deg,#0b1524,#0a1220);color:#dbe9ff;font-weight:600}
 .btn.primary{background:linear-gradient(90deg,var(--brand),var(--brand2));color:#00121e;border:none;box-shadow:0 6px 20px rgba(100,200,255,.35)}
+
+/* HERO */
 .hero{margin-top:16px;display:grid;grid-template-columns:2fr 1fr;gap:18px}
 .glass{background:linear-gradient(180deg,#0d1525cc,#0b1220cc);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);backdrop-filter: blur(10px)}
 .badge{padding:6px 10px;border-radius:999px;background:#0f1a2d;border:1px solid var(--border);display:inline-block}
@@ -60,6 +71,26 @@ input,select,textarea{width:100%;background:#0a111f;border:1px solid var(--borde
 .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 0}
 .tab{padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:#0e1627;cursor:pointer}
 .tab.active{background:linear-gradient(90deg,var(--brand),var(--brand2));color:#00121e;border:none}
+
+/* Mini neon summary (เลย์เอาต์ย่อใต้ select เกม) */
+.neon{
+  box-shadow:0 0 10px rgba(0,191,255,.25),0 0 24px rgba(0,191,255,.18),inset 0 0 0 1px rgba(0,191,255,.18);
+  border:1px solid rgba(0,191,255,.25); border-radius:14px; padding:12px; margin-top:10px
+}
+.neon h3{margin:0 0 6px; font-size:16px; text-shadow:0 0 12px rgba(0,191,255,.35)}
+.mini-sum .row-line{display:flex;justify-content:space-between;gap:10px;padding:4px 0;border-bottom:1px dashed rgba(255,255,255,.06)}
+.mini-sum .row-line:last-child{border-bottom:0}
+.mini-sum .label{color:#96a3ba}
+.mini-sum .value{font-weight:700}
+
+/* Tab glow */
+.tab.active{animation:glow 1.2s ease-out 1; box-shadow:0 0 0 0 rgba(0,191,255,.0)}
+@keyframes glow{0%{box-shadow:0 0 0 0 rgba(0,191,255,.55)}100%{box-shadow:0 0 0 16px rgba(0,191,255,0)}}
+
+/* In animation */
+.animate-in{animation:swipeIn .35s ease-out 1}
+@keyframes swipeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
 @media (max-width:980px){ .hero{grid-template-columns:1fr} .grid.two{grid-template-columns:1fr} .summary{position:static}}
 </style>
 </head>
@@ -68,6 +99,7 @@ input,select,textarea{width:100%;background:#0a111f;border:1px solid var(--borde
   <!-- NAV -->
   <nav class="nav">
     <div class="brand">
+      <!-- ถ้ามีโลโก้ไฟล์ของมึง ให้ใส่ <img src="ev-logo.png" alt="EVAN VALE" class="logo" style="object-fit:cover"> แทน div ด้านล่าง -->
       <div class="logo">EV</div>
       <div>
         <div style="font-weight:900;letter-spacing:.5px">EVAN VALE</div>
@@ -84,11 +116,9 @@ input,select,textarea{width:100%;background:#0a111f;border:1px solid var(--borde
   <!-- HERO -->
   <section class="hero">
     <div class="glass">
-      <span class="badge">✅ เปิดรับออเดอร์ตั้งแต่เวลา 08:30-21:30 นะค้าบ</span>
+      <span class="badge">✅ เปิดรับออเดอร์ 24/7</span>
       <h1>เว็บเติมเกมของ <span style="color:var(--brand2)">EVAN VALE</span> — ราคาดี โปร่งใส <span style="color:var(--warn)">มีแอดมินดูแล</span></h1>
-      <p class="muted">รองรับ PromptPay / TrueMoney Wallet / โอนธนาคาร • มีสรุปบิลก่อนยืนยัน • ไม่ยึด UID
-     รบกวนลูกค้าคัดลอกบิลมาให้แอดมินด้วยน้าา และอย่าลืมแนบสลิปการโอนมาด้วยนะค้าบ💬 
-      </p>
+      <p class="muted">รองรับ PromptPay / TrueMoney Wallet / โอนธนาคาร • มีสรุปบิลก่อนยืนยัน • ไม่ยึด UID</p>
       <div class="statgrid">
         <div class="stat"><div style="font-size:20px;font-weight:900">3–10 นาที*</div><div class="muted2">โดยเฉลี่ย</div></div>
         <div class="stat"><div style="font-size:20px;font-weight:900">1000+</div><div class="muted2">รายการสำเร็จ</div></div>
@@ -114,22 +144,39 @@ input,select,textarea{width:100%;background:#0a111f;border:1px solid var(--borde
 
   <!-- ORDER -->
   <section id="order" class="section grid two" style="align-items:start">
-    <div class="card">
+    <div class="card animate-in">
       <h2 style="margin-top:0">สั่งเติมเกม</h2>
+
       <div class="row">
         <div>
           <label>เกม</label>
           <select id="game"></select>
-          <p id="gameNote" style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0"></p>
-          <p id="thaiOnlyNote" style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0;">
-⚠️ เกมนี้รองรับเฉพาะเซิร์ฟเวอร์ไทยเท่านั้น
-</p>
+
+          <!-- แจ้งเตือน Roblox / เกมที่ช้ากว่าปกติ -->
+          <p id="gameNote" style="display:none;color:#00bfff;font-size:14px;margin:6px 0 0"></p>
+
+          <!-- แจ้งเตือนเกมที่รับเฉพาะเซิร์ฟไทย -->
+          <p id="thaiOnlyNote"
+             style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0;background:#1a1a1a;padding:6px 10px;border-radius:6px;border-left:3px solid #00bfff;">
+            ⚠️ เกมนี้รองรับเฉพาะ <b>เซิร์ฟเวอร์ไทย</b> เท่านั้น (Free Fire / RoV / PUBG Mobile / Roblox)
+          </p>
+
+          <!-- Mini summary ย่อๆ ใต้เกม -->
+          <div class="neon mini-sum" id="miniSum" style="display:none">
+            <h3>สรุปคร่าวๆ</h3>
+            <div class="row-line"><span class="label">เกม</span><span class="value" id="mini-game">-</span></div>
+            <div class="row-line"><span class="label">เซิร์ฟเวอร์</span><span class="value" id="mini-server">-</span></div>
+            <div class="row-line"><span class="label">แพ็กเกจ</span><span class="value" id="mini-pkg">-</span></div>
+            <div class="row-line"><span class="label">ยอด</span><span class="value" id="mini-total">฿0</span></div>
+          </div>
         </div>
+
         <div>
           <label>โซน/เซิร์ฟเวอร์</label>
           <select id="server"></select>
         </div>
       </div>
+
       <div class="row">
         <div>
           <label>UID / Player ID</label>
@@ -140,6 +187,7 @@ input,select,textarea{width:100%;background:#0a111f;border:1px solid var(--borde
           <select id="package"></select>
         </div>
       </div>
+
       <div class="row">
         <div>
           <label>วิธีชำระ</label>
@@ -154,6 +202,7 @@ input,select,textarea{width:100%;background:#0a111f;border:1px solid var(--borde
           <input id="promo" placeholder="เช่น EVAN10">
         </div>
       </div>
+
       <div class="row">
         <div>
           <label>ชื่อลูกค้า</label>
@@ -195,12 +244,12 @@ input,select,textarea{width:100%;background:#0a111f;border:1px solid var(--borde
       <div class="grid pkg">
         <div class="glass" style="text-align:center">
           <div style="font-weight:800;margin-bottom:8px">TrueMoney Wallet</div>
-          <img src="truemoney.png" alt="TrueMoney QR" style="max-width:100%;border-radius:12px">
+          <img src="truemoney.png" alt="TrueMoney QR" style="border-radius:12px">
           <div class="muted2" style="margin-top:6px">สแกนด้วยแอป TrueMoney</div>
         </div>
         <div class="glass" style="text-align:center">
           <div style="font-weight:800;margin-bottom:8px">พร้อมเพย์ / ธนาคาร</div>
-          <img src="promptpay.png" alt="PromptPay QR" style="max-width:100%;border-radius:12px">
+          <img src="promptpay.png" alt="PromptPay QR" style="border-radius:12px">
           <div class="muted2" style="margin-top:6px">สแกนด้วยแอปธนาคาร</div>
         </div>
       </div>
@@ -231,92 +280,52 @@ input,select,textarea{width:100%;background:#0a111f;border:1px solid var(--borde
 
 <script>
 // ===== CONFIG =====
-const ADMIN_URL = "https://www.facebook.com/share/172YddmwsY/"; //
-// โลโก้/ชื่อเกม + เซิร์ฟเวอร์ + โน้ตแจ้งเตือน (แก้ได้เลย)
+const ADMIN_URL = "https://www.facebook.com/share/172YddmwsY/"; // ลิงก์เพจแอดมิน
+
+// (ถ้ามึงจะต่อ Firebase จริงใส่ config ตรงนี้ได้เลย แล้วเอาโค้ด init ข้างล่างออกคอมเมนต์)
+// const firebaseConfig = { /* ...ของมึง... */ };
+// if (firebaseConfig && firebaseConfig.apiKey) { /* init firebase ที่นี่ */ }
+
+// เกม/เซิร์ฟเวอร์/แพ็กเกจ
 const GAMES = [
-  { key:"Free Fire", icon:"🔥", servers:["SEA","Thailand","Global","อื่นๆ"] },
-
+  { key:"Free Fire", icon:"🔥", servers:["Thailand","SEA","Global","อื่นๆ"] },
   { key:"RoV", icon:"🛡️", servers:["Thailand","Vietnam","Taiwan","อื่นๆ"] },
-
-  // Genshin Impact – เซิร์ฟตามแบบที่อยากได้
-  { key:"Genshin Impact", icon:"✨",
-    servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"]
-  },
-
-  // Honkai: Star Rail – เซิร์ฟตามแบบเดียวกัน
-  { key:"Honkai: Star Rail", icon:"🚄",
-    servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"]
-  },
-
-  { key:"PUBG Mobile", icon:"🎯", servers:["SEA","KRJP","Global","อื่นๆ"] },
-
-  // Roblox + โน้ตเตือนเรื่องเวลา
-  { key:"Roblox", icon:"🧱",
-    servers:["Global","Asia","USA","อื่นๆ"],
-    note:"⚠️ การเติม Roblox อาจใช้เวลานานกว่าเกมอื่นเล็กน้อย โปรดรอการดำเนินการหลังส่งสลิปครับ"
-  },
+  { key:"Genshin Impact", icon:"✨", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
+  { key:"Honkai: Star Rail", icon:"🚄", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
+  { key:"PUBG Mobile", icon:"🎯", servers:["Thailand","SEA","KRJP","Global","อื่นๆ"] },
+  { key:"Roblox", icon:"🧱", servers:["Thailand","Asia","USA","Global","อื่นๆ"] },
 ];
 
 const PACKS_BY_GAME = {
   "Free Fire": [
-  { name: "33 เพชร",   price: 11 },
-  { name: "68 เพชร",   price: 21 },
-  { name: "172 เพชร",  price: 49 },
-  { name: "310 เพชร",  price: 87 },
-  { name: "517 เพชร",  price: 145 },
-  { name: "690 เพชร",  price: 195 },
-  { name: "1052 เพชร", price: 290 },
-  { name: "1800 เพชร", price: 480 },
-  { name: "3698 เพชร", price: 950 },
-  { name: "7396 เพชร", price: 1900 },
-
-  // 👉 แพ็กเกจเพิ่มเติม (รายสัปดาห์/รายเดือน/บูย่าห์พาส)
-  { name: "รายสัปดาห์ดามินิ", price: 32 },
-  { name: "รายสัปดาห์ดา",     price: 63 },
-  { name: "รายเดือน",          price: 287 },
-  { name: "บูย่าห์พาส",        price: 90 },
-
-  // 👉 แพ็กเกจเพิ่มเติม (อีโวพาส)
-  { name: "อีโวพาส 3 วัน",   price: 46 },
-  { name: "อีโวพาส 7 วัน",   price: 62 },
-  { name: "อีโวพาส 30 วัน",  price: 220 },
-],
-  "RoV": [
-    {name:"11 คูปอง", price:10},
-    {name:"24 คูปอง", price:19},
-    {name:"60 คูปอง", price:49},
-    {name:"110 คูปอง", price:87},
-    {name:"185 คูปอง", price:144},
-    {name:"370 คูปอง", price:285},
-    {name:"620 คูปอง", price:478},
-    {name:"990 คูปอง", price:765},
-    {name:"1250 คูปอง", price:960},
+    {name:"33 เพชร", price:11},{name:"68 เพชร", price:21},{name:"172 เพชร",price:49},
+    {name:"310 เพชร",price:87},{name:"517 เพชร",price:145},{name:"690 เพชร",price:195},
+    {name:"1052 เพชร",price:290},{name:"1800 เพชร",price:480},{name:"3698 เพชร",price:950},
+    {name:"7396 เพชร",price:1900},
+    {name:"รายสัปดาห์ดามินิ", price:32},{name:"รายสัปดาห์ดา", price:63},
+    {name:"รายเดือน", price:287},{name:"บูย่าห์พาส", price:90},
+    {name:"อีโวพาส 3 วัน", price:46},{name:"อีโวพาส 7 วัน", price:62},{name:"อีโวพาส 30 วัน", price:220},
   ],
-  "Roblox": [
-  // ⚠️ หมายเหตุ: Roblox ใช้เวลาเติมนานกว่าเกมอื่นเล็กน้อยนะครับ
-  {name:"80 Robux", price:35},
-  {name:"400 Robux", price:179},
-  {name:"800 Robux", price:349},
-  {name:"1700 Robux", price:699},
-  {name:"4500 Robux", price:1490},
-],
+  "RoV": [
+    {name:"11 คูปอง", price:10},{name:"24 คูปอง", price:19},{name:"60 คูปอง", price:49},
+    {name:"110 คูปอง", price:87},{name:"185 คูปอง", price:144},{name:"370 คูปอง", price:285},
+    {name:"620 คูปอง", price:478},{name:"990 คูปอง", price:765},{name:"1250 คูปอง", price:960},
+  ],
   "Genshin Impact": [
-    {name:"60 Genesis Crystals", price:35},
-    {name:"300+30 Crystals", price:179},
-    {name:"980+110 Crystals", price:549},
-    {name:"Blessing (รายเดือน)", price:179},
+    {name:"60 Genesis Crystals", price:35},{name:"300+30 Crystals", price:179},
+    {name:"980+110 Crystals", price:549},{name:"Blessing (รายเดือน)", price:179},
   ],
   "Honkai: Star Rail": [
-    {name:"60 Oneiric Shard", price:35},
-    {name:"300+30 Shard", price:179},
-    {name:"980+110 Shard", price:549},
-    {name:"Express Supply Pass", price:179},
+    {name:"60 Oneiric Shard", price:35},{name:"300+30 Shard", price:179},
+    {name:"980+110 Shard", price:549},{name:"Express Supply Pass", price:179},
   ],
   "PUBG Mobile": [
-    {name:"60 UC", price:35},
-    {name:"325 UC", price:179},
-    {name:"660 UC", price:349},
-    {name:"1800 UC", price:899},
+    {name:"60 UC", price:35},{name:"325 UC", price:179},{name:"660 UC", price:349},{name:"1800 UC", price:899},
+  ],
+  "Roblox": [
+    // หมายเหตุ: Roblox ใช้เวลาเติมนานกว่าเกมอื่นเล็กน้อย
+    {name:"80 Robux", price:35},{name:"400 Robux", price:179},{name:"800 Robux", price:349},
+    {name:"1700 Robux", price:699},{name:"4500 Robux", price:1490},
   ],
 };
 
@@ -326,21 +335,30 @@ const pkgGrid = document.getElementById('pkg-grid');
 const selGame = document.getElementById('game');
 const selServer = document.getElementById('server');
 const selPackage = document.getElementById('package');
+const miniSum = document.getElementById('miniSum');
+const miniGame = document.getElementById('mini-game');
+const miniServer = document.getElementById('mini-server');
+const miniPkg = document.getElementById('mini-pkg');
+const miniTotal = document.getElementById('mini-total');
+const gameNote = document.getElementById('gameNote');
+const thaiOnlyNote = document.getElementById('thaiOnlyNote');
 
 let currentGame = GAMES[0].key;
 
-// สร้างแท็บเกม + select เกม
+// เกมที่ “รับเฉพาะเซิร์ฟไทย”
+const thaiOnlyGames = ["Free Fire","RoV","PUBG Mobile","Roblox"];
+
+// ----- UI -----
 function renderGameTabs(){
   tabs.innerHTML = "";
   selGame.innerHTML = "";
   GAMES.forEach(g=>{
-    // tabs
     const t = document.createElement('div');
     t.className = 'tab' + (g.key===currentGame?' active':'');
-    t.textContent = ${g.icon} ${g.key};
-    t.addEventListener('click', ()=>{ setGame(g.key); });
+    t.textContent = `${g.icon} ${g.key}`;
+    t.addEventListener('click', ()=> setGame(g.key) );
     tabs.appendChild(t);
-    // select
+
     const opt = document.createElement('option');
     opt.value = g.key; opt.textContent = g.key;
     selGame.appendChild(opt);
@@ -371,8 +389,8 @@ function renderPacks(){
     pkgGrid.appendChild(card);
 
     const opt = document.createElement('option');
-    opt.value = ${p.name} – ฿${p.price};
-    opt.textContent = ${p.name} – ฿${p.price};
+    opt.value = `${p.name} – ฿${p.price}`;
+    opt.textContent = `${p.name} – ฿${p.price}`;
     selPackage.appendChild(opt);
   });
   pkgGrid.querySelectorAll('a[data-pkg]').forEach(a=>{
@@ -386,27 +404,47 @@ function renderPacks(){
 }
 function setGame(game){
   currentGame = game;
-  // ปรับ active tab
+
+  // active tab
   [...tabs.children].forEach(el=>{
-    el.classList.toggle('active', el.textContent.endsWith(game) || el.textContent.includes(game));
+    el.classList.toggle('active', el.textContent.includes(game));
   });
+
+  // หมายเหตุพิเศษแต่ละเกม
+  if (currentGame==="Roblox") {
+    gameNote.style.display = "block";
+    gameNote.textContent = "ℹ️ Roblox: ใช้เวลาเติมนานกว่าเกมอื่นเล็กน้อย (โปรดเผื่อเวลา)";
+  } else {
+    gameNote.style.display = "none";
+    gameNote.textContent = "";
+  }
+  // เตือน “เฉพาะเซิร์ฟไทย”
+  if (thaiOnlyGames.includes(currentGame)) {
+    thaiOnlyNote.style.display = "block";
+  } else {
+    thaiOnlyNote.style.display = "none";
+  }
+
   selGame.value = game;
   renderServers();
   renderPacks();
   updateSummary();
+  showMini();
 }
 
-// init
-renderGameTabs();
-setGame(currentGame);
+// Mini summary toggle
+function showMini(){
+  const has = (selPackage.value||"").length>0 || (document.getElementById('uid').value||"").length>0;
+  miniSum.style.display = has ? "block" : "none";
+}
 
 // ===== SUMMARY / BILL =====
 const pad = n=>n.toString().padStart(2,'0');
 function genInvoice(){
   const d=new Date();
-  const ts = ${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())};
+  const ts = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
   const rnd = Math.floor(Math.random()*8999)+1000;
-  return EV-${ts}-${rnd};
+  return `EV-${ts}-${rnd}`;
 }
 function money(n){ return "฿"+(n||0); }
 
@@ -424,13 +462,26 @@ function updateSummary(){
   document.getElementById('sum-method').innerText = m;
 
   const price = Number((p.split("฿")[1]||"0").replace(/[^\d]/g,""));
-  document.getElementById('sum-total').innerText = money(price);
+  const totalTxt = money(price);
+  document.getElementById('sum-total').innerText = totalTxt;
+
+  // mini
+  miniGame.textContent = g;
+  miniServer.textContent = s || "-";
+  miniPkg.textContent = p;
+  miniTotal.textContent = totalTxt;
+
+  showMini();
 }
 
 ["game","server","uid","package","method"].forEach(id=>{
   document.getElementById(id).addEventListener('input',updateSummary);
   document.getElementById(id).addEventListener('change',updateSummary);
 });
+
+// init
+renderGameTabs();
+setGame(currentGame);
 updateSummary();
 
 // ล้างฟอร์ม
@@ -456,7 +507,7 @@ document.getElementById('btnBackToForm').addEventListener('click', ()=>{
   document.getElementById('order').scrollIntoView({behavior:'smooth'});
 });
 
-// สร้างข้อความสรุปเพื่อส่งหาแอดมิน
+// ส่งหาแอดมิน (Facebook)
 function buildMessage(){
   const g=selGame.value;
   const s=selServer.value;
@@ -482,7 +533,6 @@ UID/Player ID: ${u}
 โปรดตรวจสอบสลิปที่แนบด้วยครับ`;
 }
 
-// ส่งหาแอดมินหลังชำระเงิน
 document.getElementById('btnSendToAdmin').addEventListener('click', async ()=>{
   const msg = buildMessage();
   const url = ADMIN_URL + (ADMIN_URL.includes('?') ? '&' : '?') + 'text=' + encodeURIComponent(msg);
@@ -494,36 +544,6 @@ document.getElementById('btnSendToAdmin').addEventListener('click', async ()=>{
     prompt("คัดลอกข้อความนี้แล้วไปวางในแชทแอดมิน:", msg);
   }
 });
-
-// ===== แสดงข้อความเตือนเมื่อเลือกเกม Roblox =====
-const gameNote = document.getElementById("gameNote");
-
-selGame.addEventListener("change", () => {
-  const selected = selGame.value;
-  const found = GAMES.find(g => g.key === selected);
-
-  if (found?.note) {
-    gameNote.style.display = "block";
-    gameNote.textContent = found.note;
-  } else {
-    gameNote.style.display = "none";
-    gameNote.textContent = "";
-  }
-});
-
-  // ===== แสดงเตือนว่าเกมไหนรองรับเฉพาะเซิร์ฟไทย =====
-const thaiOnlyGames = ["Free Fire", "RoV", "PUBG Mobile", "Roblox"];
-const thaiOnlyNote = document.getElementById("thaiOnlyNote");
-
-selGame.addEventListener("change", () => {
-  const selected = selGame.value;
-  if (thaiOnlyGames.includes(selected)) {
-    thaiOnlyNote.style.display = "block";
-  } else {
-    thaiOnlyNote.style.display = "none";
-  }
-});
-
 </script>
 </body>
 </html>
