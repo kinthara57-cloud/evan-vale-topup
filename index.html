@@ -84,7 +84,7 @@ input,select,textarea{width:100%;background:#0a111f;border:1px solid var(--borde
   <!-- HERO -->
   <section class="hero">
     <div class="glass">
-      <span class="badge">✅ เปิดรับออเดอร์ 24/7</span>
+      <span class="badge">✅ เปิดรับออเดอร์ตั้งแต่เวลา 08:30-21:30 นะค้าบ</span>
       <h1>เว็บเติมเกมของ <span style="color:var(--brand2)">EVAN VALE</span> — ราคาดี โปร่งใส <span style="color:var(--warn)">มีแอดมินดูแล</span></h1>
       <p class="muted">รองรับ PromptPay / TrueMoney Wallet / โอนธนาคาร • มีสรุปบิลก่อนยืนยัน • ไม่ยึด UID
      รบกวนลูกค้าคัดลอกบิลมาให้แอดมินด้วยน้าา และอย่าลืมแนบสลิปการโอนมาด้วยนะค้าบ💬 </p>
@@ -119,6 +119,7 @@ input,select,textarea{width:100%;background:#0a111f;border:1px solid var(--borde
         <div>
           <label>เกม</label>
           <select id="game"></select>
+          <p id="gameNote" style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0"></p>
         </div>
         <div>
           <label>โซน/เซิร์ฟเวอร์</label>
@@ -227,15 +228,29 @@ input,select,textarea{width:100%;background:#0a111f;border:1px solid var(--borde
 <script>
 // ===== CONFIG =====
 const ADMIN_URL = "https://www.facebook.com/share/172YddmwsY/"; //
-
-// โลโก้/ชื่อเกม + เซิร์ฟเวอร์ + ชุดแพ็ก (แก้ตรงนี้ได้เลย)
+// โลโก้/ชื่อเกม + เซิร์ฟเวอร์ + โน้ตแจ้งเตือน (แก้ได้เลย)
 const GAMES = [
   { key:"Free Fire", icon:"🔥", servers:["SEA","Thailand","Global","อื่นๆ"] },
+
   { key:"RoV", icon:"🛡️", servers:["Thailand","Vietnam","Taiwan","อื่นๆ"] },
-  { key:"Genshin Impact", icon:"✨", servers:["SEA","Asia","America","Europe","อื่นๆ"] },
-  { key:"Honkai: Star Rail", icon:"🚄", servers:["Asia","America","Europe","อื่นๆ"] },
+
+  // Genshin Impact – เซิร์ฟตามแบบที่อยากได้
+  { key:"Genshin Impact", icon:"✨",
+    servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"]
+  },
+
+  // Honkai: Star Rail – เซิร์ฟตามแบบเดียวกัน
+  { key:"Honkai: Star Rail", icon:"🚄",
+    servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"]
+  },
+
   { key:"PUBG Mobile", icon:"🎯", servers:["SEA","KRJP","Global","อื่นๆ"] },
-  { key:"Roblox", icon:"🧱", servers:["Global","Asia","USA","อื่นๆ"] },
+
+  // Roblox + โน้ตเตือนเรื่องเวลา
+  { key:"Roblox", icon:"🧱",
+    servers:["Global","Asia","USA","อื่นๆ"],
+    note:"⚠️ การเติม Roblox อาจใช้เวลานานกว่าเกมอื่นเล็กน้อย โปรดรอการดำเนินการหลังส่งสลิปครับ"
+  },
 ];
 
 const PACKS_BY_GAME = {
@@ -475,6 +490,23 @@ document.getElementById('btnSendToAdmin').addEventListener('click', async ()=>{
     prompt("คัดลอกข้อความนี้แล้วไปวางในแชทแอดมิน:", msg);
   }
 });
+
+// ===== แสดงข้อความเตือนเมื่อเลือกเกม Roblox =====
+const gameNote = document.getElementById("gameNote");
+
+selGame.addEventListener("change", () => {
+  const selected = selGame.value;
+  const found = GAMES.find(g => g.key === selected);
+
+  if (found?.note) {
+    gameNote.style.display = "block";
+    gameNote.textContent = found.note;
+  } else {
+    gameNote.style.display = "none";
+    gameNote.textContent = "";
+  }
+});
+
 </script>
 </body>
 </html>
