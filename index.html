@@ -450,14 +450,14 @@ function setGame(game){
 
 // Mini summary toggle
 function showMini(){
-  const has = (selPackage.value||"").length>0 || (document.getElementById('uid').value||"").length>0;
+  const has = (selPackage.value || "").length > 0 || (document.getElementById('uid').value || "").length > 0;
   miniSum.style.display = has ? "block" : "none";
 }
 
 // ===== SUMMARY / BILL =====
-const pad = n=>n.toString().padStart(2,'0');
+const pad = n => n.toString().padStart(2,'0');
 function genInvoice(){
-  const d=new Date();
+  const d = new Date();
   const ts = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
   const rnd = Math.floor(Math.random()*8999)+1000;
   return `EV-${ts}-${rnd}`;
@@ -465,11 +465,11 @@ function genInvoice(){
 function money(n){ return "฿"+(n||0); }
 
 function updateSummary(){
-  const g  = selGame.value;
-  const s  = selServer.value;
-  const u  = document.getElementById('uid').value || "-";
-  const p  = selPackage.value || "-";
-  const m  = document.getElementById('method').value;
+  const g = selGame.value;
+  const s = selServer.value;
+  const u = document.getElementById('uid').value || "-";
+  const p = selPackage.value || "-";
+  const m = document.getElementById('method').value;
 
   document.getElementById('sum-game').innerText   = g;
   document.getElementById('sum-server').innerText = s || "-";
@@ -477,22 +477,22 @@ function updateSummary(){
   document.getElementById('sum-pkg').innerText    = p;
   document.getElementById('sum-method').innerText = m;
 
-  const price = Number((p.split("฿")[1]||"0").replace(/[^\d]/g,""));
+  const price = Number((p.split("฿")[1] || "0").replace(/[^\d]/g,""));
   const totalTxt = money(price);
   document.getElementById('sum-total').innerText = totalTxt;
 
-  // mini
-  miniGame.textContent = g;
-  miniServer.textContent = s || "-";
-  miniPkg.textContent = p;
+  // mini-summary
+  miniGame.textContent  = g;
+  miniServer.textContent= s || "-";
+  miniPkg.textContent   = p;
   miniTotal.textContent = totalTxt;
 
   showMini();
 }
 
 ["game","server","uid","package","method"].forEach(id=>{
-  document.getElementById(id).addEventListener('input',updateSummary);
-  document.getElementById(id).addEventListener('change',updateSummary);
+  document.getElementById(id).addEventListener('input',  updateSummary);
+  document.getElementById(id).addEventListener('change', updateSummary);
 });
 
 // init
@@ -500,7 +500,6 @@ renderGameTabs();
 setGame(currentGame);
 updateSummary();
 
-<script>
 // ---------- ล้างฟอร์ม ----------
 document.getElementById('btnReset')?.addEventListener('click', ()=>{
   document.querySelectorAll('#order input').forEach(i=>i.value="");
@@ -556,9 +555,23 @@ const btnOpenAdmin = document.getElementById('btnOpenAdmin');
 const msgPreview   = document.getElementById('msgPreview');
 const copyHint     = document.getElementById('copyHint');
 
-// (สำคัญ) ไม่ปิดการกดปุ่มไว้ล่วงหน้า เพื่อกันปัญหามือถือบางรุ่น
 function makeAdminUrl(msg){
   return ADMIN_URL + (ADMIN_URL.includes('?') ? '&' : '?') + 'text=' + encodeURIComponent(msg);
+}
+
+// fallback คัดลอกเผื่อ clipboard ใช้ไม่ได้บนมือถือบางรุ่น
+async function copyTextSafe(text){
+  try{
+    await navigator.clipboard.writeText(text);
+    return true;
+  }catch{
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    let ok=false; try{ ok=document.execCommand('copy'); }catch{}
+    document.body.removeChild(ta);
+    return !!ok;
+  }
 }
 
 btnPrepare?.addEventListener('click', async ()=>{
@@ -568,9 +581,8 @@ btnPrepare?.addEventListener('click', async ()=>{
   if (msgPreview){ msgPreview.value = msg; msgPreview.style.display = 'block'; }
   if (copyHint){ copyHint.style.display = 'block'; copyHint.textContent = 'กำลังคัดลอกสรุปบิล...'; }
 
-  // คัดลอกอัตโนมัติ
-  let copied = false;
-  try { await navigator.clipboard.writeText(msg); copied = true; } catch(e) {}
+  // คัดลอกอัตโนมัติ (พร้อม fallback)
+  const copied = await copyTextSafe(msg);
 
   if (copyHint){
     copyHint.textContent = copied
@@ -583,4 +595,15 @@ btnPrepare?.addEventListener('click', async ()=>{
     btnOpenAdmin.href = makeAdminUrl(msg);
   }
 });
+
+// ถ้าผู้ใช้กดเปิดแชททั้งที่ยังไม่ได้กดคัดลอก ให้สร้างลิงก์สด ๆ แล้วเปิด
+btnOpenAdmin?.addEventListener('click', (e)=>{
+  if (!btnOpenAdmin.href || btnOpenAdmin.getAttribute('href') === '#'){
+    e.preventDefault();
+    const url = makeAdminUrl(buildMessage());
+    window.open(url, '_blank');
+  }
+});
 </script>
+</body>
+</html>
