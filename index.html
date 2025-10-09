@@ -3,553 +3,392 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>เว็บเติมเกมของ EVAN VALE | ราคาดี โปร่งใส มีแอดมินดูแล</title>
-<!-- โลโก้ favicon -->
-<link rel="icon" type="image/png" href="favicon.png" sizes="512x512">
-<link rel="apple-touch-icon" href="favicon.png">
-<meta name="description" content="เว็บเติมเกม Evan Vale ราคาดี โปร่งใส ปลอดภัย มีแอดมินดูแล 24 ชั่วโมง รองรับ TrueMoney, PromptPay และธนาคาร" />
-<meta name="keywords" content="เติมเกม, Free Fire, RoV, Genshin Impact, Honkai Star Rail, PUBG Mobile, เติมเกมราคาถูก" />
+<title>EVAN VALE — ร้านเติมเกม | รวดเร็ว โปร่งใส ปลอดภัย</title>
+<meta name="description" content="ร้านเติมเกม EVAN VALE — เติมเกมเร็ว โปร่งใส แนบสลิปแล้วระบบส่งหาแอดมินอัตโนมัติ รองรับ PromptPay/TrueMoney/โอนธนาคาร" />
 <style>
 :root{
-  --bg:#070b12; --bg2:#0b1220;
-  --glass:#0f1729aa; --panel:#0f1624; --card:#10192b;
-  --text:#eaf1ff; --muted:#96a3ba; --muted2:#7d8aa2;
-  --brand:#58a8ff; --brand2:#9ef0ff; --accent:#7df9ff; --warn:#ffd166;
-  --border:#223048; --shadow:0 18px 50px rgba(0,0,0,.45);
-  --radius:18px;
+  --bg:#070b12; --bg2:#0b1220; --panel:#0f1624; --card:#10192b;
+  --text:#eaf1ff; --muted:#96a3ba; --brand:#58a8ff; --brand2:#9ef0ff; --warn:#ffd166;
+  --border:#223048; --shadow:0 18px 50px rgba(0,0,0,.45); --r:16px;
 }
-*{box-sizing:border-box} html,body{height:100%}
-body{
-  margin:0; color:var(--text); font-family:system-ui,Segoe UI,Prompt,sans-serif;
+*{box-sizing:border-box} html,body{height:100%} body{
+  margin:0;color:var(--text);font-family:system-ui,Segoe UI,Prompt,sans-serif;
   background:
     radial-gradient(1200px 600px at -10% -10%, #15203a 0%, transparent 60%),
     radial-gradient(1000px 800px at 110% -10%, #142b45 0%, transparent 60%),
     radial-gradient(900px 900px at 50% 120%, #102037 0%, transparent 60%),
     linear-gradient(180deg, var(--bg), var(--bg2));
 }
-a{color:var(--accent); text-decoration:none}
-.wrap{max-width:1100px;margin:auto;padding:20px}
+a{color:var(--brand2);text-decoration:none}
+.wrap{max-width:1200px;margin:auto;padding:16px}
 .nav{
-  display:flex;justify-content:space-between;align-items:center;gap:12px;
-  background:linear-gradient(180deg,#0b1424,#0a1020);
-  border:1px solid var(--border); border-radius:20px; padding:10px 14px;
-  box-shadow:var(--shadow); backdrop-filter: blur(8px);
+  display:flex;gap:12px;justify-content:space-between;align-items:center;
+  padding:10px 14px;border:1px solid var(--border);border-radius:18px;
+  background:linear-gradient(180deg,#0b1424,#0a1020);box-shadow:var(--shadow)
 }
-.brand{display:flex;gap:12px;align-items:center}
+.brand{display:flex;gap:10px;align-items:center}
 .logo{width:42px;height:42px;border-radius:12px;background:conic-gradient(from 220deg,#58a8ff,#7df9ff,#6ee7ff,#58a8ff);display:grid;place-items:center;font-weight:900;color:#001627}
-.btn{padding:9px 14px;border-radius:12px;border:1px solid var(--border);background:linear-gradient(180deg,#0b1524,#0a1220);color:#dbe9ff;font-weight:600}
-.btn.primary{background:linear-gradient(90deg,var(--brand),var(--brand2));color:#00121e;border:none;box-shadow:0 6px 20px rgba(100,200,255,.35)}
-.hero{margin-top:16px;display:grid;grid-template-columns:2fr 1fr;gap:18px}
-.glass{background:linear-gradient(180deg,#0d1525cc,#0b1220cc);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);backdrop-filter: blur(10px)}
+.btn{padding:8px 12px;border-radius:10px;border:1px solid var(--border);background:#0e1627;color:#dbe9ff}
+.btn.primary{background:linear-gradient(90deg,var(--brand),var(--brand2));color:#00121e;border:none;box-shadow:0 6px 18px rgba(100,200,255,.35)}
+.layout{display:grid;grid-template-columns:260px 1fr;gap:16px;margin-top:16px}
+.side{background:var(--panel);border:1px solid var(--border);border-radius:var(--r);padding:14px}
+.main{display:grid;gap:16px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)}
 .badge{padding:6px 10px;border-radius:999px;background:#0f1a2d;border:1px solid var(--border);display:inline-block}
-h1{margin:10px 0 8px;font-size:28px}
-.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
-.stat{background:#0d1424;border:1px solid var(--border);border-radius:14px;text-align:center;padding:14px}
-.muted{color:var(--muted)} .muted2{color:var(--muted2)}
-.section{margin-top:22px}
-.grid{display:grid;gap:16px}
-.grid.pkg{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
-.grid.two{grid-template-columns:2fr 1fr}
-.card{background:#0f1729;border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
-label{display:block;margin-bottom:6px;color:#b7c6dd}
-input,select,textarea{width:100%;background:#0a111f;border:1px solid var(--border);color:var(--text);padding:12px;border-radius:12px}
-.price{font-size:22px;font-weight:900}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.summary{position:sticky;top:84px}
-.list{display:flex;flex-direction:column;gap:8px}
-.item{display:flex;justify-content:space-between;gap:10px}
-.total{font-size:22px;font-weight:900}
-.footer{margin:36px 0 14px;color:#9db0c9;text-align:center}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 0}
-.tab{padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:#0e1627;cursor:pointer}
-.tab.active{background:linear-gradient(90deg,var(--brand),var(--brand2));color:#00121e;border:none}
-@media (max-width:980px){ .hero{grid-template-columns:1fr} .grid.two{grid-template-columns:1fr} .summary{position:static}}
+.notice{background:#0e1528;border:1px solid rgba(255,255,255,.08);border-left:3px solid var(--warn);border-radius:12px;padding:10px}
+.grid{display:grid;gap:14px}
+.products{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+.prod{display:flex;flex-direction:column;gap:8px;border:1px solid var(--border);background:#0f1729;border-radius:14px;padding:10px}
+.prod img{width:100%;aspect-ratio:1.6/1;border-radius:10px;object-fit:cover;background:#0b1420}
+.price{font-weight:900}
+.cat{display:flex;flex-direction:column;gap:8px}
+.cat .item{display:flex;justify-content:space-between;align-items:center}
+.search{display:flex;gap:8px}
+input,select,textarea{width:100%;background:#0a111f;border:1px solid var(--border);color:var(--text);padding:10px;border-radius:10px}
+hr.sep{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:12px 0}
+.flex{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.right{margin-left:auto}
+.tag{padding:4px 8px;border-radius:999px;background:#0e1627;border:1px solid var(--border);font-size:12px;color:#9db0c9}
+.center{display:grid;place-items:center}
+.footer{margin:28px 0 12px;color:#9db0c9;text-align:center}
+@media (max-width:980px){.layout{grid-template-columns:1fr}}
+/* cart drawer */
+.drawer{position:fixed;right:16px;bottom:16px;z-index:50}
+.cart-btn{position:relative}
+.cart-count{position:absolute;top:-8px;right:-8px;background:#ff4d6d;color:#fff;border-radius:999px;padding:2px 6px;font-size:12px}
+.cart{display:none;position:fixed;right:16px;bottom:64px;width:320px;background:#0f1729;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);padding:12px;z-index:60}
+.cart .row{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px dashed rgba(255,255,255,.08)}
+.cart .row:last-child{border-bottom:0}
+/* loader */
+.loader-overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.45);backdrop-filter:blur(3px);z-index:9999}
+.loader-box{background:#0c1424;border:1px solid var(--border);border-radius:16px;padding:18px 22px;display:flex;gap:12px;align-items:center;box-shadow:var(--shadow)}
+.spin{width:22px;height:22px;border-radius:999px;border:3px solid rgba(255,255,255,.15);border-top-color:#58a8ff;animation:spin .9s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <!-- NAV -->
   <nav class="nav">
     <div class="brand">
       <div class="logo">EV</div>
       <div>
         <div style="font-weight:900;letter-spacing:.5px">EVAN VALE</div>
-        <small class="muted2">บริการเติมเกม • เร็ว ปลอดภัย</small>
+        <small style="color:#96a3ba">เติมเกม • รวดเร็ว โปร่งใส ปลอดภัย</small>
       </div>
     </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <a class="btn" href="#packages">แพ็กเกจ</a>
-      <a class="btn" href="#order">สั่งเติม</a>
+    <div class="flex">
+      <a class="btn" href="#pay">วิธีชำระ</a>
+      <button id="btnLogin" class="btn">เข้าสู่ระบบ</button>
       <a class="btn primary" href="https://www.facebook.com/share/172YddmwsY/" target="_blank" rel="noopener">ติดต่อแอดมิน</a>
+      <div class="drawer">
+        <button id="btnCart" class="btn cart-btn">ตะกร้า <span id="cartCount" class="cart-count">0</span></button>
+      </div>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="glass">
-      <span class="badge">✅ เปิดรับออเดอร์ตั้งแต่เวลา 08:30-21:30 นะค้าบ</span>
-      <h1>เว็บเติมเกมของ <span style="color:var(--brand2)">EVAN VALE</span> — ราคาดี โปร่งใส <span style="color:var(--warn)">มีแอดมินดูแล</span></h1>
-      <p class="muted">รองรับ PromptPay / TrueMoney Wallet / โอนธนาคาร • มีสรุปบิลก่อนยืนยัน • ไม่ยึด UID
-     รบกวนลูกค้าคัดลอกบิลมาให้แอดมินด้วยน้าา และอย่าลืมแนบสลิปการโอนมาด้วยนะค้าบ💬 
-      </p>
-      <div class="statgrid">
-        <div class="stat"><div style="font-size:20px;font-weight:900">3–10 นาที*</div><div class="muted2">โดยเฉลี่ย</div></div>
-        <div class="stat"><div style="font-size:20px;font-weight:900">1000+</div><div class="muted2">รายการสำเร็จ</div></div>
-        <div class="stat"><div style="font-size:20px;font-weight:900">0%</div><div class="muted2">ยึด UID</div></div>
+  <div class="layout">
+    <!-- SIDEBAR -->
+    <aside class="side">
+      <div class="badge">ประกาศร้าน</div>
+      <div class="notice" style="margin-top:8px">
+        🔒 ไม่ต้องเข้าสู่ระบบ • 📱 สแกนคิวอาร์ด้านล่างเพื่อชำระ • 📎 อย่าลืมแนบสลิปหลังโอน
       </div>
-      <p class="muted2" style="margin-top:8px">*ช่วงพีค/เกมปิดปรับปรุงอาจช้ากว่าปกติ</p>
-    </div>
-    <div class="glass" style="display:grid;place-items:center;text-align:center">
-      <div style="font-weight:800">แอดมินตอบไว</div>
-      <div class="muted2">กดปุ่ม “ติดต่อแอดมิน” ขวาบนได้เลย</div>
-    </div>
-  </section>
-
-  <!-- PACKAGES -->
-  <section id="packages" class="section">
-    <div class="card">
-      <h2 style="margin:0">แพ็กเกจยอดฮิต</h2>
-      <div class="tabs" id="game-tabs"></div>
-      <p class="muted2" style="margin:6px 0 10px">คลิก “เลือกแพ็ก” เพื่อกรอกฟอร์มให้อัตโนมัติ</p>
-      <div class="grid pkg" id="pkg-grid"></div>
-    </div>
-  </section>
-<!-- ORDER -->
-<section id="order" class="section grid two" style="align-items:start">
-  <div class="card">
-    <h2 style="margin-top:0">สั่งเติมเกม</h2>
-
-    <div class="row">
-      <div>
-        <label>เกม</label>
-        <select id="game"></select>
-
-        <!-- ข้อความแจ้งเตือน Roblox -->
-        <p id="gameNote"
-           style="display:none;
-                  color:#00bfff;
-                  font-size:14px;
-                  margin:6px 0 0;"></p>
-
-        <!-- ข้อความเตือนเฉพาะเกมไทย -->
-        <p id="thaiOnlyNote"
-           style="display:none;
-                  color:#ffd166;
-                  font-size:14px;
-                  margin:6px 0 0;
-                  background:#1a1a1a;
-                  padding:6px 10px;
-                  border-radius:6px;
-                  border-left:3px solid #00bfff;">
-          ⚠️ เกมนี้รองรับเฉพาะ <b>เซิร์ฟเวอร์ไทย</b> เท่านั้น
-          (Free Fire / RoV / PUBG Mobile / Roblox)
-        </p>
+      <hr class="sep">
+      <div class="cat">
+        <div class="item"><b>หมวดหมู่</b><span class="tag" id="countAll">0 สินค้า</span></div>
+        <button class="btn" data-cat="ทั้งหมด">ทั้งหมด</button>
+        <button class="btn" data-cat="Free Fire">Free Fire</button>
+        <button class="btn" data-cat="RoV">RoV</button>
+        <button class="btn" data-cat="Genshin">Genshin</button>
+        <button class="btn" data-cat="Honkai">Honkai</button>
+        <button class="btn" data-cat="PUBG">PUBG</button>
+        <button class="btn" data-cat="Roblox">Roblox</button>
       </div>
+      <hr class="sep">
+      <div class="search">
+        <input id="q" placeholder="ค้นหาสินค้า / คำว่า ‘เพชร’, ‘UC’, ‘Robux’...">
+        <button id="btnSearch" class="btn">ค้นหา</button>
+      </div>
+      <p id="thaiOnly" style="display:none;margin-top:10px;color:#ffd166">⚠️ หมวดนี้รองรับเฉพาะเซิร์ฟไทย</p>
+    </aside>
 
-      <div>
-        <label>โซน/เซิร์ฟเวอร์</label>
-        <select id="server"></select>
-      </div>
-    </div>
+    <!-- MAIN -->
+    <main class="main">
+      <section class="card">
+        <div class="flex">
+          <div>
+            <div class="badge">พร้อมให้บริการ</div>
+            <h2 style="margin:6px 0 0">ร้านเติมเกมของ <span style="color:var(--brand2)">EVAN VALE</span></h2>
+            <p style="color:#96a3ba;margin:6px 0 0">เลือกหมวด → เลือกแพ็ก → <b>ใส่ตะกร้า</b> → ไปชำระ → แนบสลิป → ระบบสรุปบิลส่งหาแอดมินให้</p>
+          </div>
+          <div class="right"><span class="tag">ไม่ล็อกอิน</span> <span class="tag">คิวอาร์ชำระ</span> <span class="tag">แนบสลิป</span></div>
+        </div>
+      </section>
 
-    <div class="row">
-      <div>
-        <label>UID / Player ID</label>
-        <input id="uid" placeholder="เช่น 812345678 หรือชื่อในเกม">
-      </div>
-      <div>
-        <label>แพ็กเกจ</label>
-        <select id="package"></select>
-      </div>
-    </div>
+      <section class="grid products" id="list"></section>
 
-    <div class="row">
-      <div>
-        <label>วิธีชำระ</label>
-        <select id="method">
-          <option>PromptPay</option>
-          <option>TrueMoney Wallet</option>
-          <option>โอนธนาคาร</option>
-        </select>
-      </div>
-      <div>
-        <label>โค้ดส่วนลด (ถ้ามี)</label>
-        <input id="promo" placeholder="เช่น EVAN10">
-      </div>
-    </div>
+      <section id="pay" class="card">
+        <h3 style="margin:0 0 8px">วิธีชำระเงิน</h3>
+        <p class="notice">สแกนคิวอาร์เพื่อชำระ (เลือก 1 ช่องทาง) แล้วแนบสลิป/เลขอ้างอิงในขั้นตอน “ส่งหาแอดมิน”</p>
+        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+          <div class="card center">
+            <b>TrueMoney Wallet</b>
+            <img src="truemoney.png" alt="TrueMoney QR" style="width:100%;border-radius:10px;margin-top:8px">
+          </div>
+          <div class="card center">
+            <b>พร้อมเพย์ / ธนาคาร</b>
+            <img src="promptpay.png" alt="PromptPay QR" style="width:100%;border-radius:10px;margin-top:8px">
+          </div>
+        </div>
+      </section>
 
-    <div class="row">
-      <div>
-        <label>ชื่อลูกค้า</label>
-        <input id="name" placeholder="ชื่อเล่นก็ได้">
-      </div>
-      <div>
-        <label>ช่องทางติดต่อ</label>
-        <input id="contact" placeholder="Line/FB/Tel">
-      </div>
-    </div>
+      <section class="card" id="checkout">
+        <h3 style="margin:0 0 8px">ยืนยันคำสั่งซื้อ</h3>
+        <div class="grid" style="grid-template-columns:2fr 1fr">
+          <div class="card" style="background:#0f1729">
+            <div class="grid" style="grid-template-columns:1fr 1fr;gap:10px">
+              <div>
+                <label>เกม / หมวด</label>
+                <input id="fGame" placeholder="จะกรอกอัตโนมัติเมื่อเลือกสินค้า" readonly>
+              </div>
+              <div>
+                <label>UID / Player ID</label>
+                <input id="fUid" placeholder="เช่น 812345678 หรือชื่อในเกม">
+              </div>
+              <div>
+                <label>วิธีชำระ</label>
+                <select id="fMethod">
+                  <option>PromptPay</option>
+                  <option>TrueMoney Wallet</option>
+                  <option>โอนธนาคาร</option>
+                </select>
+              </div>
+              <div>
+                <label>ช่องทางติดต่อ</label>
+                <input id="fContact" placeholder="Line/FB/Tel">
+              </div>
+              <div style="grid-column:1/3">
+                <label>หมายเหตุ (ถ้ามี)</label>
+                <input id="fNote" placeholder="ตัวเลือก/คำขอพิเศษ">
+              </div>
+              <div style="grid-column:1/3">
+                <label>แนบสลิป (ไม่บันทึกบนเซิร์ฟเวอร์)</label>
+                <input id="fSlip" type="file" accept="image/*">
+              </div>
+            </div>
+          </div>
+          <aside class="card">
+            <div class="flex"><b>สรุปบิล</b><span class="right tag" id="sumCount">0 ชิ้น</span></div>
+            <hr class="sep">
+            <div id="sumList" style="display:flex;flex-direction:column;gap:6px"></div>
+            <hr class="sep">
+            <div class="flex"><span>ยอดรวม</span><b id="sumTotal">฿0</b></div>
+            <button id="btnCreate" class="btn primary" style="margin-top:10px;width:100%">ยืนยันและสร้างบิล</button>
+          </aside>
+        </div>
+      </section>
 
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
-      <button class="btn" id="btnReset" type="button">ล้างฟอร์ม</button>
-      <button class="btn primary" id="btnSubmit" type="button">ยืนยันและสร้างบิล</button>
-    </div>
-
-    <p class="muted2" style="margin-top:8px">
-      กดยืนยันแล้วจะเลื่อนไปส่วน “ชำระเงิน” อัตโนมัติ
-    </p>
+      <div class="footer">© 2025 EVAN VALE • เติมเกมราคาดี โปร่งใส มีแอดมินดูแล</div>
+    </main>
   </div>
+</div>
 
-  <aside class="card summary">
-    <h3 style="margin-top:0">สรุปบิล</h3>
-    <div class="list">
-      <div class="item"><span class="muted2">เลขบิล</span><span id="sum-bill">-</span></div>
-      <div class="item"><span class="muted2">เกม</span><span id="sum-game">-</span></div>
-      <div class="item"><span class="muted2">เซิร์ฟเวอร์</span><span id="sum-server">-</span></div>
-      <div class="item"><span class="muted2">UID</span><span id="sum-uid">-</span></div>
-      <div class="item"><span class="muted2">แพ็กเกจ</span><span id="sum-pkg">-</span></div>
-      <div class="item"><span class="muted2">วิธีชำระ</span><span id="sum-method">-</span></div>
-    </div>
-    <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:10px 0"></div>
-    <div class="item"><span class="muted2">ยอดสุทธิ</span><span class="total" id="sum-total">฿0</span></div>
-  </aside>
-</section>
-  <!-- PAYMENT -->
-  <section id="pay" class="section" style="display:none">
-    <div class="card">
-      <h2 style="margin-top:0">ชำระเงิน</h2>
-      <p class="muted2">เลือกหนึ่งช่องทางด้านล่าง แล้วแนบสลิป/เลขอ้างอิง จากนั้นกด “ชำระแล้ว • ส่งหาแอดมิน”</p>
-      <div class="grid pkg">
-        <div class="glass" style="text-align:center">
-          <div style="font-weight:800;margin-bottom:8px">TrueMoney Wallet</div>
-          <img src="truemoney.png" alt="TrueMoney QR" style="max-width:100%;border-radius:12px">
-          <div class="muted2" style="margin-top:6px">สแกนด้วยแอป TrueMoney</div>
-        </div>
-        <div class="glass" style="text-align:center">
-          <div style="font-weight:800;margin-bottom:8px">พร้อมเพย์ / ธนาคาร</div>
-          <img src="promptpay.png" alt="PromptPay QR" style="max-width:100%;border-radius:12px">
-          <div class="muted2" style="margin-top:6px">สแกนด้วยแอปธนาคาร</div>
-        </div>
-      </div>
+<!-- CART DROPDOWN -->
+<div id="cartBox" class="cart">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <b>ตะกร้าสินค้า</b>
+    <button id="btnClear" class="btn">ล้าง</button>
+  </div>
+  <hr class="sep">
+  <div id="cartList"></div>
+  <hr class="sep">
+  <div class="flex"><span>รวม</span><b id="cartTotal">฿0</b></div>
+  <button id="btnToCheckout" class="btn primary" style="width:100%;margin-top:8px">ไปยืนยัน</button>
+</div>
 
-      <div class="glass" style="margin-top:14px">
-        <h3 style="margin-top:0">แนบหลักฐาน</h3>
-        <div class="row">
-          <div>
-            <label>อัปโหลดสลิป</label>
-            <input id="slip" type="file" accept="image/*">
-            <div class="muted2" style="margin-top:6px">เว็บสแตติกจะไม่เก็บไฟล์ ให้แนบซ้ำในแชทถ้าจำเป็น</div>
-          </div>
-          <div>
-            <label>เลขอ้างอิง (ถ้ามี)</label>
-            <input id="ref" placeholder="เช่น 2025-XX-XX">
-          </div>
-        </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
-          <button class="btn" id="btnBackToForm" type="button">กลับไปแก้ฟอร์ม</button>
-          <button class="btn primary" id="btnSendToAdmin" type="button">ชำระแล้ว • ส่งหาแอดมิน</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="footer">© 2025 Evan Vale • เว็บเติมเกมราคาดี โปร่งใส มีแอดมินดูแล</div>
+<!-- LOADER -->
+<div id="loader" class="loader-overlay">
+  <div class="loader-box"><div class="spin"></div><div>กำลังรวมยอด…</div></div>
 </div>
 
 <script>
-// ===== CONFIG =====
-const ADMIN_URL = "https://www.facebook.com/share/172YddmwsY/"; //
-// โลโก้/ชื่อเกม + เซิร์ฟเวอร์ + โน้ตแจ้งเตือน (แก้ได้เลย)
-const GAMES = [
-  { key:"Free Fire", icon:"🔥", servers:["SEA","Thailand","Global","อื่นๆ"] },
+// ========== CONFIG ==========
+const ADMIN_URL = "https://www.facebook.com/share/172YddmwsY/"; // แอดมินเพจ
+// ป้ายว่าเซิร์ฟไทยเท่านั้น สำหรับบางหมวด
+const THAI_ONLY = ["Free Fire","RoV","PUBG","Roblox"];
 
-  { key:"RoV", icon:"🛡️", servers:["Thailand","Vietnam","Taiwan","อื่นๆ"] },
-
-  // Genshin Impact – เซิร์ฟตามแบบที่อยากได้
-  { key:"Genshin Impact", icon:"✨",
-    servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"]
-  },
-
-  // Honkai: Star Rail – เซิร์ฟตามแบบเดียวกัน
-  { key:"Honkai: Star Rail", icon:"🚄",
-    servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"]
-  },
-
-  { key:"PUBG Mobile", icon:"🎯", servers:["SEA","KRJP","Global","อื่นๆ"] },
-
-  // Roblox + โน้ตเตือนเรื่องเวลา
-  { key:"Roblox", icon:"🧱",
-    servers:["Global","Asia","USA","อื่นๆ"],
-    note:"⚠️ การเติม Roblox อาจใช้เวลานานกว่าเกมอื่นเล็กน้อย โปรดรอการดำเนินการหลังส่งสลิปครับ"
-  },
+// ========== MOCK PRODUCTS (แก้/เพิ่มได้) ==========
+const PRODUCTS = [
+  // หมวด Free Fire
+  {id:"ff-33",  cat:"Free Fire", name:"33 เพชร",  price:11,  img:"https://picsum.photos/seed/ff33/480/300"},
+  {id:"ff-172", cat:"Free Fire", name:"172 เพชร", price:49,  img:"https://picsum.photos/seed/ff172/480/300"},
+  {id:"ff-517", cat:"Free Fire", name:"517 เพชร", price:145, img:"https://picsum.photos/seed/ff517/480/300"},
+  {id:"ff-week-mini", cat:"Free Fire", name:"รายสัปดาห์ ดามินิ", price:32, img:"https://picsum.photos/seed/ffwm/480/300"},
+  // RoV
+  {id:"rov-230", cat:"RoV", name:"230 คูปอง", price:119, img:"https://picsum.photos/seed/rov230/480/300"},
+  {id:"rov-470", cat:"RoV", name:"470 คูปอง", price:229, img:"https://picsum.photos/seed/rov470/480/300"},
+  // Genshin
+  {id:"gi-60",  cat:"Genshin", name:"60 Genesis Crystals", price:35, img:"https://picsum.photos/seed/gi60/480/300"},
+  {id:"gi-300", cat:"Genshin", name:"300+30 Crystals",     price:179,img:"https://picsum.photos/seed/gi300/480/300"},
+  // Honkai
+  {id:"hsr-60", cat:"Honkai", name:"60 Oneiric Shard", price:35, img:"https://picsum.photos/seed/hsr60/480/300"},
+  // PUBG
+  {id:"pubg-325",cat:"PUBG", name:"325 UC", price:179, img:"https://picsum.photos/seed/pubg325/480/300"},
+  // Roblox
+  {id:"rbx-400",cat:"Roblox", name:"400 Robux", price:179, img:"https://picsum.photos/seed/roblox400/480/300"},
 ];
 
-const PACKS_BY_GAME = {
-  "Free Fire": [
-  { name: "33 เพชร",   price: 11 },
-  { name: "68 เพชร",   price: 21 },
-  { name: "172 เพชร",  price: 49 },
-  { name: "310 เพชร",  price: 87 },
-  { name: "517 เพชร",  price: 145 },
-  { name: "690 เพชร",  price: 195 },
-  { name: "1052 เพชร", price: 290 },
-  { name: "1800 เพชร", price: 480 },
-  { name: "3698 เพชร", price: 950 },
-  { name: "7396 เพชร", price: 1900 },
+// ========== STATE ==========
+let user = JSON.parse(localStorage.getItem('ev_user')||'null');
+let cart = JSON.parse(localStorage.getItem('ev_cart')||'[]');
 
-  // 👉 แพ็กเกจเพิ่มเติม (รายสัปดาห์/รายเดือน/บูย่าห์พาส)
-  { name: "รายสัปดาห์ดามินิ", price: 32 },
-  { name: "รายสัปดาห์ดา",     price: 63 },
-  { name: "รายเดือน",          price: 287 },
-  { name: "บูย่าห์พาส",        price: 90 },
-
-  // 👉 แพ็กเกจเพิ่มเติม (อีโวพาส)
-  { name: "อีโวพาส 3 วัน",   price: 46 },
-  { name: "อีโวพาส 7 วัน",   price: 62 },
-  { name: "อีโวพาส 30 วัน",  price: 220 },
-],
-  "RoV": [
-    {name:"11 คูปอง", price:10},
-    {name:"24 คูปอง", price:19},
-    {name:"60 คูปอง", price:49},
-    {name:"110 คูปอง", price:87},
-    {name:"185 คูปอง", price:144},
-    {name:"370 คูปอง", price:285},
-    {name:"620 คูปอง", price:478},
-    {name:"990 คูปอง", price:765},
-    {name:"1250 คูปอง", price:960},
-  ],
-  "Roblox": [
-  // ⚠️ หมายเหตุ: Roblox ใช้เวลาเติมนานกว่าเกมอื่นเล็กน้อยนะครับ
-  {name:"80 Robux", price:35},
-  {name:"400 Robux", price:179},
-  {name:"800 Robux", price:349},
-  {name:"1700 Robux", price:699},
-  {name:"4500 Robux", price:1490},
-],
-  "Genshin Impact": [
-    {name:"60 Genesis Crystals", price:35},
-    {name:"300+30 Crystals", price:179},
-    {name:"980+110 Crystals", price:549},
-    {name:"Blessing (รายเดือน)", price:179},
-  ],
-  "Honkai: Star Rail": [
-    {name:"60 Oneiric Shard", price:35},
-    {name:"300+30 Shard", price:179},
-    {name:"980+110 Shard", price:549},
-    {name:"Express Supply Pass", price:179},
-  ],
-  "PUBG Mobile": [
-    {name:"60 UC", price:35},
-    {name:"325 UC", price:179},
-    {name:"660 UC", price:349},
-    {name:"1800 UC", price:899},
-  ],
+// ========== HELPERS ==========
+const $ = sel => document.querySelector(sel);
+const $$ = sel => Array.from(document.querySelectorAll(sel));
+const money = n => "฿"+(n||0).toLocaleString();
+const setLoader = (on, text="กำลังรวมยอด…")=>{
+  const box = $('#loader'); box.querySelector('.loader-box div:last-child').textContent=text;
+  box.style.display = on ? 'flex' : 'none';
 };
+const saveCart = ()=> localStorage.setItem('ev_cart', JSON.stringify(cart));
 
-// ===== refs =====
-const tabs = document.getElementById('game-tabs');
-const pkgGrid = document.getElementById('pkg-grid');
-const selGame = document.getElementById('game');
-const selServer = document.getElementById('server');
-const selPackage = document.getElementById('package');
-
-let currentGame = GAMES[0].key;
-
-// สร้างแท็บเกม + select เกม
-function renderGameTabs(){
-  tabs.innerHTML = "";
-  selGame.innerHTML = "";
-  GAMES.forEach(g=>{
-    // tabs
-    const t = document.createElement('div');
-    t.className = 'tab' + (g.key===currentGame?' active':'');
-    t.textContent = `${g.icon} ${g.key}`;
-    t.addEventListener('click', ()=>{ setGame(g.key); });
-    tabs.appendChild(t);
-    // select
-    const opt = document.createElement('option');
-    opt.value = g.key; opt.textContent = g.key;
-    selGame.appendChild(opt);
+// ========== RENDER PRODUCTS ==========
+const list = $('#list'), countAll = $('#countAll'), thaiOnly = $('#thaiOnly');
+function renderProducts(cat="ทั้งหมด", q=""){
+  const items = PRODUCTS.filter(p=>{
+    const byCat = (cat==="ทั้งหมด" ? true : p.cat===cat);
+    const byQ = q.trim()? (p.name+ ' '+p.cat).toLowerCase().includes(q.toLowerCase()) : true;
+    return byCat && byQ;
   });
-  selGame.value = currentGame;
-}
-function renderServers(){
-  selServer.innerHTML = "";
-  const gs = GAMES.find(x=>x.key===currentGame)?.servers || ["Global"];
-  gs.forEach(s=>{
-    const o=document.createElement('option'); o.value=s; o.textContent=s;
-    selServer.appendChild(o);
+  countAll.textContent = ${items.length} สินค้า;
+  thaiOnly.style.display = THAI_ONLY.includes(cat) ? 'block' : 'none';
+  list.innerHTML = "";
+  items.forEach(p=>{
+    const el = document.createElement('div');
+    el.className = "prod";
+    el.innerHTML = `
+      <img src="${p.img}" alt="${p.name}">
+      <div style="display:flex;justify-content:space-between;gap:6px;align-items:center">
+        <div>
+          <div style="font-weight:800">${p.name}</div>
+          <small style="color:#96a3ba">${p.cat}</small>
+        </div>
+        <div class="price">${money(p.price)}</div>
+      </div>
+      <button class="btn primary" data-add="${p.id}">ใส่ตะกร้า</button>
+    `;
+    list.appendChild(el);
   });
-}
-function renderPacks(){
-  const packs = PACKS_BY_GAME[currentGame]||[];
-  pkgGrid.innerHTML = "";
-  selPackage.innerHTML = "<option value='' disabled selected>— เลือกแพ็กเกจ —</option>";
-  packs.forEach(p=>{
-    const card = document.createElement('div');
-    card.className = "glass";
-    card.innerHTML = `
-      <div style="font-weight:800">${p.name}</div>
-      <div class="price">฿${p.price}</div>
-      <div style="margin-top:10px">
-        <a href="#order" class="btn primary" data-pkg="${p.name} – ฿${p.price}">เลือกแพ็ก</a>
-      </div>`;
-    pkgGrid.appendChild(card);
-
-    const opt = document.createElement('option');
-    opt.value = `${p.name} – ฿${p.price}`;
-    opt.textContent = `${p.name} – ฿${p.price}`;
-    selPackage.appendChild(opt);
-  });
-  pkgGrid.querySelectorAll('a[data-pkg]').forEach(a=>{
-    a.addEventListener('click',e=>{
-      e.preventDefault();
-      selPackage.value = a.getAttribute('data-pkg');
-      document.getElementById('order').scrollIntoView({behavior:'smooth'});
-      updateSummary();
-    });
+  // bind add
+  $$('[data-add]').forEach(b=>{
+    b.onclick = ()=>{
+      const id = b.getAttribute('data-add');
+      const prod = PRODUCTS.find(x=>x.id===id);
+      const inx = cart.findIndex(x=>x.id===id);
+      if(inx>-1) cart[inx].qty += 1; else cart.push({...prod, qty:1});
+      saveCart(); renderCart();
+    };
   });
 }
-function setGame(game){
-  currentGame = game;
-  // ปรับ active tab
-  [...tabs.children].forEach(el=>{
-    el.classList.toggle('active', el.textContent.endsWith(game) || el.textContent.includes(game));
+renderProducts();
+
+// ========== CATEGORY & SEARCH ==========
+$$('.cat .btn').forEach(btn=>{
+  btn.onclick = ()=>{
+    $$('.cat .btn').forEach(x=>x.classList.remove('primary'));
+    btn.classList.add('primary');
+    renderProducts(btn.dataset.cat || "ทั้งหมด", $('#q').value);
+  };
+});
+$('#btnSearch').onclick = ()=> renderProducts(($('.cat .btn.primary')?.dataset.cat)||"ทั้งหมด", $('#q').value);
+
+// ========== CART ==========
+const cartBox = $('#cartBox'), cartCount = $('#cartCount'), cartList = $('#cartList'), cartTotal = $('#cartTotal');
+function renderCart(){
+  cartCount.textContent = cart.reduce((a,b)=>a+b.qty,0);
+  cartList.innerHTML = "";
+  let sum = 0;
+  cart.forEach(item=>{
+    sum += item.price*item.qty;
+    const row = document.createElement('div');
+    row.className = "row";
+    row.innerHTML = `
+      <div style="flex:1">
+        <div style="font-weight:700">${item.name}</div>
+        <small style="color:#96a3ba">${item.cat}</small>
+      </div>
+      <div class="flex">
+        <button class="btn" data-dec="${item.id}">-</button>
+        <span>${item.qty}</span>
+        <button class="btn" data-inc="${item.id}">+</button>
+        <b>${money(item.price*item.qty)}</b>
+        <button class="btn" data-del="${item.id}">ลบ</button>
+      </div>
+    `;
+    cartList.appendChild(row);
   });
-  selGame.value = game;
-  renderServers();
-  renderPacks();
-  updateSummary();
+  cartTotal.textContent = money(sum);
+  $('#sumTotal').textContent = money(sum);
+  $('#sumCount').textContent = ${cart.reduce((a,b)=>a+b.qty,0)} ชิ้น;
+  $('#fGame').value = cart[0]?.cat || "";
+  // bind
+  $$('[data-inc]').forEach(b=> b.onclick = ()=>{ const id=b.dataset.inc; const i=cart.findIndex(x=>x.id===id); cart[i].qty++; saveCart(); renderCart(); });
+  $$('[data-dec]').forEach(b=> b.onclick = ()=>{ const id=b.dataset.dec; const i=cart.findIndex(x=>x.id===id); cart[i].qty=Math.max(1,cart[i].qty-1); saveCart(); renderCart(); });
+  $$('[data-del]').forEach(b=> b.onclick = ()=>{ const id=b.dataset.del; cart=cart.filter(x=>x.id!==id); saveCart(); renderCart(); });
 }
+renderCart();
 
-// init
-renderGameTabs();
-setGame(currentGame);
+$('#btnCart').onclick = ()=> cartBox.style.display = cartBox.style.display==='block' ? 'none' : 'block';
+$('#btnClear').onclick = ()=>{ cart=[]; saveCart(); renderCart(); };
+$('#btnToCheckout').onclick = ()=> document.getElementById('checkout').scrollIntoView({behavior:'smooth'});
 
-// ===== SUMMARY / BILL =====
-const pad = n=>n.toString().padStart(2,'0');
+// ========== LOGIN (จำลอง) ==========
+$('#btnLogin').onclick = ()=>{
+  if(user){ // logout
+    if(confirm('ออกจากระบบ?')){ user=null; localStorage.removeItem('ev_user'); $('#btnLogin').textContent='เข้าสู่ระบบ'; alert('ออกแล้ว'); }
+  }else{
+    const name = prompt('ใส่ชื่อผู้ใช้ (อะไรก็ได้):','guest');
+    if(name){ user={name}; localStorage.setItem('ev_user', JSON.stringify(user)); $('#btnLogin').textContent='ออกจากระบบ'; alert('ยินดีต้อนรับ '+name); }
+  }
+};
+if(user) $('#btnLogin').textContent='ออกจากระบบ';
+
+// ========== CREATE BILL & SEND ==========
 function genInvoice(){
-  const d=new Date();
-  const ts = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
+  const d=new Date(), pad=n=>n.toString().padStart(2,'0');
+  const ts = ${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())};
   const rnd = Math.floor(Math.random()*8999)+1000;
-  return `EV-${ts}-${rnd}`;
+  return EV-${ts}-${rnd};
 }
-function money(n){ return "฿"+(n||0); }
+$('#btnCreate').onclick = async ()=>{
+  if(cart.length===0){ alert('ยังไม่มีสินค้าในตะกร้า'); return; }
+  if(!$('#fUid').value.trim()){ alert('กรอก UID/Player ID ด้วยนะ'); return; }
 
-function updateSummary(){
-  const g  = selGame.value;
-  const s  = selServer.value;
-  const u  = document.getElementById('uid').value || "-";
-  const p  = selPackage.value || "-";
-  const m  = document.getElementById('method').value;
-
-  document.getElementById('sum-game').innerText   = g;
-  document.getElementById('sum-server').innerText = s || "-";
-  document.getElementById('sum-uid').innerText    = u;
-  document.getElementById('sum-pkg').innerText    = p;
-  document.getElementById('sum-method').innerText = m;
-
-  const price = Number((p.split("฿")[1]||"0").replace(/[^\d]/g,""));
-  document.getElementById('sum-total').innerText = money(price);
-}
-
-["game","server","uid","package","method"].forEach(id=>{
-  document.getElementById(id).addEventListener('input',updateSummary);
-  document.getElementById(id).addEventListener('change',updateSummary);
-});
-updateSummary();
-
-// ล้างฟอร์ม
-document.getElementById('btnReset').addEventListener('click', ()=>{
-  document.querySelectorAll('#order input').forEach(i=>i.value="");
-  selPackage.selectedIndex = 0;
-  updateSummary();
-});
-
-// ยืนยันและสร้างบิล -> เปิดส่วนชำระเงิน
-let invoiceId = "-";
-document.getElementById('btnSubmit').addEventListener('click', ()=>{
-  invoiceId = genInvoice();
-  document.getElementById('sum-bill').innerText = invoiceId;
-  const pay = document.getElementById('pay');
-  pay.style.display = "";
-  pay.scrollIntoView({behavior:'smooth'});
-});
-
-// กลับไปแก้ฟอร์ม
-document.getElementById('btnBackToForm').addEventListener('click', ()=>{
-  document.getElementById('pay').style.display = "none";
-  document.getElementById('order').scrollIntoView({behavior:'smooth'});
-});
-
-// สร้างข้อความสรุปเพื่อส่งหาแอดมิน
-function buildMessage(){
-  const g=selGame.value;
-  const s=selServer.value;
-  const u=document.getElementById('uid').value || "-";
-  const p=selPackage.value || "-";
-  const m=document.getElementById('method').value;
-  const name=document.getElementById('name').value || "-";
-  const contact=document.getElementById('contact').value || "-";
-  const total=document.getElementById('sum-total').innerText || "฿0";
-  const ref=(document.getElementById('ref')?.value||"").trim();
-
-  return `ออร์เดอร์เติมเกม Evan Vale
-เลขบิล: ${invoiceId}
-เกม: ${g}
-เซิร์ฟเวอร์/โซน: ${s || "-"}
-UID/Player ID: ${u}
-แพ็กเกจ: ${p}
-วิธีชำระ: ${m}
-ยอดสุทธิ: ${total}
-ชื่อลูกค้า: ${name}
-ติดต่อ: ${contact}
-เลขอ้างอิง: ${ref||"-"}
+  setLoader(true, "กำลังสร้างบิล…");
+  setTimeout(async ()=>{
+    const invoice = genInvoice();
+    const items = cart.map(x=>`• ${x.name} x${x.qty} = ${money(x.price*x.qty)}`).join('\n');
+    const sum = cart.reduce((a,b)=>a+b.price*b.qty,0);
+    const msg =
+`ออร์เดอร์เติมเกม EVAN VALE
+เลขบิล: ${invoice}
+ลูกค้า: ${user?.name||'-'}
+ติดต่อ: ${$('#fContact').value||'-'}
+เกม/หมวด: ${$('#fGame').value||'-'}
+UID/Player ID: ${$('#fUid').value||'-'}
+วิธีชำระ: ${$('#fMethod').value}
+รายการ:
+${items}
+ยอดรวม: ${money(sum)}
+หมายเหตุ: ${$('#fNote').value||'-'}
 โปรดตรวจสอบสลิปที่แนบด้วยครับ`;
-}
 
-// ส่งหาแอดมินหลังชำระเงิน
-document.getElementById('btnSendToAdmin').addEventListener('click', async ()=>{
-  const msg = buildMessage();
-  const url = ADMIN_URL + (ADMIN_URL.includes('?') ? '&' : '?') + 'text=' + encodeURIComponent(msg);
-  window.open(url, '_blank');
-  try{
-    await navigator.clipboard.writeText(msg);
-    alert("คัดลอกสรุปบิลให้แล้ว! ถ้าข้อความไม่ขึ้นในแชท ให้กดวาง (Paste) และแนบสลิปด้วย");
-  }catch{
-    prompt("คัดลอกข้อความนี้แล้วไปวางในแชทแอดมิน:", msg);
-  }
-});
-
-// ===== แสดงข้อความเตือนเมื่อเลือกเกม Roblox =====
-const gameNote = document.getElementById("gameNote");
-
-selGame.addEventListener("change", () => {
-  const selected = selGame.value;
-  const found = GAMES.find(g => g.key === selected);
-
-  if (found?.note) {
-    gameNote.style.display = "block";
-    gameNote.textContent = found.note;
-  } else {
-    gameNote.style.display = "none";
-    gameNote.textContent = "";
-  }
-});
-
-  // ===== แสดงเตือนว่าเกมไหนรองรับเฉพาะเซิร์ฟไทย =====
-const thaiOnlyGames = ["Free Fire", "RoV", "PUBG Mobile", "Roblox"];
-const thaiOnlyNote = document.getElementById("thaiOnlyNote");
-
-selGame.addEventListener("change", () => {
-  const selected = selGame.value;
-  if (thaiOnlyGames.includes(selected)) {
-    thaiOnlyNote.style.display = "block";
-  } else {
-    thaiOnlyNote.style.display = "none";
-  }
-});
-
+    const url = ADMIN_URL + (ADMIN_URL.includes('?')?'&':'?') + 'text=' + encodeURIComponent(msg);
+    window.open(url,'_blank');
+    try{ await navigator.clipboard.writeText(msg); }catch{}
+    alert('คัดลอกบิลให้แล้ว! ถ้าข้อความไม่ขึ้นในแชท ให้กดวาง (Paste) และแนบสลิปด้วย');
+    setLoader(false);
+  }, 600);
+};
 </script>
 </body>
 </html>
