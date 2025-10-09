@@ -269,9 +269,23 @@ input,select,textarea{width:100%;background:#0a111f;border:1px solid var(--borde
           </div>
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
-          <button class="btn" id="btnBackToForm" type="button">กลับไปแก้ฟอร์ม</button>
-          <button class="btn primary" id="btnSendToAdmin" type="button">ชำระแล้ว • ส่งหาแอดมิน</button>
-        </div>
+  <button class="btn" id="btnBackToForm" type="button">กลับไปแก้ฟอร์ม</button>
+
+  <!-- ขั้นตอนที่ 1: สร้างข้อความ + คัดลอก -->
+  <button class="btn primary" id="btnPrepareMsg" type="button">คัดลอกสรุปบิล</button>
+
+  <!-- ขั้นตอนที่ 2: เปิดแชทแอดมิน (จะถูกปลดล็อกหลังคัดลอก) -->
+  <a class="btn" id="btnOpenAdmin" href="#" target="_blank" rel="noopener"
+     style="pointer-events:none;opacity:.6">เปิดแชทแอดมิน</a>
+</div>
+
+<!-- พรีวิวข้อความ (เผื่อมือถือ/เบราว์เซอร์บล็อก clipboard) -->
+<div id="copyHint" class="muted2" style="display:none;margin-top:8px">
+  ✔️ คัดลอกแล้ว ถ้าข้อความไม่ติดในแชท ให้กดวาง (Paste) เองได้เลย
+</div>
+<textarea id="msgPreview" readonly
+  style="display:none;width:100%;margin-top:8px;background:#0a111f;color:#eaf1ff;border:1px solid #223048;border-radius:10px;padding:10px"
+  rows="8"></textarea>
       </div>
     </div>
   </section>
