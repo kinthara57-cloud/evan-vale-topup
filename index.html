@@ -116,29 +116,43 @@ input,select,textarea{width:100%;background:#0a111f;border:1px solid var(--borde
   </section>
 
   <!-- ORDER -->
-  <section id="order" class="section grid two" style="align-items:start">
-    <div class="card">
-      <h2 style="margin-top:0">สั่งเติมเกม</h2>
-      <div class="row">
-        <div>
-          <label>เกม</label>
-          <select id="game"></select>
-          <p id="gameNote" style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0"></p>
-          <p id="thaiOnlyNote" style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0;">
-⚠️ เกมนี้รองรับเฉพาะเซิร์ฟเวอร์ไทยเท่านั้น
-</p>
-        </div>
-        <div>
-          <label>โซน/เซิร์ฟเวอร์</label>
-          <select id="server"></select>
-        </div>
+<section id="order" class="section grid two" style="align-items:start">
+  <div class="card">
+    <h2 style="margin-top:0">สั่งเติมเกม</h2>
+
+    <div class="row">
+      <div>
+        <label>เกม</label>
+        <select id="game"></select>
+
+        <!-- ข้อความแจ้งเตือน Roblox -->
+        <p id="gameNote" style="display:none;color:#00bfff;font-size:14px;margin:6px 0 0;"></p>
+
+        <!-- ข้อความเตือนเฉพาะเกมไทย -->
+        <p id="thaiOnlyNote" style="display:none;
+          color:#ffd166;
+          font-size:14px;
+          margin:6px 0 0;
+          background:#1a1a1a;
+          padding:6px 10px;
+          border-radius:6px;
+          border-left:3px solid #00bfff;">
+          ⚠️ เกมนี้รองรับเฉพาะ <b>เซิร์ฟเวอร์ไทย</b> เท่านั้น (Free Fire / RoV / PUBG / Roblox)
+        </p>
       </div>
-      <div class="row">
-        <div>
-          <label>UID / Player ID</label>
-          <input id="uid" placeholder="เช่น 812345678 หรือชื่อในเกม">
-        </div>
-        <div>
+    </div>
+
+    <div class="row">
+      <label>เซิร์ฟเวอร์</label>
+      <select id="server"></select>
+    </div>
+
+    <div class="row">
+      <label>UID / Player ID</label>
+      <input id="playerId" placeholder="เช่น 812345678 หรือไอดีเกมของคุณ">
+    </div>
+  </div>
+</section>
           <label>แพ็กเกจ</label>
           <select id="package"></select>
         </div>
