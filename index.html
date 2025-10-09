@@ -500,16 +500,17 @@ renderGameTabs();
 setGame(currentGame);
 updateSummary();
 
-// ล้างฟอร์ม
-document.getElementById('btnReset').addEventListener('click', ()=>{
+<script>
+// ---------- ล้างฟอร์ม ----------
+document.getElementById('btnReset')?.addEventListener('click', ()=>{
   document.querySelectorAll('#order input').forEach(i=>i.value="");
   selPackage.selectedIndex = 0;
   updateSummary();
 });
 
-// ยืนยันและสร้างบิล -> เปิดส่วนชำระเงิน
+// ---------- ยืนยันและสร้างบิล -> เปิดส่วนชำระเงิน ----------
 let invoiceId = "-";
-document.getElementById('btnSubmit').addEventListener('click', ()=>{
+document.getElementById('btnSubmit')?.addEventListener('click', ()=>{
   invoiceId = genInvoice();
   document.getElementById('sum-bill').innerText = invoiceId;
   const pay = document.getElementById('pay');
@@ -517,23 +518,23 @@ document.getElementById('btnSubmit').addEventListener('click', ()=>{
   pay.scrollIntoView({behavior:'smooth'});
 });
 
-// กลับไปแก้ฟอร์ม
-document.getElementById('btnBackToForm').addEventListener('click', ()=>{
+// ---------- กลับไปแก้ฟอร์ม ----------
+document.getElementById('btnBackToForm')?.addEventListener('click', ()=>{
   document.getElementById('pay').style.display = "none";
   document.getElementById('order').scrollIntoView({behavior:'smooth'});
 });
 
-// ส่งหาแอดมิน (Facebook)
+// ---------- สร้างข้อความส่งหาแอดมิน ----------
 function buildMessage(){
-  const g=selGame.value;
-  const s=selServer.value;
-  const u=document.getElementById('uid').value || "-";
-  const p=selPackage.value || "-";
-  const m=document.getElementById('method').value;
-  const name=document.getElementById('name').value || "-";
-  const contact=document.getElementById('contact').value || "-";
-  const total=document.getElementById('sum-total').innerText || "฿0";
-  const ref=(document.getElementById('ref')?.value||"").trim();
+  const g = selGame.value;
+  const s = selServer.value;
+  const u = document.getElementById('uid').value || "-";
+  const p = selPackage.value || "-";
+  const m = document.getElementById('method').value;
+  const name = document.getElementById('name').value || "-";
+  const contact = document.getElementById('contact').value || "-";
+  const total = document.getElementById('sum-total').innerText || "฿0";
+  const ref = (document.getElementById('ref')?.value || "").trim();
 
   return `ออร์เดอร์เติมเกม Evan Vale
 เลขบิล: ${invoiceId}
@@ -549,17 +550,13 @@ UID/Player ID: ${u}
 โปรดตรวจสอบสลิปที่แนบด้วยครับ`;
 }
 
-// ===== 2-STEP: เตรียมข้อความ > เปิดแชทแอดมิน =====
+// ---------- 2-STEP: เตรียมข้อความ > เปิดแชทแอดมิน ----------
 const btnPrepare   = document.getElementById('btnPrepareMsg');
 const btnOpenAdmin = document.getElementById('btnOpenAdmin');
 const msgPreview   = document.getElementById('msgPreview');
 const copyHint     = document.getElementById('copyHint');
 
-if (btnOpenAdmin){
-  btnOpenAdmin.style.pointerEvents = 'none';
-  btnOpenAdmin.style.opacity = '0.6';
-}
-
+// (สำคัญ) ไม่ปิดการกดปุ่มไว้ล่วงหน้า เพื่อกันปัญหามือถือบางรุ่น
 function makeAdminUrl(msg){
   return ADMIN_URL + (ADMIN_URL.includes('?') ? '&' : '?') + 'text=' + encodeURIComponent(msg);
 }
@@ -581,14 +578,9 @@ btnPrepare?.addEventListener('click', async ()=>{
       : 'คัดลอกอัตโนมัติไม่สำเร็จ 🙏 ให้คัดลอกจากช่องสรุปด้านบน แล้วค่อยกด "เปิดแชทแอดมิน"';
   }
 
-  // ปลดล็อกปุ่มและใส่ลิงก์พร้อมข้อความ
+  // ใส่ลิงก์พร้อมข้อความ
   if (btnOpenAdmin){
     btnOpenAdmin.href = makeAdminUrl(msg);
-    btnOpenAdmin.style.pointerEvents = 'auto';
-    btnOpenAdmin.style.opacity = '1';
   }
 });
-});
 </script>
-</body>
-</html>
