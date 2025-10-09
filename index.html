@@ -119,7 +119,7 @@ input,select,textarea{width:100%;background:#0a111f;border:1px solid var(--borde
       <span class="badge">✅ เวลาทำการเปิดรับออเดอร์ตั้งแต่เวลา 08:30~21:30 และปิดทุกวัน เสาร์ นะคร้าบ✅</span>
       <h1>เว็บเติมเกมของ <span style="color:var(--brand2)">EVAN VALE</span> — ราคาดี โปร่งใส <span style="color:var(--warn)">มีแอดมินดูแล</span></h1>
       <p class="muted">รองรับ PromptPay / TrueMoney Wallet / โอนธนาคาร • มีสรุปบิลก่อนยืนยัน • ไม่ยึด UID
-      รบกวนลูกค้าคัดลอกบิลมาให้แอดมินด้วยน้าา และอย่าลืมแนบสลิปการโอนมาด้วยนะค้าบ 💬</p>
+      รบกวนลูกค้าคัดลอกบิลมาให้แอดมินด้วยน้าา และอย่าลืมแนบสลิปการโอนมาด้วยนะค้าบ 💖💬</p>
       <div class="statgrid">
         <div class="stat"><div style="font-size:20px;font-weight:900">3–10 นาที*</div><div class="muted2">โดยเฉลี่ย</div></div>
         <div class="stat"><div style="font-size:20px;font-weight:900">1000+</div><div class="muted2">รายการสำเร็จ</div></div>
@@ -523,12 +523,7 @@ document.getElementById('btnBackToForm')?.addEventListener('click', ()=>{
   document.getElementById('order').scrollIntoView({behavior:'smooth'});
 });
 
-/* ===== CONFIG =====
-   🔗 ลิงก์เพจแอดมิน (กดแล้วเปิดหน้าเพจได้เลย)
-   ถ้าอยากให้เปิดคุยใน Messenger โดยตรง เปลี่ยนเป็น https://m.me/evanvale.topup */
-const ADMIN_URL = "https://www.facebook.com/evanvale.topup";
-
-/* ---------- สร้างข้อความส่งหาแอดมิน ---------- */
+// ---------- สร้างข้อความส่งหาแอดมิน ----------
 function buildMessage(){
   const g = selGame.value;
   const s = selServer.value;
@@ -554,7 +549,7 @@ UID/Player ID: ${u}
 โปรดตรวจสอบสลิปที่แนบด้วยครับ`;
 }
 
-/* ---------- 2-STEP: เตรียมข้อความ > เปิดแชทแอดมิน ---------- */
+// ---------- 2-STEP: เตรียมข้อความ > เปิดแชทแอดมิน ----------
 const btnPrepare   = document.getElementById('btnPrepareMsg');
 const btnOpenAdmin = document.getElementById('btnOpenAdmin');
 const msgPreview   = document.getElementById('msgPreview');
@@ -564,7 +559,7 @@ function makeAdminUrl(msg){
   return ADMIN_URL + (ADMIN_URL.includes('?') ? '&' : '?') + 'text=' + encodeURIComponent(msg);
 }
 
-// ✅ คัดลอกแบบมี fallback เผื่อมือถือ/เบราว์เซอร์บล็อก clipboard
+// fallback คัดลอกเผื่อ clipboard ใช้ไม่ได้บนมือถือบางรุ่น
 async function copyTextSafe(text){
   try{
     await navigator.clipboard.writeText(text);
@@ -582,9 +577,11 @@ async function copyTextSafe(text){
 btnPrepare?.addEventListener('click', async ()=>{
   const msg = buildMessage();
 
+  // โชว์ตัวอย่าง & ทิป
   if (msgPreview){ msgPreview.value = msg; msgPreview.style.display = 'block'; }
   if (copyHint){ copyHint.style.display = 'block'; copyHint.textContent = 'กำลังคัดลอกสรุปบิล...'; }
 
+  // คัดลอกอัตโนมัติ (พร้อม fallback)
   const copied = await copyTextSafe(msg);
 
   if (copyHint){
@@ -593,14 +590,13 @@ btnPrepare?.addEventListener('click', async ()=>{
       : 'คัดลอกอัตโนมัติไม่สำเร็จ 🙏 ให้คัดลอกจากช่องสรุปด้านบน แล้วค่อยกด "เปิดแชทแอดมิน"';
   }
 
+  // ใส่ลิงก์พร้อมข้อความ
   if (btnOpenAdmin){
     btnOpenAdmin.href = makeAdminUrl(msg);
-    btnOpenAdmin.style.pointerEvents = 'auto';
-    btnOpenAdmin.style.opacity = '1';
   }
 });
 
-// ถ้าผู้ใช้กดเปิดแชทก่อนคัดลอก ให้สร้างลิงก์สดๆ แล้วเปิด
+// ถ้าผู้ใช้กดเปิดแชททั้งที่ยังไม่ได้กดคัดลอก ให้สร้างลิงก์สด ๆ แล้วเปิด
 btnOpenAdmin?.addEventListener('click', (e)=>{
   if (!btnOpenAdmin.href || btnOpenAdmin.getAttribute('href') === '#'){
     e.preventDefault();
@@ -608,6 +604,6 @@ btnOpenAdmin?.addEventListener('click', (e)=>{
     window.open(url, '_blank');
   }
 });
-  </script>
+</script>
 </body>
 </html>
