@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#070b12">
   <title>เว็บเติมเกมของ EVAN VALE | ราคาดี โปร่งใส มีแอดมินดูแล</title>
   <meta name="description" content="เว็บเติมเกม Evan Vale ราคาดี โปร่งใส ปลอดภัย มีแอดมินดูแล 24 ชั่วโมง รองรับ TrueMoney, PromptPay และธนาคาร" />
-  <meta name="keywords" content="เติมเกม, Free Fire, RoV, Genshin Impact, Honkai Star Rail, PUBG Mobile, Roblox, เติมเกมราคาถูก" />
+  <meta name="keywords" content="เติมเกม, Free Fire, RoV, Genshin Impact, Honkai Star Rail, PUBG Mobile, Roblox, Call of Duty, Wuthering Waves, เติมเกมราคาถูก" />
   <style>
     :root{
       --bg:#070b12; --bg2:#0b1220;
@@ -93,6 +93,7 @@
   </style>
 </head>
 <body>
+
 <div class="wrap">
   <!-- NAV -->
   <nav class="nav">
@@ -113,10 +114,10 @@
   <!-- HERO -->
   <section class="hero">
     <div class="glass">
-      <span class="badge">✅ เวลาทำการเปิดรับออเดอร์ตั้งแต่เวลา 08:30–21:30 และปิดทุกวัน เสาร์ ✅</span>
+      <span class="badge">✅ เวลาทำการเปิดรับออเดอร์ 08:30–21:30 • ปิดทุกวันเสาร์ ✅</span>
       <h1>เว็บเติมเกมของ <span style="color:var(--brand2)">EVAN VALE</span> — ราคาดี โปร่งใส <span style="color:var(--warn)">มีแอดมินดูแล</span></h1>
       <p class="muted">รองรับ PromptPay / TrueMoney Wallet / โอนธนาคาร • มีสรุปบิลก่อนยืนยัน • ไม่ยึด UID
-      รบกวนลูกค้าคัดลอกบิลมาให้แอดมินด้วยน้าา และอย่าลืมแนบสลิปการโอนมาด้วยนะค้าบ 😾💬</p>
+      — รบกวนคัดลอกบิล และแนบสลิปก่อนทักแอดมิน 💬</p>
       <div class="statgrid">
         <div class="stat"><div style="font-size:20px;font-weight:900">3–10 นาที*</div><div class="muted2">โดยเฉลี่ย</div></div>
         <div class="stat"><div style="font-size:20px;font-weight:900">1000+</div><div class="muted2">รายการสำเร็จ</div></div>
@@ -150,12 +151,16 @@
           <label>เกม</label>
           <select id="game"></select>
 
+          <!-- แจ้งเตือนเกม -->
           <p id="gameNote" style="display:none;color:#00bfff;font-size:14px;margin:6px 0 0"></p>
+
+          <!-- แจ้งเตือนเกมที่รับเฉพาะเซิร์ฟไทย -->
           <p id="thaiOnlyNote"
              style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0;background:#1a1a1a;padding:6px 10px;border-radius:6px;border-left:3px solid #00bfff;">
             ⚠️ เกมนี้รองรับเฉพาะ <b>เซิร์ฟเวอร์ไทย</b> เท่านั้น (Free Fire / RoV / PUBG Mobile / Roblox)
           </p>
 
+          <!-- Mini summary ย่อๆ ใต้เกม -->
           <div class="neon mini-sum" id="miniSum" style="display:none">
             <h3>สรุปคร่าวๆ</h3>
             <div class="row-line"><span class="label">เกม</span><span class="value" id="mini-game">-</span></div>
@@ -234,7 +239,7 @@
   <section id="pay" class="section" style="display:none">
     <div class="card">
       <h2 style="margin-top:0">ชำระเงิน</h2>
-      <p class="muted2">เลือกหนึ่งช่องทางด้านล่าง แล้วแนบสลิป/เลขอ้างอิง จากนั้นกด “คัดลอกสรุปบิล” แล้ว “เปิดแชทแอดมิน”</p>
+      <p class="muted2">เลือกช่องทาง • แนบสลิป/เลขอ้างอิง • กด “คัดลอกสรุปบิล” แล้ว “เปิดแชทแอดมิน”</p>
       <div class="grid pkg">
         <div class="glass" style="text-align:center">
           <div style="font-weight:800;margin-bottom:8px">TrueMoney Wallet</div>
@@ -283,17 +288,19 @@
 
 <script>
   // ===== CONFIG =====
-  // แนะนำให้ใช้ Messenger โดยตรง
+  // แนะนำให้ใช้ Messenger ตรง (ลิงก์บนหัวเว็บใช้ m.me แล้ว) — ส่วนล่างนี้ไว้ fallback เปิดโปรไฟล์
   const ADMIN_URL = "https://www.facebook.com/profile.php?id=61581815886305";
 
   // ------- เกม / เซิร์ฟเวอร์ / แพ็กเกจ -------
   const GAMES = [
-    { key:"Free Fire", icon:"🔥", servers:["Thailand","SEA","Global","อื่นๆ"] },
-    { key:"RoV", icon:"🛡️", servers:["Thailand","Vietnam","Taiwan","อื่นๆ"] },
-    { key:"Genshin Impact", icon:"✨", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
-    { key:"Honkai: Star Rail", icon:"🚄", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
-    { key:"PUBG Mobile", icon:"🎯", servers:["Thailand","SEA","KRJP","Global","อื่นๆ"] },
-    { key:"Roblox", icon:"🧱", servers:["Thailand","Asia","USA","Global","อื่นๆ"] },
+    { key:"Free Fire",        icon:"🔥", servers:["Thailand","SEA","Global","อื่นๆ"] },
+    { key:"RoV",              icon:"🛡️", servers:["Thailand","Vietnam","Taiwan","อื่นๆ"] },
+    { key:"Genshin Impact",   icon:"✨", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
+    { key:"Honkai: Star Rail",icon:"🚄", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
+    { key:"PUBG Mobile",      icon:"🎯", servers:["Thailand","SEA","KRJP","Global","อื่นๆ"] },
+    { key:"Roblox",           icon:"🧱", servers:["Thailand","Asia","USA","Global","อื่นๆ"] },
+    { key:"Call of Duty",     icon:"🎮", servers:["Thailand","SEA","Global","อื่นๆ"] },
+    { key:"Wuthering Waves",  icon:"🌊", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
   ];
 
   const PACKS_BY_GAME = {
@@ -312,9 +319,12 @@
       {name:"620 คูปอง", price:478},{name:"990 คูปอง", price:765},{name:"1250 คูปอง", price:960},
     ],
     "Genshin Impact": [
-      {name:"60 Genesis Crystals", price:30},{name:"300+30 Genesis Crystals", price:145},
-      {name:"980+110 CGenesisrystals ", price:420},{name:"1980+260 Genesis Crystals", price:870},
-      {name:"3280+600 Genesis Crystals", price:1340},{name:"6480+1600 Genesis Crystals", price:2625},
+      {name:"60 Genesis Crystals", price:30},
+      {name:"300+30 Genesis Crystals", price:145},
+      {name:"980+110 Genesis Crystals", price:420},
+      {name:"1980+260 Genesis Crystals", price:870},
+      {name:"3280+600 Genesis Crystals", price:1340},
+      {name:"6480+1600 Genesis Crystals", price:2625},
       {name:"Blessing (รายเดือน)", price:179},
     ],
     "Honkai: Star Rail": [
@@ -325,13 +335,25 @@
     ],
     "PUBG Mobile": [
       {name:"60 UC", price:35},{name:"325 UC", price:179},{name:"660 UC", price:346},{name:"1800 UC", price:860},
-    {name:"3850 UC", price:1696},{name:"8100 UC", price:3305},{name:"16200 UC", price:6475},{name:"24300 UC", price:9910},
+      {name:"3850 UC", price:1696},{name:"8100 UC", price:3305},{name:"16200 UC", price:6475},{name:"24300 UC", price:9910},
     ],
     "Roblox": [
       {name:"80 Robux", price:35},{name:"160 Robux", price:70},{name:"400 Robux", price:175},
       {name:"800 Robux", price:350},{name:"1000 Robux", price:400},{name:"2000 Robux", price:600},
-      {name:"4000 Robux", price:1200},{name:" รายเดือน 1000 Robux", price:380},
+      {name:"4000 Robux", price:1200},{name:"รายเดือน 1000 Robux", price:380},
     ],
+    "Call of Duty": [
+      {name:"80 CP",   price:35},
+      {name:"420 CP",  price:179},
+      {name:"880 CP",  price:349},
+      {name:"2400 CP", price:899}
+    ],
+    "Wuthering Waves": [
+      {name:"60 Lunite",              price:35},
+      {name:"300+30 Lunite",          price:179},
+      {name:"980+110 Lunite",         price:549},
+      {name:"Lunite Pass (รายเดือน)", price:179}
+    ]
   };
 
   // ===== refs =====
@@ -349,6 +371,8 @@
   const thaiOnlyNote = document.getElementById('thaiOnlyNote');
 
   let currentGame = GAMES[0].key;
+
+  // เกมที่ “รับเฉพาะเซิร์ฟไทย”
   const thaiOnlyGames = ["Free Fire","RoV","PUBG Mobile","Roblox"];
 
   // ----- UI -----
@@ -407,17 +431,25 @@
   }
   function setGame(game){
     currentGame = game;
+
+    // active tab
     [...tabs.children].forEach(el=>{
       el.classList.toggle('active', el.textContent.includes(game));
     });
 
-    if (currentGame==="Roblox") {
+    // หมายเหตุพิเศษแต่ละเกม
+    if (currentGame === "Roblox") {
       gameNote.style.display = "block";
       gameNote.textContent = "ℹ️ Roblox: ใช้เวลาเติมนานกว่าเกมอื่นเล็กน้อย (โปรดเผื่อเวลา)";
+    } else if (currentGame === "Call of Duty") {
+      gameNote.style.display = "block";
+      gameNote.textContent = "⚠️ Call of Duty: ถ้า ID ผูกกับ Garena จะไม่สามารถเติมได้";
     } else {
       gameNote.style.display = "none";
       gameNote.textContent = "";
     }
+
+    // เตือนเฉพาะเซิร์ฟไทย
     thaiOnlyNote.style.display = thaiOnlyGames.includes(currentGame) ? "block" : "none";
 
     selGame.value = game;
@@ -432,7 +464,8 @@
     const has = (selPackage.value || "").length > 0 || (document.getElementById('uid').value || "").length > 0;
     miniSum.style.display = has ? "block" : "none";
   }
-   // ===== SUMMARY / BILL =====
+
+  // ===== SUMMARY / BILL =====
   const pad = n => n.toString().padStart(2,'0');
   function genInvoice(){
     const d = new Date();
@@ -459,6 +492,7 @@
     const totalTxt = money(price);
     document.getElementById('sum-total').innerText = totalTxt;
 
+    // mini
     miniGame.textContent  = g;
     miniServer.textContent= s || "-";
     miniPkg.textContent   = p;
@@ -525,13 +559,14 @@ UID/Player ID: ${u}
 เลขอ้างอิง: ${ref||"-"}
 โปรดตรวจสอบสลิปที่แนบด้วยครับ`;
   }
+
   // 2-STEP: คัดลอก > เปิดแชท
   const btnPrepare   = document.getElementById('btnPrepareMsg');
   const btnOpenAdmin = document.getElementById('btnOpenAdmin');
   const msgPreview   = document.getElementById('msgPreview');
   const copyHint     = document.getElementById('copyHint');
 
-  function makeAdminUrl(){ return ADMIN_URL; } // ไม่ส่ง text ในลิงก์
+  function makeAdminUrl(){ return ADMIN_URL; } // เปิดโปรไฟล์ (ไม่ส่ง text ในลิงก์)
 
   async function copyTextSafe(text){
     try{
