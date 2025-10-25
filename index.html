@@ -3,27 +3,46 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#070b12">
-  <title>เว็บเติมเกมของ EVAN VALE | ราคาดี โปร่งใส มีแอดมินดูแล</title>
-  <meta name="description" content="เว็บเติมเกม Evan Vale ราคาดี โปร่งใส ปลอดภัย มีแอดมินดูแล 24 ชั่วโมง รองรับ TrueMoney, PromptPay และธนาคาร" />
-  <meta name="keywords" content="เติมเกม, Free Fire, RoV, Genshin Impact, Honkai Star Rail, PUBG Mobile, Roblox, Call of Duty, Wuthering Waves, เติมเกมราคาถูก" />
+  <meta name="theme-color" content="#0b0a10">
+  <title>EVAN VALE • Halloween Event | เติมเกมราคาดี โปร่งใส มีแอดมินดูแล</title>
+  <meta name="description" content="EVAN VALE Halloween Event — เติมเกมราคาดี โปร่งใส ปลอดภัย มีแอดมินดูแล 24 ชั่วโมง รองรับ TrueMoney, PromptPay และธนาคาร" />
+  <meta name="keywords" content="เติมเกม, Free Fire, RoV, Genshin Impact, Honkai Star Rail, PUBG Mobile, Roblox, Call of Duty, Wuthering Waves, Halloween, โปรวันฮาโลวีน" />
   <style>
+    /* ================= HALLOWEEN THEME ================= */
     :root{
-      --bg:#070b12; --bg2:#0b1220;
-      --glass:#0f1729aa; --panel:#0f1624; --card:#10192b;
-      --text:#eaf1ff; --muted:#96a3ba; --muted2:#7d8aa2;
-      --brand:#58a8ff; --brand2:#9ef0ff; --accent:#7df9ff; --warn:#ffd166;
-      --border:#223048; --shadow:0 18px 50px rgba(0,0,0,.45);
+      /* โทนพื้นหลัง/ตัวหนังสือ */
+      --bg:#0b0a10; --bg2:#1b0f17;
+      --glass:#110b18cc; --panel:#140c19; --card:#161021;
+      --text:#ffeef7; --muted:#b9a8ba; --muted2:#a690a7;
+
+      /* สีธีมฮาโลวีน */
+      --brand:#ff7518;      /* orange */
+      --brand2:#ffb347;     /* light orange */
+      --accent:#ffd166;     /* warm accent */
+      --warn:#ff6b6b;       /* red/orange warn */
+
+      --border:#2b1830;
+      --shadow:0 20px 60px rgba(0,0,0,.55);
       --radius:18px;
     }
-    *{box-sizing:border-box} html,body{height:100%}
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0; color:var(--text); font-family:system-ui,Segoe UI,Prompt,sans-serif;
       background:
-        radial-gradient(1200px 600px at -10% -10%, #15203a 0%, transparent 60%),
-        radial-gradient(1000px 800px at 110% -10%, #142b45 0%, transparent 60%),
-        radial-gradient(900px 900px at 50% 120%, #102037 0%, transparent 60%),
+        radial-gradient(1100px 600px at 0% 0%, #2a0f1e 0%, transparent 60%),
+        radial-gradient(900px 700px at 100% 0%, #2b1427 0%, transparent 60%),
+        radial-gradient(900px 900px at 50% 120%, #1a0e1f 0%, transparent 60%),
         linear-gradient(180deg, var(--bg), var(--bg2));
+    }
+    /* ลายใยแมงมุมบาง ๆ วางทับพื้นหลัง (ถ้ามีไฟล์ halloween-bg.png จะโชว์เบา ๆ) */
+    body::before{
+      content:"";
+      position:fixed; inset:0; z-index:-1;
+      background:
+        url("halloween-bg.png") center/cover no-repeat;
+      opacity:.10; pointer-events:none;
+      mix-blend-mode:screen;
     }
     a{color:var(--accent); text-decoration:none}
     img{max-width:100%; display:block}
@@ -32,7 +51,7 @@
     /* NAV */
     .nav{
       display:flex;justify-content:space-between;align-items:center;gap:12px;
-      background:linear-gradient(180deg,#0b1424,#0a1020);
+      background:linear-gradient(180deg,#1b1022,#150d1b);
       border:1px solid var(--border); border-radius:20px; padding:10px 14px;
       box-shadow:var(--shadow); backdrop-filter: blur(8px);
       position:sticky; top:12px; z-index:10;
@@ -40,56 +59,100 @@
     .brand{display:flex;gap:12px;align-items:center}
     .logo{
       width:42px;height:42px;border-radius:12px;
-      background:conic-gradient(from 220deg,#58a8ff,#7df9ff,#6ee7ff,#58a8ff);
-      display:grid;place-items:center;font-weight:900;color:#001627
+      background:conic-gradient(from 220deg,#ff7518,#ffb347,#ffd166,#ff7518);
+      display:grid;place-items:center;font-weight:900;color:#180b0b;
+      box-shadow:0 0 18px #ff751850;
+    }
+    .site-badge{
+      font-size:12px;color:#ffcf91;background:#271015;border:1px solid #3a1b20;
+      padding:3px 8px;border-radius:999px;display:inline-flex;gap:6px;align-items:center
     }
     .nav a.btn{white-space:nowrap}
-    .btn{padding:9px 14px;border-radius:12px;border:1px solid var(--border);background:linear-gradient(180deg,#0b1524,#0a1220);color:#dbe9ff;font-weight:600}
-    .btn.primary{background:linear-gradient(90deg,var(--brand),var(--brand2));color:#00121e;border:none;box-shadow:0 6px 20px rgba(100,200,255,.35)}
+    .btn{
+      padding:9px 14px;border-radius:12px;border:1px solid var(--border);
+      background:linear-gradient(180deg,#201025,#190d20);
+      color:#fde8ff;font-weight:700
+    }
+    .btn.primary{
+      background:linear-gradient(90deg,var(--brand),var(--brand2));
+      color:#2b0f00;border:none;
+      box-shadow:0 0 10px #ff751870, 0 0 28px #ffb34760;
+      text-shadow:0 0 6px rgba(255,215,160,.6);
+    }
 
     /* HERO */
     .hero{margin-top:16px;display:grid;grid-template-columns:2fr 1fr;gap:18px}
-    .glass{background:linear-gradient(180deg,#0d1525cc,#0b1220cc);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);backdrop-filter: blur(10px)}
-    .badge{padding:6px 10px;border-radius:999px;background:#0f1a2d;border:1px solid var(--border);display:inline-block}
+    .glass{
+      background:linear-gradient(180deg, var(--glass), #0f0a16cc);
+      border:1px solid var(--border);border-radius:var(--radius);
+      padding:18px;box-shadow:var(--shadow);backdrop-filter: blur(10px)
+    }
+    .badge{
+      padding:6px 10px;border-radius:999px;background:#23111a;border:1px solid var(--border);
+      display:inline-flex;gap:8px;align-items:center
+    }
     h1{margin:10px 0 8px;font-size:28px}
+    .drip{ /* หัวข้อสไตล์หยด */
+      text-shadow:
+        0 2px 0 #000, 0 0 12px rgba(255,117,24,.45),
+        0 0 26px rgba(255,179,71,.35);
+      letter-spacing:.2px
+    }
     .statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
-    .stat{background:#0d1424;border:1px solid var(--border);border-radius:14px;text-align:center;padding:14px}
+    .stat{background:#271428;border:1px solid var(--border);border-radius:14px;text-align:center;padding:14px}
     .muted{color:var(--muted)} .muted2{color:var(--muted2)}
     .section{margin-top:22px}
     .grid{display:grid;gap:16px}
     .grid.pkg{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
     .grid.two{grid-template-columns:2fr 1fr}
-    .card{background:#0f1729;border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
-    label{display:block;margin-bottom:6px;color:#b7c6dd}
-    input,select,textarea{width:100%;background:#0a111f;border:1px solid var(--border);color:var(--text);padding:12px;border-radius:12px}
+    .card{background:#1a0f21;border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+    label{display:block;margin-bottom:6px;color:#e2c5e4}
+    input,select,textarea{
+      width:100%;background:#120a17;border:1px solid var(--border);color:var(--text);padding:12px;border-radius:12px
+    }
     .price{font-size:22px;font-weight:900}
     .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     .summary{position:sticky;top:84px}
     .list{display:flex;flex-direction:column;gap:8px}
     .item{display:flex;justify-content:space-between;gap:10px}
     .total{font-size:22px;font-weight:900}
-    .footer{margin:36px 0 14px;color:#9db0c9;text-align:center}
+    .footer{margin:36px 0 14px;color:#d8bfe0;text-align:center}
     .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 0}
-    .tab{padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:#0e1627;cursor:pointer}
-    .tab.active{background:linear-gradient(90deg,var(--brand),var(--brand2));color:#00121e;border:none}
+    .tab{padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:#201026;cursor:pointer}
+    .tab.active{
+      background:linear-gradient(90deg,var(--brand),var(--brand2));color:#2b0f00;border:none;
+      box-shadow:0 0 10px #ff751870
+    }
 
     /* Mini summary */
     .neon{
-      box-shadow:0 0 10px rgba(0,191,255,.25),0 0 24px rgba(0,191,255,.18),inset 0 0 0 1px rgba(0,191,255,.18);
-      border:1px solid rgba(0,191,255,.25); border-radius:14px; padding:12px; margin-top:10px
+      box-shadow:0 0 12px rgba(255,117,24,.25),0 0 24px rgba(255,179,71,.18),inset 0 0 0 1px rgba(255,140,60,.18);
+      border:1px solid rgba(255,140,60,.25); border-radius:14px; padding:12px; margin-top:10px
     }
-    .neon h3{margin:0 0 6px; font-size:16px; text-shadow:0 0 12px rgba(0,191,255,.35)}
+    .neon h3{margin:0 0 6px; font-size:16px; text-shadow:0 0 12px rgba(255,179,71,.35)}
     .mini-sum .row-line{display:flex;justify-content:space-between;gap:10px;padding:4px 0;border-bottom:1px dashed rgba(255,255,255,.06)}
     .mini-sum .row-line:last-child{border-bottom:0}
-    .mini-sum .label{color:#96a3ba}
+    .mini-sum .label{color:#d7c6db}
     .mini-sum .value{font-weight:700}
 
-    .tab.active{animation:glow 1.2s ease-out 1; box-shadow:0 0 0 0 rgba(0,191,255,.0)}
-    @keyframes glow{0%{box-shadow:0 0 0 0 rgba(0,191,255,.55)}100%{box-shadow:0 0 0 16px rgba(0,191,255,0)}}
+    .tab.active{animation:glow 1.2s ease-out 1; box-shadow:0 0 0 0 rgba(255,117,24,0)}
+    @keyframes glow{0%{box-shadow:0 0 0 0 rgba(255,117,24,.55)}100%{box-shadow:0 0 0 16px rgba(255,117,24,0)}}
     .animate-in{animation:swipeIn .35s ease-out 1}
     @keyframes swipeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-    @media (max-width:980px){ .hero{grid-template-columns:1fr} .grid.two{grid-template-columns:1fr} .summary{position:static}}
+    /* ริบบิ้น Event มุมขวาบนของ HERO */
+    .ribbon{
+      position:absolute; right:14px; top:-10px; rotate:8deg;
+      background:linear-gradient(90deg,#ff7518,#ffb347);
+      color:#2b0f00; padding:6px 12px; border-radius:8px; font-weight:900;
+      box-shadow:0 6px 18px #ff751870; border:1px solid #5c2a00;
+    }
+
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .grid.two{grid-template-columns:1fr}
+      .summary{position:static}
+    }
   </style>
 </head>
 <body>
@@ -101,7 +164,7 @@
       <div class="logo">EV</div>
       <div>
         <div style="font-weight:900;letter-spacing:.5px">EVAN VALE</div>
-        <small class="muted2">บริการเติมเกม • เร็ว ปลอดภัย</small>
+        <div class="site-badge">🎃 Halloween Event • เติมไว ปลอดภัย</div>
       </div>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -113,11 +176,12 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="glass">
-      <span class="badge">✅ เวลาทำการเปิดรับออเดอร์ 08:30–21:30 • ปิดทุกวันเสาร์ ✅</span>
-      <h1>เว็บเติมเกมของ <span style="color:var(--brand2)">EVAN VALE</span> — ราคาดี โปร่งใส <span style="color:var(--warn)">มีแอดมินดูแล</span></h1>
+    <div class="glass" style="position:relative">
+      <span class="ribbon">HALLOWEEN 🎃</span>
+      <span class="badge">✅ เวลาทำการเปิดรับออเดอร์ 08:30–21:30 • ปิดทุกวันเสาร์</span>
+      <h1 class="drip">เว็บเติมเกมของ <span style="color:var(--brand2)">EVAN VALE</span> — ราคาดี โปร่งใส <span style="color:var(--accent)">มีแอดมินดูแล</span></h1>
       <p class="muted">รองรับ PromptPay / TrueMoney Wallet / โอนธนาคาร • มีสรุปบิลก่อนยืนยัน • ไม่ยึด UID
-      รบกวนลูกค้าคัดลอกบิลมาให้แอดมินด้วยน้าา และอย่าลืมแนบสลิปการโอนมาด้วยนะค้าบ 😾💬</p>
+      รบกวนลูกค้าคัดลอกบิลมาให้แอดมินด้วยน้าา และอย่าลืมแนบสลิปการโอนมาด้วยนะค้าบ 👻💬</p>
       <div class="statgrid">
         <div class="stat"><div style="font-size:20px;font-weight:900">3–10 นาที*</div><div class="muted2">โดยเฉลี่ย</div></div>
         <div class="stat"><div style="font-size:20px;font-weight:900">1000+</div><div class="muted2">รายการสำเร็จ</div></div>
@@ -152,15 +216,15 @@
           <select id="game"></select>
 
           <!-- แจ้งเตือนเกม -->
-          <p id="gameNote" style="display:none;color:#00bfff;font-size:14px;margin:6px 0 0"></p>
+          <p id="gameNote" style="display:none;color:#ffb347;font-size:14px;margin:6px 0 0"></p>
 
           <!-- แจ้งเตือนเกมที่รับเฉพาะเซิร์ฟไทย -->
           <p id="thaiOnlyNote"
-             style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0;background:#1a1a1a;padding:6px 10px;border-radius:6px;border-left:3px solid #00bfff;">
-            ⚠️ เกมนี้รองรับเฉพาะ <b>เซิร์ฟเวอร์ไทย</b> เท่านั้น (Free Fire / RoV / PUBG Mobile / Roblox /  Call of Duty)
+             style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0;background:#1f0e16;padding:6px 10px;border-radius:6px;border-left:3px solid #ff7518;">
+            ⚠️ เกมนี้รองรับเฉพาะ <b>เซิร์ฟเวอร์ไทย</b> เท่านั้น (Free Fire / RoV / PUBG Mobile / Roblox / Call of Duty)
           </p>
 
-          <!-- Mini summary ย่อๆ ใต้เกม -->
+          <!-- Mini summary -->
           <div class="neon mini-sum" id="miniSum" style="display:none">
             <h3>สรุปคร่าวๆ</h3>
             <div class="row-line"><span class="label">เกม</span><span class="value" id="mini-game">-</span></div>
@@ -277,18 +341,17 @@
           ✔️ คัดลอกแล้ว ถ้าแชทไม่พิมพ์ให้เอง ให้ “วาง (Paste)” ได้เลย
         </div>
         <textarea id="msgPreview" readonly
-          style="display:none;width:100%;margin-top:8px;background:#0a111f;color:#eaf1ff;border:1px solid #223048;border-radius:10px;padding:10px"
+          style="display:none;width:100%;margin-top:8px;background:#120a17;color:#ffeef7;border:1px solid #2b1830;border-radius:10px;padding:10px"
           rows="8"></textarea>
       </div>
     </div>
   </section>
 
-  <div class="footer">© 2025 Evan Vale • เว็บเติมเกมราคาดี โปร่งใส มีแอดมินดูแล</div>
+  <div class="footer">© 2025 Evan Vale • Halloween Event • เว็บเติมเกมราคาดี โปร่งใส มีแอดมินดูแล</div>
 </div>
 
 <script>
   // ===== CONFIG =====
-  // แนะนำให้ใช้ Messenger ตรง (ลิงก์บนหัวเว็บใช้ m.me แล้ว) — ส่วนล่างนี้ไว้ fallback เปิดโปรไฟล์
   const ADMIN_URL = "https://www.facebook.com/profile.php?id=61581815886305";
 
   // ------- เกม / เซิร์ฟเวอร์ / แพ็กเกจ -------
@@ -343,14 +406,14 @@
       {name:"4000 Robux", price:1200},{name:"รายเดือน 1000 Robux", price:380},
     ],
     "Call of Duty": [
-  { name: "44 โบนัส 10 CP",   price: 22 },
-  { name: "108 โบนัส 30 CP",  price: 52 },
-  { name: "194 โบนัส 55 CP",  price: 90 },
-  { name: "324 โบนัส 90 CP",  price: 152 },
-  { name: "648 โบนัส 216 CP", price: 305 },
-  { name: "1080 โบนัส 480 CP", price: 505 },
-  { name: "2160 โบนัส 1080 CP", price: 1010 }
-],
+      { name: "44 โบนัส 10 CP",   price: 22 },
+      { name: "108 โบนัส 30 CP",  price: 52 },
+      { name: "194 โบนัส 55 CP",  price: 90 },
+      { name: "324 โบนัส 90 CP",  price: 152 },
+      { name: "648 โบนัส 216 CP", price: 305 },
+      { name: "1080 โบนัส 480 CP", price: 505 },
+      { name: "2160 โบนัส 1080 CP", price: 1010 }
+    ],
     "Wuthering Waves": [
       {name:"60 Lunite",              price:35},
       {name:"300+30 Lunite",          price:179},
@@ -375,8 +438,8 @@
 
   let currentGame = GAMES[0].key;
 
-  // เกมที่ “รับเฉพาะเซิร์ฟไทย”
-  const thaiOnlyGames = ["Free Fire","RoV","PUBG Mobile","Roblox"];
+  // เกมที่รับเฉพาะเซิร์ฟไทย
+  const thaiOnlyGames = ["Free Fire","RoV","PUBG Mobile","Roblox","Call of Duty"];
 
   // ----- UI -----
   function renderGameTabs(){
@@ -446,7 +509,7 @@
       gameNote.textContent = "ℹ️ Roblox: ใช้เวลาเติมนานกว่าเกมอื่นเล็กน้อย (โปรดเผื่อเวลา)";
     } else if (currentGame === "Call of Duty") {
       gameNote.style.display = "block";
-      gameNote.textContent = "⚠️ Call of Duty: ถ้า ID ผูกกับ Garena จะไม่สามารถเติมได้ และรองรับเฉพาะเซิฟเวอร์ ไทย เท่านั้น ⚠️";
+      gameNote.textContent = "⚠️ Call of Duty: ถ้า ID ผูกกับ Garena จะไม่สามารถเติมได้ และรองรับเฉพาะเซิร์ฟเวอร์ไทย";
     } else {
       gameNote.style.display = "none";
       gameNote.textContent = "";
@@ -569,7 +632,7 @@ UID/Player ID: ${u}
   const msgPreview   = document.getElementById('msgPreview');
   const copyHint     = document.getElementById('copyHint');
 
-  function makeAdminUrl(){ return ADMIN_URL; } // เปิดโปรไฟล์ (ไม่ส่ง text ในลิงก์)
+  function makeAdminUrl(){ return ADMIN_URL; }
 
   async function copyTextSafe(text){
     try{
