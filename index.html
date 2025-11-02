@@ -1,139 +1,126 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0b0a10">
-  <title>EVAN VALE • Christmas Event | เติมเกมราคาดี โปร่งใส มีแอดมินดูแล</title>
-  <meta name="description" content="EVAN VALE Christmas Event — เติมเกมราคาดี โปร่งใส ปลอดภัย มีแอดมินดูแล 24 ชั่วโมง รองรับ TrueMoney, PromptPay และธนาคาร" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a0f0b">
+  <title>EVAN VALE • Christmas Event | เติมเกมราคาดี โปร่งใส มีแอดมินดูแล</title>
+  <meta name="description" content="EVAN VALE Christmas Event — เติมเกมราคาดี โปร่งใส ปลอดภัย มีแอดมินดูแล 24 ชั่วโมง รองรับ TrueMoney, PromptPay และธนาคาร" />
 
-  <style>
-/* ===== MOBILE FIX PACK (<= 480px) ===== */
+  <style>
+/* ===== MOBILE (<=480px) ===== */
 @media (max-width: 480px){
-  .wrap{padding:16px}
-  .nav{gap:10px; padding:12px}
-  .nav .tools{
-    width:100%;
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap:8px;
-  }
-  .nav .tools .btn{width:100%; min-height:44px; display:flex; align-items:center; justify-content:center}
-  .nav .tools .btn.primary{grid-column: 1 / -1}
+  .wrap{padding:16px}
+  .nav{gap:10px; padding:12px}
+  .nav .tools{width:100%; display:grid; grid-template-columns:1fr 1fr; gap:8px}
+  .nav .tools .btn{width:100%; min-height:44px; display:flex; align-items:center; justify-content:center}
+  .nav .tools .btn.primary{grid-column:1 / -1}
 
-  .hero{grid-template-columns:1fr; gap:14px}
-  .grid.two{grid-template-columns:1fr}
-  .tabs{display:grid; grid-template-columns:1fr 1fr; gap:8px}
-  .tab{width:100%; text-align:center}
-  .grid.pkg{grid-template-columns: repeat(2, minmax(0,1fr))}
-  .grid.pkg .glass{display:grid; align-content:start; min-height:128px !important}
-  .price{font-size:18px}
-  .row{grid-template-columns:1fr; gap:10px}
-  h1{font-size:22px}
-  /* ซ่อนปุ่มซ้ำใน NAV (เหลือปุ่มติดต่อแอดมิน) */
-  .nav .tools a[href="#packages"],
-  .nav .tools a[href="#order"],
-  .nav .tools a[href="#history"]{ display:none; }
+  .hero{grid-template-columns:1fr; gap:14px}
+  .grid.two{grid-template-columns:1fr}
+  .tabs{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+  .tab{width:100%; text-align:center}
+  .grid.pkg{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid.pkg .glass{display:grid; align-content:start; min-height:128px !important}
+  .price{font-size:18px}
+  .row{grid-template-columns:1fr; gap:10px}
+  h1{font-size:22px}
+  /* ซ่อนปุ่มซ้ำใน NAV (เหลือปุ่มติดต่อแอดมิน) */
+  .nav .tools a[href="#packages"],
+  .nav .tools a[href="#order"],
+  .nav .tools a[href="#history"]{ display:none; }
 }
 
-/* ===== TABLE SCROLL (มือถือทุกขนาด) ===== */
+/* ===== TABLE SCROLL ===== */
 .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
 .table-scroll table{min-width:720px}
 
-/* ===== THEME (Christmas) ===== */
+/* ===== THEME: CHRISTMAS ===== */
 :root{
-  --bg:#0b0f10; --bg2:#102017;
-  --glass:#0f1712cc; --panel:#0f1913; --card:#121a15;
-  --text:#f7fff7; --muted:#b8d0bf; --muted2:#a7c9b4;
-  --brand:#e53935;   /* Christmas Red */
-  --brand2:#81c784;  /* Pine Green light */
-  --accent:#ffd166;  --warn:#ff6b6b;
-  --border:#1f3426;  --shadow:0 20px 60px rgba(0,0,0,.55); --radius:18px;
+  --bg:#0a0f0b; --bg2:#0f1a12;
+  --glass:#0e1511cc; --panel:#0f1a12; --card:#101d15;
+  --text:#f8fff6; --muted:#cde3cf; --muted2:#b8d2bb;
+  --brand:#e53935;     /* red */
+  --brand2:#36c06b;    /* green */
+  --accent:#ffd166;    /* gold */
+  --warn:#ff6b6b;
+  --border:#203326; --shadow:0 20px 60px rgba(0,0,0,.55); --radius:18px;
 }
 *{box-sizing:border-box} html,body{height:100%}
 body{
-  margin:0; color:var(--text); font-family:system-ui,Segoe UI,Prompt,sans-serif;
-  background:
-    radial-gradient(1100px 600px at 0% 0%, #143021 0%, transparent 60%),
-    radial-gradient(900px 700px at 100% 0%, #142a20 0%, transparent 60%),
-    radial-gradient(900px 900px at 50% 120%, #0f2017 0%, transparent 60%),
-    linear-gradient(180deg, var(--bg), var(--bg2));
+  margin:0; color:var(--text); font-family:system-ui,Segoe UI,Prompt,sans-serif;
+  background:
+    radial-gradient(1100px 600px at 0% 0%, #19301f 0%, transparent 60%),
+    radial-gradient(900px 700px at 100% 0%, #2a1a1a 0%, transparent 60%),
+    radial-gradient(900px 900px at 50% 120%, #112019 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg), var(--bg2));
 }
-/* พื้นหลังหิมะ/ไฟคริสต์มาส */
+/* ลายพื้นหลังธีมคริสต์มาส + หิมะ */
 body::before{
-  content:"";position:fixed;inset:0;z-index:-1;
-  background:url("christmas-bg.png") center/cover no-repeat;
-  opacity:.12;pointer-events:none;mix-blend-mode:screen
+  content:"";position:fixed;inset:0;z-index:-2;
+  background:url("christmas-bg.png") center/cover no-repeat;
+  opacity:.10;pointer-events:none;mix-blend-mode:screen;
 }
-
-/* snow flakes นิดหน่อย */
-.snow{pointer-events:none; position:fixed; inset:0; z-index:0; overflow:hidden}
-.snow i{
-  position:absolute; top:-10px; width:6px; height:6px; border-radius:50%;
-  background:rgba(255,255,255,.85); box-shadow:0 0 8px rgba(255,255,255,.6);
-  animation: fall linear infinite;
-  opacity:.9;
+/* หิมะตกเบาๆ */
+body::after{
+  content:""; position:fixed; inset:-100px 0 0 0; z-index:-1; pointer-events:none;
+  background-image:
+    radial-gradient(2px 2px at 20% 20%,#fff8 90%,transparent 100%),
+    radial-gradient(2px 2px at 60% 30%,#fff8 90%,transparent 100%),
+    radial-gradient(2px 2px at 80% 70%,#fff8 90%,transparent 100%),
+    radial-gradient(2px 2px at 30% 80%,#fff8 90%,transparent 100%),
+    radial-gradient(2px 2px at 10% 60%,#fff8 90%,transparent 100%);
+  **animation:snow 5s linear infinite;** /* 🚩 แก้ความเร็วเป็น 5 วินาที */
 }
-@keyframes fall {
-  to { transform: translateY(110vh) translateX(var(--drift, 40px)); opacity:.95; }
+@keyframes snow{
+  0%{ transform:translateY(-100px) }
+  100%{ transform:translateY(100px) }
 }
 
 a{color:var(--accent);text-decoration:none} img{max-width:100%;display:block}
 .wrap{max-width:1100px;margin:auto;padding:20px}
 
-/* NAV */
 .nav{
-  display:flex;justify-content:space-between;align-items:center;gap:12px;
-  background:linear-gradient(180deg,#0e2017,#0b1712);
-  border:1px solid var(--border);border-radius:20px;padding:10px 14px;
-  box-shadow:var(--shadow);backdrop-filter: blur(8px);position:sticky;top:12px;z-index:10
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  background:linear-gradient(180deg,#132017,#0e1812);
+  border:1px solid var(--border);border-radius:20px;padding:10px 14px;
+  box-shadow:var(--shadow);backdrop-filter: blur(8px);position:sticky;top:12px;z-index:10
 }
 .brand{display:flex;gap:12px;align-items:center}
 .logo{
-  width:42px;height:42px;border-radius:12px;
-  background:
-    conic-gradient(from 220deg,#e53935,#81c784,#ffd166,#e53935);
-  display:grid;place-items:center;font-weight:900;color:#1a0b0b;
-  box-shadow:0 0 18px #e5393550
+  width:42px;height:42px;border-radius:12px;
+  background:conic-gradient(from 220deg,#e53935,#36c06b,#ffd166,#e53935);
+  display:grid;place-items:center;font-weight:900;color:#1b0d0d;box-shadow:0 0 18px #ffd16640
 }
 .site-badge{
-  font-size:12px;color:#ffe9e9;background:#12231a;border:1px solid #1e3a2a;
-  padding:3px 8px;border-radius:999px;display:inline-flex;gap:6px;align-items:center
+  font-size:12px;color:#ffe6a8;background:#182416;border:1px solid #274426;
+  padding:3px 8px;border-radius:999px;display:inline-flex;gap:6px;align-items:center
 }
-.btn{
-  padding:9px 14px;border-radius:12px;border:1px solid var(--border);
-  background:linear-gradient(180deg,#0f1b15,#0c1612);color:#effff3;font-weight:700;cursor:pointer
-}
+.btn{padding:9px 14px;border-radius:12px;border:1px solid var(--border);background:linear-gradient(180deg,#14241a,#0f1b14);color:#f2fff2;font-weight:700;cursor:pointer}
 .btn[disabled]{opacity:.6;pointer-events:none}
 .btn.primary{
-  background:linear-gradient(90deg,var(--brand),var(--brand2));
-  color:#1a0b0b;border:none;
-  box-shadow:0 0 10px #e5393570,0 0 28px #81c78460;
-  text-shadow:0 0 6px rgba(255,240,210,.6)
+  background:linear-gradient(90deg,var(--brand),var(--brand2));
+  color:#1b0d0d;border:none;
+  box-shadow:0 0 10px #ffd16650,0 0 28px #36c06b40;text-shadow:0 0 6px rgba(255,230,170,.6)
 }
 
-/* HERO + Cards */
 .hero{margin-top:16px;display:grid;grid-template-columns:2fr 1fr;gap:18px}
 .glass{
-  background:linear-gradient(180deg,var(--glass),#0b1511cc);
-  border:1px solid var(--border);border-radius:var(--radius);padding:18px;
-  box-shadow:var(--shadow);backdrop-filter: blur(10px); position:relative
+  background:linear-gradient(180deg,var(--glass),#0e1712cc);
+  border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);backdrop-filter: blur(10px)
 }
-.badge{
-  padding:6px 10px;border-radius:999px;background:#0f2018;border:1px solid var(--border);
-  display:inline-flex;gap:8px;align-items:center
-}
-.drip{text-shadow:0 2px 0 #000,0 0 12px rgba(129,199,132,.35),0 0 26px rgba(229,57,53,.35)}
+.badge{padding:6px 10px;border-radius:999px;background:#1b2a1e;border:1px solid var(--border);display:inline-flex;gap:8px;align-items:center}
+.drip{text-shadow:0 2px 0 #000,0 0 12px rgba(255,209,102,.40),0 0 26px rgba(54,192,107,.35)}
 .statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
-.stat{background:#0f241a;border:1px solid var(--border);border-radius:14px;text-align:center;padding:14px}
+.stat{background:#16281d;border:1px solid var(--border);border-radius:14px;text-align:center;padding:14px}
 .muted{color:var(--muted)} .muted2{color:var(--muted2)}
 .section{margin-top:22px}
 .grid{display:grid;gap:16px}
 .grid.pkg{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
 .grid.two{grid-template-columns:2fr 1fr}
-.card{background:#0f1913;border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
-label{display:block;margin-bottom:6px;color:#d2f0dc}
-input,select,textarea{width:100%;background:#0b1410;border:1px solid var(--border);color:var(--text);padding:12px;border-radius:12px}
+.card{background:#102219;border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+label{display:block;margin-bottom:6px;color:#d6f0d8}
+input,select,textarea{width:100%;background:#0f1a13;border:1px solid var(--border);color:var(--text);padding:12px;border-radius:12px}
 .price{font-size:22px;font-weight:900}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .summary{position:sticky;top:84px}
@@ -141,320 +128,297 @@ input,select,textarea{width:100%;background:#0b1410;border:1px solid var(--borde
 .item{display:flex;justify-content:space-between;gap:10px}
 .total{font-size:22px;font-weight:900}
 .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 0}
-.tab{padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:#0f1c16;cursor:pointer}
-.tab.active{background:linear-gradient(90deg,var(--brand),var(--brand2));color:#1a0b0b;border:none;box-shadow:0 0 10px #e5393570}
-.neon{
-  box-shadow:0 0 12px rgba(129,199,132,.25),0 0 24px rgba(229,57,53,.18),inset 0 0 0 1px rgba(129,199,132,.18);
-  border:1px solid rgba(129,199,132,.25);border-radius:14px;padding:12px;margin-top:10px
+.tab{padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:#132319;cursor:pointer}
+.tab.active{
+  background:linear-gradient(90deg,var(--brand),var(--brand2));color:#1b0d0d;border:none;box-shadow:0 0 10px #ffd16650
 }
-.neon h3{margin:0 0 6px;font-size:16px;text-shadow:0 0 12px rgba(229,57,53,.35)}
+.neon{box-shadow:0 0 12px rgba(255,209,102,.25),0 0 24px rgba(54,192,107,.18),inset 0 0 0 1px rgba(255,209,102,.18);border:1px solid rgba(255,209,102,.25);border-radius:14px;padding:12px;margin-top:10px}
+.neon h3{margin:0 0 6px;font-size:16px;text-shadow:0 0 12px rgba(255,209,102,.35)}
 .mini-sum .row-line{display:flex;justify-content:space-between;gap:10px;padding:4px 0;border-bottom:1px dashed rgba(255,255,255,.06)}
 .mini-sum .row-line:last-child{border-bottom:0}
 .ribbon{
-  position:absolute;right:14px;top:-10px;rotate:-6deg;
-  background:linear-gradient(90deg,#e53935,#81c784);color:#140b0b;
-  padding:6px 12px;border-radius:8px;font-weight:900;box-shadow:0 6px 18px #e5393570;border:1px solid #3a0d0d
+  position:absolute;right:14px;top:-10px;rotate:8deg;
+  background:linear-gradient(90deg,#e53935,#36c06b);
+  color:#1b0d0d;padding:6px 12px;border-radius:8px;font-weight:900;
+  box-shadow:0 6px 18px #36c06b60;border:1px solid #5c2a00
 }
 @media (max-width:980px){.hero{grid-template-columns:1fr}.grid.two{grid-template-columns:1fr}.summary{position:static}}
 
-/* AUTH */
+/* ===== AUTH ===== */
 .auth{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);z-index:50}
 .auth.hide{display:none}
-.panel{width:min(520px,92vw);background:#0b1410;border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);padding:20px}
+.panel{width:min(520px,92vw);background:#0e1813;border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);padding:20px}
 .pair{display:grid;grid-template-columns:140px 1fr;gap:8px;align-items:center;margin:8px 0}
-.note{font-size:12px;color:#c4e6d3}
+.note{font-size:12px;color:#cde3cf}
 
-/* HISTORY */
+/* ===== HISTORY ===== */
 table{width:100%;border-collapse:collapse}
 th,td{padding:10px;border-bottom:1px solid rgba(255,255,255,.06);text-align:left}
-th{color:#ffecb3}
+th{color:#ffe6a8}
 .tools{display:flex;gap:8px;flex-wrap:wrap}
-.pill{display:inline-flex;gap:6px;align-items:center;padding:4px 8px;border:1px solid var(--border);border-radius:999px;background:#0f1c16}
+.pill{display:inline-flex;gap:6px;align-items:center;padding:4px 8px;border:1px solid var(--border);border-radius:999px;background:#132319}
 
-/* ปุ่มใต้การ์ดขวา */
-.hero-cta{
-  display:grid;
-  grid-template-columns: repeat(3, minmax(0,1fr));
-  gap:10px;
-  width:100%;
-  margin-top:12px;
-}
-.hero-cta .btn{ width:100%; text-align:center; }
-@media (max-width:480px){ .hero-cta{ grid-template-columns:1fr; } }
-
-/* Footer lights (บรรยากาศ) */
-.footer{
-  margin:24px 0 8px; text-align:center; color:#cde6d7; opacity:.8; font-size:12px
-}
-  </style>
+/* ===== ปุ่มใต้การ์ดขวา ===== */
+.hero-cta{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; width:100%; margin-top:12px}
+.hero-cta .btn{width:100%; text-align:center}
+@media (max-width:480px){ .hero-cta{ grid-template-columns:1fr } }
+  </style>
 </head>
 <body>
 
-<!-- snow layers -->
-<div class="snow" aria-hidden="true" id="snow"></div>
-
-<!-- AUTH (Signup/Login Overlay) -->
 <div class="auth" id="auth">
-  <div class="panel">
-    <h2 id="authTitle">🎄 สร้างบัญชีครั้งแรก</h2>
-    <p id="authDesc" class="muted2">ตั้งผู้ใช้ + PIN (เก็บเฉพาะในเครื่องนี้)</p>
+  <div class="panel">
+    <h2 id="authTitle"> สร้างบัญชีครั้งแรก</h2>
+    <p id="authDesc" class="muted2">ตั้งผู้ใช้ + PIN (เก็บเฉพาะในเครื่องนี้)</p>
 
-    <div id="setupForm">
-      <div class="pair"><label>ผู้ใช้</label><input id="setupUser" placeholder="เช่น evan" /></div>
-      <div class="pair"><label>PIN</label><input id="setupPin" type="password" inputmode="numeric" maxlength="6" placeholder="4–6 ตัวเลข" /></div>
-      <div class="pair"><label>ยืนยัน PIN</label><input id="setupPin2" type="password" inputmode="numeric" maxlength="6" placeholder="พิมพ์ซ้ำ" /></div>
-      <div class="pair"><label>ชื่อในบิล</label><input id="setupName" placeholder="เช่น Ryu" /></div>
-      <div class="pair"><label>ช่องทางติดต่อ</label><input id="setupContact" placeholder="Line/FB/Tel" /></div>
-      <div class="tools"><button class="btn primary" id="btnSetup">สร้างบัญชี</button></div>
-      <div class="note">ข้อมูลเก็บใน LocalStorage ของเบราว์เซอร์นี้</div>
-    </div>
+    <div id="setupForm">
+      <div class="pair"><label>ผู้ใช้</label><input id="setupUser" placeholder="เช่น evan" /></div>
+      <div class="pair"><label>PIN</label><input id="setupPin" type="password" inputmode="numeric" maxlength="6" placeholder="4–6 ตัวเลข" /></div>
+      <div class="pair"><label>ยืนยัน PIN</label><input id="setupPin2" type="password" inputmode="numeric" maxlength="6" placeholder="พิมพ์ซ้ำ" /></div>
+      <div class="pair"><label>ชื่อในบิล</label><input id="setupName" placeholder="เช่น Ryu" /></div>
+      <div class="pair"><label>ช่องทางติดต่อ</label><input id="setupContact" placeholder="Line/FB/Tel" /></div>
+      <div class="tools"><button class="btn primary" id="btnSetup">สร้างบัญชี</button></div>
+      <div class="note">ข้อมูลเก็บใน LocalStorage ของเบราว์เซอร์นี้</div>
+    </div>
 
-    <div id="loginForm" style="display:none">
-      <div class="pair"><label>ผู้ใช้</label><input id="loginUser" placeholder="ผู้ใช้" /></div>
-      <div class="pair"><label>PIN</label><input id="loginPin" type="password" inputmode="numeric" maxlength="6" placeholder="PIN" /></div>
-      <div class="tools">
-        <button class="btn primary" id="btnLogin">เข้าระบบ</button>
-        <button class="btn" id="btnForgot">ลืม PIN</button>
-      </div>
-      <div class="note">ลืม PIN → ใช้ “รีเซ็ตข้อมูลทั้งหมด” ในหน้า “ประวัติ”</div>
-    </div>
-  </div>
+    <div id="loginForm" style="display:none">
+      <div class="pair"><label>ผู้ใช้</label><input id="loginUser" placeholder="ผู้ใช้" /></div>
+      <div class="pair"><label>PIN</label><input id="loginPin" type="password" inputmode="numeric" maxlength="6" placeholder="PIN" /></div>
+      <div class="tools">
+        <button class="btn primary" id="btnLogin">เข้าระบบ</button>
+        <button class="btn" id="btnForgot">ลืม PIN</button>
+      </div>
+      <div class="note">ลืม PIN → ใช้ “รีเซ็ตข้อมูลทั้งหมด” ในหน้า “ประวัติ”</div>
+    </div>
+  </div>
 </div>
 
 <div class="wrap">
-  <!-- NAV -->
-  <nav class="nav">
-    <div class="brand">
-      <div class="logo">EV</div>
-      <div>
-        <div style="font-weight:900;letter-spacing:.5px">EVAN VALE</div>
-        <div class="site-badge">🎄 Christmas Event • เติมไว ปลอดภัย</div>
-      </div>
-    </div>
-    <div class="tools">
-      <a class="btn" href="#packages">แพ็กเกจ</a>
-      <a class="btn" href="#order">สั่งเติม</a>
-      <a class="btn" href="#history">ประวัติ</a>
-      <a class="btn primary" id="btnAdminNav" href="https://www.facebook.com/share/1ALsnFkkdW/" target="_blank" rel="noopener">ติดต่อแอดมิน</a>
-      <button class="btn" id="btnLogout" style="display:none">ออกจากระบบ</button>
-    </div>
-  </nav>
+    <nav class="nav">
+    <div class="brand">
+      <div class="logo">EV</div>
+      <div>
+        <div style="font-weight:900;letter-spacing:.5px">EVAN VALE</div>
+        <div class="site-badge"> Christmas Event • เติมไว ปลอดภัย</div>
+      </div>
+      <div class="tools">
+        <a class="btn" href="#packages">แพ็กเกจ</a>
+        <a class="btn" href="#order">สั่งเติม</a>
+        <a class="btn" href="#history">ประวัติ</a>
+        <a class="btn primary" id="btnAdminNav" href="https://www.facebook.com/share/1ALsnFkkdW/" target="_blank" rel="noopener">ติดต่อแอดมิน</a>
+        <button class="btn" id="btnLogout" style="display:none">ออกจากระบบ</button>
+      </div>
+    </div>
+  </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <!-- การ์ดซ้าย -->
-    <div class="glass">
-      <span class="ribbon">XMAS 🎁</span>
-      <span class="badge">✅ เปิดรับออเดอร์ 08:30–21:30</span>
-      <h1 class="drip">EVAN VALE — ราคาดี โปร่งใส <span style="color:var(--accent)">มีแอดมินดูแล</span></h1>
-      <div class="statgrid">
-        <div class="stat"><div style="font-size:20px;font-weight:900">3–10 นาที*</div><div class="muted2">โดยเฉลี่ย</div></div>
-        <div class="stat"><div style="font-size:20px;font-weight:900">1000+</div><div class="muted2">รายการสำเร็จ</div></div>
-        <div class="stat"><div style="font-size:20px;font-weight:900">0%</div><div class="muted2">ยึด UID</div></div>
-      </div>
-      <p class="muted2" style="margin-top:8px">*ช่วงพีค/เกมปิดปรับปรุงอาจช้ากว่าปกติ</p>
-    </div>
+    <section class="hero">
+        <div class="glass" style="position:relative">
+      <span class="ribbon">CHRISTMAS </span>
+      <span class="badge"> เปิดรับออเดอร์ 08:30–21:30</span>
+      <h1 class="drip">EVAN VALE — ราคาดี โปร่งใส <span style="color:var(--accent)">มีแอดมินดูแล</span></h1>
+      <div class="statgrid">
+        <div class="stat"><div style="font-size:20px;font-weight:900">3–10 นาที*</div><div class="muted2">โดยเฉลี่ย</div></div>
+        <div class="stat"><div style="font-size:20px;font-weight:900">1000+</div><div class="muted2">รายการสำเร็จ</div></div>
+        <div class="stat"><div style="font-size:20px;font-weight:900">0%</div><div class="muted2">ยึด UID</div></div>
+      </div>
+      <p class="muted2" style="margin-top:8px">*ช่วงพีค/เกมปิดปรับปรุงอาจช้ากว่าปกติ</p>
+    </div>
 
-    <!-- การ์ดขวา + ปุ่มเมนูใต้รูปสอง -->
-    <div class="glass" style="display:grid;place-items:center;text-align:center">
-      <div style="font-weight:800">แอดมินตอบไว</div>
-      <div class="muted2">เลือกเมนูด้านล่างได้เลย</div>
-      <div class="hero-cta">
-        <a class="btn" href="#packages">แพ็กเกจ</a>
-        <a class="btn primary" href="#order">สั่งเติม</a>
-        <a class="btn" href="#history">ประวัติ</a>
-      </div>
-    </div>
-  </section>
+        <div class="glass" style="display:grid;place-items:center;text-align:center">
+      <div style="font-weight:800">แอดมินตอบไว</div>
+      <div class="muted2">เลือกเมนูด้านล่างได้เลย</div>
+      <div class="hero-cta">
+        <a class="btn" href="#packages">แพ็กเกจ</a>
+        <a class="btn primary" href="#order">สั่งเติม</a>
+        <a class="btn" href="#history">ประวัติ</a>
+      </div>
+    </div>
+  </section>
 
-  <!-- PACKAGES -->
-  <section id="packages" class="section">
-    <div class="card">
-      <h2 style="margin:0">แพ็กเกจยอดฮิต</h2>
-      <div class="tabs" id="game-tabs"></div>
-      <p class="muted2" style="margin:6px 0 10px">คลิก “เลือกแพ็ก” เพื่อกรอกฟอร์มให้อัตโนมัติ</p>
-      <div class="grid pkg" id="pkg-grid"></div>
-    </div>
-  </section>
+    <section id="packages" class="section">
+    <div class="card">
+      <h2 style="margin:0">แพ็กเกจยอดฮิต</h2>
+      <div class="tabs" id="game-tabs"></div>
+      <p class="muted2" style="margin:6px 0 10px">คลิก “เลือกแพ็ก” เพื่อกรอกฟอร์มให้อัตโนมัติ</p>
+      <div class="grid pkg" id="pkg-grid"></div>
+    </div>
+  </section>
 
-  <!-- ORDER -->
-  <section id="order" class="section grid two" style="align-items:start">
-    <div class="card">
-      <h2 style="margin-top:0">สั่งเติมเกม</h2>
+    <section id="order" class="section grid two" style="align-items:start">
+    <div class="card">
+      <h2 style="margin-top:0">สั่งเติมเกม</h2>
 
-      <div class="row">
-        <div>
-          <label>เกม</label>
-          <select id="game"></select>
-          <p id="gameNote" style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0"></p>
-          <p id="thaiOnlyNote" style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0;background:#0e1b14;padding:6px 10px;border-radius:6px;border-left:3px solid var(--brand);">
-            ⚠️ เกมนี้รองรับเฉพาะ <b>เซิร์ฟเวอร์ไทย</b> เท่านั้น (Free Fire / RoV / PUBG Mobile / Roblox / Call of Duty)
-          </p>
-          <div class="neon mini-sum" id="miniSum" style="display:none">
-            <h3>สรุปคร่าวๆ</h3>
-            <div class="row-line"><span class="label">เกม</span><span class="value" id="mini-game">-</span></div>
-            <div class="row-line"><span class="label">เซิร์ฟเวอร์</span><span class="value" id="mini-server">-</span></div>
-            <div class="row-line"><span class="label">แพ็กเกจ</span><span class="value" id="mini-pkg">-</span></div>
-            <div class="row-line"><span class="label">ยอด</span><span class="value" id="mini-total">฿0</span></div>
-          </div>
-        </div>
-        <div>
-          <label>โซน/เซิร์ฟเวอร์</label>
-          <select id="server"></select>
-        </div>
-      </div>
+      <div class="row">
+        <div>
+          <label>เกม</label>
+          <select id="game"></select>
+          <p id="gameNote" style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0"></p>
+          <p id="thaiOnlyNote" style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0;background:#142318;padding:6px 10px;border-radius:6px;border-left:3px solid var(--brand);">
+             เกมนี้รองรับเฉพาะ <b>เซิร์ฟเวอร์ไทย</b> เท่านั้น (Free Fire / RoV / PUBG Mobile / Roblox / Call of Duty)
+          </p>
+          <div class="neon mini-sum" id="miniSum" style="display:none">
+            <h3>สรุปคร่าวๆ</h3>
+            <div class="row-line"><span class="label">เกม</span><span class="value" id="mini-game">-</span></div>
+            <div class="row-line"><span class="label">เซิร์ฟเวอร์</span><span class="value" id="mini-server">-</span></div>
+            <div class="row-line"><span class="label">แพ็กเกจ</span><span class="value" id="mini-pkg">-</span></div>
+            <div class="row-line"><span class="label">ยอด</span><span class="value" id="mini-total">฿0</span></div>
+          </div>
+        </div>
+        <div>
+          <label>โซน/เซิร์ฟเวอร์</label>
+          <select id="server"></select>
+        </div>
+      </div>
 
-      <div class="row">
-        <div>
-          <label>UID / Player ID</label>
-          <input id="uid" placeholder="เช่น 812345678 หรือชื่อในเกม">
-        </div>
-        <div>
-          <label>แพ็กเกจ</label>
-          <select id="package"></select>
-        </div>
-      </div>
+      <div class="row">
+        <div>
+          <label>UID / Player ID</label>
+          <input id="uid" placeholder="เช่น 812345678 หรือชื่อในเกม">
+        </div>
+        <div>
+          <label>แพ็กเกจ</label>
+          <select id="package"></select>
+          </div>
+      </div>
 
-      <div class="row">
-        <div>
-          <label>วิธีชำระ</label>
-          <select id="method">
-            <option>PromptPay</option>
-            <option>TrueMoney Wallet</option>
-            <option>โอนธนาคาร</option>
-          </select>
-        </div>
-        <div>
-          <label>โค้ดส่วนลด (ถ้ามี)</label>
-          <input id="promo" placeholder="เช่น EVAN10">
-        </div>
-      </div>
+      <div class="row">
+        <div>
+          <label>วิธีชำระ</label>
+          <select id="method">
+            <option>PromptPay</option>
+            <option>TrueMoney Wallet</option>
+            <option>โอนธนาคาร</option>
+          </select>
+        </div>
+        <div>
+          <label>โค้ดส่วนลด (ถ้ามี)</label>
+          <input id="promo" placeholder="เช่น EVAN10">
+        </div>
+      </div>
 
-      <div class="row">
-        <div>
-          <label>ชื่อลูกค้า</label>
-          <input id="name" placeholder="ชื่อเล่นก็ได้">
-        </div>
-        <div>
-          <label>ช่องทางติดต่อ</label>
-          <input id="contact" placeholder="Line/FB/Tel">
-        </div>
-      </div>
+      <div class="row">
+        <div>
+          <label>ชื่อลูกค้า</label>
+          <input id="name" placeholder="ชื่อเล่นก็ได้">
+        </div>
+        <div>
+          <label>ช่องทางติดต่อ</label>
+          <input id="contact" placeholder="Line/FB/Tel">
+        </div>
+      </div>
 
-      <div class="tools" style="margin-top:12px">
-        <button class="btn" id="btnReset" type="button">ล้างฟอร์ม</button>
-        <button class="btn primary" id="btnSubmit" type="button" disabled>ยืนยันและสร้างบิล</button>
-        <button class="btn" id="btnSaveProfile" type="button" disabled>บันทึกข้อมูลลูกค้า</button>
-      </div>
-      <p class="muted2" style="margin-top:8px">กดยืนยันแล้วจะเลื่อนไปส่วน “ชำระเงิน” อัตโนมัติ</p>
-    </div>
+      <div class="tools" style="margin-top:12px">
+        <button class="btn" id="btnReset" type="button">ล้างฟอร์ม</button>
+        <button class="btn primary" id="btnSubmit" type="button" disabled>ยืนยันและสร้างบิล</button>
+        <button class="btn" id="btnSaveProfile" type="button" disabled>บันทึกข้อมูลลูกค้า</button>
+      </div>
+      <p class="muted2" style="margin-top:8px">กดยืนยันแล้วจะเลื่อนไปส่วน “ชำระเงิน” อัตโนมัติ</p>
+    </div>
 
-    <aside class="card summary">
-      <h3 style="margin-top:0">สรุปบิล</h3>
-      <div class="list">
-        <div class="item"><span class="muted2">เลขบิล</span><span id="sum-bill">-</span></div>
-        <div class="item"><span class="muted2">เกม</span><span id="sum-game">-</span></div>
-        <div class="item"><span class="muted2">เซิร์ฟเวอร์</span><span id="sum-server">-</span></div>
-        <div class="item"><span class="muted2">UID</span><span id="sum-uid">-</span></div>
-        <div class="item"><span class="muted2">แพ็กเกจ</span><span id="sum-pkg">-</span></div>
-        <div class="item"><span class="muted2">วิธีชำระ</span><span id="sum-method">-</span></div>
-      </div>
-      <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:10px 0"></div>
-      <div class="item"><span class="muted2">ยอดสุทธิ</span><span class="total" id="sum-total">฿0</span></div>
-    </aside>
-  </section>
+    <aside class="card summary">
+      <h3 style="margin-top:0">สรุปบิล</h3>
+      <div class="list">
+        <div class="item"><span class="muted2">เลขบิล</span><span id="sum-bill">-</span></div>
+        <div class="item"><span class="muted2">เกม</span><span id="sum-game">-</span></div>
+        <div class="item"><span class="muted2">เซิร์ฟเวอร์</span><span id="sum-server">-</span></div>
+        <div class="item"><span class="muted2">UID</span><span id="sum-uid">-</span></div>
+        <div class="item"><span class="muted2">แพ็กเกจ</span><span id="sum-pkg">-</span></div>
+        <div class="item"><span class="muted2">วิธีชำระ</span><span id="sum-method">-</span></div>
+      </div>
+      <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:10px 0"></div>
+      <div class="item"><span class="muted2">ยอดสุทธิ</span><span class="total" id="sum-total">฿0</span></div>
+    </aside>
+  </section>
 
-  <!-- PAYMENT -->
-  <section id="pay" class="section" style="display:none">
-    <div class="card">
-      <h2 style="margin-top:0">ชำระเงิน</h2>
-      <p class="muted2">เลือกช่องทาง • แนบสลิป/เลขอ้างอิง • “คัดลอกสรุปบิล” แล้ว “เปิดแชทแอดมิน”</p>
-      <div class="grid pkg">
-        <div class="glass" style="text-align:center">
-          <div style="font-weight:800;margin-bottom:8px">TrueMoney Wallet</div>
-          <img src="truemoney.png" alt="TrueMoney QR" style="border-radius:12px">
-          <div class="muted2" style="margin-top:6px">สแกนด้วยแอป TrueMoney</div>
-        </div>
-        <div class="glass" style="text-align:center">
-          <div style="font-weight:800;margin-bottom:8px">พร้อมเพย์ / ธนาคาร</div>
-          <img src="promptpay.png" alt="PromptPay QR" style="border-radius:12px">
-          <div class="muted2" style="margin-top:6px">สแกนด้วยแอปธนาคาร</div>
-        </div>
-      </div>
+    <section id="pay" class="section" style="display:none">
+    <div class="card">
+      <h2 style="margin-top:0">ชำระเงิน</h2>
+      <p class="muted2">เลือกช่องทาง • แนบสลิป/เลขอ้างอิง • “คัดลอกสรุปบิล” แล้ว “เปิดแชทแอดมิน”</p>
+      <div class="grid pkg">
+        <div class="glass" style="text-align:center">
+          <div style="font-weight:800;margin-bottom:8px">TrueMoney Wallet</div>
+          <img src="truemoney.png" alt="TrueMoney QR" style="border-radius:12px">
+          <div class="muted2" style="margin-top:6px">สแกนด้วยแอป TrueMoney</div>
+        </div>
+        <div class="glass" style="text-align:center">
+          <div style="font-weight:800;margin-bottom:8px">พร้อมเพย์ / ธนาคาร</div>
+          <img src="promptpay.png" alt="PromptPay QR" style="border-radius:12px">
+          <div class="muted2" style="margin-top:6px">สแกนด้วยแอปธนาคาร</div>
+        </div>
+      </div>
 
-      <div class="glass" style="margin-top:14px">
-        <h3 style="margin-top:0">แนบหลักฐาน</h3>
-        <div class="row">
-          <div>
-            <label>อัปโหลดสลิป</label>
-            <input id="slip" type="file" accept="image/*">
-            <div class="muted2" style="margin-top:6px">เว็บสแตติกจะไม่เก็บไฟล์ ให้แนบซ้ำในแชทหากต้องใช้</div>
-          </div>
-          <div>
-            <label>เลขอ้างอิง (ถ้ามี)</label>
-            <input id="ref" placeholder="เช่น 2025-XX-XX">
-          </div>
-        </div>
+      <div class="glass" style="margin-top:14px">
+        <h3 style="margin-top:0">แนบหลักฐาน</h3>
+        <div class="row">
+          <div>
+            <label>อัปโหลดสลิป</label>
+            <input id="slip" type="file" accept="image/*">
+            <div class="muted2" style="margin-top:6px">เว็บสแตติกจะไม่เก็บไฟล์ ให้แนบซ้ำในแชทหากต้องใช้</div>
+          </div>
+          <div>
+            <label>เลขอ้างอิง (ถ้ามี)</label>
+            <input id="ref" placeholder="เช่น 2025-XX-XX">
+          </div>
+        </div>
 
-        <div class="tools" style="margin-top:12px">
-          <button class="btn" id="btnBackToForm" type="button">กลับไปแก้ฟอร์ม</button>
-          <button class="btn primary" id="btnPrepareMsg" type="button" disabled>คัดลอกสรุปบิล</button>
-          <a class="btn" id="btnOpenAdmin" href="#" target="_blank" rel="noopener" style="pointer-events:none;opacity:.6">เปิดแชทแอดมิน</a>
-        </div>
+        <div class="tools" style="margin-top:12px">
+          <button class="btn" id="btnBackToForm" type="button">กลับไปแก้ฟอร์ม</button>
+          <button class="btn primary" id="btnPrepareMsg" type="button" disabled>คัดลอกสรุปบิล</button>
+          <a class="btn" id="btnOpenAdmin" href="#" target="_blank" rel="noopener" style="pointer-events:none;opacity:.6">เปิดแชทแอดมิน</a>
+        </div>
 
-        <div id="copyHint" class="muted2" style="display:none;margin-top:8px">✔️ คัดลอกแล้ว ถ้าแชทไม่พิมพ์ให้เอง ให้ “วาง (Paste)” ได้เลย</div>
-        <textarea id="msgPreview" readonly style="display:none;width:100%;margin-top:8px;background:#0b1410;color:#f7fff7;border:1px solid #1f3426;border-radius:10px;padding:10px" rows="8"></textarea>
-      </div>
-    </div>
-  </section>
+        <div id="copyHint" class="muted2" style="display:none;margin-top:8px"> คัดลอกแล้ว ถ้าแชทไม่พิมพ์ให้เอง ให้ “วาง (Paste)” ได้เลย</div>
+        <textarea id="msgPreview" readonly style="display:none;width:100%;margin-top:8px;background:#0f1a13;color:#f8fff6;border:1px solid #203326;border-radius:10px;padding:10px" rows="8"></textarea>
+      </div>
+    </div>
+  </section>
 
-  <!-- HISTORY -->
-  <section id="history" class="section">
-    <div class="card">
-      <h2 style="margin:0">ประวัติการทำรายการ</h2>
-      <div class="tools" style="margin:10px 0">
-        <input id="histSearch" placeholder="ค้นหา: บิล/เกม/UID/ชื่อ" style="max-width:260px">
-        <select id="histGameFilter" class="pill">
-          <option value="">ทุกเกม</option>
-        </select>
-        <select id="histStatusFilter" class="pill">
-          <option value="">ทุกสถานะ</option>
-          <option>รอชำระ</option>
-          <option>ส่งรายละเอียดแล้ว</option>
-          <option>ชำระแล้ว</option>
-          <option>ยกเลิก</option>
-        </select>
-        <button class="btn" id="btnExportCsv">ดาวน์โหลด CSV</button>
-        <button class="btn" id="btnClearAll">รีเซ็ตข้อมูลทั้งหมด</button>
-      </div>
+    <section id="history" class="section">
+    <div class="card">
+      <h2 style="margin:0">ประวัติการทำรายการ</h2>
+      <div class="tools" style="margin:10px 0">
+        <input id="histSearch" placeholder="ค้นหา: บิล/เกม/UID/ชื่อ" style="max-width:260px">
+        <select id="histGameFilter" class="pill">
+          <option value="">ทุกเกม</option>
+        </select>
+        <select id="histStatusFilter" class="pill">
+          <option value="">ทุกสถานะ</option>
+          <option>รอชำระ</option>
+          <option>ส่งรายละเอียดแล้ว</option>
+          <option>ชำระแล้ว</option>
+          <option>ยกเลิก</option>
+        </select>
+        <button class="btn" id="btnExportCsv">ดาวน์โหลด CSV</button>
+        <button class="btn" id="btnClearAll">รีเซ็ตข้อมูลทั้งหมด</button>
+      </div>
 
-      <div class="glass table-scroll">
-        <table id="histTable">
-          <thead>
-            <tr>
-              <th>เวลา</th><th>เลขบิล</th><th>เกม</th><th>เซิร์ฟ</th><th>แพ็กเกจ</th><th>ยอด</th><th>สถานะ</th><th>UID</th><th>เครื่องมือ</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-        <div id="histEmpty" class="muted2" style="padding:8px 0;display:none">ยังไม่มีรายการ</div>
-      </div>
-    </div>
-  </section>
+      <div class="glass table-scroll">
+        <table id="histTable">
+          <thead>
+            <tr>
+              <th>เวลา</th><th>เลขบิล</th><th>เกม</th><th>เซิร์ฟ</th><th>แพ็กเกจ</th><th>ยอด</th><th>สถานะ</th><th>UID</th><th>เครื่องมือ</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div id="histEmpty" class="muted2" style="padding:8px 0;display:none">ยังไม่มีรายการ</div>
+      </div>
+    </div>
+  </section>
 
-  <div class="footer">© 2025 Evan Vale • Christmas Event</div>
+  <div class="footer">© 2025 Evan Vale • Christmas Event</div>
 </div>
 
 <script>
-/* ====== AUTH / SESSION ====== */
-const KEY_USER="ev_auth_user";      // {user, pinHash, name?, contact?, last?}
-const KEY_SESSION="ev_auth_session"; // "ok" เมื่อเข้าสู่ระบบ
-function ordersKey(){ const u=userBox(); return u? \`ev_orders_\${u.user}\` : "ev_orders__guest"; }
+/* ===== AUTH / SESSION ===== */
+const KEY_USER="ev_auth_user";
+const KEY_SESSION="ev_auth_session";
+function ordersKey(){ const u=userBox(); return u? `ev_orders_${u.user}` : "ev_orders__guest"; }
 
 async function sha256(str){
-  const enc=new TextEncoder().encode(str);
-  const buf=await crypto.subtle.digest('SHA-256',enc);
-  return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
+  const enc=new TextEncoder().encode(str);
+  const buf=await crypto.subtle.digest('SHA-256',enc);
+  return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
 }
 function userBox(){ try{ return JSON.parse(localStorage.getItem(KEY_USER)||"null"); }catch{return null;} }
 function setUserBox(v){ localStorage.setItem(KEY_USER, JSON.stringify(v)); }
@@ -462,38 +426,38 @@ function setSession(on){ if(on){ sessionStorage.setItem(KEY_SESSION,"ok"); } els
 function isLogged(){ return sessionStorage.getItem(KEY_SESSION)==="ok"; }
 function showAuth(show){ document.getElementById('auth').classList.toggle('hide', !show); }
 function toggleProtected(disabled){
-  document.getElementById('btnSubmit').disabled      = disabled;
-  document.getElementById('btnPrepareMsg').disabled  = disabled;
-  document.getElementById('btnSaveProfile').disabled = disabled;
-  document.getElementById('btnLogout').style.display = disabled ? "none" : "inline-block";
+  document.getElementById('btnSubmit').disabled      = disabled;
+  document.getElementById('btnPrepareMsg').disabled  = disabled;
+  document.getElementById('btnSaveProfile').disabled = disabled;
+  document.getElementById('btnLogout').style.display = disabled ? "none" : "inline-block";
 }
 
-/* ====== DATA ====== */
+/* ===== DATA ===== */
 const ADMIN_URL = "https://www.facebook.com/profile.php?id=61581815886305";
 const GAMES = [
-  { key:"Free Fire", icon:"🔥", servers:["Thailand","SEA","Global","อื่นๆ"] },
-  { key:"RoV", icon:"🛡️", servers:["Thailand","Vietnam","Taiwan","อื่นๆ"] },
-  { key:"Genshin Impact", icon:"✨", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
-  { key:"Honkai: Star Rail", icon:"🚄", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
-  { key:"PUBG Mobile", icon:"🎯", servers:["Thailand","SEA","KRJP","Global","อื่นๆ"] },
-  { key:"Roblox", icon:"🧱", servers:["Thailand","Asia","USA","Global","อื่นๆ"] },
-  { key:"Roblox (สั่งซื้อโปรโมชั่น)", icon:"🎄", servers:["Thailand","Asia","USA","Global","อื่นๆ"] },
-  { key:"Call of Duty", icon:"🎮", servers:["Thailand","SEA","Global","อื่นๆ"] },
-  { key:"Wuthering Waves", icon:"🌊", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
+  { key:"Free Fire", icon:"", servers:["Thailand","SEA","Global","อื่นๆ"] },
+  { key:"RoV", icon:"", servers:["Thailand","Vietnam","Taiwan","อื่นๆ"] },
+  { key:"Genshin Impact", icon:"", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
+  { key:"Honkai: Star Rail", icon:"", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
+  { key:"PUBG Mobile", icon:"", servers:["Thailand","SEA","KRJP","Global","อื่นๆ"] },
+  { key:"Roblox", icon:"", servers:["Thailand","Asia","USA","Global","อื่นๆ"] },
+  { key:"Roblox (สั่งซื้อโปรโมชั่น)", icon:"", servers:["Thailand","Asia","USA","Global","อื่นๆ"] },
+  { key:"Call of Duty", icon:"", servers:["Thailand","SEA","Global","อื่นๆ"] },
+  { key:"Wuthering Waves", icon:"", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
 ];
 const PACKS_BY_GAME = {
-  "Free Fire":[{name:"33 เพชร",price:11},{name:"68 เพชร",price:21},{name:"172 เพชร",price:49},{name:"310 เพชร",price:87},{name:"517 เพชร",price:145},{name:"690 เพชร",price:195},{name:"1052 เพชร",price:290},{name:"1800 เพชร",price:480},{name:"3698 เพชร",price:950},{name:"7396 เพชร",price:1900},{name:"รายสัปดาห์ดามินิ",price:32},{name:"รายสัปดาห์ดา",price:63},{name:"รายเดือน",price:287},{name:"บูย่าห์พาส",price:90},{name:"อีโวพาส 3 วัน",price:46},{name:"อีโวพาส 7 วัน",price:62},{name:"อีโวพาส 30 วัน",price:220}],
-  "RoV":[{name:"11 คูปอง",price:10},{name:"24 คูปอง",price:19},{name:"60 คูปอง",price:49},{name:"110 คูปอง",price:87},{name:"185 คูปอง",price:144},{name:"370 คูปอง",price:285},{name:"620 คูปอง",price:478},{name:"990 คูปอง",price:765},{name:"1250 คูปอง",price:960}],
-  "Genshin Impact":[{name:"60 Genesis Crystals",price:30},{name:"300+30 Genesis Crystals",price:145},{name:"980+110 Genesis Crystals",price:420},{name:"1980+260 Genesis Crystals",price:870},{name:"3280+600 Genesis Crystals",price:1340},{name:"6480+1600 Genesis Crystals",price:2625},{name:"Blessing (รายเดือน)",price:179}],
-  "Honkai: Star Rail":[{name:"60 Oneiric Shard",price:35},{name:"300+30 Shard",price:145},{name:"980+110 Shard",price:425},{name:"1980+260 Shard",price:870},{name:"3280+600 Shard",price:1340},{name:"6480+1600 Shard",price:2630},{name:"Express Supply Pass",price:145}],
-  "PUBG Mobile":[{name:"60 UC",price:35},{name:"325 UC",price:179},{name:"660 UC",price:346},{name:"1800 UC",price:860},{name:"3850 UC",price:1696},{name:"8100 UC",price:3305},{name:"16200 UC",price:6475},{name:"24300 UC",price:9910}],
-  "Roblox":[{name:"80 Robux",price:35},{name:"160 Robux",price:70},{name:"400 Robux",price:175},{name:"800 Robux",price:350},{name:"1000 Robux",price:400},{name:"2000 Robux",price:600},{name:"4000 Robux",price:1200},{name:"รายเดือน 1000 Robux",price:380}],
-  "Roblox (สั่งซื้อโปรโมชั่น)":[{name:"500 Robux (จาก 230 เหลือ 160)",price:160},{name:"3000 Robux (จาก 1000 เหลือ 860)",price:860}],
-  "Call of Duty":[{name:"44 โบนัส 10 CP",price:22},{name:"108 โบนัส 30 CP",price:52},{name:"194 โบนัส 55 CP",price:90},{name:"324 โบนัส 90 CP",price:152},{name:"648 โบนัส 216 CP",price:305},{name:"1080 โบนัส 480 CP",price:505},{name:"2160 โบนัส 1080 CP",price:1010}],
-  "Wuthering Waves":[{name:"60 Lunite",price:35},{name:"300+30 Lunite",price:179},{name:"980+110 Lunite",price:549},{name:"Lunite Pass (รายเดือน)",price:179}]
+  "Free Fire":[{name:"33 เพชร",price:11},{name:"68 เพชร",price:21},{name:"172 เพชร",price:49},{name:"310 เพชร",price:87},{name:"517 เพชร",price:145},{name:"690 เพชร",price:195},{name:"1052 เพชร",price:290},{name:"1800 เพชร",price:480},{name:"3698 เพชร",price:950},{name:"7396 เพชร",price:1900},{name:"รายสัปดาห์ดามินิ",price:32},{name:"รายสัปดาห์ดา",price:63},{name:"รายเดือน",price:287},{name:"บูย่าห์พาส",price:90},{name:"อีโวพาส 3 วัน",price:46},{name:"อีโวพาส 7 วัน",price:62},{name:"อีโวพาส 30 วัน",price:220}],
+  "RoV":[{name:"11 คูปอง",price:10},{name:"24 คูปอง",price:19},{name:"60 คูปอง",price:49},{name:"110 คูปอง",price:87},{name:"185 คูปอง",price:144},{name:"370 คูปอง",price:285},{name:"620 คูปอง",price:478},{name:"990 คูปอง",price:765},{name:"1250 คูปอง",price:960}],
+  "Genshin Impact":[{name:"60 Genesis Crystals",price:30},{name:"300+30 Genesis Crystals",price:145},{name:"980+110 Genesis Crystals",price:420},{name:"1980+260 Genesis Crystals",price:870},{name:"3280+600 Genesis Crystals",price:1340},{name:"6480+1600 Genesis Crystals",price:2625},{name:"Blessing (รายเดือน)",price:179}],
+  "Honkai: Star Rail":[{name:"60 Oneiric Shard",price:35},{name:"300+30 Shard",price:145},{name:"980+110 Shard",price:425},{name:"1980+260 Shard",price:870},{name:"3280+600 Shard",price:1340},{name:"6480+1600 Shard",price:2630},{name:"Express Supply Pass",price:145}],
+  "PUBG Mobile":[{name:"60 UC",price:35},{name:"325 UC",price:179},{name:"660 UC",price:346},{name:"1800 UC",price:860},{name:"3850 UC",price:1696},{name:"8100 UC",price:3305},{name:"16200 UC",price:6475},{name:"24300 UC",price:9910}],
+  "Roblox":[{name:"80 Robux",price:35},{name:"160 Robux",price:70},{name:"400 Robux",price:175},{name:"800 Robux",price:350},{name:"1000 Robux",price:400},{name:"2000 Robux",price:600},{name:"4000 Robux",price:1200},{name:"รายเดือน 1000 Robux",price:380}],
+  "Roblox (สั่งซื้อโปรโมชั่น)":[{name:"500 Robux (จาก 230 เหลือ 160)",price:160},{name:"3000 Robux (จาก 1000 เหลือ 860)",price:860}],
+  "Call of Duty":[{name:"44 โบนัส 10 CP",price:22},{name:"108 โบนัส 30 CP",price:52},{name:"194 โบนัส 55 CP",price:90},{name:"324 โบนัส 90 CP",price:152},{name:"648 โบนัส 216 CP",price:305},{name:"1080 โบนัส 480 CP",price:505},{name:"2160 โบนัส 1080 CP",price:1010}],
+  "Wuthering Waves":[{name:"60 Lunite",price:35},{name:"300+30 Lunite",price:179},{name:"980+110 Lunite",price:549},{name:"Lunite Pass (รายเดือน)",price:179}]
 };
 
-/* ====== REFS ====== */
+/* ===== REFS ===== */
 const tabs = document.getElementById('game-tabs');
 const pkgGrid = document.getElementById('pkg-grid');
 const selGame = document.getElementById('game');
@@ -511,134 +475,133 @@ const btnLogout = document.getElementById('btnLogout');
 let currentGame = GAMES[0].key;
 const thaiOnlyGames = ["Free Fire","RoV","PUBG Mobile","Roblox","Call of Duty"];
 
-/* ====== UI: Packages ====== */
+/* ===== UI: Packages ===== */
 function renderGameTabs(){
-  tabs.innerHTML = ""; selGame.innerHTML = "";
-  GAMES.forEach(g=>{
-    const t = document.createElement('div');
-    t.className = 'tab' + (g.key===currentGame?' active':'');
-    t.textContent = `${g.icon} ${g.key}`;
-    t.addEventListener('click', ()=> setGame(g.key));
-    tabs.appendChild(t);
-    const opt = document.createElement('option');
-    opt.value = g.key; opt.textContent = g.key;
-    selGame.appendChild(opt);
-  });
-  selGame.value = currentGame;
+  tabs.innerHTML = ""; selGame.innerHTML = "";
+  GAMES.forEach(g=>{
+    const t = document.createElement('div');
+    t.className = 'tab' + (g.key===currentGame?' active':'');
+    t.textContent = `${g.icon} ${g.key}`;
+    t.addEventListener('click', ()=> setGame(g.key));
+    tabs.appendChild(t);
+    const opt = document.createElement('option');
+    opt.value = g.key; opt.textContent = g.key;
+    selGame.appendChild(opt);
+  });
+  selGame.value = currentGame;
 }
 function renderServers(){
-  selServer.innerHTML = "";
-  const gs = GAMES.find(x=>x.key===currentGame)?.servers || ["Global"];
-  gs.forEach(s=>{
-    const o=document.createElement('option'); o.value=s; o.textContent=s;
-    selServer.appendChild(o);
-  });
+  selServer.innerHTML = "";
+  const gs = GAMES.find(x=>x.key===currentGame)?.servers || ["Global"];
+  gs.forEach(s=>{
+    const o=document.createElement('option'); o.value=s; o.textContent=s;
+    selServer.appendChild(o);
+  });
 }
 function renderPacks(){
-  const packs = PACKS_BY_GAME[currentGame]||[];
-  pkgGrid.innerHTML = "";
-  selPackage.innerHTML = "<option value='' disabled selected>— เลือกแพ็กเกจ —</option>";
-  packs.forEach(p=>{
-    const card = document.createElement('div');
-    card.className = "glass";
-    card.innerHTML = `
-      <div style="font-weight:800">${p.name}</div>
-      <div class="price">฿${p.price}</div>
-      <div style="margin-top:10px">
-        <a href="#order" class="btn primary" data-pkg="${p.name} – ฿${p.price}">เลือกแพ็ก</a>
-      </div>`;
-    pkgGrid.appendChild(card);
-    const opt = document.createElement('option');
-    opt.value = `${p.name} – ฿${p.price}`;
-    opt.textContent = `${p.name} – ฿${p.price}`;
-    selPackage.appendChild(opt);
-  });
-  pkgGrid.querySelectorAll('a[data-pkg]').forEach(a=>{
-    a.addEventListener('click',e=>{
-      e.preventDefault();
-      selPackage.value = a.getAttribute('data-pkg');
-      document.getElementById('order').scrollIntoView({behavior:'smooth'});
-      updateSummary();
-    });
-  });
+  const packs = PACKS_BY_GAME[currentGame]||[];
+  pkgGrid.innerHTML = "";
+  selPackage.innerHTML = "<option value='' disabled selected>— เลือกแพ็กเกจ —</option>";
+  packs.forEach(p=>{
+    const card = document.createElement('div');
+    card.className = "glass";
+    card.innerHTML = `
+      <div style="font-weight:800">${p.name}</div>
+      <div class="price">฿${p.price}</div>
+      <div style="margin-top:10px">
+        <a href="#order" class="btn primary" data-pkg="${p.name} – ฿${p.price}">เลือกแพ็ก</a>
+      </div>`;
+    pkgGrid.appendChild(card);
+    const opt = document.createElement('option');
+    opt.value = `${p.name} – ฿${p.price}`;
+    opt.textContent = `${p.name} – ฿${p.price}`;
+    selPackage.appendChild(opt);
+  });
+  pkgGrid.querySelectorAll('a[data-pkg]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      selPackage.value = a.getAttribute('data-pkg');
+      document.getElementById('order').scrollIntoView({behavior:'smooth'});
+      updateSummary();
+    });
+  });
 }
 function setGame(game){
-  currentGame = game;
-  [...tabs.children].forEach(el=> el.classList.toggle('active', el.textContent.includes(game)));
-  if (currentGame === "Roblox"){
-    gameNote.style.display = "block"; gameNote.textContent = "ℹ️ Roblox: ใช้เวลาเติมนานกว่าเกมอื่นเล็กน้อย (โปรดเผื่อเวลา)";
-  } else if (currentGame === "Call of Duty"){
-    gameNote.style.display = "block"; gameNote.textContent = "⚠️ COD: ถ้า ID ผูกกับ Garena จะเติมไม่ได้ (รองรับเฉพาะเซิร์ฟไทย)";
-  } else { gameNote.style.display="none"; gameNote.textContent=""; }
-  thaiOnlyNote.style.display = thaiOnlyGames.includes(currentGame) ? "block" : "none";
-  selGame.value = game;
-  renderServers(); renderPacks(); updateSummary(); showMini();
+  currentGame = game;
+  [...tabs.children].forEach(el=> el.classList.toggle('active', el.textContent.includes(game)));
+  if (currentGame === "Roblox"){
+    gameNote.style.display = "block"; gameNote.textContent = " Roblox: ใช้เวลาเติมนานกว่าเกมอื่นเล็กน้อย (โปรดเผื่อเวลา)";
+  } else if (currentGame === "Call of Duty"){
+    gameNote.style.display = "block"; gameNote.textContent = " COD: ถ้า ID ผูกกับ Garena จะเติมไม่ได้ (รองรับเฉพาะเซิร์ฟไทย)";
+  } else { gameNote.style.display="none"; gameNote.textContent=""; }
+  thaiOnlyNote.style.display = thaiOnlyGames.includes(currentGame) ? "block" : "none";
+  selGame.value = game;
+  renderServers(); renderPacks(); updateSummary(); showMini();
 }
 function showMini(){
-  const has = (selPackage.value||"").length>0 || (document.getElementById('uid').value||"").length>0;
-  miniSum.style.display = has ? "block" : "none";
+  const has = (selPackage.value||"").length>0 || (document.getElementById('uid').value||"").length>0;
+  miniSum.style.display = has ? "block" : "none";
 }
 
-/* ====== SUMMARY / BILL ====== */
+/* ===== SUMMARY / BILL ===== */
 const pad = n => n.toString().padStart(2,'0');
 function genInvoice(){
-  const d = new Date();
-  const ts = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
-  const rnd = Math.floor(Math.random()*8999)+1000;
-  return `EV-${ts}-${rnd}`;
+  const d = new Date();
+  const ts = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
+  const rnd = Math.floor(Math.random()*8999)+1000;
+  return `EV-${ts}-${rnd}`;
 }
 function money(n){ return "฿"+(n||0); }
 function updateSummary(){
-  const g = selGame.value;
-  const s = selServer.value;
-  const u = document.getElementById('uid').value || "-";
-  const p = selPackage.value || "-";
-  const m = document.getElementById('method').value;
+  const g = selGame.value;
+  const s = selServer.value;
+  const u = document.getElementById('uid').value || "-";
+  const p = selPackage.value || "-";
+  const m = document.getElementById('method').value;
 
-  document.getElementById('sum-game').innerText   = g;
-  document.getElementById('sum-server').innerText = s || "-";
-  document.getElementById('sum-uid').innerText    = u;
-  document.getElementById('sum-pkg').innerText    = p;
-  document.getElementById('sum-method').innerText = m;
+  document.getElementById('sum-game').innerText   = g;
+  document.getElementById('sum-server').innerText = s || "-";
+  document.getElementById('sum-uid').innerText    = u;
+  document.getElementById('sum-pkg').innerText    = p;
+  document.getElementById('sum-method').innerText = m;
 
-  const price = Number((p.split("฿")[1] || "0").replace(/[^\d]/g,""));
-  const totalTxt = money(price);
-  document.getElementById('sum-total').innerText = totalTxt;
+  const price = Number((p.split("฿")[1] || "0").replace(/[^\d]/g,""));
+  const totalTxt = money(price);
+  document.getElementById('sum-total').innerText = totalTxt;
 
-  miniGame.textContent  = g;
-  miniServer.textContent= s || "-";
-  miniPkg.textContent   = p;
-  miniTotal.textContent = totalTxt;
+  miniGame.textContent  = g;
+  miniServer.textContent= s || "-";
+  miniPkg.textContent   = p;
+  miniTotal.textContent = totalTxt;
 
-  showMini();
+  showMini();
 }
 ["game","server","uid","package","method","name","contact","promo"].forEach(id=>{
-  const el = document.getElementById(id);
-  el.addEventListener('input', updateSummary);
-  el.addEventListener('change', updateSummary);
+  const el = document.getElementById(id);
+  el.addEventListener('input', updateSummary);
+  el.addEventListener('change', updateSummary);
 });
 
-/* ====== HISTORY (per user) ====== */
+/* ===== HISTORY ===== */
 function loadOrders(){ try{ return JSON.parse(localStorage.getItem(ordersKey())||"[]"); }catch{return [];} }
 function saveOrders(list){ localStorage.setItem(ordersKey(), JSON.stringify(list)); }
 function addOrder(row){ const list=loadOrders(); list.unshift(row); saveOrders(list); renderHistory(); }
 function updateOrderStatus(inv, status){
-  const list=loadOrders(); const idx=list.findIndex(x=>x.invoiceId===inv);
-  if(idx>-1){ list[idx].status=status; saveOrders(list); renderHistory(); }
+  const list=loadOrders(); const idx=list.findIndex(x=>x.invoiceId===inv);
+  if(idx>-1){ list[idx].status=status; saveOrders(list); renderHistory(); }
 }
 function deleteOrder(inv){
-  const list=loadOrders().filter(x=>x.invoiceId!==inv);
-  saveOrders(list); renderHistory();
+  const list=loadOrders().filter(x=>x.invoiceId!==inv);
+  saveOrders(list); renderHistory();
 }
 function clearAll(){
-  if(confirm('ล้างข้อมูลทั้งหมดของผู้ใช้คนนี้? (รวมบัญชี/ประวัติ)')){
-    localStorage.removeItem(KEY_USER);
-    sessionStorage.removeItem(KEY_SESSION);
-    localStorage.removeItem(ordersKey());
-    location.reload();
-  }
+  if(confirm('ล้างข้อมูลทั้งหมดของผู้ใช้คนนี้? (รวมบัญชี/ประวัติ)')){
+    localStorage.removeItem(KEY_USER);
+    sessionStorage.removeItem(KEY_SESSION);
+    localStorage.removeItem(ordersKey());
+    location.reload();
+  }
 }
-
 // render History
 const histTableBody = document.querySelector('#histTable tbody');
 const histEmpty = document.getElementById('histEmpty');
@@ -647,55 +610,54 @@ const histGameFilter = document.getElementById('histGameFilter');
 const histStatusFilter = document.getElementById('histStatusFilter');
 
 function initHistoryFilters(){
-  histGameFilter.innerHTML = '<option value="">ทุกเกม</option>' + GAMES.map(g=>`<option>${g.key}</option>`).join('');
-  [histSearch,histGameFilter,histStatusFilter].forEach(el=>{
-    el.addEventListener('input', renderHistory);
-    el.addEventListener('change', renderHistory);
-  });
+  histGameFilter.innerHTML = '<option value="">ทุกเกม</option>' + GAMES.map(g=>`<option>${g.key}</option>`).join('');
+  [histSearch,histGameFilter,histStatusFilter].forEach(el=>{
+    el.addEventListener('input', renderHistory);
+    el.addEventListener('change', renderHistory);
+  });
 }
-
 function renderHistory(){
-  const q = (histSearch.value||"").toLowerCase();
-  const g = histGameFilter.value||"";
-  const st= histStatusFilter.value||"";
-  const list = loadOrders().filter(x=>{
-    const inTxt = (x.invoiceId+x.game+x.uid+(x.name||"")+(x.package||"")).toLowerCase().includes(q);
-    const gOk = g? x.game===g : true;
-    const sOk = st? x.status===st : true;
-    return inTxt && gOk && sOk;
-  });
-  histTableBody.innerHTML = "";
-  histEmpty.style.display = list.length? "none":"block";
-  list.forEach(x=>{
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>${new Date(x.ts).toLocaleString()}</td>
-      <td>${x.invoiceId}</td>
-      <td>${x.game}</td>
-      <td>${x.server||"-"}</td>
-      <td>${x.package||"-"}</td>
-      <td>${x.total||"฿0"}</td>
-      <td>
-        <select data-inv="${x.invoiceId}">
-          ${["รอชำระ","ส่งรายละเอียดแล้ว","ชำระแล้ว","ยกเลิก"].map(s=>`<option ${x.status===s?"selected":""}>${s}</option>`).join('')}
-        </select>
-      </td>
-      <td>${x.uid||"-"}</td>
-      <td>
-        <button class="btn" data-view="${x.invoiceId}">ดู</button>
-        <button class="btn" data-del="${x.invoiceId}">ลบ</button>
-      </td>`;
-    histTableBody.appendChild(tr);
-  });
-  histTableBody.querySelectorAll('button[data-del]').forEach(b=>{
-    b.onclick = ()=> deleteOrder(b.getAttribute('data-del'));
-  });
-  histTableBody.querySelectorAll('button[data-view]').forEach(b=>{
-    b.onclick = ()=>{
-      const inv = b.getAttribute('data-view');
-      const x = loadOrders().find(o=>o.invoiceId===inv);
-      if(!x) return;
-      alert(
+  const q = (histSearch.value||"").toLowerCase();
+  const g = histGameFilter.value||"";
+  const st= histStatusFilter.value||"";
+  const list = loadOrders().filter(x=>{
+    const inTxt = (x.invoiceId+x.game+x.uid+(x.name||"")+(x.package||"")).toLowerCase().includes(q);
+    const gOk = g? x.game===g : true;
+    const sOk = st? x.status===st : true;
+    return inTxt && gOk && sOk;
+  });
+  histTableBody.innerHTML = "";
+  histEmpty.style.display = list.length? "none":"block";
+  list.forEach(x=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${new Date(x.ts).toLocaleString()}</td>
+      <td>${x.invoiceId}</td>
+      <td>${x.game}</td>
+      <td>${x.server||"-"}</td>
+      <td>${x.package||"-"}</td>
+      <td>${x.total||"฿0"}</td>
+      <td>
+        <select data-inv="${x.invoiceId}">
+          ${["รอชำระ","ส่งรายละเอียดแล้ว","ชำระแล้ว","ยกเลิก"].map(s=>`<option ${x.status===s?"selected":""}>${s}</option>`).join('')}
+        </select>
+      </td>
+      <td>${x.uid||"-"}</td>
+      <td>
+        <button class="btn" data-view="${x.invoiceId}">ดู</button>
+        <button class="btn" data-del="${x.invoiceId}">ลบ</button>
+      </td>`;
+    histTableBody.appendChild(tr);
+  });
+  histTableBody.querySelectorAll('button[data-del]').forEach(b=>{
+    b.onclick = ()=> deleteOrder(b.getAttribute('data-del'));
+  });
+  histTableBody.querySelectorAll('button[data-view]').forEach(b=>{
+    b.onclick = ()=>{
+      const inv = b.getAttribute('data-view');
+      const x = loadOrders().find(o=>o.invoiceId===inv);
+      if(!x) return;
+      alert(
 `เลขบิล: ${x.invoiceId}
 เวลา: ${new Date(x.ts).toLocaleString()}
 เกม: ${x.game}
@@ -706,21 +668,21 @@ function renderHistory(){
 UID: ${x.uid||"-"}
 ลูกค้า: ${x.name||"-"} | ติดต่อ: ${x.contact||"-"}
 สถานะ: ${x.status}`);
-    };
-  });
-  histTableBody.querySelectorAll('select[data-inv]').forEach(s=>{
-    s.onchange = ()=> updateOrderStatus(s.getAttribute('data-inv'), s.value);
-  });
+    };
+  });
+  histTableBody.querySelectorAll('select[data-inv]').forEach(s=>{
+    s.onchange = ()=> updateOrderStatus(s.getAttribute('data-inv'), s.value);
+  });
 }
 
-/* ====== MESSAGE / COPY ====== */
+/* ===== MESSAGE / COPY ===== */
 function buildMessage(){
-  const g = selGame.value, s = selServer.value, u = document.getElementById('uid').value || "-";
-  const p = selPackage.value || "-", m = document.getElementById('method').value;
-  const name = document.getElementById('name').value || "-", contact = document.getElementById('contact').value || "-";
-  const total = document.getElementById('sum-total').innerText || "฿0";
-  const ref = (document.getElementById('ref')?.value || "").trim();
-  return `ออร์เดอร์เติมเกม Evan Vale
+  const g = selGame.value, s = selServer.value, u = document.getElementById('uid').value || "-";
+  const p = selPackage.value || "-", m = document.getElementById('method').value;
+  const name = document.getElementById('name').value || "-", contact = document.getElementById('contact').value || "-";
+  const total = document.getElementById('sum-total').innerText || "฿0";
+  const ref = (document.getElementById('ref')?.value || "").trim();
+  return `ออร์เดอร์เติมเกม Evan Vale
 เลขบิล: ${window.invoiceId}
 เกม: ${g}
 เซิร์ฟเวอร์/โซน: ${s || "-"}
@@ -733,164 +695,141 @@ UID/Player ID: ${u}
 เลขอ้างอิง: ${ref||"-"}
 โปรดตรวจสอบสลิปที่แนบด้วยครับ`;
 }
-const btnPrepare   = document.getElementById('btnPrepareMsg');
+const btnPrepare   = document.getElementById('btnPrepareMsg');
 const btnOpenAdmin = document.getElementById('btnOpenAdmin');
-const msgPreview   = document.getElementById('msgPreview');
-const copyHint     = document.getElementById('copyHint');
+const msgPreview   = document.getElementById('msgPreview');
+const copyHint     = document.getElementById('copyHint');
 function makeAdminUrl(){ return ADMIN_URL; }
 async function copyTextSafe(text){
-  try{ await navigator.clipboard.writeText(text); return true; }
-  catch{
-    const ta = document.createElement('textarea'); ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
-    document.body.appendChild(ta); ta.focus(); ta.select();
-    let ok=false; try{ ok=document.execCommand('copy'); }catch{}
-    document.body.removeChild(ta); return !!ok;
-  }
+  try{ await navigator.clipboard.writeText(text); return true; }
+  catch{
+    const ta = document.createElement('textarea'); ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    let ok=false; try{ ok=document.execCommand('copy'); }catch{}
+    document.body.removeChild(ta); return !!ok;
+  }
 }
 btnPrepare?.addEventListener('click', async ()=>{
-  if(!isLogged()){ alert('กรุณาเข้าสู่ระบบก่อน'); return; }
-  const msg = buildMessage();
-  if (msgPreview){ msgPreview.value = msg; msgPreview.style.display = 'block'; }
-  if (copyHint){ copyHint.style.display = 'block'; copyHint.textContent = 'กำลังคัดลอกสรุปบิล...'; }
-  const copied = await copyTextSafe(msg);
-  if (copyHint){
-    copyHint.textContent = copied
-      ? 'คัดลอกสรุปบิลแล้ว ✅ ต่อไปกด "เปิดแชทแอดมิน" ได้เลย'
-      : 'คัดลอกอัตโนมัติไม่สำเร็จ ให้คัดลอกจากช่องสรุปด้านบน แล้วค่อยกด "เปิดแชทแอดมิน"';
-  }
-  btnOpenAdmin.href = makeAdminUrl();
-  btnOpenAdmin.style.pointerEvents = 'auto';
-  btnOpenAdmin.style.opacity = '1';
+  if(!isLogged()){ alert('กรุณาเข้าสู่ระบบก่อน'); return; }
+  const msg = buildMessage();
+  if (msgPreview){ msgPreview.value = msg; msgPreview.style.display = 'block'; }
+  if (copyHint){ copyHint.style.display = 'block'; copyHint.textContent = 'กำลังคัดลอกสรุปบิล...'; }
+  const copied = await copyTextSafe(msg);
+  if (copyHint){
+    copyHint.textContent = copied
+      ? 'คัดลอกสรุปบิลแล้ว  ต่อไปกด "เปิดแชทแอดมิน" ได้เลย'
+      : 'คัดลอกอัตโนมัติไม่สำเร็จ ให้คัดลอกจากช่องสรุปด้านบน แล้วค่อยกด "เปิดแชทแอดมิน"';
+  }
+  btnOpenAdmin.href = makeAdminUrl();
+  btnOpenAdmin.style.pointerEvents = 'auto';
+  btnOpenAdmin.style.opacity = '1';
 
-  if(window.invoiceId){ updateOrderStatus(window.invoiceId, 'ส่งรายละเอียดแล้ว'); }
+  if(window.invoiceId){ updateOrderStatus(window.invoiceId, 'ส่งรายละเอียดแล้ว'); }
 });
 btnOpenAdmin?.addEventListener('click', (e)=>{
-  if (!btnOpenAdmin.href || btnOpenAdmin.getAttribute('href') === '#'){
-    e.preventDefault(); window.open(makeAdminUrl(), '_blank');
-  }
+  if (!btnOpenAdmin.href || btnOpenAdmin.getAttribute('href') === '#'){
+    e.preventDefault(); window.open(makeAdminUrl(), '_blank');
+  }
 });
 
-/* ====== FORM ACTIONS ====== */
+/* ===== FORM ACTIONS ===== */
 document.getElementById('btnReset')?.addEventListener('click', ()=>{
-  document.querySelectorAll('#order input').forEach(i=>i.value="");
-  selPackage.selectedIndex = 0; updateSummary();
+  document.querySelectorAll('#order input').forEach(i=>i.value="");
+  selPackage.selectedIndex = 0; updateSummary();
 });
 window.invoiceId = "-";
 document.getElementById('btnSubmit')?.addEventListener('click', ()=>{
-  if(!isLogged()){ alert('กรุณาเข้าสู่ระบบก่อน'); return; }
-  window.invoiceId = genInvoice();
-  document.getElementById('sum-bill').innerText = window.invoiceId;
-  const pay = document.getElementById('pay'); pay.style.display = ""; pay.scrollIntoView({behavior:'smooth'});
+  if(!isLogged()){ alert('กรุณาเข้าสู่ระบบก่อน'); return; }
+  window.invoiceId = genInvoice();
+  document.getElementById('sum-bill').innerText = window.invoiceId;
+  const pay = document.getElementById('pay'); pay.style.display = ""; pay.scrollIntoView({behavior:'smooth'});
 
-  const row = {
-    ts: Date.now(),
-    invoiceId: window.invoiceId,
-    game: selGame.value,
-    server: selServer.value,
-    package: selPackage.value,
-    total: document.getElementById('sum-total').innerText,
-    method: document.getElementById('method').value,
-    uid: document.getElementById('uid').value.trim(),
-    name: document.getElementById('name').value.trim(),
-    contact: document.getElementById('contact').value.trim(),
-    status: 'รอชำระ'
-  };
-  addOrder(row);
+  const row = {
+    ts: Date.now(),
+    invoiceId: window.invoiceId,
+    game: selGame.value,
+    server: selServer.value,
+    package: selPackage.value,
+    total: document.getElementById('sum-total').innerText,
+    method: document.getElementById('method').value,
+    uid: document.getElementById('uid').value.trim(),
+    name: document.getElementById('name').value.trim(),
+    contact: document.getElementById('contact').value.trim(),
+    status: 'รอชำระ'
+  };
+  addOrder(row);
 });
 document.getElementById('btnBackToForm')?.addEventListener('click', ()=>{
-  document.getElementById('pay').style.display = "none";
-  document.getElementById('order').scrollIntoView({behavior:'smooth'});
+  document.getElementById('pay').style.display = "none";
+  document.getElementById('order').scrollIntoView({behavior:'smooth'});
 });
 
-/* ====== PROFILE SAVE/FILL ====== */
+/* ===== PROFILE SAVE/FILL ===== */
 function fillFromProfile(){
-  const ub = userBox(); if(!ub) return;
-  if(ub.name)    document.getElementById('name').value = ub.name;
-  if(ub.contact) document.getElementById('contact').value = ub.contact;
-  if(ub.last){
-    if(ub.last.game && GAMES.find(g=>g.key===ub.last.game)){ setGame(ub.last.game); }
-    if(ub.last.server){ selServer.value = ub.last.server; }
-    if(ub.last.package){ selPackage.value = ub.last.package; }
-    if(ub.last.method){ document.getElementById('method').value = ub.last.method; }
-    if(ub.last.uid){ document.getElementById('uid').value = ub.last.uid; }
-  }
-  updateSummary();
+  const ub = userBox(); if(!ub) return;
+  if(ub.name)    document.getElementById('name').value = ub.name;
+  if(ub.contact) document.getElementById('contact').value = ub.contact;
+  if(ub.last){
+    if(ub.last.game && GAMES.find(g=>g.key===ub.last.game)){ setGame(ub.last.game); }
+    if(ub.last.server){ selServer.value = ub.last.server; }
+    if(ub.last.package){ selPackage.value = ub.last.package; }
+    if(ub.last.method){ document.getElementById('method').value = ub.last.method; }
+    if(ub.last.uid){ document.getElementById('uid').value = ub.last.uid; }
+  }
+  updateSummary();
 }
 document.getElementById('btnSaveProfile')?.addEventListener('click', ()=>{
-  const ub = userBox(); if(!ub){ alert('ต้องเข้าสู่ระบบก่อน'); return; }
-  ub.name = document.getElementById('name').value.trim();
-  ub.contact = document.getElementById('contact').value.trim();
-  ub.last = {
-    game: selGame.value, server: selServer.value, package: selPackage.value,
-    method: document.getElementById('method').value, uid: document.getElementById('uid').value.trim()
-  };
-  setUserBox(ub);
-  alert('บันทึกข้อมูลลูกค้าไว้ในเครื่องแล้ว ✅');
+  const ub = userBox(); if(!ub){ alert('ต้องเข้าสู่ระบบก่อน'); return; }
+  ub.name = document.getElementById('name').value.trim();
+  ub.contact = document.getElementById('contact').value.trim();
+  ub.last = {
+    game: selGame.value, server: selServer.value, package: selPackage.value,
+    method: document.getElementById('method').value, uid: document.getElementById('uid').value.trim()
+  };
+  setUserBox(ub);
+  alert('บันทึกข้อมูลลูกค้าไว้ในเครื่องแล้ว ');
 });
 
-/* ====== AUTH FLOW ====== */
+/* ===== AUTH FLOW ===== */
 function renderAuth(){
-  const ub = userBox(); const hasUser = !!ub;
-  document.getElementById('authTitle').textContent = hasUser? '🔐 เข้าระบบ' : '🎄 สร้างบัญชีครั้งแรก';
-  document.getElementById('authDesc').textContent = hasUser? 'ใส่ผู้ใช้และ PIN เพื่อเข้าใช้งาน' : 'ตั้งผู้ใช้ + PIN และบันทึกโปรไฟล์ (ถ้าต้องการ)';
-  document.getElementById('setupForm').style.display = hasUser? 'none' : 'block';
-  document.getElementById('loginForm').style.display = hasUser? 'block' : 'none';
+  const ub = userBox(); const hasUser = !!ub;
+  document.getElementById('authTitle').textContent = hasUser? ' เข้าระบบ' : ' สร้างบัญชีครั้งแรก';
+  document.getElementById('authDesc').textContent = hasUser? 'ใส่ผู้ใช้และ PIN เพื่อเข้าใช้งาน' : 'ตั้งผู้ใช้ + PIN และบันทึกโปรไฟล์ (ถ้าต้องการ)';
+  document.getElementById('setupForm').style.display = hasUser? 'none' : 'block';
+  document.getElementById('loginForm').style.display = hasUser? 'block' : 'none';
 }
 async function tryAutoLogin(){
-  if(isLogged()){ showAuth(false); toggleProtected(false); fillFromProfile(); renderHistory(); return; }
-  renderAuth(); showAuth(true); toggleProtected(true);
+  if(isLogged()){ showAuth(false); toggleProtected(false); fillFromProfile(); renderHistory(); return; }
+  renderAuth(); showAuth(true); toggleProtected(true);
 }
 document.getElementById('btnSetup').addEventListener('click', async ()=>{
-  const user = document.getElementById('setupUser').value.trim();
-  const p1 = document.getElementById('setupPin').value.trim();
-  const p2 = document.getElementById('setupPin2').value.trim();
-  if(!user || p1.length<4 || p1!==p2){ alert('ตรวจชื่อผู้ใช้ และ PIN (อย่างน้อย 4 หลัก และต้องตรงกัน)'); return; }
-  const name = document.getElementById('setupName').value.trim();
-  const contact = document.getElementById('setupContact').value.trim();
-  const pinHash = await sha256(user+'|'+p1);
-  setUserBox({user, pinHash, name, contact});
-  setSession(true); showAuth(false); toggleProtected(false); fillFromProfile(); initHistoryFilters(); renderHistory();
+  const user = document.getElementById('setupUser').value.trim();
+  const p1 = document.getElementById('setupPin').value.trim();
+  const p2 = document.getElementById('setupPin2').value.trim();
+  if(!user || p1.length<4 || p1!==p2){ alert('ตรวจชื่อผู้ใช้ และ PIN (อย่างน้อย 4 หลัก และต้องตรงกัน)'); return; }
+  const name = document.getElementById('setupName').value.trim();
+  const contact = document.getElementById('setupContact').value.trim();
+  const pinHash = await sha256(user+'|'+p1);
+  setUserBox({user, pinHash, name, contact});
+  setSession(true); showAuth(false); toggleProtected(false); fillFromProfile(); initHistoryFilters(); renderHistory();
 });
 document.getElementById('btnLogin').addEventListener('click', async ()=>{
-  const user = document.getElementById('loginUser').value.trim();
-  const pin = document.getElementById('loginPin').value.trim();
-  const ub = userBox(); if(!ub){ alert('ยังไม่มีบัญชี ให้ตั้งบัญชีก่อน'); return; }
-  const hash = await sha256(user+'|'+pin);
-  if(hash===ub.pinHash){ setSession(true); showAuth(false); toggleProtected(false); fillFromProfile(); initHistoryFilters(); renderHistory(); }
-  else alert('ผู้ใช้หรือ PIN ไม่ถูกต้อง');
+  const user = document.getElementById('loginUser').value.trim();
+  const pin = document.getElementById('loginPin').value.trim();
+  const ub = userBox(); if(!ub){ alert('ยังไม่มีบัญชี ให้ตั้งบัญชีก่อน'); return; }
+  const hash = await sha256(user+'|'+pin);
+  if(hash===ub.pinHash){ setSession(true); showAuth(false); toggleProtected(false); fillFromProfile(); initHistoryFilters(); renderHistory(); }
+  else alert('ผู้ใช้หรือ PIN ไม่ถูกต้อง');
 });
 document.getElementById('btnForgot').addEventListener('click', ()=>{
-  alert('ลืม PIN: ใช้ปุ่ม “รีเซ็ตข้อมูลทั้งหมด” (หน้า ประวัติ) เพื่อล้างข้อมูลบนเครื่อง แล้วตั้งใหม่');
+  alert('ลืม PIN: ใช้ปุ่ม “รีเซ็ตข้อมูลทั้งหมด” (หน้า ประวัติ) เพื่อล้างข้อมูลบนเครื่อง แล้วตั้งใหม่');
 });
 document.getElementById('btnLogout').addEventListener('click', ()=>{
-  setSession(false); showAuth(true); toggleProtected(true);
+  setSession(false); showAuth(true); toggleProtected(true);
 });
 
-/* ====== INIT ====== */
+/* ===== INIT ===== */
 renderGameTabs(); setGame(currentGame); updateSummary(); initHistoryFilters(); tryAutoLogin();
-
-/* ====== Snow generator ====== */
-(function makeSnow(){
-  const layer = document.getElementById('snow');
-  if(!layer) return;
-  const COUNT = 60;
-  for(let i=0;i<COUNT;i++){
-    const f = document.createElement('i');
-    const size = 2 + Math.random()*4;
-    const left = Math.random()*100;
-    const dur = 6 + Math.random()*6;
-    const delay = Math.random()*-12;
-    const drift = (Math.random()*80-40)+'px';
-    f.style.width = size+'px';
-    f.style.height = size+'px';
-    f.style.left = left+'vw';
-    f.style.animationDuration = dur+'s';
-    f.style.animationDelay = delay+'s';
-    f.style.setProperty('--drift', drift);
-    layer.appendChild(f);
-  }
-})();
 </script>
 </body>
 </html>
-
