@@ -6,7 +6,45 @@
   <meta name="theme-color" content="#0b0a10">
   <title>EVAN VALE • Halloween Event | เติมเกมราคาดี โปร่งใส มีแอดมินดูแล</title>
   <meta name="description" content="EVAN VALE Halloween Event — เติมเกมราคาดี โปร่งใส ปลอดภัย มีแอดมินดูแล 24 ชั่วโมง รองรับ TrueMoney, PromptPay และธนาคาร" />
-  <style>
+  <style>/* ===== MOBILE FIX PACK (<= 420px) ===== */
+@media (max-width: 420px){
+  .wrap{padding:16px}
+  .nav{gap:10px; padding:12px}
+  /* ปุ่มบน NAV ให้กว้าง “เท่ากัน” */
+  .nav .tools{
+    width:100%;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:8px;
+  }
+  .nav .tools .btn{width:100%; min-height:44px; display:flex; align-items:center; justify-content:center}
+  /* แยกปุ่มไฮไลต์ให้กินเต็มหนึ่งแถว (ดูบาลานซ์) */
+  .nav .tools .btn.primary{grid-column: 1 / -1}
+
+  /* ฮีโร่/ฟอร์มให้เป็นคอลัมน์เดียว */
+  .hero{grid-template-columns:1fr; gap:14px}
+  .grid.two{grid-template-columns:1fr}
+
+  /* แท็บเกมให้ขนาดใกล้กัน */
+  .tabs{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+  .tab{width:100%; text-align:center}
+
+  /* การ์ดแพ็กเกจเท่ากันเป็นสองคอลัมน์ */
+  .grid.pkg{grid-template-columns: repeat(2, minmax(0,1fr))}
+  .grid.pkg .glass{display:grid; align-content:start; min-height:110px}
+  .price{font-size:18px}
+
+  /* อินพุตสองช่อง/แถวให้ซ้อนเป็น 1 ช่อง */
+  .row{grid-template-columns:1fr; gap:10px}
+
+  /* ฟอนต์หัวข้อปรับไม่ให้ล้น */
+  h1{font-size:22px}
+}
+
+/* ===== TABLE SCROLL (มือถือทุกขนาด) ===== */
+.table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
+.table-scroll table{min-width:720px} /* กันหัวตารางเบียดกัน */
+
     :root{
       --bg:#0b0a10; --bg2:#1b0f17;
       --glass:#110b18cc; --panel:#140c19; --card:#161021;
