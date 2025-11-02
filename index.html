@@ -15,7 +15,6 @@
   .nav .tools{width:100%; display:grid; grid-template-columns:1fr 1fr; gap:8px}
   .nav .tools .btn{width:100%; min-height:44px; display:flex; align-items:center; justify-content:center}
   .nav .tools .btn.primary{grid-column:1 / -1}
-
   .hero{grid-template-columns:1fr; gap:14px}
   .grid.two{grid-template-columns:1fr}
   .tabs{display:grid; grid-template-columns:1fr 1fr; gap:8px}
@@ -25,7 +24,6 @@
   .price{font-size:18px}
   .row{grid-template-columns:1fr; gap:10px}
   h1{font-size:22px}
-  /* ซ่อนปุ่มซ้ำใน NAV (เหลือปุ่มติดต่อแอดมิน) */
   .nav .tools a[href="#packages"],
   .nav .tools a[href="#order"],
   .nav .tools a[href="#history"]{ display:none; }
@@ -35,16 +33,13 @@
 .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
 .table-scroll table{min-width:720px}
 
-/* ===== THEME: CHRISTMAS ===== */
+/* ===== THEME ===== */
 :root{
   --bg:#0a0f0b; --bg2:#0f1a12;
   --glass:#0e1511cc; --panel:#0f1a12; --card:#101d15;
   --text:#f8fff6; --muted:#cde3cf; --muted2:#b8d2bb;
-  --brand:#e53935;     /* red */
-  --brand2:#36c06b;    /* green */
-  --accent:#ffd166;    /* gold */
-  --warn:#ff6b6b;
-  --border:#203326; --shadow:0 20px 60px rgba(0,0,0,.55); --radius:18px;
+  --brand:#e53935; --brand2:#36c06b; --accent:#ffd166;
+  --warn:#ff6b6b; --border:#203326; --shadow:0 20px 60px rgba(0,0,0,.55); --radius:18px;
 }
 *{box-sizing:border-box} html,body{height:100%}
 body{
@@ -55,54 +50,56 @@ body{
     radial-gradient(900px 900px at 50% 120%, #112019 0%, transparent 60%),
     linear-gradient(180deg, var(--bg), var(--bg2));
 }
-/* ลายพื้นหลังธีมคริสต์มาส */
+/* ลายภาพพื้นหลัง */
 body::before{
-  content:"";position:fixed;inset:0;z-index:-2;
+  content:""; position:fixed; inset:0; z-index:-3; pointer-events:none;
   background:url("christmas-bg.png") center/cover no-repeat;
-  opacity:.10;pointer-events:none;mix-blend-mode:screen;
+  opacity:.10; mix-blend-mode:screen;
 }
 
-/* ===== หิมะตกทั่วหน้าจอ (5 เลเยอร์ + repeat) ===== */
-:root{
-  /* ปรับ speed ได้ที่ตัวเลข s ต่อเลเยอร์ */
-  --snow-speed-1: 8s;
-  --snow-speed-2: 12s;
-  --snow-speed-3: 18s;
-  --snow-speed-4: 26s;
-  --snow-speed-5: 38s;
-}
-body::after{
-  content:"";
-  position:fixed; inset:-300px -300px 0 -300px; /* เผื่อขอบ เพื่อไม่ให้ขาดเมื่อเลื่อน */
-  z-index:-1; pointer-events:none;
+/* ===== หิมะตกแบบ 3 เลเยอร์จริง ๆ ===== */
+.snow{position:fixed; inset:-120vh -20vw 0 -20vw; pointer-events:none; z-index:-2;
+  background-repeat:repeat; will-change:background-position; mix-blend-mode:screen;}
+.s1{
   background-image:
-    radial-gradient(2px 2px at 15px 20px,   #fff8 90%, transparent 100%),
-    radial-gradient(2px 2px at 110px 80px,  #fff8 90%, transparent 100%),
-    radial-gradient(2px 2px at 60px 130px,  #fff8 90%, transparent 100%),
-    radial-gradient(2px 2px at 30px 50px,   #fff8 90%, transparent 100%),
-    radial-gradient(2px 2px at 90px 170px,  #fff8 90%, transparent 100%);
-  background-size:
-    180px 180px,
-    260px 260px,
-    360px 360px,
-    520px 520px,
-    720px 720px;
-  background-repeat: repeat, repeat, repeat, repeat, repeat;
-  animation:
-    snow1 var(--snow-speed-1) linear infinite,
-    snow2 var(--snow-speed-2) linear infinite,
-    snow3 var(--snow-speed-3) linear infinite,
-    snow4 var(--snow-speed-4) linear infinite,
-    snow5 var(--snow-speed-5) linear infinite;
-  /* ทำให้ดอกหิมะกระพริบเบาๆ */
-  opacity: .95;
+    radial-gradient(2px 2px at 20px 20px,#fff8 90%,transparent),
+    radial-gradient(2px 2px at 120px 80px,#fff8 90%,transparent),
+    radial-gradient(2px 2px at 80px 140px,#fff8 90%,transparent);
+  background-size:220px 220px, 260px 260px, 300px 300px;
+  animation:fall1 10s linear infinite;
+  opacity:.9;
 }
-@keyframes snow1{ from{background-position:0 -300px,0 0,0 0,0 0,0 0} to{background-position:0 300px,0 0,0 0,0 0,0 0} }
-@keyframes snow2{ from{background-position:0 0,0 -300px,0 0,0 0,0 0} to{background-position:0 0,0 300px,0 0,0 0,0 0} }
-@keyframes snow3{ from{background-position:0 0,0 0,0 -300px,0 0,0 0} to{background-position:0 0,0 0,0 300px,0 0,0 0} }
-@keyframes snow4{ from{background-position:0 0,0 0,0 0,0 -300px,0 0} to{background-position:0 0,0 0,0 0,0 300px,0 0} }
-@keyframes snow5{ from{background-position:0 0,0 0,0 0,0 0,0 -300px} to{background-position:0 0,0 0,0 0,0 0,0 300px} }
+.s2{
+  background-image:
+    radial-gradient(3px 3px at 40px 60px,#fffd 90%,transparent),
+    radial-gradient(3px 3px at 160px 40px,#fffd 90%,transparent),
+    radial-gradient(3px 3px at 100px 180px,#fffd 90%,transparent);
+  background-size:320px 320px, 380px 380px, 420px 420px;
+  animation:fall2 18s linear infinite;
+  filter:blur(.3px); opacity:.85;
+}
+.s3{
+  background-image:
+    radial-gradient(4px 4px at 60px 30px,#ffff 90%,transparent),
+    radial-gradient(4px 4px at 200px 90px,#ffff 90%,transparent),
+    radial-gradient(4px 4px at 140px 220px,#ffff 90%,transparent);
+  background-size:480px 480px, 560px 560px, 640px 640px;
+  animation:fall3 28s linear infinite;
+  filter:blur(.6px); opacity:.7;
+}
+/* เคลื่อนลง + เอียงลม */
+@keyframes fall1{ from{ background-position: 0 -120vh, -10vw -120vh, 8vw -120vh }
+                   to  { background-position: 0 0,       -10vw 0,       8vw 0 } }
+@keyframes fall2{ from{ background-position: -8vw -120vh, 6vw -120vh, 0 -120vh }
+                   to  { background-position: -8vw 0,      6vw 0,      0 0 } }
+@keyframes fall3{ from{ background-position: 10vw -120vh, -6vw -120vh, 4vw -120vh }
+                   to  { background-position: 10vw 0,      -6vw 0,      4vw 0 } }
+/* ลดแอนิเมชันหากผู้ใช้ตั้งค่า reduce motion */
+@media (prefers-reduced-motion:reduce){
+  .s1,.s2,.s3{animation:none}
+}
 
+/* ===== UI ===== */
 a{color:var(--accent);text-decoration:none} img{max-width:100%;display:block}
 .wrap{max-width:1100px;margin:auto;padding:20px}
 
@@ -136,7 +133,33 @@ a{color:var(--accent);text-decoration:none} img{max-width:100%;display:block}
   border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);backdrop-filter: blur(10px)
 }
 .badge{padding:6px 10px;border-radius:999px;background:#1b2a1e;border:1px solid var(--border);display:inline-flex;gap:8px;align-items:center}
-.drip{text-shadow:0 2px 0 #000,0 0 12px rgba(255,209,102,.40),0 0 26px rgba(54,192,107,.35)}
+
+/* ===== เฮดดิ้งเรืองแสงแบบเนียน ===== */
+.drip{letter-spacing:.2px}
+.glow{
+  text-shadow:
+    0 0 6px rgba(255,209,102,.55),
+    0 0 14px rgba(255,209,102,.45),
+    0 0 28px rgba(54,192,107,.35);
+  animation:glowPulse 2.6s ease-in-out infinite alternate;
+}
+@keyframes glowPulse{
+  from{
+    text-shadow:
+      0 0 6px rgba(255,209,102,.55),
+      0 0 16px rgba(255,209,102,.45),
+      0 0 28px rgba(54,192,107,.30);
+    filter:saturate(1);
+  }
+  to{
+    text-shadow:
+      0 0 10px rgba(255,209,102,.9),
+      0 0 24px rgba(255,209,102,.75),
+      0 0 48px rgba(54,192,107,.55);
+    filter:saturate(1.15);
+  }
+}
+
 .statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
 .stat{background:#16281d;border:1px solid var(--border);border-radius:14px;text-align:center;padding:14px}
 .muted{color:var(--muted)} .muted2{color:var(--muted2)}
@@ -204,6 +227,11 @@ th{color:#ffe6a8}
 </head>
 <body>
 
+<!-- หิมะ 3 เลเยอร์ -->
+<div class="snow s1"></div>
+<div class="snow s2"></div>
+<div class="snow s3"></div>
+
 <!-- AUTH -->
 <div class="auth" id="auth">
   <div class="panel">
@@ -253,13 +281,11 @@ th{color:#ffe6a8}
 
   <!-- HERO -->
   <section class="hero">
-    <!-- การ์ดซ้าย -->
     <div class="glass" style="position:relative">
       <span class="ribbon" id="ribbonTxt">CHRISTMAS 🎄</span>
       <span class="badge">✅ เปิดรับออเดอร์ 08:30–21:30</span>
-      <h1 class="drip">EVAN VALE — ราคาดี โปร่งใส <span style="color:var(--accent)">มีแอดมินดูแล</span></h1>
+      <h1 class="drip glow">EVAN VALE — ราคาดี โปร่งใส <span style="color:var(--accent)">มีแอดมินดูแล</span></h1>
 
-      <!-- COUNTDOWN STRIP -->
       <div class="countdown-strip" id="cdStrip" aria-live="polite">
         <div class="cd-label">⏳ นับถอยหลังสู่ปีใหม่</div>
         <div class="cd-digits" id="countdownDigits">-- วัน --:--:--</div>
@@ -273,7 +299,6 @@ th{color:#ffe6a8}
       <p class="muted2" style="margin-top:8px">*ช่วงพีค/เกมปิดปรับปรุงอาจช้ากว่าปกติ</p>
     </div>
 
-    <!-- การ์ดขวา -->
     <div class="glass" style="display:grid;place-items:center;text-align:center">
       <div style="font-weight:800">แอดมินตอบไว</div>
       <div class="muted2">เลือกเมนูด้านล่างได้เลย</div>
@@ -426,6 +451,7 @@ th{color:#ffe6a8}
     </div>
   </section>
 
+  <!-- HISTORY -->
   <section id="history" class="section">
     <div class="card">
       <h2 style="margin:0">ประวัติการทำรายการ</h2>
@@ -655,7 +681,6 @@ function clearAll(){
     location.reload();
   }
 }
-// render History
 const histTableBody = document.querySelector('#histTable tbody');
 const histEmpty = document.getElementById('histEmpty');
 const histSearch = document.getElementById('histSearch');
@@ -818,7 +843,7 @@ document.getElementById('btnBackToForm')?.addEventListener('click', ()=>{
   document.getElementById('order').scrollIntoView({behavior:'smooth'});
 });
 
-/* ===== EXPORT CSV / CLEAR ===== */
+/* ===== EXPORT / CLEAR ===== */
 document.getElementById('btnExportCsv')?.addEventListener('click', ()=>{
   const list = loadOrders();
   if(!list.length){ alert('ยังไม่มีข้อมูล'); return; }
@@ -853,7 +878,7 @@ function fillFromProfile(){
 }
 document.getElementById('btnSaveProfile')?.addEventListener('click', ()=>{
   if(!isLogged()){ alert('ต้องเข้าสู่ระบบก่อน'); return; }
-  const ub = userBox(); if(!ub){ alert('ต้องเข้าสร้างบัญชีก่อน'); return; }
+  const ub = userBox(); if(!ub){ alert('ต้องตั้งบัญชีก่อน'); return; }
   ub.name = document.getElementById('name').value.trim();
   ub.contact = document.getElementById('contact').value.trim();
   ub.last = {
@@ -878,7 +903,6 @@ async function tryAutoLogin(){
     fillFromProfile(); initHistoryFilters(); renderHistory();
     return;
   }
-  // ยังไม่ล็อกอิน แสดง auth
   renderAuth(); showAuth(true); toggleProtected(true);
 }
 document.getElementById('btnSetup').addEventListener('click', async ()=>{
@@ -934,11 +958,7 @@ function fmt2(n){ return n.toString().padStart(2,'0'); }
     const m = Math.floor(diff / 60000);    diff %= 60000;
     const s = Math.floor(diff / 1000);
     cdDigits.textContent = `${fmt2(d)} วัน ${fmt2(h)}:${fmt2(m)}:${fmt2(s)}`;
-    // ใช้ rAF เพื่อลื่นไหลและไม่ล้น setInterval
-    requestAnimationFrame(()=>{
-      // อัปเดตอีกทีเมื่อเวลาผ่านราว 200ms เพื่อประหยัดพลังงาน
-      setTimeout(tick, 200);
-    });
+    setTimeout(tick, 200);
   }
   tick();
 })();
