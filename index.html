@@ -62,24 +62,46 @@ body::before{
   opacity:.10;pointer-events:none;mix-blend-mode:screen;
 }
 
-/* ===== หิมะตกทั่วหน้าจอ (หลายเลเยอร์ + repeat) ===== */
+/* ===== หิมะตกทั่วหน้าจอ (5 เลเยอร์ + repeat) ===== */
+:root{
+  /* ปรับ speed ได้ที่ตัวเลข s ต่อเลเยอร์ */
+  --snow-speed-1: 8s;
+  --snow-speed-2: 12s;
+  --snow-speed-3: 18s;
+  --snow-speed-4: 26s;
+  --snow-speed-5: 38s;
+}
 body::after{
   content:"";
-  position:fixed; inset:-200px -200px 0 -200px;
+  position:fixed; inset:-300px -300px 0 -300px; /* เผื่อขอบ เพื่อไม่ให้ขาดเมื่อเลื่อน */
   z-index:-1; pointer-events:none;
   background-image:
-    radial-gradient(2px 2px at 20px 30px,  #fff8 90%, transparent 100%),
-    radial-gradient(2px 2px at 120px 80px, #fff8 90%, transparent 100%),
-    radial-gradient(2px 2px at 80px 140px, #fff8 90%, transparent 100%);
-  background-size:   220px 220px,  320px 320px,  420px 420px;
-  background-repeat: repeat,        repeat,       repeat;
-  background-position: 0 -200px, 0 -200px, 0 -200px;
-  animation: snowFall 6s linear infinite;
+    radial-gradient(2px 2px at 15px 20px,   #fff8 90%, transparent 100%),
+    radial-gradient(2px 2px at 110px 80px,  #fff8 90%, transparent 100%),
+    radial-gradient(2px 2px at 60px 130px,  #fff8 90%, transparent 100%),
+    radial-gradient(2px 2px at 30px 50px,   #fff8 90%, transparent 100%),
+    radial-gradient(2px 2px at 90px 170px,  #fff8 90%, transparent 100%);
+  background-size:
+    180px 180px,
+    260px 260px,
+    360px 360px,
+    520px 520px,
+    720px 720px;
+  background-repeat: repeat, repeat, repeat, repeat, repeat;
+  animation:
+    snow1 var(--snow-speed-1) linear infinite,
+    snow2 var(--snow-speed-2) linear infinite,
+    snow3 var(--snow-speed-3) linear infinite,
+    snow4 var(--snow-speed-4) linear infinite,
+    snow5 var(--snow-speed-5) linear infinite;
+  /* ทำให้ดอกหิมะกระพริบเบาๆ */
+  opacity: .95;
 }
-@keyframes snowFall{
-  0%   { background-position: 0 -200px, 0 -200px, 0 -200px; }
-  100% { background-position: 0  200px, 0  300px, 0  400px; }
-}
+@keyframes snow1{ from{background-position:0 -300px,0 0,0 0,0 0,0 0} to{background-position:0 300px,0 0,0 0,0 0,0 0} }
+@keyframes snow2{ from{background-position:0 0,0 -300px,0 0,0 0,0 0} to{background-position:0 0,0 300px,0 0,0 0,0 0} }
+@keyframes snow3{ from{background-position:0 0,0 0,0 -300px,0 0,0 0} to{background-position:0 0,0 0,0 300px,0 0,0 0} }
+@keyframes snow4{ from{background-position:0 0,0 0,0 0,0 -300px,0 0} to{background-position:0 0,0 0,0 0,0 300px,0 0} }
+@keyframes snow5{ from{background-position:0 0,0 0,0 0,0 0,0 -300px} to{background-position:0 0,0 0,0 0,0 0,0 300px} }
 
 a{color:var(--accent);text-decoration:none} img{max-width:100%;display:block}
 .wrap{max-width:1100px;margin:auto;padding:20px}
@@ -194,7 +216,7 @@ th{color:#ffe6a8}
       <div class="pair"><label>ยืนยัน PIN</label><input id="setupPin2" type="password" inputmode="numeric" maxlength="6" placeholder="พิมพ์ซ้ำ" /></div>
       <div class="pair"><label>ชื่อในบิล</label><input id="setupName" placeholder="เช่น Ryu" /></div>
       <div class="pair"><label>ช่องทางติดต่อ</label><input id="setupContact" placeholder="Line/FB/Tel" /></div>
-      <div class="tools"><button class="btn primary" id="btnSetup">สร้างบัญชี</button></div>
+      <div class="tools"><button class="btn primary" id="btnSetup" type="button">สร้างบัญชี</button></div>
       <div class="note">ข้อมูลเก็บใน LocalStorage ของเบราว์เซอร์นี้</div>
     </div>
 
@@ -202,8 +224,8 @@ th{color:#ffe6a8}
       <div class="pair"><label>ผู้ใช้</label><input id="loginUser" placeholder="ผู้ใช้" /></div>
       <div class="pair"><label>PIN</label><input id="loginPin" type="password" inputmode="numeric" maxlength="6" placeholder="PIN" /></div>
       <div class="tools">
-        <button class="btn primary" id="btnLogin">เข้าระบบ</button>
-        <button class="btn" id="btnForgot">ลืม PIN</button>
+        <button class="btn primary" id="btnLogin" type="button">เข้าระบบ</button>
+        <button class="btn" id="btnForgot" type="button">ลืม PIN</button>
       </div>
       <div class="note">ลืม PIN → ใช้ “รีเซ็ตข้อมูลทั้งหมด” ในหน้า “ประวัติ”</div>
     </div>
@@ -225,7 +247,7 @@ th{color:#ffe6a8}
       <a class="btn" href="#order">สั่งเติม</a>
       <a class="btn" href="#history">ประวัติ</a>
       <a class="btn primary" id="btnAdminNav" href="https://www.facebook.com/share/1JRkDmJDvX/" target="_blank" rel="noopener">ติดต่อแอดมิน</a>
-      <button class="btn" id="btnLogout" style="display:none">ออกจากระบบ</button>
+      <button class="btn" id="btnLogout" style="display:none" type="button">ออกจากระบบ</button>
     </div>
   </nav>
 
@@ -404,7 +426,6 @@ th{color:#ffe6a8}
     </div>
   </section>
 
-  <!-- HISTORY -->
   <section id="history" class="section">
     <div class="card">
       <h2 style="margin:0">ประวัติการทำรายการ</h2>
@@ -420,8 +441,8 @@ th{color:#ffe6a8}
           <option>ชำระแล้ว</option>
           <option>ยกเลิก</option>
         </select>
-        <button class="btn" id="btnExportCsv">ดาวน์โหลด CSV</button>
-        <button class="btn" id="btnClearAll">รีเซ็ตข้อมูลทั้งหมด</button>
+        <button class="btn" id="btnExportCsv" type="button">ดาวน์โหลด CSV</button>
+        <button class="btn" id="btnClearAll" type="button">รีเซ็ตข้อมูลทั้งหมด</button>
       </div>
 
       <div class="glass table-scroll">
@@ -445,7 +466,7 @@ th{color:#ffe6a8}
 /* ===== AUTH / SESSION ===== */
 const KEY_USER="ev_auth_user";
 const KEY_SESSION="ev_auth_session";
-function ordersKey(){ const u=userBox(); return u? \`ev_orders_\${u.user}\` : "ev_orders__guest"; }
+function ordersKey(){ const u=userBox(); return u? `ev_orders_${u.user}` : "ev_orders__guest"; }
 
 async function sha256(str){
   const enc=new TextEncoder().encode(str);
@@ -676,8 +697,8 @@ function renderHistory(){
       </td>
       <td>${x.uid||"-"}</td>
       <td>
-        <button class="btn" data-view="${x.invoiceId}">ดู</button>
-        <button class="btn" data-del="${x.invoiceId}">ลบ</button>
+        <button class="btn" data-view="${x.invoiceId}" type="button">ดู</button>
+        <button class="btn" data-del="${x.invoiceId}" type="button">ลบ</button>
       </td>`;
     histTableBody.appendChild(tr);
   });
@@ -772,6 +793,7 @@ document.getElementById('btnReset')?.addEventListener('click', ()=>{
 window.invoiceId = "-";
 document.getElementById('btnSubmit')?.addEventListener('click', ()=>{
   if(!isLogged()){ alert('กรุณาเข้าสู่ระบบก่อน'); return; }
+  if(!selPackage.value){ alert('เลือกแพ็กเกจก่อน'); return; }
   window.invoiceId = genInvoice();
   document.getElementById('sum-bill').innerText = window.invoiceId;
   const pay = document.getElementById('pay'); pay.style.display = ""; pay.scrollIntoView({behavior:'smooth'});
@@ -796,6 +818,25 @@ document.getElementById('btnBackToForm')?.addEventListener('click', ()=>{
   document.getElementById('order').scrollIntoView({behavior:'smooth'});
 });
 
+/* ===== EXPORT CSV / CLEAR ===== */
+document.getElementById('btnExportCsv')?.addEventListener('click', ()=>{
+  const list = loadOrders();
+  if(!list.length){ alert('ยังไม่มีข้อมูล'); return; }
+  const header = ["เวลา","เลขบิล","เกม","เซิร์ฟ","แพ็กเกจ","ยอด","สถานะ","UID","ลูกค้า","ติดต่อ"].join(",");
+  const rows = list.map(x=>[
+    new Date(x.ts).toLocaleString().replaceAll(","," "),
+    x.invoiceId, x.game, x.server||"-", x.package||"-",
+    (x.total||"฿0").replaceAll(",",""),
+    x.status, x.uid||"-", x.name||"-", x.contact||"-"
+  ].map(v=>`"${String(v).replaceAll('"','""')}"`).join(","));
+  const csv = [header, ...rows].join("\n");
+  const blob = new Blob([csv], {type:"text/csv;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'evan_orders.csv'; a.click();
+  URL.revokeObjectURL(url);
+});
+document.getElementById('btnClearAll')?.addEventListener('click', clearAll);
+
 /* ===== PROFILE SAVE/FILL ===== */
 function fillFromProfile(){
   const ub = userBox(); if(!ub) return;
@@ -811,7 +852,8 @@ function fillFromProfile(){
   updateSummary();
 }
 document.getElementById('btnSaveProfile')?.addEventListener('click', ()=>{
-  const ub = userBox(); if(!ub){ alert('ต้องเข้าสู่ระบบก่อน'); return; }
+  if(!isLogged()){ alert('ต้องเข้าสู่ระบบก่อน'); return; }
+  const ub = userBox(); if(!ub){ alert('ต้องเข้าสร้างบัญชีก่อน'); return; }
   ub.name = document.getElementById('name').value.trim();
   ub.contact = document.getElementById('contact').value.trim();
   ub.last = {
@@ -831,7 +873,12 @@ function renderAuth(){
   document.getElementById('loginForm').style.display = hasUser? 'block' : 'none';
 }
 async function tryAutoLogin(){
-  if(isLogged()){ showAuth(false); toggleProtected(false); fillFromProfile(); renderHistory(); return; }
+  if(isLogged()){
+    showAuth(false); toggleProtected(false);
+    fillFromProfile(); initHistoryFilters(); renderHistory();
+    return;
+  }
+  // ยังไม่ล็อกอิน แสดง auth
   renderAuth(); showAuth(true); toggleProtected(true);
 }
 document.getElementById('btnSetup').addEventListener('click', async ()=>{
@@ -842,16 +889,23 @@ document.getElementById('btnSetup').addEventListener('click', async ()=>{
   const name = document.getElementById('setupName').value.trim();
   const contact = document.getElementById('setupContact').value.trim();
   const pinHash = await sha256(user+'|'+p1);
-  setUserBox({user, pinHash, name, contact});
-  setSession(true); showAuth(false); toggleProtected(false); fillFromProfile(); initHistoryFilters(); renderHistory();
+  setUserBox({user, pinHash, name, contact, last: null});
+  setSession(true);
+  showAuth(false); toggleProtected(false);
+  fillFromProfile(); initHistoryFilters(); renderHistory();
 });
 document.getElementById('btnLogin').addEventListener('click', async ()=>{
   const user = document.getElementById('loginUser').value.trim();
   const pin = document.getElementById('loginPin').value.trim();
   const ub = userBox(); if(!ub){ alert('ยังไม่มีบัญชี ให้ตั้งบัญชีก่อน'); return; }
   const hash = await sha256(user+'|'+pin);
-  if(hash===ub.pinHash){ setSession(true); showAuth(false); toggleProtected(false); fillFromProfile(); initHistoryFilters(); renderHistory(); }
-  else alert('ผู้ใช้หรือ PIN ไม่ถูกต้อง');
+  if(hash===ub.pinHash){
+    setSession(true);
+    showAuth(false); toggleProtected(false);
+    fillFromProfile(); initHistoryFilters(); renderHistory();
+  } else {
+    alert('ผู้ใช้หรือ PIN ไม่ถูกต้อง');
+  }
 });
 document.getElementById('btnForgot').addEventListener('click', ()=>{
   alert('ลืม PIN: ใช้ปุ่ม “รีเซ็ตข้อมูลทั้งหมด” (หน้า ประวัติ) เพื่อล้างข้อมูลบนเครื่อง แล้วตั้งใหม่');
@@ -864,33 +918,33 @@ document.getElementById('btnLogout').addEventListener('click', ()=>{
 const cdDigits = document.getElementById('countdownDigits');
 const ribbonTxt = document.getElementById('ribbonTxt');
 function fmt2(n){ return n.toString().padStart(2,'0'); }
-function runCountdown(){
-  // เป้าหมาย: 1 ม.ค. 2026 00:00:00 (+07:00)
+(function runCountdown(){
   const target = new Date('2026-01-01T00:00:00+07:00').getTime();
-  const tick = ()=>{
+  function tick(){
     const now = Date.now();
     let diff = target - now;
     if(diff <= 0){
       cdDigits.textContent = '00 วัน 00:00:00';
       ribbonTxt.textContent = '🎉 HAPPY NEW YEAR 2026';
-      // เพิ่มเอฟเฟกต์วิบวับนิดหน่อย
       ribbonTxt.style.boxShadow = '0 0 20px #ffd166aa, 0 0 40px #36c06baa';
       return;
     }
-    const d = Math.floor(diff / (1000*60*60*24)); diff %= 1000*60*60*24;
-    const h = Math.floor(diff / (1000*60*60));    diff %= 1000*60*60;
-    const m = Math.floor(diff / (1000*60));       diff %= 1000*60;
+    const d = Math.floor(diff / 86400000); diff %= 86400000;
+    const h = Math.floor(diff / 3600000);  diff %= 3600000;
+    const m = Math.floor(diff / 60000);    diff %= 60000;
     const s = Math.floor(diff / 1000);
     cdDigits.textContent = `${fmt2(d)} วัน ${fmt2(h)}:${fmt2(m)}:${fmt2(s)}`;
-    requestAnimationFrame(()=>{}); // noop for smoothness
-  };
+    // ใช้ rAF เพื่อลื่นไหลและไม่ล้น setInterval
+    requestAnimationFrame(()=>{
+      // อัปเดตอีกทีเมื่อเวลาผ่านราว 200ms เพื่อประหยัดพลังงาน
+      setTimeout(tick, 200);
+    });
+  }
   tick();
-  setInterval(tick, 1000);
-}
+})();
 
 /* ===== INIT ===== */
 renderGameTabs(); setGame(currentGame); updateSummary(); initHistoryFilters(); tryAutoLogin();
-runCountdown();
 </script>
 </body>
 </html>
