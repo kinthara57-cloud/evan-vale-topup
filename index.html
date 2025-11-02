@@ -61,7 +61,7 @@ body::before{
   background:url("christmas-bg.png") center/cover no-repeat;
   opacity:.10;pointer-events:none;mix-blend-mode:screen;
 }
-/* หิมะตกเบาๆ */
+/* หิมะตกเบาๆ (เร่งความเร็ว: 12s -> 6s) */
 body::after{
   content:""; position:fixed; inset:-100px 0 0 0; z-index:-1; pointer-events:none;
   background-image:
@@ -70,7 +70,7 @@ body::after{
     radial-gradient(2px 2px at 80% 70%,#fff8 90%,transparent 100%),
     radial-gradient(2px 2px at 30% 80%,#fff8 90%,transparent 100%),
     radial-gradient(2px 2px at 10% 60%,#fff8 90%,transparent 100%);
-  animation:snow 12s linear infinite;
+  animation:snow 6s linear infinite;
 }
 @keyframes snow{
   0%{ transform:translateY(-100px) }
@@ -120,7 +120,7 @@ a{color:var(--accent);text-decoration:none} img{max-width:100%;display:block}
 .grid.two{grid-template-columns:2fr 1fr}
 .card{background:#102219;border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
 label{display:block;margin-bottom:6px;color:#d6f0d8}
-input,select,textarea{width:100%;background:#0f1a13;border:1px solid var(--border);color:var(--text);padding:12px;border-radius:12px}
+input,select,textarea{width:100%;background:#0f1a13;border:1px solid var(--border);color:#var(--text);padding:12px;border-radius:12px}
 .price{font-size:22px;font-weight:900}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .summary{position:sticky;top:84px}
