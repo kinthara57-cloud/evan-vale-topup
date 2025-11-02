@@ -6,9 +6,10 @@
   <meta name="theme-color" content="#0b0a10">
   <title>EVAN VALE • Halloween Event | เติมเกมราคาดี โปร่งใส มีแอดมินดูแล</title>
   <meta name="description" content="EVAN VALE Halloween Event — เติมเกมราคาดี โปร่งใส ปลอดภัย มีแอดมินดูแล 24 ชั่วโมง รองรับ TrueMoney, PromptPay และธนาคาร" />
+
   <style>
-/* ===== MOBILE FIX PACK (<= 420px) ===== */
-@media (max-width: 420px){
+/* ===== MOBILE FIX PACK (<= 420–480px) ===== */
+@media (max-width: 480px){
   .wrap{padding:16px}
   .nav{gap:10px; padding:12px}
   .nav .tools{
@@ -19,21 +20,27 @@
   }
   .nav .tools .btn{width:100%; min-height:44px; display:flex; align-items:center; justify-content:center}
   .nav .tools .btn.primary{grid-column: 1 / -1}
+
   .hero{grid-template-columns:1fr; gap:14px}
   .grid.two{grid-template-columns:1fr}
   .tabs{display:grid; grid-template-columns:1fr 1fr; gap:8px}
   .tab{width:100%; text-align:center}
   .grid.pkg{grid-template-columns: repeat(2, minmax(0,1fr))}
-  .grid.pkg .glass{display:grid; align-content:start; min-height:110px}
+  .grid.pkg .glass{display:grid; align-content:start; min-height:128px !important}
   .price{font-size:18px}
   .row{grid-template-columns:1fr; gap:10px}
   h1{font-size:22px}
+  /* ซ่อนปุ่มซ้ำใน NAV (เหลือปุ่มติดต่อแอดมิน) */
+  .nav .tools a[href="#packages"],
+  .nav .tools a[href="#order"],
+  .nav .tools a[href="#history"]{ display:none; }
 }
+
 /* ===== TABLE SCROLL (มือถือทุกขนาด) ===== */
 .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
 .table-scroll table{min-width:720px}
 
-/* ===== CORE THEME ===== */
+/* ===== THEME ===== */
 :root{
   --bg:#0b0a10; --bg2:#1b0f17;
   --glass:#110b18cc; --panel:#140c19; --card:#161021;
@@ -53,6 +60,7 @@ body{
 body::before{content:"";position:fixed;inset:0;z-index:-1;background:url("halloween-bg.png") center/cover no-repeat;opacity:.10;pointer-events:none;mix-blend-mode:screen}
 a{color:var(--accent);text-decoration:none} img{max-width:100%;display:block}
 .wrap{max-width:1100px;margin:auto;padding:20px}
+
 .nav{display:flex;justify-content:space-between;align-items:center;gap:12px;background:linear-gradient(180deg,#1b1022,#150d1b);border:1px solid var(--border);border-radius:20px;padding:10px 14px;box-shadow:var(--shadow);backdrop-filter: blur(8px);position:sticky;top:12px;z-index:10}
 .brand{display:flex;gap:12px;align-items:center}
 .logo{width:42px;height:42px;border-radius:12px;background:conic-gradient(from 220deg,#ff7518,#ffb347,#ffd166,#ff7518);display:grid;place-items:center;font-weight:900;color:#180b0b;box-shadow:0 0 18px #ff751850}
@@ -60,6 +68,7 @@ a{color:var(--accent);text-decoration:none} img{max-width:100%;display:block}
 .btn{padding:9px 14px;border-radius:12px;border:1px solid var(--border);background:linear-gradient(180deg,#201025,#190d20);color:#fde8ff;font-weight:700;cursor:pointer}
 .btn[disabled]{opacity:.6;pointer-events:none}
 .btn.primary{background:linear-gradient(90deg,var(--brand),var(--brand2));color:#2b0f00;border:none;box-shadow:0 0 10px #ff751870,0 0 28px #ffb34760;text-shadow:0 0 6px rgba(255,215,160,.6)}
+
 .hero{margin-top:16px;display:grid;grid-template-columns:2fr 1fr;gap:18px}
 .glass{background:linear-gradient(180deg,var(--glass),#0f0a16cc);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);backdrop-filter: blur(10px)}
 .badge{padding:6px 10px;border-radius:999px;background:#23111a;border:1px solid var(--border);display:inline-flex;gap:8px;align-items:center}
@@ -89,21 +98,33 @@ input,select,textarea{width:100%;background:#120a17;border:1px solid var(--borde
 .mini-sum .row-line:last-child{border-bottom:0}
 .ribbon{position:absolute;right:14px;top:-10px;rotate:8deg;background:linear-gradient(90deg,#ff7518,#ffb347);color:#2b0f00;padding:6px 12px;border-radius:8px;font-weight:900;box-shadow:0 6px 18px #ff751870;border:1px solid #5c2a00}
 @media (max-width:980px){.hero{grid-template-columns:1fr}.grid.two{grid-template-columns:1fr}.summary{position:static}}
-/* AUTH */
+
+/* ===== AUTH ===== */
 .auth{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);z-index:50}
 .auth.hide{display:none}
 .panel{width:min(520px,92vw);background:#0f0a16;border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);padding:20px}
 .pair{display:grid;grid-template-columns:140px 1fr;gap:8px;align-items:center;margin:8px 0}
 .note{font-size:12px;color:#d1bfd7}
-/* HISTORY */
+
+/* ===== HISTORY ===== */
 table{width:100%;border-collapse:collapse}
 th,td{padding:10px;border-bottom:1px solid rgba(255,255,255,.06);text-align:left}
 th{color:#ffcf91}
 .tools{display:flex;gap:8px;flex-wrap:wrap}
 .pill{display:inline-flex;gap:6px;align-items:center;padding:4px 8px;border:1px solid var(--border);border-radius:999px;background:#201026}
 
-/* ให้การ์ดแพ็กเกจสูงเท่ากันทุกจอ (ทับ global) */
-.grid.pkg .glass{min-height:128px}
+/* ===== NEW: ปุ่มใต้การ์ดขวา (รูปสอง) ===== */
+.hero-cta{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap:10px;
+  width:100%;
+  margin-top:12px;
+}
+.hero-cta .btn{ width:100%; text-align:center; }
+@media (max-width:480px){
+  .hero-cta{ grid-template-columns:1fr; }
+}
   </style>
 </head>
 <body>
@@ -113,6 +134,7 @@ th{color:#ffcf91}
   <div class="panel">
     <h2 id="authTitle">🔒 สร้างบัญชีครั้งแรก</h2>
     <p id="authDesc" class="muted2">ตั้งผู้ใช้ + PIN (เก็บเฉพาะในเครื่องนี้)</p>
+
     <div id="setupForm">
       <div class="pair"><label>ผู้ใช้</label><input id="setupUser" placeholder="เช่น evan" /></div>
       <div class="pair"><label>PIN</label><input id="setupPin" type="password" inputmode="numeric" maxlength="6" placeholder="4–6 ตัวเลข" /></div>
@@ -122,6 +144,7 @@ th{color:#ffcf91}
       <div class="tools"><button class="btn primary" id="btnSetup">สร้างบัญชี</button></div>
       <div class="note">ข้อมูลเก็บใน LocalStorage ของเบราว์เซอร์นี้</div>
     </div>
+
     <div id="loginForm" style="display:none">
       <div class="pair"><label>ผู้ใช้</label><input id="loginUser" placeholder="ผู้ใช้" /></div>
       <div class="pair"><label>PIN</label><input id="loginPin" type="password" inputmode="numeric" maxlength="6" placeholder="PIN" /></div>
@@ -155,6 +178,7 @@ th{color:#ffcf91}
 
   <!-- HERO -->
   <section class="hero">
+    <!-- การ์ดซ้าย -->
     <div class="glass" style="position:relative">
       <span class="ribbon">HALLOWEEN 🎃</span>
       <span class="badge">✅ เปิดรับออเดอร์ 08:30–21:30</span>
@@ -166,9 +190,16 @@ th{color:#ffcf91}
       </div>
       <p class="muted2" style="margin-top:8px">*ช่วงพีค/เกมปิดปรับปรุงอาจช้ากว่าปกติ</p>
     </div>
+
+    <!-- การ์ดขวา + ปุ่มย้ายมาไว้ใต้รูปสอง -->
     <div class="glass" style="display:grid;place-items:center;text-align:center">
       <div style="font-weight:800">แอดมินตอบไว</div>
-      <div class="muted2">กด “ติดต่อแอดมิน” ขวาบน</div>
+      <div class="muted2">เลือกเมนูด้านล่างได้เลย</div>
+      <div class="hero-cta">
+        <a class="btn" href="#packages">แพ็กเกจ</a>
+        <a class="btn primary" href="#order">สั่งเติม</a>
+        <a class="btn" href="#history">ประวัติ</a>
+      </div>
     </div>
   </section>
 
@@ -186,6 +217,7 @@ th{color:#ffcf91}
   <section id="order" class="section grid two" style="align-items:start">
     <div class="card">
       <h2 style="margin-top:0">สั่งเติมเกม</h2>
+
       <div class="row">
         <div>
           <label>เกม</label>
@@ -332,19 +364,15 @@ th{color:#ffcf91}
         <button class="btn" id="btnClearAll">รีเซ็ตข้อมูลทั้งหมด</button>
       </div>
 
-      <!-- ✅ โครงสร้างตารางที่ถูกต้อง + ครอบด้วย table-scroll -->
-      <div class="glass">
-        <div class="table-scroll">
-          <table id="histTable">
-            <thead>
-              <tr>
-                <th>เวลา</th><th>เลขบิล</th><th>เกม</th><th>เซิร์ฟ</th>
-                <th>แพ็กเกจ</th><th>ยอด</th><th>สถานะ</th><th>UID</th><th>เครื่องมือ</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
+      <div class="glass table-scroll">
+        <table id="histTable">
+          <thead>
+            <tr>
+              <th>เวลา</th><th>เลขบิล</th><th>เกม</th><th>เซิร์ฟ</th><th>แพ็กเกจ</th><th>ยอด</th><th>สถานะ</th><th>UID</th><th>เครื่องมือ</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
         <div id="histEmpty" class="muted2" style="padding:8px 0;display:none">ยังไม่มีรายการ</div>
       </div>
     </div>
@@ -354,14 +382,14 @@ th{color:#ffcf91}
 </div>
 
 <script>
-/* ====== AUTH (ล็อคอิน/สมัคร) ====== */
-const KEY_USER    = "ev_auth_user";      // {user, pinHash, name?, contact?, last?}
-const KEY_SESSION = "ev_auth_session";   // "ok" เมื่อเข้าสู่ระบบ
+/* ====== AUTH / SESSION ====== */
+const KEY_USER="ev_auth_user";      // {user, pinHash, name?, contact?, last?}
+const KEY_SESSION="ev_auth_session"; // "ok" เมื่อเข้าสู่ระบบ
 function ordersKey(){ const u=userBox(); return u? `ev_orders_${u.user}` : "ev_orders__guest"; }
 
 async function sha256(str){
-  const enc = new TextEncoder().encode(str);
-  const buf = await crypto.subtle.digest('SHA-256', enc);
+  const enc=new TextEncoder().encode(str);
+  const buf=await crypto.subtle.digest('SHA-256',enc);
   return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
 }
 function userBox(){ try{ return JSON.parse(localStorage.getItem(KEY_USER)||"null"); }catch{return null;} }
@@ -502,18 +530,22 @@ function updateSummary(){
   const u = document.getElementById('uid').value || "-";
   const p = selPackage.value || "-";
   const m = document.getElementById('method').value;
+
   document.getElementById('sum-game').innerText   = g;
   document.getElementById('sum-server').innerText = s || "-";
   document.getElementById('sum-uid').innerText    = u;
   document.getElementById('sum-pkg').innerText    = p;
   document.getElementById('sum-method').innerText = m;
+
   const price = Number((p.split("฿")[1] || "0").replace(/[^\d]/g,""));
   const totalTxt = money(price);
   document.getElementById('sum-total').innerText = totalTxt;
+
   miniGame.textContent  = g;
   miniServer.textContent= s || "-";
   miniPkg.textContent   = p;
   miniTotal.textContent = totalTxt;
+
   showMini();
 }
 ["game","server","uid","package","method","name","contact","promo"].forEach(id=>{
@@ -617,26 +649,6 @@ UID: ${x.uid||"-"}
   });
 }
 
-// export CSV
-document.getElementById('btnExportCsv').addEventListener('click', ()=>{
-  const rows = loadOrders();
-  if(!rows.length){ alert('ยังไม่มีรายการ'); return; }
-  const header = ["time","invoice","game","server","package","total","status","method","uid","name","contact"];
-  const toRow = r=>[
-    new Date(r.ts).toISOString(),
-    r.invoiceId, r.game, r.server||"", r.package||"", (r.total||"").replace("฿",""),
-    r.status, r.method, r.uid||"", r.name||"", r.contact||""
-  ];
-  const csv = [header.join(","), ...rows.map(r=>toRow(r).map(v=>`"${String(v).replace(/"/g,'""')}"`).join(","))].join("\n");
-  const blob = new Blob([csv], {type:"text/csv;charset=utf-8"});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `orders_${(userBox()?.user||"guest")}.csv`;
-  a.click();
-  URL.revokeObjectURL(a.href);
-});
-document.getElementById('btnClearAll').addEventListener('click', clearAll);
-
 /* ====== MESSAGE / COPY ====== */
 function buildMessage(){
   const g = selGame.value, s = selServer.value, u = document.getElementById('uid').value || "-";
@@ -685,6 +697,7 @@ btnPrepare?.addEventListener('click', async ()=>{
   btnOpenAdmin.href = makeAdminUrl();
   btnOpenAdmin.style.pointerEvents = 'auto';
   btnOpenAdmin.style.opacity = '1';
+
   if(window.invoiceId){ updateOrderStatus(window.invoiceId, 'ส่งรายละเอียดแล้ว'); }
 });
 btnOpenAdmin?.addEventListener('click', (e)=>{
@@ -704,6 +717,7 @@ document.getElementById('btnSubmit')?.addEventListener('click', ()=>{
   window.invoiceId = genInvoice();
   document.getElementById('sum-bill').innerText = window.invoiceId;
   const pay = document.getElementById('pay'); pay.style.display = ""; pay.scrollIntoView({behavior:'smooth'});
+
   const row = {
     ts: Date.now(),
     invoiceId: window.invoiceId,
@@ -759,14 +773,7 @@ function renderAuth(){
   document.getElementById('loginForm').style.display = hasUser? 'block' : 'none';
 }
 async function tryAutoLogin(){
-  if(isLogged()){
-    showAuth(false);
-    toggleProtected(false);
-    fillFromProfile();
-    initHistoryFilters();   // ✅ เติมเพื่อให้ตัวกรองพร้อมใช้ทันที
-    renderHistory();
-    return;
-  }
+  if(isLogged()){ showAuth(false); toggleProtected(false); fillFromProfile(); renderHistory(); return; }
   renderAuth(); showAuth(true); toggleProtected(true);
 }
 document.getElementById('btnSetup').addEventListener('click', async ()=>{
@@ -791,7 +798,9 @@ document.getElementById('btnLogin').addEventListener('click', async ()=>{
 document.getElementById('btnForgot').addEventListener('click', ()=>{
   alert('ลืม PIN: ใช้ปุ่ม “รีเซ็ตข้อมูลทั้งหมด” (หน้า ประวัติ) เพื่อล้างข้อมูลบนเครื่อง แล้วตั้งใหม่');
 });
-document.getElementById('btnLogout').addEventListener('click', ()=>{ setSession(false); showAuth(true); toggleProtected(true); });
+document.getElementById('btnLogout').addEventListener('click', ()=>{
+  setSession(false); showAuth(true); toggleProtected(true);
+});
 
 /* ====== INIT ====== */
 renderGameTabs(); setGame(currentGame); updateSummary(); initHistoryFilters(); tryAutoLogin();
