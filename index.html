@@ -3,24 +3,29 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0a0f0b">
+  <meta name="theme-color" content="#0b0a10">
   <title>EVAN VALE • Christmas Event | เติมเกมราคาดี โปร่งใส มีแอดมินดูแล</title>
   <meta name="description" content="EVAN VALE Christmas Event — เติมเกมราคาดี โปร่งใส ปลอดภัย มีแอดมินดูแล 24 ชั่วโมง รองรับ TrueMoney, PromptPay และธนาคาร" />
 
   <style>
-/* ===== MOBILE (<=480px) ===== */
+/* ===== MOBILE FIX PACK (<= 480px) ===== */
 @media (max-width: 480px){
   .wrap{padding:16px}
   .nav{gap:10px; padding:12px}
-  .nav .tools{width:100%; display:grid; grid-template-columns:1fr 1fr; gap:8px}
+  .nav .tools{
+    width:100%;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:8px;
+  }
   .nav .tools .btn{width:100%; min-height:44px; display:flex; align-items:center; justify-content:center}
-  .nav .tools .btn.primary{grid-column:1 / -1}
+  .nav .tools .btn.primary{grid-column: 1 / -1}
 
   .hero{grid-template-columns:1fr; gap:14px}
   .grid.two{grid-template-columns:1fr}
   .tabs{display:grid; grid-template-columns:1fr 1fr; gap:8px}
   .tab{width:100%; text-align:center}
-  .grid.pkg{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid.pkg{grid-template-columns: repeat(2, minmax(0,1fr))}
   .grid.pkg .glass{display:grid; align-content:start; min-height:128px !important}
   .price{font-size:18px}
   .row{grid-template-columns:1fr; gap:10px}
@@ -31,96 +36,104 @@
   .nav .tools a[href="#history"]{ display:none; }
 }
 
-/* ===== TABLE SCROLL ===== */
+/* ===== TABLE SCROLL (มือถือทุกขนาด) ===== */
 .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
 .table-scroll table{min-width:720px}
 
-/* ===== THEME: CHRISTMAS ===== */
+/* ===== THEME (Christmas) ===== */
 :root{
-  --bg:#0a0f0b; --bg2:#0f1a12;
-  --glass:#0e1511cc; --panel:#0f1a12; --card:#101d15;
-  --text:#f8fff6; --muted:#cde3cf; --muted2:#b8d2bb;
-  --brand:#e53935;     /* red */
-  --brand2:#36c06b;    /* green */
-  --accent:#ffd166;    /* gold */
-  --warn:#ff6b6b;
-  --border:#203326; --shadow:0 20px 60px rgba(0,0,0,.55); --radius:18px;
+  --bg:#0b0f10; --bg2:#102017;
+  --glass:#0f1712cc; --panel:#0f1913; --card:#121a15;
+  --text:#f7fff7; --muted:#b8d0bf; --muted2:#a7c9b4;
+  --brand:#e53935;   /* Christmas Red */
+  --brand2:#81c784;  /* Pine Green light */
+  --accent:#ffd166;  --warn:#ff6b6b;
+  --border:#1f3426;  --shadow:0 20px 60px rgba(0,0,0,.55); --radius:18px;
 }
 *{box-sizing:border-box} html,body{height:100%}
 body{
   margin:0; color:var(--text); font-family:system-ui,Segoe UI,Prompt,sans-serif;
   background:
-    radial-gradient(1100px 600px at 0% 0%, #19301f 0%, transparent 60%),
-    radial-gradient(900px 700px at 100% 0%, #2a1a1a 0%, transparent 60%),
-    radial-gradient(900px 900px at 50% 120%, #112019 0%, transparent 60%),
+    radial-gradient(1100px 600px at 0% 0%, #143021 0%, transparent 60%),
+    radial-gradient(900px 700px at 100% 0%, #142a20 0%, transparent 60%),
+    radial-gradient(900px 900px at 50% 120%, #0f2017 0%, transparent 60%),
     linear-gradient(180deg, var(--bg), var(--bg2));
 }
-/* ลายพื้นหลังธีมคริสต์มาส + หิมะ */
+/* พื้นหลังหิมะ/ไฟคริสต์มาส */
 body::before{
-  content:"";position:fixed;inset:0;z-index:-2;
+  content:"";position:fixed;inset:0;z-index:-1;
   background:url("christmas-bg.png") center/cover no-repeat;
-  opacity:.10;pointer-events:none;mix-blend-mode:screen;
+  opacity:.12;pointer-events:none;mix-blend-mode:screen
 }
-/* หิมะตกเบาๆ */
-body::after{
-  content:""; position:fixed; inset:-100px 0 0 0; z-index:-1; pointer-events:none;
-  background-image:
-    radial-gradient(2px 2px at 20% 20%,#fff8 90%,transparent 100%),
-    radial-gradient(2px 2px at 60% 30%,#fff8 90%,transparent 100%),
-    radial-gradient(2px 2px at 80% 70%,#fff8 90%,transparent 100%),
-    radial-gradient(2px 2px at 30% 80%,#fff8 90%,transparent 100%),
-    radial-gradient(2px 2px at 10% 60%,#fff8 90%,transparent 100%);
-  animation:snow 12s linear infinite;
+
+/* snow flakes นิดหน่อย */
+.snow{pointer-events:none; position:fixed; inset:0; z-index:0; overflow:hidden}
+.snow i{
+  position:absolute; top:-10px; width:6px; height:6px; border-radius:50%;
+  background:rgba(255,255,255,.85); box-shadow:0 0 8px rgba(255,255,255,.6);
+  animation: fall linear infinite;
+  opacity:.9;
 }
-@keyframes snow{
-  0%{ transform:translateY(-100px) }
-  100%{ transform:translateY(100px) }
+@keyframes fall {
+  to { transform: translateY(110vh) translateX(var(--drift, 40px)); opacity:.95; }
 }
 
 a{color:var(--accent);text-decoration:none} img{max-width:100%;display:block}
 .wrap{max-width:1100px;margin:auto;padding:20px}
 
+/* NAV */
 .nav{
   display:flex;justify-content:space-between;align-items:center;gap:12px;
-  background:linear-gradient(180deg,#132017,#0e1812);
+  background:linear-gradient(180deg,#0e2017,#0b1712);
   border:1px solid var(--border);border-radius:20px;padding:10px 14px;
   box-shadow:var(--shadow);backdrop-filter: blur(8px);position:sticky;top:12px;z-index:10
 }
 .brand{display:flex;gap:12px;align-items:center}
 .logo{
   width:42px;height:42px;border-radius:12px;
-  background:conic-gradient(from 220deg,#e53935,#36c06b,#ffd166,#e53935);
-  display:grid;place-items:center;font-weight:900;color:#1b0d0d;box-shadow:0 0 18px #ffd16640
+  background:
+    conic-gradient(from 220deg,#e53935,#81c784,#ffd166,#e53935);
+  display:grid;place-items:center;font-weight:900;color:#1a0b0b;
+  box-shadow:0 0 18px #e5393550
 }
 .site-badge{
-  font-size:12px;color:#ffe6a8;background:#182416;border:1px solid #274426;
+  font-size:12px;color:#ffe9e9;background:#12231a;border:1px solid #1e3a2a;
   padding:3px 8px;border-radius:999px;display:inline-flex;gap:6px;align-items:center
 }
-.btn{padding:9px 14px;border-radius:12px;border:1px solid var(--border);background:linear-gradient(180deg,#14241a,#0f1b14);color:#f2fff2;font-weight:700;cursor:pointer}
+.btn{
+  padding:9px 14px;border-radius:12px;border:1px solid var(--border);
+  background:linear-gradient(180deg,#0f1b15,#0c1612);color:#effff3;font-weight:700;cursor:pointer
+}
 .btn[disabled]{opacity:.6;pointer-events:none}
 .btn.primary{
   background:linear-gradient(90deg,var(--brand),var(--brand2));
-  color:#1b0d0d;border:none;
-  box-shadow:0 0 10px #ffd16650,0 0 28px #36c06b40;text-shadow:0 0 6px rgba(255,230,170,.6)
+  color:#1a0b0b;border:none;
+  box-shadow:0 0 10px #e5393570,0 0 28px #81c78460;
+  text-shadow:0 0 6px rgba(255,240,210,.6)
 }
 
+/* HERO + Cards */
 .hero{margin-top:16px;display:grid;grid-template-columns:2fr 1fr;gap:18px}
 .glass{
-  background:linear-gradient(180deg,var(--glass),#0e1712cc);
-  border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);backdrop-filter: blur(10px)
+  background:linear-gradient(180deg,var(--glass),#0b1511cc);
+  border:1px solid var(--border);border-radius:var(--radius);padding:18px;
+  box-shadow:var(--shadow);backdrop-filter: blur(10px); position:relative
 }
-.badge{padding:6px 10px;border-radius:999px;background:#1b2a1e;border:1px solid var(--border);display:inline-flex;gap:8px;align-items:center}
-.drip{text-shadow:0 2px 0 #000,0 0 12px rgba(255,209,102,.40),0 0 26px rgba(54,192,107,.35)}
+.badge{
+  padding:6px 10px;border-radius:999px;background:#0f2018;border:1px solid var(--border);
+  display:inline-flex;gap:8px;align-items:center
+}
+.drip{text-shadow:0 2px 0 #000,0 0 12px rgba(129,199,132,.35),0 0 26px rgba(229,57,53,.35)}
 .statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
-.stat{background:#16281d;border:1px solid var(--border);border-radius:14px;text-align:center;padding:14px}
+.stat{background:#0f241a;border:1px solid var(--border);border-radius:14px;text-align:center;padding:14px}
 .muted{color:var(--muted)} .muted2{color:var(--muted2)}
 .section{margin-top:22px}
 .grid{display:grid;gap:16px}
 .grid.pkg{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
 .grid.two{grid-template-columns:2fr 1fr}
-.card{background:#102219;border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
-label{display:block;margin-bottom:6px;color:#d6f0d8}
-input,select,textarea{width:100%;background:#0f1a13;border:1px solid var(--border);color:var(--text);padding:12px;border-radius:12px}
+.card{background:#0f1913;border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+label{display:block;margin-bottom:6px;color:#d2f0dc}
+input,select,textarea{width:100%;background:#0b1410;border:1px solid var(--border);color:var(--text);padding:12px;border-radius:12px}
 .price{font-size:22px;font-weight:900}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .summary{position:sticky;top:84px}
@@ -128,48 +141,62 @@ input,select,textarea{width:100%;background:#0f1a13;border:1px solid var(--borde
 .item{display:flex;justify-content:space-between;gap:10px}
 .total{font-size:22px;font-weight:900}
 .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 0}
-.tab{padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:#132319;cursor:pointer}
-.tab.active{
-  background:linear-gradient(90deg,var(--brand),var(--brand2));color:#1b0d0d;border:none;box-shadow:0 0 10px #ffd16650
+.tab{padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:#0f1c16;cursor:pointer}
+.tab.active{background:linear-gradient(90deg,var(--brand),var(--brand2));color:#1a0b0b;border:none;box-shadow:0 0 10px #e5393570}
+.neon{
+  box-shadow:0 0 12px rgba(129,199,132,.25),0 0 24px rgba(229,57,53,.18),inset 0 0 0 1px rgba(129,199,132,.18);
+  border:1px solid rgba(129,199,132,.25);border-radius:14px;padding:12px;margin-top:10px
 }
-.neon{box-shadow:0 0 12px rgba(255,209,102,.25),0 0 24px rgba(54,192,107,.18),inset 0 0 0 1px rgba(255,209,102,.18);border:1px solid rgba(255,209,102,.25);border-radius:14px;padding:12px;margin-top:10px}
-.neon h3{margin:0 0 6px;font-size:16px;text-shadow:0 0 12px rgba(255,209,102,.35)}
+.neon h3{margin:0 0 6px;font-size:16px;text-shadow:0 0 12px rgba(229,57,53,.35)}
 .mini-sum .row-line{display:flex;justify-content:space-between;gap:10px;padding:4px 0;border-bottom:1px dashed rgba(255,255,255,.06)}
 .mini-sum .row-line:last-child{border-bottom:0}
 .ribbon{
-  position:absolute;right:14px;top:-10px;rotate:8deg;
-  background:linear-gradient(90deg,#e53935,#36c06b);
-  color:#1b0d0d;padding:6px 12px;border-radius:8px;font-weight:900;
-  box-shadow:0 6px 18px #36c06b60;border:1px solid #5c2a00
+  position:absolute;right:14px;top:-10px;rotate:-6deg;
+  background:linear-gradient(90deg,#e53935,#81c784);color:#140b0b;
+  padding:6px 12px;border-radius:8px;font-weight:900;box-shadow:0 6px 18px #e5393570;border:1px solid #3a0d0d
 }
 @media (max-width:980px){.hero{grid-template-columns:1fr}.grid.two{grid-template-columns:1fr}.summary{position:static}}
 
-/* ===== AUTH ===== */
+/* AUTH */
 .auth{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);z-index:50}
 .auth.hide{display:none}
-.panel{width:min(520px,92vw);background:#0e1813;border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);padding:20px}
+.panel{width:min(520px,92vw);background:#0b1410;border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);padding:20px}
 .pair{display:grid;grid-template-columns:140px 1fr;gap:8px;align-items:center;margin:8px 0}
-.note{font-size:12px;color:#cde3cf}
+.note{font-size:12px;color:#c4e6d3}
 
-/* ===== HISTORY ===== */
+/* HISTORY */
 table{width:100%;border-collapse:collapse}
 th,td{padding:10px;border-bottom:1px solid rgba(255,255,255,.06);text-align:left}
-th{color:#ffe6a8}
+th{color:#ffecb3}
 .tools{display:flex;gap:8px;flex-wrap:wrap}
-.pill{display:inline-flex;gap:6px;align-items:center;padding:4px 8px;border:1px solid var(--border);border-radius:999px;background:#132319}
+.pill{display:inline-flex;gap:6px;align-items:center;padding:4px 8px;border:1px solid var(--border);border-radius:999px;background:#0f1c16}
 
-/* ===== ปุ่มใต้การ์ดขวา ===== */
-.hero-cta{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; width:100%; margin-top:12px}
-.hero-cta .btn{width:100%; text-align:center}
-@media (max-width:480px){ .hero-cta{ grid-template-columns:1fr } }
+/* ปุ่มใต้การ์ดขวา */
+.hero-cta{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap:10px;
+  width:100%;
+  margin-top:12px;
+}
+.hero-cta .btn{ width:100%; text-align:center; }
+@media (max-width:480px){ .hero-cta{ grid-template-columns:1fr; } }
+
+/* Footer lights (บรรยากาศ) */
+.footer{
+  margin:24px 0 8px; text-align:center; color:#cde6d7; opacity:.8; font-size:12px
+}
   </style>
 </head>
 <body>
 
-<!-- AUTH -->
+<!-- snow layers -->
+<div class="snow" aria-hidden="true" id="snow"></div>
+
+<!-- AUTH (Signup/Login Overlay) -->
 <div class="auth" id="auth">
   <div class="panel">
-    <h2 id="authTitle">🔒 สร้างบัญชีครั้งแรก</h2>
+    <h2 id="authTitle">🎄 สร้างบัญชีครั้งแรก</h2>
     <p id="authDesc" class="muted2">ตั้งผู้ใช้ + PIN (เก็บเฉพาะในเครื่องนี้)</p>
 
     <div id="setupForm">
@@ -216,8 +243,8 @@ th{color:#ffe6a8}
   <!-- HERO -->
   <section class="hero">
     <!-- การ์ดซ้าย -->
-    <div class="glass" style="position:relative">
-      <span class="ribbon">CHRISTMAS 🎄</span>
+    <div class="glass">
+      <span class="ribbon">XMAS 🎁</span>
       <span class="badge">✅ เปิดรับออเดอร์ 08:30–21:30</span>
       <h1 class="drip">EVAN VALE — ราคาดี โปร่งใส <span style="color:var(--accent)">มีแอดมินดูแล</span></h1>
       <div class="statgrid">
@@ -228,7 +255,7 @@ th{color:#ffe6a8}
       <p class="muted2" style="margin-top:8px">*ช่วงพีค/เกมปิดปรับปรุงอาจช้ากว่าปกติ</p>
     </div>
 
-    <!-- การ์ดขวา -->
+    <!-- การ์ดขวา + ปุ่มเมนูใต้รูปสอง -->
     <div class="glass" style="display:grid;place-items:center;text-align:center">
       <div style="font-weight:800">แอดมินตอบไว</div>
       <div class="muted2">เลือกเมนูด้านล่างได้เลย</div>
@@ -260,7 +287,7 @@ th{color:#ffe6a8}
           <label>เกม</label>
           <select id="game"></select>
           <p id="gameNote" style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0"></p>
-          <p id="thaiOnlyNote" style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0;background:#142318;padding:6px 10px;border-radius:6px;border-left:3px solid var(--brand);">
+          <p id="thaiOnlyNote" style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0;background:#0e1b14;padding:6px 10px;border-radius:6px;border-left:3px solid var(--brand);">
             ⚠️ เกมนี้รองรับเฉพาะ <b>เซิร์ฟเวอร์ไทย</b> เท่านั้น (Free Fire / RoV / PUBG Mobile / Roblox / Call of Duty)
           </p>
           <div class="neon mini-sum" id="miniSum" style="display:none">
@@ -376,7 +403,7 @@ th{color:#ffe6a8}
         </div>
 
         <div id="copyHint" class="muted2" style="display:none;margin-top:8px">✔️ คัดลอกแล้ว ถ้าแชทไม่พิมพ์ให้เอง ให้ “วาง (Paste)” ได้เลย</div>
-        <textarea id="msgPreview" readonly style="display:none;width:100%;margin-top:8px;background:#0f1a13;color:#f8fff6;border:1px solid #203326;border-radius:10px;padding:10px" rows="8"></textarea>
+        <textarea id="msgPreview" readonly style="display:none;width:100%;margin-top:8px;background:#0b1410;color:#f7fff7;border:1px solid #1f3426;border-radius:10px;padding:10px" rows="8"></textarea>
       </div>
     </div>
   </section>
@@ -419,10 +446,10 @@ th{color:#ffe6a8}
 </div>
 
 <script>
-/* ===== AUTH / SESSION ===== */
-const KEY_USER="ev_auth_user";
-const KEY_SESSION="ev_auth_session";
-function ordersKey(){ const u=userBox(); return u? `ev_orders_${u.user}` : "ev_orders__guest"; }
+/* ====== AUTH / SESSION ====== */
+const KEY_USER="ev_auth_user";      // {user, pinHash, name?, contact?, last?}
+const KEY_SESSION="ev_auth_session"; // "ok" เมื่อเข้าสู่ระบบ
+function ordersKey(){ const u=userBox(); return u? \`ev_orders_\${u.user}\` : "ev_orders__guest"; }
 
 async function sha256(str){
   const enc=new TextEncoder().encode(str);
@@ -441,7 +468,7 @@ function toggleProtected(disabled){
   document.getElementById('btnLogout').style.display = disabled ? "none" : "inline-block";
 }
 
-/* ===== DATA ===== */
+/* ====== DATA ====== */
 const ADMIN_URL = "https://www.facebook.com/profile.php?id=61581815886305";
 const GAMES = [
   { key:"Free Fire", icon:"🔥", servers:["Thailand","SEA","Global","อื่นๆ"] },
@@ -450,7 +477,7 @@ const GAMES = [
   { key:"Honkai: Star Rail", icon:"🚄", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
   { key:"PUBG Mobile", icon:"🎯", servers:["Thailand","SEA","KRJP","Global","อื่นๆ"] },
   { key:"Roblox", icon:"🧱", servers:["Thailand","Asia","USA","Global","อื่นๆ"] },
-  { key:"Roblox (สั่งซื้อโปรโมชั่น)", icon:"🎁", servers:["Thailand","Asia","USA","Global","อื่นๆ"] },
+  { key:"Roblox (สั่งซื้อโปรโมชั่น)", icon:"🎄", servers:["Thailand","Asia","USA","Global","อื่นๆ"] },
   { key:"Call of Duty", icon:"🎮", servers:["Thailand","SEA","Global","อื่นๆ"] },
   { key:"Wuthering Waves", icon:"🌊", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
 ];
@@ -466,7 +493,7 @@ const PACKS_BY_GAME = {
   "Wuthering Waves":[{name:"60 Lunite",price:35},{name:"300+30 Lunite",price:179},{name:"980+110 Lunite",price:549},{name:"Lunite Pass (รายเดือน)",price:179}]
 };
 
-/* ===== REFS ===== */
+/* ====== REFS ====== */
 const tabs = document.getElementById('game-tabs');
 const pkgGrid = document.getElementById('pkg-grid');
 const selGame = document.getElementById('game');
@@ -484,7 +511,7 @@ const btnLogout = document.getElementById('btnLogout');
 let currentGame = GAMES[0].key;
 const thaiOnlyGames = ["Free Fire","RoV","PUBG Mobile","Roblox","Call of Duty"];
 
-/* ===== UI: Packages ===== */
+/* ====== UI: Packages ====== */
 function renderGameTabs(){
   tabs.innerHTML = ""; selGame.innerHTML = "";
   GAMES.forEach(g=>{
@@ -552,7 +579,7 @@ function showMini(){
   miniSum.style.display = has ? "block" : "none";
 }
 
-/* ===== SUMMARY / BILL ===== */
+/* ====== SUMMARY / BILL ====== */
 const pad = n => n.toString().padStart(2,'0');
 function genInvoice(){
   const d = new Date();
@@ -591,7 +618,7 @@ function updateSummary(){
   el.addEventListener('change', updateSummary);
 });
 
-/* ===== HISTORY ===== */
+/* ====== HISTORY (per user) ====== */
 function loadOrders(){ try{ return JSON.parse(localStorage.getItem(ordersKey())||"[]"); }catch{return [];} }
 function saveOrders(list){ localStorage.setItem(ordersKey(), JSON.stringify(list)); }
 function addOrder(row){ const list=loadOrders(); list.unshift(row); saveOrders(list); renderHistory(); }
@@ -611,6 +638,7 @@ function clearAll(){
     location.reload();
   }
 }
+
 // render History
 const histTableBody = document.querySelector('#histTable tbody');
 const histEmpty = document.getElementById('histEmpty');
@@ -625,6 +653,7 @@ function initHistoryFilters(){
     el.addEventListener('change', renderHistory);
   });
 }
+
 function renderHistory(){
   const q = (histSearch.value||"").toLowerCase();
   const g = histGameFilter.value||"";
@@ -684,7 +713,7 @@ UID: ${x.uid||"-"}
   });
 }
 
-/* ===== MESSAGE / COPY ===== */
+/* ====== MESSAGE / COPY ====== */
 function buildMessage(){
   const g = selGame.value, s = selServer.value, u = document.getElementById('uid').value || "-";
   const p = selPackage.value || "-", m = document.getElementById('method').value;
@@ -741,7 +770,7 @@ btnOpenAdmin?.addEventListener('click', (e)=>{
   }
 });
 
-/* ===== FORM ACTIONS ===== */
+/* ====== FORM ACTIONS ====== */
 document.getElementById('btnReset')?.addEventListener('click', ()=>{
   document.querySelectorAll('#order input').forEach(i=>i.value="");
   selPackage.selectedIndex = 0; updateSummary();
@@ -773,7 +802,7 @@ document.getElementById('btnBackToForm')?.addEventListener('click', ()=>{
   document.getElementById('order').scrollIntoView({behavior:'smooth'});
 });
 
-/* ===== PROFILE SAVE/FILL ===== */
+/* ====== PROFILE SAVE/FILL ====== */
 function fillFromProfile(){
   const ub = userBox(); if(!ub) return;
   if(ub.name)    document.getElementById('name').value = ub.name;
@@ -799,10 +828,10 @@ document.getElementById('btnSaveProfile')?.addEventListener('click', ()=>{
   alert('บันทึกข้อมูลลูกค้าไว้ในเครื่องแล้ว ✅');
 });
 
-/* ===== AUTH FLOW ===== */
+/* ====== AUTH FLOW ====== */
 function renderAuth(){
   const ub = userBox(); const hasUser = !!ub;
-  document.getElementById('authTitle').textContent = hasUser? '🔐 เข้าระบบ' : '🔒 สร้างบัญชีครั้งแรก';
+  document.getElementById('authTitle').textContent = hasUser? '🔐 เข้าระบบ' : '🎄 สร้างบัญชีครั้งแรก';
   document.getElementById('authDesc').textContent = hasUser? 'ใส่ผู้ใช้และ PIN เพื่อเข้าใช้งาน' : 'ตั้งผู้ใช้ + PIN และบันทึกโปรไฟล์ (ถ้าต้องการ)';
   document.getElementById('setupForm').style.display = hasUser? 'none' : 'block';
   document.getElementById('loginForm').style.display = hasUser? 'block' : 'none';
@@ -837,8 +866,31 @@ document.getElementById('btnLogout').addEventListener('click', ()=>{
   setSession(false); showAuth(true); toggleProtected(true);
 });
 
-/* ===== INIT ===== */
+/* ====== INIT ====== */
 renderGameTabs(); setGame(currentGame); updateSummary(); initHistoryFilters(); tryAutoLogin();
+
+/* ====== Snow generator ====== */
+(function makeSnow(){
+  const layer = document.getElementById('snow');
+  if(!layer) return;
+  const COUNT = 60;
+  for(let i=0;i<COUNT;i++){
+    const f = document.createElement('i');
+    const size = 2 + Math.random()*4;
+    const left = Math.random()*100;
+    const dur = 6 + Math.random()*6;
+    const delay = Math.random()*-12;
+    const drift = (Math.random()*80-40)+'px';
+    f.style.width = size+'px';
+    f.style.height = size+'px';
+    f.style.left = left+'vw';
+    f.style.animationDuration = dur+'s';
+    f.style.animationDelay = delay+'s';
+    f.style.setProperty('--drift', drift);
+    layer.appendChild(f);
+  }
+})();
 </script>
 </body>
 </html>
+
