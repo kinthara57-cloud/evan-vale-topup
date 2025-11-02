@@ -62,18 +62,11 @@ body::before{
   opacity:.10;pointer-events:none;mix-blend-mode:screen;
 }
 
-/* ===== หิมะตกทั่วหน้าจอ (หลายเลเยอร์ + repeat) =====
-   - ใช้ 3 เลเยอร์จุดหิมะ ขนาดต่างกัน → ความหนาแน่นสมจริง
-   - background-repeat: repeat ครอบคลุมทั้งหน้าจอ
-   - keyframes ขยับ background-position ลงล่างให้เหมือนตก
-   - ปรับความเร็วได้ที่ animation-duration (ตอนนี้ 6s เร็วกำลังดี)
-*/
+/* ===== หิมะตกทั่วหน้าจอ (หลายเลเยอร์ + repeat) ===== */
 body::after{
   content:"";
-  position:fixed; inset:-200px -200px 0 -200px;  /* ขยายขอบเพื่อกันจังหวะที่เลื่อนแล้วชายจอโล่ง */
+  position:fixed; inset:-200px -200px 0 -200px;
   z-index:-1; pointer-events:none;
-
-  /* เลเยอร์หิมะ 3 ชั้น */
   background-image:
     radial-gradient(2px 2px at 20px 30px,  #fff8 90%, transparent 100%),
     radial-gradient(2px 2px at 120px 80px, #fff8 90%, transparent 100%),
@@ -81,12 +74,11 @@ body::after{
   background-size:   220px 220px,  320px 320px,  420px 420px;
   background-repeat: repeat,        repeat,       repeat;
   background-position: 0 -200px, 0 -200px, 0 -200px;
-
   animation: snowFall 6s linear infinite;
 }
 @keyframes snowFall{
   0%   { background-position: 0 -200px, 0 -200px, 0 -200px; }
-  100% { background-position: 0  200px, 0  300px, 0  400px; } /* ตกด้วยความเร็วต่างกันเล็กน้อย */
+  100% { background-position: 0  200px, 0  300px, 0  400px; }
 }
 
 a{color:var(--accent);text-decoration:none} img{max-width:100%;display:block}
@@ -132,7 +124,7 @@ a{color:var(--accent);text-decoration:none} img{max-width:100%;display:block}
 .grid.two{grid-template-columns:2fr 1fr}
 .card{background:#102219;border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
 label{display:block;margin-bottom:6px;color:#d6f0d8}
-input,select,textarea{width:100%;background:#0f1a13;border:1px solid var(--border);color:var(--text);padding:12px;border-radius:12px}
+input,select,textarea{width:100%;background:#0f1a13;border:1px solid var(--border);color:#fff;padding:12px;border-radius:12px}
 .price{font-size:22px;font-weight:900}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .summary{position:sticky;top:84px}
@@ -174,6 +166,18 @@ th{color:#ffe6a8}
 .hero-cta{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; width:100%; margin-top:12px}
 .hero-cta .btn{width:100%; text-align:center}
 @media (max-width:480px){ .hero-cta{ grid-template-columns:1fr } }
+
+/* ===== COUNTDOWN STRIP ===== */
+.countdown-strip{
+  margin-top:10px;
+  background:linear-gradient(90deg, #213726, #182b20);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:10px 12px;
+  display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+}
+.cd-label{font-weight:800; letter-spacing:.3px}
+.cd-digits{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; font-weight:900}
   </style>
 </head>
 <body>
@@ -229,9 +233,16 @@ th{color:#ffe6a8}
   <section class="hero">
     <!-- การ์ดซ้าย -->
     <div class="glass" style="position:relative">
-      <span class="ribbon">CHRISTMAS 🎄</span>
+      <span class="ribbon" id="ribbonTxt">CHRISTMAS 🎄</span>
       <span class="badge">✅ เปิดรับออเดอร์ 08:30–21:30</span>
       <h1 class="drip">EVAN VALE — ราคาดี โปร่งใส <span style="color:var(--accent)">มีแอดมินดูแล</span></h1>
+
+      <!-- COUNTDOWN STRIP -->
+      <div class="countdown-strip" id="cdStrip" aria-live="polite">
+        <div class="cd-label">⏳ นับถอยหลังสู่ปีใหม่</div>
+        <div class="cd-digits" id="countdownDigits">-- วัน --:--:--</div>
+      </div>
+
       <div class="statgrid">
         <div class="stat"><div style="font-size:20px;font-weight:900">3–10 นาที*</div><div class="muted2">โดยเฉลี่ย</div></div>
         <div class="stat"><div style="font-size:20px;font-weight:900">1000+</div><div class="muted2">รายการสำเร็จ</div></div>
@@ -434,7 +445,7 @@ th{color:#ffe6a8}
 /* ===== AUTH / SESSION ===== */
 const KEY_USER="ev_auth_user";
 const KEY_SESSION="ev_auth_session";
-function ordersKey(){ const u=userBox(); return u? `ev_orders_${u.user}` : "ev_orders__guest"; }
+function ordersKey(){ const u=userBox(); return u? \`ev_orders_\${u.user}\` : "ev_orders__guest"; }
 
 async function sha256(str){
   const enc=new TextEncoder().encode(str);
@@ -849,9 +860,37 @@ document.getElementById('btnLogout').addEventListener('click', ()=>{
   setSession(false); showAuth(true); toggleProtected(true);
 });
 
+/* ===== COUNTDOWN (New Year 2026, Asia/Bangkok) ===== */
+const cdDigits = document.getElementById('countdownDigits');
+const ribbonTxt = document.getElementById('ribbonTxt');
+function fmt2(n){ return n.toString().padStart(2,'0'); }
+function runCountdown(){
+  // เป้าหมาย: 1 ม.ค. 2026 00:00:00 (+07:00)
+  const target = new Date('2026-01-01T00:00:00+07:00').getTime();
+  const tick = ()=>{
+    const now = Date.now();
+    let diff = target - now;
+    if(diff <= 0){
+      cdDigits.textContent = '00 วัน 00:00:00';
+      ribbonTxt.textContent = '🎉 HAPPY NEW YEAR 2026';
+      // เพิ่มเอฟเฟกต์วิบวับนิดหน่อย
+      ribbonTxt.style.boxShadow = '0 0 20px #ffd166aa, 0 0 40px #36c06baa';
+      return;
+    }
+    const d = Math.floor(diff / (1000*60*60*24)); diff %= 1000*60*60*24;
+    const h = Math.floor(diff / (1000*60*60));    diff %= 1000*60*60;
+    const m = Math.floor(diff / (1000*60));       diff %= 1000*60;
+    const s = Math.floor(diff / 1000);
+    cdDigits.textContent = `${fmt2(d)} วัน ${fmt2(h)}:${fmt2(m)}:${fmt2(s)}`;
+    requestAnimationFrame(()=>{}); // noop for smoothness
+  };
+  tick();
+  setInterval(tick, 1000);
+}
+
 /* ===== INIT ===== */
 renderGameTabs(); setGame(currentGame); updateSummary(); initHistoryFilters(); tryAutoLogin();
+runCountdown();
 </script>
 </body>
 </html>
-
