@@ -1,68 +1,76 @@
 <!DOCTYPE html>
-<html lang="th">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>WAY & KIN GARAGE • อู่ซ่อม & แต่งบิ๊กไบค์</title>
-<meta name="description" content="WAY & KIN GARAGE — อู่ซ่อมบำรุง แต่งรถ ตรวจเช็คระยะ บิ๊กไบค์-รถยนต์ จองคิวออนไลน์ได้เลย" />
-<meta name="theme-color" content="#0b0f0d" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;800&display=swap" rel="stylesheet">
-<style>
-:root{
---bg:#0b0f0d; /* พื้นหลังหลัก */
---card:#121714; /* พื้นหลังการ์ด */
---muted:#a3b3aa; /* สีตัวอักษรอ่อน */
---text:#e6f2ea; /* สีตัวอักษรหลัก */
---brand:#00e09f; /* สีแบรนด์ */
---brand2:#2ad1ff; /* สีรอง */
---danger:#ff5c5c;
---ok:#00d18f;
---shadow:0 10px 30px rgba(0,0,0,.35);
---radius:18px;
+} else {
+const text = decodeURIComponent(encoded.replaceAll('%0A','\n'));
+navigator.clipboard.writeText(text).then(()=>{
+msg.textContent = 'คัดลอกข้อความแล้ว — วางส่งให้ร้านได้เลย';
+setTimeout(()=> msg.textContent='', 3000);
+});
 }
-*{box-sizing:border-box}
-html,body{margin:0; padding:0; background:var(--bg); color:var(--text); font-family:"Kanit",system-ui,-apple-system,Segoe UI,Roboto,Arial;}
-a{color:var(--brand); text-decoration:none}
-img{max-width:100%; display:block}
-.wrap{max-width:1080px; margin:0 auto; padding:24px}
+});
 
 
-/* NAV */
-.nav{position:sticky; top:0; z-index:10; backdrop-filter:saturate(1.2) blur(10px); background:linear-gradient(180deg, rgba(11,15,13,.85), rgba(11,15,13,.65)); border-bottom:1px solid rgba(255,255,255,.06)}
-.nav .wrap{display:flex; align-items:center; gap:16px; padding:12px 24px}
-.logo{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.5px}
-.logo .mark{width:40px; height:40px; border-radius:12px; background:linear-gradient(135deg, var(--brand), var(--brand2)); display:grid; place-items:center; box-shadow:var(--shadow)}
-.logo .mark svg{width:22px; height:22px; fill:#00140d}
-.navlinks{margin-left:auto; display:flex; gap:16px; flex-wrap:wrap}
-.navlinks a{padding:10px 14px; border-radius:999px; background:#0f1512; border:1px solid rgba(255,255,255,.06)}
+// LOCAL STORAGE — รายการของฉัน (บันทึกในเครื่อง)
+const saveBtn = $('#saveLocal');
+const listEl = $('#myList');
 
 
-/* HERO */
-.hero{display:grid; grid-template-columns:1.2fr .8fr; gap:24px; align-items:center; padding-top:18px}
-.badge{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.08); background:#0f1512; color:var(--muted); font-size:14px}
-.title{font-size:clamp(28px, 4vw, 46px); line-height:1.08; margin:10px 0}
-.title strong{color:var(--brand)}
-.subtitle{color:var(--muted); font-size:16px}
-.cta{margin-top:16px; display:flex; gap:12px; flex-wrap:wrap}
-.btn{padding:12px 16px; border-radius:12px; border:1px solid rgba(255,255,255,.08); background:#131a16; color:var(--text); box-shadow:var(--shadow); transition:.2s}
-.btn:hover{transform:translateY(-2px)}
-.btn.brand{background:linear-gradient(135deg,var(--brand),var(--brand2)); color:#002417; font-weight:700}
+function renderList(){
+listEl.innerHTML = '';
+const arr = JSON.parse(localStorage.getItem('wk-myorders')||'[]');
+if(arr.length===0){
+listEl.innerHTML = '<div class="card">ยังไม่มีรายการที่บันทึก</div>';
+return;
+}
+arr.forEach((it, i)=>{
+const card = document.createElement('div');
+card.className = 'card';
+card.innerHTML = `<h3 style="margin:0 0 6px">${it.service} • ${it.vehicle}</h3>`+
+`<p style="margin:0 0 8px; color:var(--muted)">จองโดย ${it.name} | ${it.phone} | ${it.datetime || '-'}</p>`+
+`<div style="display:flex; gap:8px; flex-wrap:wrap">`+
+`<button data-i="${i}" class="btn" data-act="send">ส่งอีกครั้ง</button>`+
+`<button data-i="${i}" class="btn" data-act="copy">คัดลอก</button>`+
+`<button data-i="${i}" class="btn" data-act="del" style="background:#181d1a; border:1px solid rgba(255,255,255,.12)">ลบ</button>`+
+`</div>`;
+listEl.appendChild(card);
+});
+}
 
 
-.hero-card{background:radial-gradient(1200px 500px at 80% -20%, rgba(0,224,159,.25), transparent), #0f1512; border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px}
-.statgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:12px}
-.stat{background:#0c120f; border:1px solid rgba(255,255,255,.06); border-radius:14px; padding:14px; text-align:center}
-.stat b{display:block; font-size:20px}
-.stat span{color:var(--muted); font-size:13px}
+saveBtn.addEventListener('click', ()=>{
+const fd = new FormData(form);
+const data = Object.fromEntries(fd.entries());
+const arr = JSON.parse(localStorage.getItem('wk-myorders')||'[]');
+arr.unshift({...data, ts: Date.now()});
+localStorage.setItem('wk-myorders', JSON.stringify(arr.slice(0,20)));
+msg.textContent = 'บันทึกไว้ในเครื่องนี้แล้ว';
+setTimeout(()=> msg.textContent='', 3000);
+renderList();
+});
 
 
-/* SECTION */
-.section{margin-top:34px}
-.section h2{font-size:22px; margin:0 0 10px}
-.grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
-.card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow)}
-.card h3{margin:0 0 6px; font-size:18px}
-.card p{margin:0; color:var(--muted); font-size:14px}
+listEl.addEventListener('click', (e)=>{
+const btn = e.target.closest('button');
+if(!btn) return;
+const i = +btn.dataset.i;
+const arr = JSON.parse(localStorage.getItem('wk-myorders')||'[]');
+const it = arr[i];
+if(btn.dataset.act==='del'){
+arr.splice(i,1);
+localStorage.setItem('wk-myorders', JSON.stringify(arr));
+renderList();
+}
+if(btn.dataset.act==='copy'){
+const t = decodeURIComponent(buildMessage(it).replaceAll('%0A','\n'));
+navigator.clipboard.writeText(t);
+}
+if(btn.dataset.act==='send'){
+const url = `https://line.me/R/ti/p/@waykingarage?text=${buildMessage(it)}`;
+window.open(url, '_blank');
+}
+});
 
+
+renderList();
+</script>
+</body>
+</html>
