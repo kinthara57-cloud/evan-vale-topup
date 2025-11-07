@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="th">
 <head>
   <meta charset="utf-8" />
@@ -54,11 +53,11 @@ body{
 /* ลายภาพพื้นหลัง */
 body::before{
   content:""; position:fixed; inset:0; z-index:-3; pointer-events:none;
-  background:url("christmas-bg.png") center/cover no-repeat;
+  background:url("christmas-bg.webp") center/cover no-repeat;
   opacity:.10; mix-blend-mode:screen;
 }
 
-/* ===== หิมะตกแบบ 3 เลเยอร์จริง ๆ ===== */
+/* ===== หิมะตกแบบ 3 เลเยอร์ ===== */
 .snow{position:fixed; inset:-120vh -20vw 0 -20vw; pointer-events:none; z-index:-2;
   background-repeat:repeat; will-change:background-position; mix-blend-mode:screen;}
 .s1{
@@ -88,14 +87,12 @@ body::before{
   animation:fall3 28s linear infinite;
   filter:blur(.6px); opacity:.7;
 }
-/* เคลื่อนลง + เอียงลม */
 @keyframes fall1{ from{ background-position: 0 -120vh, -10vw -120vh, 8vw -120vh }
                    to  { background-position: 0 0,       -10vw 0,       8vw 0 } }
 @keyframes fall2{ from{ background-position: -8vw -120vh, 6vw -120vh, 0 -120vh }
                    to  { background-position: -8vw 0,      6vw 0,      0 0 } }
 @keyframes fall3{ from{ background-position: 10vw -120vh, -6vw -120vh, 4vw -120vh }
                    to  { background-position: 10vw 0,      -6vw 0,      4vw 0 } }
-/* ลดแอนิเมชันหากผู้ใช้ตั้งค่า reduce motion */
 @media (prefers-reduced-motion:reduce){
   .s1,.s2,.s3{animation:none}
 }
@@ -135,7 +132,7 @@ a{color:var(--accent);text-decoration:none} img{max-width:100%;display:block}
 }
 .badge{padding:6px 10px;border-radius:999px;background:#1b2a1e;border:1px solid var(--border);display:inline-flex;gap:8px;align-items:center}
 
-/* ===== เฮดดิ้งเรืองแสงแบบเนียน ===== */
+/* ===== เฮดดิ้งเรืองแสง ===== */
 .drip{letter-spacing:.2px}
 .glow{
   text-shadow:
@@ -224,46 +221,52 @@ th{color:#ffe6a8}
 }
 .cd-label{font-weight:800; letter-spacing:.3px}
 .cd-digits{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; font-weight:900}
-  </style>
 
+/* ===== PERFORMANCE MODE ===== */
+html.perf *, html.perf *::before, html.perf *::after { animation:none !important; transition:none !important; }
+html.perf .snow { display:none !important; }
+html.perf .nav, html.perf .glass { backdrop-filter:none !important; }
+html.perf .logo, html.perf .btn.primary, html.perf .card, html.perf .glass,
+html.perf .tab.active, html.perf .neon { box-shadow:none !important; }
+html.perf .glow { text-shadow:none !important; }
+html.perf body::before { display:none !important; }
+html.perf body { background:#0f1a12 !important; }
+@media (max-width:480px){ .snow { display:none !important; } }
+@media (prefers-reduced-motion: reduce){ .snow, .glow { animation:none !important; } }
+  </style>
 </head>
 <body>
 
 <!-- หิมะ 3 เลเยอร์ -->
-
 <div class="snow s1"></div>
 <div class="snow s2"></div>
 <div class="snow s3"></div>
 
 <!-- AUTH -->
-
 <div class="auth" id="auth">
   <div class="panel">
     <h2 id="authTitle">🔒 สร้างบัญชีครั้งแรก</h2>
     <p id="authDesc" class="muted2">ตั้งผู้ใช้ + PIN (เก็บเฉพาะในเครื่องนี้)</p>
 
-```
-<div id="setupForm">
-  <div class="pair"><label>ผู้ใช้</label><input id="setupUser" placeholder="เช่น evan" /></div>
-  <div class="pair"><label>PIN</label><input id="setupPin" type="password" inputmode="numeric" maxlength="6" placeholder="4–6 ตัวเลข" /></div>
-  <div class="pair"><label>ยืนยัน PIN</label><input id="setupPin2" type="password" inputmode="numeric" maxlength="6" placeholder="พิมพ์ซ้ำ" /></div>
-  <div class="pair"><label>ชื่อในบิล</label><input id="setupName" placeholder="เช่น Ryu" /></div>
-  <div class="pair"><label>ช่องทางติดต่อ</label><input id="setupContact" placeholder="Line/FB/Tel" /></div>
-  <div class="tools"><button class="btn primary" id="btnSetup" type="button">สร้างบัญชี</button></div>
-  <div class="note">ข้อมูลเก็บใน LocalStorage ของเบราว์เซอร์นี้</div>
-</div>
+    <div id="setupForm">
+      <div class="pair"><label>ผู้ใช้</label><input id="setupUser" placeholder="เช่น evan" /></div>
+      <div class="pair"><label>PIN</label><input id="setupPin" type="password" inputmode="numeric" maxlength="6" placeholder="4–6 ตัวเลข" /></div>
+      <div class="pair"><label>ยืนยัน PIN</label><input id="setupPin2" type="password" inputmode="numeric" maxlength="6" placeholder="พิมพ์ซ้ำ" /></div>
+      <div class="pair"><label>ชื่อในบิล</label><input id="setupName" placeholder="เช่น Ryu" /></div>
+      <div class="pair"><label>ช่องทางติดต่อ</label><input id="setupContact" placeholder="Line/FB/Tel" /></div>
+      <div class="tools"><button class="btn primary" id="btnSetup" type="button">สร้างบัญชี</button></div>
+      <div class="note">ข้อมูลเก็บใน LocalStorage ของเบราว์เซอร์นี้</div>
+    </div>
 
-<div id="loginForm" style="display:none">
-  <div class="pair"><label>ผู้ใช้</label><input id="loginUser" placeholder="ผู้ใช้" /></div>
-  <div class="pair"><label>PIN</label><input id="loginPin" type="password" inputmode="numeric" maxlength="6" placeholder="PIN" /></div>
-  <div class="tools">
-    <button class="btn primary" id="btnLogin" type="button">เข้าระบบ</button>
-    <button class="btn" id="btnForgot" type="button">ลืม PIN</button>
-  </div>
-  <div class="note">ลืม PIN → ใช้ “รีเซ็ตข้อมูลทั้งหมด” ในหน้า “ประวัติ”</div>
-</div>
-```
-
+    <div id="loginForm" style="display:none">
+      <div class="pair"><label>ผู้ใช้</label><input id="loginUser" placeholder="ผู้ใช้" /></div>
+      <div class="pair"><label>PIN</label><input id="loginPin" type="password" inputmode="numeric" maxlength="6" placeholder="PIN" /></div>
+      <div class="tools">
+        <button class="btn primary" id="btnLogin" type="button">เข้าระบบ</button>
+        <button class="btn" id="btnForgot" type="button">ลืม PIN</button>
+      </div>
+      <div class="note">ลืม PIN → ใช้ “รีเซ็ตข้อมูลทั้งหมด” ในหน้า “ประวัติ”</div>
+    </div>
   </div>
 </div>
 
@@ -281,48 +284,44 @@ th{color:#ffe6a8}
       <a class="btn" href="#packages">แพ็กเกจ</a>
       <a class="btn" href="#order">สั่งเติม</a>
       <a class="btn" href="#history">ประวัติ</a>
+      <button class="btn" id="btnPerf" type="button" aria-pressed="false">โหมดลื่น: ปิด</button>
       <a class="btn primary" id="btnAdminNav" href="https://www.facebook.com/share/1JRkDmJDvX/" target="_blank" rel="noopener">ติดต่อแอดมิน</a>
       <button class="btn" id="btnLogout" style="display:none" type="button">ออกจากระบบ</button>
     </div>
   </nav>
 
   <!-- HERO -->
-
   <section class="hero">
     <div class="glass" style="position:relative">
       <span class="ribbon" id="ribbonTxt">CHRISTMAS 🎄</span>
       <span class="badge">✅ เปิดรับออเดอร์ 08:30–21:30</span>
       <h1 class="drip glow">EVAN VALE — ราคาดี โปร่งใส <span style="color:var(--accent)">มีแอดมินดูแล</span></h1>
 
-```
-  <div class="countdown-strip" id="cdStrip" aria-live="polite">
-    <div class="cd-label">⏳ นับถอยหลังสู่ปีใหม่</div>
-    <div class="cd-digits" id="countdownDigits">-- วัน --:--:--</div>
-  </div>
+      <div class="countdown-strip" id="cdStrip" aria-live="polite">
+        <div class="cd-label">⏳ นับถอยหลังสู่ปีใหม่</div>
+        <div class="cd-digits" id="countdownDigits">-- วัน --:--:--</div>
+      </div>
 
-  <div class="statgrid">
-    <div class="stat"><div style="font-size:20px;font-weight:900">3–10 นาที*</div><div class="muted2">โดยเฉลี่ย</div></div>
-    <div class="stat"><div style="font-size:20px;font-weight:900">1000+</div><div class="muted2">รายการสำเร็จ</div></div>
-    <div class="stat"><div style="font-size:20px;font-weight:900">0%</div><div class="muted2">ยึด UID</div></div>
-  </div>
-  <p class="muted2" style="margin-top:8px">*ช่วงพีค/เกมปิดปรับปรุงอาจช้ากว่าปกติ</p>
-</div>
+      <div class="statgrid">
+        <div class="stat"><div style="font-size:20px;font-weight:900">3–10 นาที*</div><div class="muted2">โดยเฉลี่ย</div></div>
+        <div class="stat"><div style="font-size:20px;font-weight:900">1000+</div><div class="muted2">รายการสำเร็จ</div></div>
+        <div class="stat"><div style="font-size:20px;font-weight:900">0%</div><div class="muted2">ยึด UID</div></div>
+      </div>
+      <p class="muted2" style="margin-top:8px">*ช่วงพีค/เกมปิดปรับปรุงอาจช้ากว่าปกติ</p>
+    </div>
 
-<div class="glass" style="display:grid;place-items:center;text-align:center">
-  <div style="font-weight:800">แอดมินตอบไว</div>
-  <div class="muted2">เลือกเมนูด้านล่างได้เลย</div>
-  <div class="hero-cta">
-    <a class="btn" href="#packages">แพ็กเกจ</a>
-    <a class="btn primary" href="#order">สั่งเติม</a>
-    <a class="btn" href="#history">ประวัติ</a>
-  </div>
-</div>
-```
-
+    <div class="glass" style="display:grid;place-items:center;text-align:center">
+      <div style="font-weight:800">แอดมินตอบไว</div>
+      <div class="muted2">เลือกเมนูด้านล่างได้เลย</div>
+      <div class="hero-cta">
+        <a class="btn" href="#packages">แพ็กเกจ</a>
+        <a class="btn primary" href="#order">สั่งเติม</a>
+        <a class="btn" href="#history">ประวัติ</a>
+      </div>
+    </div>
   </section>
 
   <!-- PACKAGES -->
-
   <section id="packages" class="section">
     <div class="card">
       <h2 style="margin:0">แพ็กเกจยอดฮิต</h2>
@@ -333,98 +332,93 @@ th{color:#ffe6a8}
   </section>
 
   <!-- ORDER -->
-
   <section id="order" class="section grid two" style="align-items:start">
     <div class="card">
       <h2 style="margin-top:0">สั่งเติมเกม</h2>
 
-```
-  <div class="row">
-    <div>
-      <label>เกม</label>
-      <select id="game"></select>
-      <p id="gameNote" style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0"></p>
-      <p id="thaiOnlyNote" style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0;background:#142318;padding:6px 10px;border-radius:6px;border-left:3px solid var(--brand);">
-        ⚠️ เกมนี้รองรับเฉพาะ <b>เซิร์ฟเวอร์ไทย</b> เท่านั้น (Free Fire / RoV / PUBG Mobile / Roblox / Call of Duty)
-      </p>
-      <div class="neon mini-sum" id="miniSum" style="display:none">
-        <h3>สรุปคร่าวๆ</h3>
-        <div class="row-line"><span class="label">เกม</span><span class="value" id="mini-game">-</span></div>
-        <div class="row-line"><span class="label">เซิร์ฟเวอร์</span><span class="value" id="mini-server">-</span></div>
-        <div class="row-line"><span class="label">แพ็กเกจ</span><span class="value" id="mini-pkg">-</span></div>
-        <div class="row-line"><span class="label">ยอด</span><span class="value" id="mini-total">฿0</span></div>
+      <div class="row">
+        <div>
+          <label>เกม</label>
+          <select id="game"></select>
+          <p id="gameNote" style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0"></p>
+          <p id="thaiOnlyNote" style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0;background:#142318;padding:6px 10px;border-radius:6px;border-left:3px solid var(--brand);">
+            ⚠️ เกมนี้รองรับเฉพาะ <b>เซิร์ฟเวอร์ไทย</b> เท่านั้น (Free Fire / RoV / PUBG Mobile / Roblox / Call of Duty)
+          </p>
+          <div class="neon mini-sum" id="miniSum" style="display:none">
+            <h3>สรุปคร่าวๆ</h3>
+            <div class="row-line"><span class="label">เกม</span><span class="value" id="mini-game">-</span></div>
+            <div class="row-line"><span class="label">เซิร์ฟเวอร์</span><span class="value" id="mini-server">-</span></div>
+            <div class="row-line"><span class="label">แพ็กเกจ</span><span class="value" id="mini-pkg">-</span></div>
+            <div class="row-line"><span class="label">ยอด</span><span class="value" id="mini-total">฿0</span></div>
+          </div>
+        </div>
+        <div>
+          <label>โซน/เซิร์ฟเวอร์</label>
+          <select id="server"></select>
+        </div>
       </div>
-    </div>
-    <div>
-      <label>โซน/เซิร์ฟเวอร์</label>
-      <select id="server"></select>
-    </div>
-  </div>
 
-  <div class="row">
-    <div>
-      <label>UID / Player ID</label>
-      <input id="uid" placeholder="เช่น 812345678 หรือชื่อในเกม">
-    </div>
-    <div>
-      <label>แพ็กเกจ</label>
-      <select id="package"></select>
-    </div>
-  </div>
+      <div class="row">
+        <div>
+          <label>UID / Player ID</label>
+          <input id="uid" placeholder="เช่น 812345678 หรือชื่อในเกม">
+        </div>
+        <div>
+          <label>แพ็กเกจ</label>
+          <select id="package"></select>
+        </div>
+      </div>
 
-  <div class="row">
-    <div>
-      <label>วิธีชำระ</label>
-      <select id="method">
-        <option>PromptPay</option>
-        <option>TrueMoney Wallet</option>
-        <option>โอนธนาคาร</option>
-      </select>
-    </div>
-    <div>
-      <label>โค้ดส่วนลด (ถ้ามี)</label>
-      <input id="promo" placeholder="เช่น EVAN10">
-    </div>
-  </div>
+      <div class="row">
+        <div>
+          <label>วิธีชำระ</label>
+          <select id="method">
+            <option>PromptPay</option>
+            <option>TrueMoney Wallet</option>
+            <option>โอนธนาคาร</option>
+          </select>
+        </div>
+        <div>
+          <label>โค้ดส่วนลด (ถ้ามี)</label>
+          <input id="promo" placeholder="เช่น EVAN10">
+        </div>
+      </div>
 
-  <div class="row">
-    <div>
-      <label>ชื่อลูกค้า</label>
-      <input id="name" placeholder="ชื่อเล่นก็ได้">
+      <div class="row">
+        <div>
+          <label>ชื่อลูกค้า</label>
+          <input id="name" placeholder="ชื่อเล่นก็ได้">
+        </div>
+        <div>
+          <label>ช่องทางติดต่อ</label>
+          <input id="contact" placeholder="Line/FB/Tel">
+        </div>
+      </div>
+
+      <div class="tools" style="margin-top:12px">
+        <button class="btn" id="btnReset" type="button">ล้างฟอร์ม</button>
+        <button class="btn primary" id="btnSubmit" type="button" disabled>ยืนยันและสร้างบิล</button>
+        <button class="btn" id="btnSaveProfile" type="button" disabled>บันทึกข้อมูลลูกค้า</button>
+      </div>
+      <p class="muted2" style="margin-top:8px">กดยืนยันแล้วจะเลื่อนไปส่วน “ชำระเงิน” อัตโนมัติ</p>
     </div>
-    <div>
-      <label>ช่องทางติดต่อ</label>
-      <input id="contact" placeholder="Line/FB/Tel">
-    </div>
-  </div>
 
-  <div class="tools" style="margin-top:12px">
-    <button class="btn" id="btnReset" type="button">ล้างฟอร์ม</button>
-    <button class="btn primary" id="btnSubmit" type="button" disabled>ยืนยันและสร้างบิล</button>
-    <button class="btn" id="btnSaveProfile" type="button" disabled>บันทึกข้อมูลลูกค้า</button>
-  </div>
-  <p class="muted2" style="margin-top:8px">กดยืนยันแล้วจะเลื่อนไปส่วน “ชำระเงิน” อัตโนมัติ</p>
-</div>
-
-<aside class="card summary">
-  <h3 style="margin-top:0">สรุปบิล</h3>
-  <div class="list">
-    <div class="item"><span class="muted2">เลขบิล</span><span id="sum-bill">-</span></div>
-    <div class="item"><span class="muted2">เกม</span><span id="sum-game">-</span></div>
-    <div class="item"><span class="muted2">เซิร์ฟเวอร์</span><span id="sum-server">-</span></div>
-    <div class="item"><span class="muted2">UID</span><span id="sum-uid">-</span></div>
-    <div class="item"><span class="muted2">แพ็กเกจ</span><span id="sum-pkg">-</span></div>
-    <div class="item"><span class="muted2">วิธีชำระ</span><span id="sum-method">-</span></div>
-  </div>
-  <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:10px 0"></div>
-  <div class="item"><span class="muted2">ยอดสุทธิ</span><span class="total" id="sum-total">฿0</span></div>
-</aside>
-```
-
+    <aside class="card summary">
+      <h3 style="margin-top:0">สรุปบิล</h3>
+      <div class="list">
+        <div class="item"><span class="muted2">เลขบิล</span><span id="sum-bill">-</span></div>
+        <div class="item"><span class="muted2">เกม</span><span id="sum-game">-</span></div>
+        <div class="item"><span class="muted2">เซิร์ฟเวอร์</span><span id="sum-server">-</span></div>
+        <div class="item"><span class="muted2">UID</span><span id="sum-uid">-</span></div>
+        <div class="item"><span class="muted2">แพ็กเกจ</span><span id="sum-pkg">-</span></div>
+        <div class="item"><span class="muted2">วิธีชำระ</span><span id="sum-method">-</span></div>
+      </div>
+      <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:10px 0"></div>
+      <div class="item"><span class="muted2">ยอดสุทธิ</span><span class="total" id="sum-total">฿0</span></div>
+    </aside>
   </section>
 
   <!-- PAYMENT -->
-
   <section id="pay" class="section" style="display:none">
     <div class="card">
       <h2 style="margin-top:0">ชำระเงิน</h2>
@@ -432,49 +426,44 @@ th{color:#ffe6a8}
       <div class="grid pkg">
         <div class="glass" style="text-align:center">
           <div style="font-weight:800;margin-bottom:8px">TrueMoney Wallet</div>
-          <img src="truemoney.png" alt="TrueMoney QR" style="border-radius:12px">
+          <img src="truemoney.webp" alt="TrueMoney QR" style="border-radius:12px" loading="lazy" decoding="async">
           <div class="muted2" style="margin-top:6px">สแกนด้วยแอป TrueMoney</div>
         </div>
         <div class="glass" style="text-align:center">
           <div style="font-weight:800;margin-bottom:8px">พร้อมเพย์ / ธนาคาร</div>
-          <img src="promptpay.png" alt="PromptPay QR" style="border-radius:12px">
+          <img src="promptpay.webp" alt="PromptPay QR" style="border-radius:12px" loading="lazy" decoding="async">
           <div class="muted2" style="margin-top:6px">สแกนด้วยแอปธนาคาร</div>
         </div>
       </div>
 
-```
-  <div class="glass" style="margin-top:14px">
-    <h3 style="margin-top:0">แนบหลักฐาน</h3>
-    <div class="row">
-      <div>
-        <label>อัปโหลดสลิป</label>
-        <input id="slip" type="file" accept="image/*">
-        <div class="muted2" style="margin-top:6px">เว็บสแตติกจะไม่เก็บไฟล์ ให้แนบซ้ำในแชทหากต้องใช้</div>
-      </div>
-      <div>
-        <label>เลขอ้างอิง (ถ้ามี)</label>
-        <input id="ref" placeholder="เช่น 2025-XX-XX">
+      <div class="glass" style="margin-top:14px">
+        <h3 style="margin-top:0">แนบหลักฐาน</h3>
+        <div class="row">
+          <div>
+            <label>อัปโหลดสลิป</label>
+            <input id="slip" type="file" accept="image/*">
+            <div class="muted2" style="margin-top:6px">เว็บสแตติกจะไม่เก็บไฟล์ ให้แนบซ้ำในแชทหากต้องใช้</div>
+          </div>
+          <div>
+            <label>เลขอ้างอิง (ถ้ามี)</label>
+            <input id="ref" placeholder="เช่น 2025-XX-XX">
+          </div>
+        </div>
+
+        <div class="tools" style="margin-top:12px">
+          <button class="btn" id="btnBackToForm" type="button">กลับไปแก้ฟอร์ม</button>
+          <button class="btn primary" id="btnPrepareMsg" type="button" disabled>คัดลอกสรุปบิล</button>
+          <button class="btn" id="btnMarkPaid" type="button" disabled>แจ้งชำระแล้ว</button>
+          <a class="btn" id="btnOpenAdmin" href="#" target="_blank" rel="noopener" style="pointer-events:none;opacity:.6">เปิดแชทแอดมิน</a>
+        </div>
+
+        <div id="copyHint" class="muted2" style="display:none;margin-top:8px">✔️ คัดลอกแล้ว ถ้าแชทไม่พิมพ์ให้เอง ให้ “วาง (Paste)” ได้เลย</div>
+        <textarea id="msgPreview" readonly style="display:none;width:100%;margin-top:8px;background:#0f1a13;color:#f8fff6;border:1px solid #203326;border-radius:10px;padding:10px" rows="8"></textarea>
       </div>
     </div>
-
-    <div class="tools" style="margin-top:12px">
-      <button class="btn" id="btnBackToForm" type="button">กลับไปแก้ฟอร์ม</button>
-      <button class="btn primary" id="btnPrepareMsg" type="button" disabled>คัดลอกสรุปบิล</button>
-      <!-- ปุ่มแจ้งชำระแล้ว -->
-      <button class="btn" id="btnMarkPaid" type="button" disabled>แจ้งชำระแล้ว</button>
-      <a class="btn" id="btnOpenAdmin" href="#" target="_blank" rel="noopener" style="pointer-events:none;opacity:.6">เปิดแชทแอดมิน</a>
-    </div>
-
-    <div id="copyHint" class="muted2" style="display:none;margin-top:8px">✔️ คัดลอกแล้ว ถ้าแชทไม่พิมพ์ให้เอง ให้ “วาง (Paste)” ได้เลย</div>
-    <textarea id="msgPreview" readonly style="display:none;width:100%;margin-top:8px;background:#0f1a13;color:#f8fff6;border:1px solid #203326;border-radius:10px;padding:10px" rows="8"></textarea>
-  </div>
-</div>
-```
-
   </section>
 
   <!-- HISTORY -->
-
   <section id="history" class="section">
     <div class="card">
       <h2 style="margin:0">ประวัติการทำรายการ</h2>
@@ -494,21 +483,18 @@ th{color:#ffe6a8}
         <button class="btn" id="btnClearAll" type="button">รีเซ็ตข้อมูลทั้งหมด</button>
       </div>
 
-```
-  <div class="glass table-scroll">
-    <table id="histTable">
-      <thead>
-        <tr>
-          <th>เวลา</th><th>เลขบิล</th><th>เกม</th><th>เซิร์ฟ</th><th>แพ็กเกจ</th><th>ยอด</th><th>สถานะ</th><th>UID</th><th>เครื่องมือ</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-    <div id="histEmpty" class="muted2" style="padding:8px 0;display:none">ยังไม่มีรายการ</div>
-  </div>
-</div>
-```
-
+      <div class="glass table-scroll">
+        <table id="histTable">
+          <thead>
+            <tr>
+              <th>เวลา</th><th>เลขบิล</th><th>เกม</th><th>เซิร์ฟ</th><th>แพ็กเกจ</th><th>ยอด</th><th>สถานะ</th><th>UID</th><th>เครื่องมือ</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div id="histEmpty" class="muted2" style="padding:8px 0;display:none">ยังไม่มีรายการ</div>
+      </div>
+    </div>
   </section>
 
   <div class="footer">© 2025 Evan Vale • Christmas Event</div>
@@ -520,7 +506,7 @@ const KEY_USER="ev_auth_user";
 const KEY_SESSION="ev_auth_session";
 function ordersKey(){ const u=userBox(); return u? `ev_orders_${u.user}` : "ev_orders__guest"; }
 
-// รองรับกรณี crypto.subtle ใช้ไม่ได้ (ไฟล์เปิดแบบ file:// หรือบราวเซอร์เก่า)
+// รองรับกรณี crypto.subtle ใช้ไม่ได้
 async function sha256(str){
   const enc=new TextEncoder().encode(str);
   const buf=await crypto.subtle.digest('SHA-256',enc);
@@ -979,7 +965,7 @@ document.getElementById('btnLogout').addEventListener('click', ()=>{
   setSession(false); showAuth(true); toggleProtected(true);
 });
 
-/* ===== MARK AS PAID (ลูกค้ากดแจ้งโอนเอง) ===== */
+/* ===== MARK AS PAID ===== */
 const slipInput = document.getElementById('slip');
 const refInput  = document.getElementById('ref');
 const btnMarkPaid = document.getElementById('btnMarkPaid');
@@ -1001,35 +987,66 @@ btnMarkPaid?.addEventListener('click', ()=>{
   alert('แจ้งชำระแล้ว ✅ แอดมินจะตรวจสอบให้เร็วที่สุด');
 });
 
-/* ===== COUNTDOWN (New Year 2026, Asia/Bangkok) ===== */
+/* ===== PERFORMANCE TOGGLE ===== */
+const PERF_KEY = "ev_perf_on";
+const btnPerf = document.getElementById('btnPerf');
+function setPerf(on){
+  document.documentElement.classList.toggle('perf', on);
+  localStorage.setItem(PERF_KEY, on ? "1" : "0");
+  if (btnPerf){
+    btnPerf.setAttribute('aria-pressed', on ? 'true' : 'false');
+    btnPerf.textContent = `โหมดลื่น: ${on ? 'เปิด' : 'ปิด'}`;
+  }
+  document.querySelectorAll('.snow').forEach(el=> el.style.mixBlendMode = on ? 'normal' : 'screen');
+}
+btnPerf?.addEventListener('click', ()=> setPerf(!document.documentElement.classList.contains('perf')));
+(function initPerf(){
+  const saved = localStorage.getItem(PERF_KEY)==="1";
+  const prefersReduce = matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  setPerf(saved || prefersReduce);
+})();
+
+/* ===== COUNTDOWN (New Year 2026, Asia/Bangkok) — อัปเดตทุก 1 วิ ===== */
 const cdDigits = document.getElementById('countdownDigits');
 const ribbonTxt = document.getElementById('ribbonTxt');
 function fmt2(n){ return n.toString().padStart(2,'0'); }
-(function runCountdown(){
-  // เป้าหมาย: 1 ม.ค. 2026 00:00:00 (+07:00)
-  const target = new Date('2026-01-01T00:00:00+07:00').getTime();
-  function tick(){
-    const now = Date.now();
-    let diff = target - now;
-    if(diff <= 0){
-      cdDigits.textContent = '00 วัน 00:00:00';
-      ribbonTxt.textContent = '🎉 HAPPY NEW YEAR 2026';
-      ribbonTxt.style.boxShadow = '0 0 20px #ffd166aa, 0 0 40px #36c06baa';
-      return;
-    }
-    const d = Math.floor(diff / 86400000); diff %= 86400000;
-    const h = Math.floor(diff / 3600000);  diff %= 3600000;
-    const m = Math.floor(diff / 60000);    diff %= 60000;
-    const s = Math.floor(diff / 1000);
-    cdDigits.textContent = `${fmt2(d)} วัน ${fmt2(h)}:${fmt2(m)}:${fmt2(s)}`;
-    setTimeout(tick, 200);
+const target = new Date('2026-01-01T00:00:00+07:00').getTime();
+let cdTimer = null;
+function renderCountdown(){
+  const now = Date.now();
+  let diff = target - now;
+  if(diff <= 0){
+    cdDigits.textContent = '00 วัน 00:00:00';
+    ribbonTxt.textContent = '🎉 HAPPY NEW YEAR 2026';
+    ribbonTxt.style.boxShadow = '0 0 20px #ffd166aa, 0 0 40px #36c06baa';
+    clearInterval(cdTimer);
+    return;
   }
-  tick();
-})();
+  const d = Math.floor(diff / 86400000); diff %= 86400000;
+  const h = Math.floor(diff / 3600000);  diff %= 3600000;
+  const m = Math.floor(diff / 60000);    diff %= 60000;
+  const s = Math.floor(diff / 1000);
+  cdDigits.textContent = `${fmt2(d)} วัน ${fmt2(h)}:${fmt2(m)}:${fmt2(s)}`;
+}
+function startCountdown(){
+  if (cdTimer) clearInterval(cdTimer);
+  renderCountdown();
+  cdTimer = setInterval(renderCountdown, 1000);
+}
+startCountdown();
+document.addEventListener('visibilitychange', ()=>{
+  if (document.hidden){ if (cdTimer) clearInterval(cdTimer); }
+  else { startCountdown(); }
+});
+
+/* ===== LAZY LOAD รูป ===== */
+document.querySelectorAll('img').forEach(img=>{
+  img.loading = 'lazy';
+  img.decoding = 'async';
+});
 
 /* ===== INIT ===== */
 renderGameTabs(); setGame(currentGame); updateSummary(); initHistoryFilters(); tryAutoLogin();
 </script>
-
 </body>
-</html> 
+</html>
