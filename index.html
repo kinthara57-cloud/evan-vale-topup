@@ -1028,6 +1028,179 @@ function fmt2(n){ return n.toString().padStart(2,'0'); }
 })();
 
 /* ===== INIT ===== */
+  <script>
+/* =======================
+   Admin Mode — JavaScript
+   ======================= */
+const KEY_ADMIN = "ev_admin_ctrl";
+const KEY_ADMIN_SESS = "ev_admin_session";
+
+function setAdminSession(on){
+  on ? sessionStorage.setItem(KEY_ADMIN_SESS,"on")
+     : sessionStorage.removeItem(KEY_ADMIN_SESS);
+}
+function isAdmin(){ return sessionStorage.getItem(KEY_ADMIN_SESS)==="on"; }
+
+const btnAdmin       = document.getElementById('btnAdmin');
+const adminAuth      = document.getElementById('adminAuth');
+const adminPanel     = document.getElementById('adminPanel');
+const adminPinInput  = document.getElementById('adminPin');
+const btnAdminLogin  = document.getElementById('btnAdminLogin');
+const btnAdminCancel = document.getElementById('btnAdminCancel');
+const btnAdminClose  = document.getElementById('btnAdminClose');
+const btnAdminLogout = document.getElementById('btnAdminLogout');
+const btnAdminExport = document.getElementById('btnAdminExport');
+const adminAuthDesc  = document.getElementById('adminAuthDesc');
+const adminSearch    = document.getElementById('adminSearch');
+const adminTableBody = document.querySelector('#adminTable tbody');
+const adminEmpty     = document.getElementById('adminEmpty');
+const adminStat      = document.getElementById('adminStat');
+
+function adminStore(){
+  try{ return JSON.parse(localStorage.getItem(KEY_ADMIN)||"null"); }
+  catch{ return null; }
+}
+function setAdminStore(v){ localStorage.setItem(KEY_ADMIN, JSON.stringify(v)); }
+
+async function sha256Admin(text){
+  try{
+    const enc = new TextEncoder().encode(text);
+    const buf = await crypto.subtle.digest('SHA-256', enc);
+    return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
+  }catch{
+    let h=2166136261>>>0;
+    for(let i=0;i<text.length;i++){ h^=text.charCodeAt(i); h=(h*16777619)>>>0; }
+    return 'fhv1-'+h.toString(16);
+  }
+}
+async function ensureAdminPINFlow(pinPlain){
+  const cur = adminStore();
+  const pinHash = await sha256Admin("admin|" + pinPlain);
+  if(!cur){
+    setAdminStore({ pinHash, created: Date.now() });
+    return true;
+  }
+  return cur.pinHash === pinHash;
+}
+
+/** โชว์ปุ่ม Admin แบบชั่วคราว 10 วิ */
+function showAdminButtonTemp(){
+  if(!btnAdmin) return;
+  btnAdmin.classList.remove('admin-hide');
+  clearTimeout(showAdminButtonTemp._t);
+  showAdminButtonTemp._t = setTimeout(()=> btnAdmin.classList.add('admin-hide'), 10000);
+}
+function openAdminAuth(){
+  const cur = adminStore();
+  adminAuthDesc.textContent = cur ? "ใส่ PIN แอดมินเพื่อเข้าดูข้อมูลลูกค้า"
+                                  : "ตั้ง PIN แอดมินครั้งแรก (4–8 ตัวเลข)";
+  adminPinInput.value = "";
+  adminAuth.classList.remove('admin-hide');
+  setTimeout(()=> adminPinInput.focus(), 50);
+}
+function closeAdminAuth(){ adminAuth.classList.add('admin-hide'); }
+function openAdminPanel(){ adminPanel.classList.remove('admin-hide'); renderAdminTable(); }
+function closeAdminPanel(){ adminPanel.classList.add('admin-hide'); }
+
+/* ===== Secret Triggers ===== */
+let logoClickCount = 0;
+document.querySelector('.logo')?.addEventListener('click', ()=>{
+  logoClickCount++;
+  if(logoClickCount>=5){ logoClickCount=0; showAdminButtonTemp(); }
+  clearTimeout(openAdminPanel._resetT);
+  openAdminPanel._resetT = setTimeout(()=>{ logoClickCount=0; }, 1500);
+});
+window.addEventListener('keydown', (e)=>{ if(e.altKey && (e.key==='a' || e.key==='A')) showAdminButtonTemp(); });
+
+/* ===== Auth Buttons ===== */
+btnAdmin?.addEventListener('click', openAdminAuth);
+btnAdminCancel?.addEventListener('click', closeAdminAuth);
+btnAdminClose?.addEventListener('click', closeAdminPanel);
+btnAdminLogout?.addEventListener('click', ()=>{
+  setAdminSession(false);
+  closeAdminPanel();
+  alert('ออกจากโหมดแอดมินแล้ว');
+});
+btnAdminLogin?.addEventListener('click', async ()=>{
+  const pin = (adminPinInput.value||"").trim();
+  if(pin.length<4){ alert('PIN อย่างน้อย 4 หลัก'); return; }
+  const ok = await ensureAdminPINFlow(pin);
+  if(!ok){ alert('PIN ไม่ถูกต้อง'); return; }
+  setAdminSession(true);
+  closeAdminAuth();
+  openAdminPanel();
+});
+
+/* ===== รวบรวมทุกบิลจาก localStorage คีย์ ev_orders_* ===== */
+function collectAllOrders(){
+  const out=[];
+  for(let i=0;i<localStorage.length;i++){
+    const k = localStorage.key(i); if(!k) continue;
+    if(k.startsWith('ev_orders_')){
+      let owner = k.replace('ev_orders_','') || 'guest';
+      try{
+        const arr = JSON.parse(localStorage.getItem(k)||"[]");
+        (arr||[]).forEach(r=> out.push({ owner, ...r }));
+      }catch{}
+    }
+  }
+  return out.sort((a,b)=>(b.ts||0)-(a.ts||0));
+}
+function renderAdminTable(){
+  const all = collectAllOrders();
+  const q = (adminSearch.value||"").toLowerCase();
+  const list = all.filter(x=>{
+    const txt = [
+      x.invoiceId,x.game,x.server,x.package,x.total,x.status,
+      x.uid,x.name,x.contact,x.owner,
+      x.ts? new Date(x.ts).toLocaleString() : ""
+    ].join(" ").toLowerCase();
+    return txt.includes(q);
+  });
+  adminTableBody.innerHTML = "";
+  adminEmpty.style.display = list.length ? "none" : "block";
+  adminStat.textContent = `ทั้งหมด ${all.length} รายการ • ตรงเงื่อนไข ${list.length}`;
+  list.forEach(x=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${x.ts? new Date(x.ts).toLocaleString() : "-"}</td>
+      <td>${x.invoiceId||"-"}</td>
+      <td>${x.owner||"-"}</td>
+      <td>${x.game||"-"}</td>
+      <td>${x.server||"-"}</td>
+      <td>${x.package||"-"}</td>
+      <td>${x.total||"฿0"}</td>
+      <td>${x.status||"-"}</td>
+      <td>${x.uid||"-"}</td>
+      <td>${x.name||"-"}</td>
+      <td>${x.contact||"-"}</td>`;
+    adminTableBody.appendChild(tr);
+  });
+}
+adminSearch?.addEventListener('input', renderAdminTable);
+
+/* ===== Export CSV ===== */
+btnAdminExport?.addEventListener('click', ()=>{
+  const list = collectAllOrders();
+  if(!list.length){ alert('ยังไม่มีข้อมูล'); return; }
+  const header = ["เวลา","เลขบิล","ผู้ใช้","เกม","เซิร์ฟ","แพ็กเกจ","ยอด","สถานะ","UID","ลูกค้า","ติดต่อ"].join(",");
+  const rows = list.map(x=>[
+    x.ts? new Date(x.ts).toLocaleString().replaceAll(","," ") : "-",
+    x.invoiceId||"-", x.owner||"-", x.game||"-", x.server||"-", x.package||"-",
+    (x.total||"฿0").replaceAll(",",""),
+    x.status||"-", x.uid||"-", x.name||"-", x.contact||"-"
+  ].map(v=>`"${String(v).replaceAll('"','""')}"`).join(","));
+  const csv = [header, ...rows].join("\n");
+  const blob = new Blob([csv], {type:"text/csv;charset=utf-8"});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a'); a.href = url; a.download = 'evan_admin_orders.csv'; a.click();
+  URL.revokeObjectURL(url);
+});
+
+/* ===== Boot ===== */
+if(isAdmin()){ showAdminButtonTemp(); }
+</script>
+
 renderGameTabs(); setGame(currentGame); updateSummary(); initHistoryFilters(); tryAutoLogin();
 </script>
 
