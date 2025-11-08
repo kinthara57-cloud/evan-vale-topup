@@ -5,14 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a0f0b">
   <!-- Favicon / App Icons -->
-<link rel="icon" href="images/evanvale-logo.png?v=4" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="images/evanvale-logo.png?v=4">
-<link rel="icon" type="image/png" sizes="16x16" href="images/evanvale-logo.png?v=4">
-<link rel="apple-touch-icon" href="images/evanvale-logo.png?v=4">
-  <!-- optional (มีไฟล์ค่อยเปิดใช้)
-  <link rel="icon" type="image/svg+xml" href="images/evanvale-logo.svg?v=3">
-  <link rel="shortcut icon" href="images/favicon.ico?v=3">
-  -->
+  <link rel="icon" href="images/evanvale-logo.png?v=4" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/evanvale-logo.png?v=4">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/evanvale-logo.png?v=4">
+  <link rel="apple-touch-icon" href="images/evanvale-logo.png?v=4">
   <title>EVAN VALE • Christmas Event | เติมเกมราคาดี โปร่งใส มีแอดมินดูแล</title>
   <meta name="description" content="EVAN VALE Christmas Event — เติมเกมราคาดี โปร่งใส ปลอดภัย มีแอดมินดูแล 24 ชั่วโมง รองรับ TrueMoney, PromptPay และธนาคาร" />
 
@@ -59,58 +55,60 @@ body{
     radial-gradient(900px 900px at 50% 120%, #112019 0%, transparent 60%),
     linear-gradient(180deg, var(--bg), var(--bg2));
 }
-/* ลายภาพพื้นหลัง */
+/* ลายภาพพื้นหลัง (เดสก์ท็อป/แท็บเล็ตแสดง, มือถือปิด) */
 body::before{
   content:""; position:fixed; inset:0; z-index:-3; pointer-events:none;
-  background:url("christmas-bg.png") center/cover no-repeat;
-  opacity:.10; mix-blend-mode:screen;
+  background:radial-gradient(800px 400px at 10% 10%, #2a3f2f55, transparent 60%),
+             radial-gradient(700px 400px at 90% 0%, #4b2a2a55, transparent 60%);
+  opacity:.25;
 }
 
-/* ===== หิมะตกแบบ 3 เลเยอร์จริง ๆ ===== */
+/* ===== หิมะสามเลเยอร์ (เดสก์ท็อป), 1 เลเยอร์ (แท็บเล็ต), ปิดบนมือถือ ===== */
 .snow{position:fixed; inset:-120vh -20vw 0 -20vw; pointer-events:none; z-index:-2;
   background-repeat:repeat; will-change:background-position; mix-blend-mode:screen;}
-.s1{
-  background-image:
+.s1{ background-image:
     radial-gradient(2px 2px at 20px 20px,#fff8 90%,transparent),
     radial-gradient(2px 2px at 120px 80px,#fff8 90%,transparent),
     radial-gradient(2px 2px at 80px 140px,#fff8 90%,transparent);
-  background-size:220px 220px, 260px 260px, 300px 300px;
-  animation:fall1 10s linear infinite;
-  opacity:.9;
-}
-.s2{
-  background-image:
+  background-size:220px 220px, 260px 260px, 300px 300px; animation:fall1 10s linear infinite; opacity:.9;}
+.s2{ background-image:
     radial-gradient(3px 3px at 40px 60px,#fffd 90%,transparent),
     radial-gradient(3px 3px at 160px 40px,#fffd 90%,transparent),
     radial-gradient(3px 3px at 100px 180px,#fffd 90%,transparent);
-  background-size:320px 320px, 380px 380px, 420px 420px;
-  animation:fall2 18s linear infinite;
-  filter:blur(.3px); opacity:.85;
-}
-.s3{
-  background-image:
+  background-size:320px 320px, 380px 380px, 420px 420px; animation:fall2 18s linear infinite; filter:blur(.3px); opacity:.85;}
+.s3{ background-image:
     radial-gradient(4px 4px at 60px 30px,#ffff 90%,transparent),
     radial-gradient(4px 4px at 200px 90px,#ffff 90%,transparent),
     radial-gradient(4px 4px at 140px 220px,#ffff 90%,transparent);
-  background-size:480px 480px, 560px 560px, 640px 640px;
-  animation:fall3 28s linear infinite;
-  filter:blur(.6px); opacity:.7;
-}
-/* เคลื่อนลง + เอียงลม */
+  background-size:480px 480px, 560px 560px, 640px 640px; animation:fall3 28s linear infinite; filter:blur(.6px); opacity:.7;}
 @keyframes fall1{ from{ background-position: 0 -120vh, -10vw -120vh, 8vw -120vh }
                    to  { background-position: 0 0,       -10vw 0,       8vw 0 } }
 @keyframes fall2{ from{ background-position: -8vw -120vh, 6vw -120vh, 0 -120vh }
                    to  { background-position: -8vw 0,      6vw 0,      0 0 } }
 @keyframes fall3{ from{ background-position: 10vw -120vh, -6vw -120vh, 4vw -120vh }
                    to  { background-position: 10vw 0,      -6vw 0,      4vw 0 } }
+/* แท็บเล็ต: เหลือเลเยอร์เดียว */
+@media (max-width: 980px){
+  .s2,.s3{display:none}
+}
+/* มือถือ: ปิดหิมะทั้งหมด + ปิดพื้นหลัง before เพื่อประหยัด */
+@media (max-width: 480px){
+  .s1,.s2,.s3{display:none !important;}
+  body::before{display:none}
+}
+
 /* ลดแอนิเมชันหากผู้ใช้ตั้งค่า reduce motion */
 @media (prefers-reduced-motion:reduce){
   .s1,.s2,.s3{animation:none}
+  .glow{animation:none}
 }
 
 /* ===== UI ===== */
 a{color:var(--accent);text-decoration:none} img{max-width:100%;display:block}
 .wrap{max-width:1100px;margin:auto;padding:20px}
+
+/* ใช้ content-visibility ช่วยเลื่อนลื่น */
+.section{content-visibility:auto; contain-intrinsic-size:800px 600px}
 
 .nav{
   display:flex;justify-content:space-between;align-items:center;gap:12px;
@@ -118,6 +116,8 @@ a{color:var(--accent);text-decoration:none} img{max-width:100%;display:block}
   border:1px solid var(--border);border-radius:20px;padding:10px 14px;
   box-shadow:var(--shadow);backdrop-filter: blur(8px);position:sticky;top:12px;z-index:10
 }
+@media (max-width:480px){ .nav{ box-shadow:none; backdrop-filter:none } }
+
 .brand{display:flex;gap:12px;align-items:center}
 .logo{
   width:42px;height:42px;border-radius:12px;
@@ -135,15 +135,17 @@ a{color:var(--accent);text-decoration:none} img{max-width:100%;display:block}
   color:#1b0d0d;border:none;
   box-shadow:0 0 10px #ffd16650,0 0 28px #36c06b40;text-shadow:0 0 6px rgba(255,230,170,.6)
 }
+@media (max-width:480px){ .btn.primary{ box-shadow:none; } }
 
 .hero{margin-top:16px;display:grid;grid-template-columns:2fr 1fr;gap:18px}
 .glass{
   background:linear-gradient(180deg,var(--glass),#0e1712cc);
   border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);backdrop-filter: blur(10px)
 }
+@media (max-width:480px){ .glass{box-shadow:none; backdrop-filter:none} }
 .badge{padding:6px 10px;border-radius:999px;background:#1b2a1e;border:1px solid var(--border);display:inline-flex;gap:8px;align-items:center}
 
-/* ===== เฮดดิ้งเรืองแสงแบบเนียน ===== */
+/* ===== เฮดดิ้งเรืองแสง ===== */
 .drip{letter-spacing:.2px}
 .glow{
   text-shadow:
@@ -154,17 +156,11 @@ a{color:var(--accent);text-decoration:none} img{max-width:100%;display:block}
 }
 @keyframes glowPulse{
   from{
-    text-shadow:
-      0 0 6px rgba(255,209,102,.55),
-      0 0 16px rgba(255,209,102,.45),
-      0 0 28px rgba(54,192,107,.30);
+    text-shadow:0 0 6px rgba(255,209,102,.55),0 0 16px rgba(255,209,102,.45),0 0 28px rgba(54,192,107,.30);
     filter:saturate(1);
   }
   to{
-    text-shadow:
-      0 0 10px rgba(255,209,102,.9),
-      0 0 24px rgba(255,209,102,.75),
-      0 0 48px rgba(54,192,107,.55);
+    text-shadow:0 0 10px rgba(255,209,102,.9),0 0 24px rgba(255,209,102,.75),0 0 48px rgba(54,192,107,.55);
     filter:saturate(1.15);
   }
 }
@@ -187,19 +183,14 @@ input,select,textarea{width:100%;background:#0f1a13;border:1px solid var(--borde
 .total{font-size:22px;font-weight:900}
 .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 0}
 .tab{padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:#132319;cursor:pointer}
-.tab.active{
-  background:linear-gradient(90deg,var(--brand),var(--brand2));color:#1b0d0d;border:none;box-shadow:0 0 10px #ffd16650
-}
+.tab.active{background:linear-gradient(90deg,var(--brand),var(--brand2));color:#1b0d0d;border:none;box-shadow:0 0 10px #ffd16650}
 .neon{box-shadow:0 0 12px rgba(255,209,102,.25),0 0 24px rgba(54,192,107,.18),inset 0 0 0 1px rgba(255,209,102,.18);border:1px solid rgba(255,209,102,.25);border-radius:14px;padding:12px;margin-top:10px}
 .neon h3{margin:0 0 6px;font-size:16px;text-shadow:0 0 12px rgba(255,209,102,.35)}
 .mini-sum .row-line{display:flex;justify-content:space-between;gap:10px;padding:4px 0;border-bottom:1px dashed rgba(255,255,255,.06)}
 .mini-sum .row-line:last-child{border-bottom:0}
-.ribbon{
-  position:absolute;right:14px;top:-10px;rotate:8deg;
-  background:linear-gradient(90deg,#e53935,#36c06b);
-  color:#1b0d0d;padding:6px 12px;border-radius:8px;font-weight:900;
-  box-shadow:0 6px 18px #36c06b60;border:1px solid #5c2a00
-}
+.ribbon{ position:absolute;right:14px;top:-10px;rotate:8deg;
+  background:linear-gradient(90deg,#e53935,#36c06b); color:#1b0d0d;padding:6px 12px;border-radius:8px;font-weight:900;
+  box-shadow:0 6px 18px #36c06b60;border:1px solid #5c2a00 }
 @media (max-width:980px){.hero{grid-template-columns:1fr}.grid.two{grid-template-columns:1fr}.summary{position:static}}
 
 /* ===== AUTH ===== */
@@ -216,18 +207,15 @@ th{color:#ffe6a8}
 .tools{display:flex;gap:8px;flex-wrap:wrap}
 .pill{display:inline-flex;gap:6px;align-items:center;padding:4px 8px;border:1px solid var(--border);border-radius:999px;background:#132319}
 
-/* ===== ปุ่มใต้การ์ดขวา ===== */
+/* ปุ่มใต้การ์ดขวา */
 .hero-cta{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; width:100%; margin-top:12px}
 .hero-cta .btn{width:100%; text-align:center}
 @media (max-width:480px){ .hero-cta{ grid-template-columns:1fr } }
 
 /* ===== COUNTDOWN STRIP ===== */
 .countdown-strip{
-  margin-top:10px;
-  background:linear-gradient(90deg, #213726, #182b20);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:10px 12px;
+  margin-top:10px; background:linear-gradient(90deg, #213726, #182b20);
+  border:1px solid var(--border); border-radius:12px; padding:10px 12px;
   display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;
 }
 .cd-label{font-weight:800; letter-spacing:.3px}
@@ -242,11 +230,9 @@ th{color:#ffe6a8}
 }
 .toast.show{ display:block }
 
-/* ===== โลโก้รูปภาพแทนตัว EV ===== */
+/* โลโก้รูปภาพ */
 .logo-img{
-  width:42px; height:42px;
-  border-radius:12px;
-  object-fit:cover; display:block;
+  width:42px; height:42px; border-radius:12px; object-fit:cover; display:block;
   box-shadow:0 0 18px #ffd16640;
 }
   </style>
@@ -254,7 +240,7 @@ th{color:#ffe6a8}
 
 <body>
 
-<!-- หิมะ 3 เลเยอร์ -->
+<!-- หิมะ -->
 <div class="snow s1"></div>
 <div class="snow s2"></div>
 <div class="snow s3"></div>
@@ -291,7 +277,8 @@ th{color:#ffe6a8}
   <!-- NAV -->
   <nav class="nav">
     <div class="brand">
-      <img src="images/evanvale-logo.png" alt="Evan Vale Logo" class="logo-img">
+      <img src="images/evanvale-logo.png" alt="Evan Vale Logo"
+           class="logo-img" width="42" height="42" decoding="async" fetchpriority="high">
       <div>
         <div style="font-weight:900;letter-spacing:.5px">EVAN VALE</div>
         <div class="site-badge">🎄 Christmas Event • เติมไว ปลอดภัย</div>
@@ -442,12 +429,14 @@ th{color:#ffe6a8}
       <div class="grid pkg">
         <div class="glass" style="text-align:center">
           <div style="font-weight:800;margin-bottom:8px">TrueMoney Wallet</div>
-          <img src="truemoney.png" alt="TrueMoney QR" style="border-radius:12px">
+          <img src="truemoney.png" alt="TrueMoney QR" style="border-radius:12px"
+               loading="lazy" decoding="async" width="360" height="360">
           <div class="muted2" style="margin-top:6px">สแกนด้วยแอป TrueMoney</div>
         </div>
         <div class="glass" style="text-align:center">
           <div style="font-weight:800;margin-bottom:8px">พร้อมเพย์ / ธนาคาร</div>
-          <img src="promptpay.png" alt="PromptPay QR" style="border-radius:12px">
+          <img src="promptpay.png" alt="PromptPay QR" style="border-radius:12px"
+               loading="lazy" decoding="async" width="360" height="360">
           <div class="muted2" style="margin-top:6px">สแกนด้วยแอปธนาคาร</div>
         </div>
       </div>
@@ -469,7 +458,6 @@ th{color:#ffe6a8}
         <div class="tools" style="margin-top:12px">
           <button class="btn" id="btnBackToForm" type="button">กลับไปแก้ฟอร์ม</button>
           <button class="btn primary" id="btnPrepareMsg" type="button" disabled>คัดลอกสรุปบิล</button>
-          <!-- ปุ่มแจ้งชำระแล้ว -->
           <button class="btn" id="btnMarkPaid" type="button" disabled>แจ้งชำระแล้ว</button>
           <a class="btn" id="btnOpenAdmin" href="#" target="_blank" rel="noopener" style="pointer-events:none;opacity:.6">เปิดแชทแอดมิน</a>
         </div>
@@ -710,10 +698,7 @@ function renderPacks(){
 }
 function setGame(game){
   currentGame = game;
-  // active tab by exact key
   [...tabs.children].forEach(el=> el.classList.toggle('active', el.textContent.endsWith(game)));
-
-  // promo detection
   const isPromo = /โปรโมชั่น/.test(currentGame);
 
   if (currentGame === "Roblox"){
@@ -1056,7 +1041,7 @@ document.getElementById('btnLogout').addEventListener('click', ()=>{
   setSession(false); showAuth(true); toggleProtected(true);
 });
 
-/* ===== MARK AS PAID (ลูกค้ากดแจ้งโอนเอง) ===== */
+/* ===== MARK AS PAID ===== */
 const slipInput = document.getElementById('slip');
 const refInput  = document.getElementById('ref');
 const btnMarkPaid = document.getElementById('btnMarkPaid');
@@ -1078,7 +1063,7 @@ btnMarkPaid?.addEventListener('click', ()=>{
   alert('แจ้งชำระแล้ว ✅ แอดมินจะตรวจสอบให้เร็วที่สุด');
 });
 
-/* ===== COUNTDOWN (New Year 2026, Asia/Bangkok) ===== */
+/* ===== COUNTDOWN (New Year 2026, Asia/Bangkok) – อัปเดตทุก 1 วิ เพื่อประหยัดแบต ===== */
 const cdDigits = document.getElementById('countdownDigits');
 const ribbonTxt = document.getElementById('ribbonTxt');
 function fmt2(n){ return n.toString().padStart(2,'0'); }
@@ -1098,12 +1083,12 @@ function fmt2(n){ return n.toString().padStart(2,'0'); }
     const m = Math.floor(diff / 60000);    diff %= 60000;
     const s = Math.floor(diff / 1000);
     cdDigits.textContent = `${fmt2(d)} วัน ${fmt2(h)}:${fmt2(m)}:${fmt2(s)}`;
-    setTimeout(tick, 200);
+    setTimeout(tick, 1000);
   }
   tick();
 })();
 
-/* ===== TOAST HELPERS ===== */
+/* ===== TOAST ===== */
 function toast(msg){
   const t = document.getElementById('toast');
   if(!t) return;
