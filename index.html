@@ -1119,6 +1119,8 @@ function openAdminAuth(){
 function closeAdminAuth(){ adminAuth.classList.add('admin-hide'); }
 function openAdminPanel(){ adminPanel.classList.remove('admin-hide'); renderAdminTable(); }
 function closeAdminPanel(){ adminPanel.classList.add('admin-hide'); }
+
+// trigger แสดงปุ่มแอดมิน
 let logoClickCount = 0;
 document.querySelector('.logo')?.addEventListener('click', ()=>{
   logoClickCount++;
@@ -1127,6 +1129,8 @@ document.querySelector('.logo')?.addEventListener('click', ()=>{
   openAdminPanel._resetT = setTimeout(()=>{ logoClickCount=0; }, 1500);
 });
 window.addEventListener('keydown', (e)=>{ if(e.altKey && (e.key==='a' || e.key==='A')) showAdminButtonTemp(); });
+
+// ปุ่มควบคุม
 btnAdmin?.addEventListener('click', openAdminAuth);
 btnAdminCancel?.addEventListener('click', closeAdminAuth);
 btnAdminClose?.addEventListener('click', closeAdminPanel);
@@ -1140,6 +1144,22 @@ btnAdminLogin?.addEventListener('click', async ()=>{
   closeAdminAuth();
   openAdminPanel();
 });
+
+// === แพตช์สำคัญ: ปิดด้วย ESC และคลิกพื้นหลัง ===
+window.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape'){
+    if(adminPanel && !adminPanel.classList.contains('admin-hide')) closeAdminPanel();
+    if(adminAuth  && !adminAuth .classList.contains('admin-hide')) closeAdminAuth();
+  }
+});
+adminPanel?.addEventListener('click', (e)=>{
+  if(e.target === adminPanel) closeAdminPanel();
+});
+adminAuth?.addEventListener('click', (e)=>{
+  if(e.target === adminAuth) closeAdminAuth();
+});
+
+// รวบรวม/เรนเดอร์ตาราง
 function collectAllOrders(){
   const out=[];
   for(let i=0;i<localStorage.length;i++){
@@ -1209,4 +1229,3 @@ tryAutoLogin();
 </script>
 </body>
 </html>
-
