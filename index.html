@@ -565,17 +565,71 @@ const GAMES = [
   { key:"Wuthering Waves", icon:"🌊", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
 ];
 const PACKS_BY_GAME = {
-  "Free Fire":[{name:"33 เพชร",price:11},{name:"68 เพชร",price:21},{name:"172 เพชร",price:49},{name:"310 เพชร",price:87},{name:"517 เพชร",price:145},{name:"690 เพชร",price:195},{name:"1052 เพชร",price:290},{name:"1800 เพชร",price:480},{name:"3698 เพชร",price:950},{name:"7396 เพชร",price:1900},{name:"รายสัปดาห์ดามินิ",price:32},{name:"รายสัปดาห์ดา",price:63},{name:"รายเดือน",price:287},{name:"บูย่าห์พาส",price:90},{name:"อีโวพาส 3 วัน",price:46},{name:"อีโวพาส 7 วัน",price:62},{name:"อีโวพาส 30 วัน",price:220}],
-  "Free Fire (สั่งซื้อโปรโมชั่นต้อนรับปีใหม่)"[{name:"33 เพชร",price:10},{name:"68 เพชร",price:19},{name:"172 เพชร",price:48},{name:"310 เพชร",price:85},{name:"517 เพชร",price:143},{name:"690 เพชร",price:190},{name:"1052 เพชร",price:284},{name:"1800 เพชร",price:474},{name:"3698 เพชร",price:945},{name:"7396 เพชร",price:1890}
-  "RoV":[{name:"11 คูปอง",price:10},{name:"24 คูปอง",price:19},{name:"60 คูปอง",price:49},{name:"110 คูปอง",price:87},{name:"185 คูปอง",price:144},{name:"370 คูปอง",price:285},{name:"620 คูปอง",price:478},{name:"990 คูปอง",price:765},{name:"1250 คูปอง",price:960}],
-  "Genshin Impact":[{name:"60 Genesis Crystals",price:30},{name:"300+30 Genesis Crystals",price:145},{name:"980+110 Genesis Crystals",price:420},{name:"1980+260 Genesis Crystals",price:870},{name:"3280+600 Genesis Crystals",price:1340},{name:"6480+1600 Genesis Crystals",price:2625},{name:"Blessing (รายเดือน)",price:179}],
-  "Honkai: Star Rail":[{name:"60 Oneiric Shard",price:35},{name:"300+30 Shard",price:145},{name:"980+110 Shard",price:425},{name:"1980+260 Shard",price:870},{name:"3280+600 Shard",price:1340},{name:"6480+1600 Shard",price:2630},{name:"Express Supply Pass",price:145}],
-  "PUBG Mobile":[{name:"60 UC",price:35},{name:"325 UC",price:179},{name:"660 UC",price:346},{name:"1800 UC",price:860},{name:"3850 UC",price:1696},{name:"8100 UC",price:3305},{name:"16200 UC",price:6475},{name:"24300 UC",price:9910}],
-  "Roblox":[{name:"80 Robux",price:35},{name:"160 Robux",price:70},{name:"400 Robux",price:175},{name:"800 Robux",price:350},{name:"1000 Robux",price:400},{name:"2000 Robux",price:600},{name:"4000 Robux",price:1200},{name:"รายเดือน 1000 Robux",price:380}],
-  "Roblox (สั่งซื้อโปรโมชั่น)":[{name:"500 Robux (จาก 230 เหลือ 160)",price:160},{name:"3000 Robux (จาก 1000 เหลือ 860)",price:860}],
-  "Call of Duty":[{name:"44 โบนัส 10 CP",price:22},{name:"108 โบนัส 30 CP",price:52},{name:"194 โบนัส 55 CP",price:90},{name:"324 โบนัส 90 CP",price:152},{name:"648 โบนัส 216 CP",price:305},{name:"1080 โบนัส 480 CP",price:505},{name:"2160 โบนัส 1080 CP",price:1010}],
-  "Wuthering Waves":[{name:"60 Lunite",price:35},{name:"300+30 Lunite",price:179},{name:"980+110 Lunite",price:549},{name:"Lunite Pass (รายเดือน)",price:179}]
+  "Free Fire": [
+    {name:"33 เพชร",price:11},{name:"68 เพชร",price:21},{name:"172 เพชร",price:49},
+    {name:"310 เพชร",price:87},{name:"517 เพชร",price:145},{name:"690 เพชร",price:195},
+    {name:"1052 เพชร",price:290},{name:"1800 เพชร",price:480},{name:"3698 เพชร",price:950},
+    {name:"7396 เพชร",price:1900},{name:"รายสัปดาห์ดามินิ",price:32},{name:"รายสัปดาห์ดา",price:63},
+    {name:"รายเดือน",price:287},{name:"บูย่าห์พาส",price:90},{name:"อีโวพาส 3 วัน",price:46},
+    {name:"อีโวพาส 7 วัน",price:62},{name:"อีโวพาส 30 วัน",price:220}
+  ],
+
+  "Free Fire (สั่งซื้อโปรโมชั่นต้อนรับปีใหม่)": [
+    {name:"33 เพชร",price:10},{name:"68 เพชร",price:19},{name:"172 เพชร",price:48},
+    {name:"310 เพชร",price:85},{name:"517 เพชร",price:143},{name:"690 เพชร",price:190},
+    {name:"1052 เพชร",price:284},{name:"1800 เพชร",price:474},
+    {name:"3698 เพชร",price:945},{name:"7396 เพชร",price:1890}
+  ],
+
+  "RoV": [
+    {name:"11 คูปอง",price:10},{name:"24 คูปอง",price:19},{name:"60 คูปอง",price:49},
+    {name:"110 คูปอง",price:87},{name:"185 คูปอง",price:144},{name:"370 คูปอง",price:285},
+    {name:"620 คูปอง",price:478},{name:"990 คูปอง",price:765},{name:"1250 คูปอง",price:960}
+  ],
+
+  "Genshin Impact": [
+    {name:"60 Genesis Crystals",price:30},{name:"300+30 Genesis Crystals",price:145},
+    {name:"980+110 Genesis Crystals",price:420},{name:"1980+260 Genesis Crystals",price:870},
+    {name:"3280+600 Genesis Crystals",price:1340},{name:"6480+1600 Genesis Crystals",price:2625},
+    {name:"Blessing (รายเดือน)",price:179}
+  ],
+
+  "Honkai: Star Rail": [
+    {name:"60 Oneiric Shard",price:35},{name:"300+30 Shard",price:145},
+    {name:"980+110 Shard",price:425},{name:"1980+260 Shard",price:870},
+    {name:"3280+600 Shard",price:1340},{name:"6480+1600 Shard",price:2630},
+    {name:"Express Supply Pass",price:145}
+  ],
+
+  "PUBG Mobile": [
+    {name:"60 UC",price:35},{name:"325 UC",price:179},{name:"660 UC",price:346},
+    {name:"1800 UC",price:860},{name:"3850 UC",price:1696},{name:"8100 UC",price:3305},
+    {name:"16200 UC",price:6475},{name:"24300 UC",price:9910}
+  ],
+
+  "Roblox": [
+    {name:"80 Robux",price:35},{name:"160 Robux",price:70},{name:"400 Robux",price:175},
+    {name:"800 Robux",price:350},{name:"1000 Robux",price:400},{name:"2000 Robux",price:600},
+    {name:"4000 Robux",price:1200},{name:"รายเดือน 1000 Robux",price:380}
+  ],
+
+  "Roblox (สั่งซื้อโปรโมชั่นต้อนรับปีใหม่)": [
+    {name:"500 Robux (จาก 230 เหลือ 160)",price:160},
+    {name:"3000 Robux (จาก 1000 เหลือ 860)",price:860}
+  ],
+
+  "Call of Duty": [
+    {name:"44 โบนัส 10 CP",price:22},{name:"108 โบนัส 30 CP",price:52},{name:"194 โบนัส 55 CP",price:90},
+    {name:"324 โบนัส 90 CP",price:152},{name:"648 โบนัส 216 CP",price:305},
+    {name:"1080 โบนัส 480 CP",price:505},{name:"2160 โบนัส 1080 CP",price:1010}
+  ],
+
+  "Wuthering Waves": [
+    {name:"60 Lunite",price:35},{name:"300+30 Lunite",price:179},
+    {name:"980+110 Lunite",price:549},{name:"Lunite Pass (รายเดือน)",price:179}
+  ]
 };
+
 
 /* ===== REFS ===== */
 const tabs = document.getElementById('game-tabs');
