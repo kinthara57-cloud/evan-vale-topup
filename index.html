@@ -232,9 +232,17 @@ th{color:#ffe6a8}
   color:#f8fff6; z-index:70; display:none
 }
 .toast.show{ display:block }
-  </style>
 
+/* ===== โลโก้รูปภาพแทนตัว EV ===== */
+.logo-img{
+  width:42px; height:42px;
+  border-radius:12px;
+  object-fit:cover; display:block;
+  box-shadow:0 0 18px #ffd16640;
+}
+  </style>
 </head>
+
 <body>
 
 <!-- หิมะ 3 เลเยอร์ -->
@@ -274,25 +282,21 @@ th{color:#ffe6a8}
   <!-- NAV -->
   <nav class="nav">
     <div class="brand">
-    <style>
-.logo-img {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  object-fit: cover;
-  box-shadow: 0 0 18px #ffd16640;
-}
-</style>
-
-<nav class="nav"> 
-  <div class="brand">
-    <img src="evanvale-logo.png" alt="Evan Vale Logo" class="logo-img">
-    <div>
-      <div style="font-weight:900;letter-spacing:.5px">EVAN VALE</div>
-      <div class="site-badge">🎄 Christmas Event • เติมไว ปลอดภัย</div>
+      <img src="evanvale-logo.png" alt="Evan Vale Logo" class="logo-img">
+      <div>
+        <div style="font-weight:900;letter-spacing:.5px">EVAN VALE</div>
+        <div class="site-badge">🎄 Christmas Event • เติมไว ปลอดภัย</div>
+      </div>
     </div>
-  </div>
-</nav>
+    <div class="tools">
+      <a class="btn" href="#packages">แพ็กเกจ</a>
+      <a class="btn" href="#order">สั่งเติม</a>
+      <a class="btn" href="#history">ประวัติ</a>
+      <a class="btn primary" id="btnAdminNav" href="https://www.facebook.com/share/1JRkDmJDvX/" target="_blank" rel="noopener">ติดต่อแอดมิน</a>
+      <button class="btn" id="btnLogout" style="display:none" type="button">ออกจากระบบ</button>
+    </div>
+  </nav>
+
   <!-- HERO -->
   <section class="hero">
     <div class="glass" style="position:relative">
@@ -513,7 +517,7 @@ const KEY_USER="ev_auth_user";
 const KEY_SESSION="ev_auth_session";
 function ordersKey(){ const u=userBox(); return u? `ev_orders_${u.user}` : "ev_orders__guest"; }
 
-// รองรับกรณี crypto.subtle ใช้ไม่ได้ (ไฟล์เปิดแบบ file:// หรือบราวเซอร์เก่า)
+// รองรับกรณี crypto.subtle ใช้ไม่ได้
 async function sha256(str){
   const enc=new TextEncoder().encode(str);
   const buf=await crypto.subtle.digest('SHA-256',enc);
@@ -1070,7 +1074,6 @@ const cdDigits = document.getElementById('countdownDigits');
 const ribbonTxt = document.getElementById('ribbonTxt');
 function fmt2(n){ return n.toString().padStart(2,'0'); }
 (function runCountdown(){
-  // เป้าหมาย: 1 ม.ค. 2026 00:00:00 (+07:00)
   const target = new Date('2026-01-01T00:00:00+07:00').getTime();
   function tick(){
     const now = Date.now();
