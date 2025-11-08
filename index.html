@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="th">
 <head>
   <meta charset="utf-8" />
@@ -1029,7 +1028,53 @@ function fmt2(n){ return n.toString().padStart(2,'0'); }
 })();
 
 /* ===== INIT ===== */
-  <script>
+  <script><!-- ADMIN AUTH -->
+<div class="admin-overlay admin-hide" id="adminAuth">
+  <div class="admin-card">
+    <h2 style="margin:0 0 6px">🛡️ โหมดแอดมิน</h2>
+    <p class="muted2" id="adminAuthDesc">ใส่ PIN แอดมินเพื่อเข้าดูข้อมูลลูกค้า</p>
+    <div class="pair" style="grid-template-columns:140px 1fr; margin-top:10px">
+      <label>PIN แอดมิน</label>
+      <input id="adminPin" type="password" inputmode="numeric" maxlength="8" placeholder="4–8 ตัวเลข">
+    </div>
+    <div class="admin-tools" style="margin-top:10px">
+      <button class="admin-btn primary" id="btnAdminLogin" type="button">เข้าระบบแอดมิน</button>
+      <button class="admin-btn" id="btnAdminCancel" type="button">ยกเลิก</button>
+    </div>
+    <div class="note" style="margin-top:8px">ครั้งแรก: ถ้ายังไม่เคยตั้ง PIN ระบบจะให้ตั้งอัตโนมัติ</div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="admin-overlay admin-hide" id="adminPanel">
+  <div class="admin-card">
+    <div class="admin-bar">
+      <div>
+        <div style="font-weight:900; letter-spacing:.3px">📊 Admin Panel — ข้อมูลลูกค้า/บิลทั้งหมด (อุปกรณ์นี้)</div>
+        <div class="admin-tag" id="adminStat">กำลังโหลด…</div>
+      </div>
+      <div class="admin-tools">
+        <input id="adminSearch" placeholder="ค้นหา: บิล/เกม/UID/ชื่อ/ผู้ใช้" style="max-width:260px; background:#0f1a13; color:#fff; border:1px solid var(--border); padding:10px; border-radius:10px">
+        <button class="admin-btn" id="btnAdminExport" type="button">ดาวน์โหลด CSV</button>
+        <button class="admin-btn" id="btnAdminLogout" type="button">ออกจากโหมดแอดมิน</button>
+        <button class="admin-btn" id="btnAdminClose" type="button">ปิด</button>
+      </div>
+    </div>
+
+    <div class="glass table-scroll" style="padding:0; border-radius:12px">
+      <table class="admin-table" id="adminTable">
+        <thead>
+          <tr>
+            <th>เวลา</th><th>เลขบิล</th><th>ผู้ใช้</th><th>เกม</th><th>เซิร์ฟ</th>
+            <th>แพ็กเกจ</th><th>ยอด</th><th>สถานะ</th><th>UID</th><th>ลูกค้า</th><th>ติดต่อ</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div class="muted2" id="adminEmpty" style="padding:10px; display:none">ยังไม่มีข้อมูล</div>
+    </div>
+  </div>
+</div>
 /* =======================
    Admin Mode — JavaScript
    ======================= */
