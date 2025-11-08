@@ -7,7 +7,8 @@
   <title>EVAN VALE • Christmas Event | เติมเกมราคาดี โปร่งใส มีแอดมินดูแล</title>
   <meta name="description" content="EVAN VALE Christmas Event — เติมเกมราคาดี โปร่งใส ปลอดภัย มีแอดมินดูแล 24 ชั่วโมง รองรับ TrueMoney, PromptPay และธนาคาร" />
 
-  <style>/* ===== ADMIN PANEL (hidden) ===== */
+  <style>
+/* ===== ADMIN PANEL (hidden) ===== */
 .admin-hide{display:none}
 .admin-overlay{
   position:fixed; inset:0; z-index:60;
@@ -244,45 +245,38 @@ th{color:#ffe6a8}
 .cd-label{font-weight:800; letter-spacing:.3px}
 .cd-digits{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; font-weight:900}
   </style>
-
 </head>
 <body>
 
 <!-- หิมะ 3 เลเยอร์ -->
-
 <div class="snow s1"></div>
 <div class="snow s2"></div>
 <div class="snow s3"></div>
 
 <!-- AUTH -->
-
 <div class="auth" id="auth">
   <div class="panel">
     <h2 id="authTitle">🔒 สร้างบัญชีครั้งแรก</h2>
     <p id="authDesc" class="muted2">ตั้งผู้ใช้ + PIN (เก็บเฉพาะในเครื่องนี้)</p>
+    <div id="setupForm">
+      <div class="pair"><label>ผู้ใช้</label><input id="setupUser" placeholder="เช่น evan" /></div>
+      <div class="pair"><label>PIN</label><input id="setupPin" type="password" inputmode="numeric" maxlength="6" placeholder="4–6 ตัวเลข" /></div>
+      <div class="pair"><label>ยืนยัน PIN</label><input id="setupPin2" type="password" inputmode="numeric" maxlength="6" placeholder="พิมพ์ซ้ำ" /></div>
+      <div class="pair"><label>ชื่อในบิล</label><input id="setupName" placeholder="เช่น Ryu" /></div>
+      <div class="pair"><label>ช่องทางติดต่อ</label><input id="setupContact" placeholder="Line/FB/Tel" /></div>
+      <div class="tools"><button class="btn primary" id="btnSetup" type="button">สร้างบัญชี</button></div>
+      <div class="note">ข้อมูลเก็บใน LocalStorage ของเบราว์เซอร์นี้</div>
+    </div>
 
-```
-<div id="setupForm">
-  <div class="pair"><label>ผู้ใช้</label><input id="setupUser" placeholder="เช่น evan" /></div>
-  <div class="pair"><label>PIN</label><input id="setupPin" type="password" inputmode="numeric" maxlength="6" placeholder="4–6 ตัวเลข" /></div>
-  <div class="pair"><label>ยืนยัน PIN</label><input id="setupPin2" type="password" inputmode="numeric" maxlength="6" placeholder="พิมพ์ซ้ำ" /></div>
-  <div class="pair"><label>ชื่อในบิล</label><input id="setupName" placeholder="เช่น Ryu" /></div>
-  <div class="pair"><label>ช่องทางติดต่อ</label><input id="setupContact" placeholder="Line/FB/Tel" /></div>
-  <div class="tools"><button class="btn primary" id="btnSetup" type="button">สร้างบัญชี</button></div>
-  <div class="note">ข้อมูลเก็บใน LocalStorage ของเบราว์เซอร์นี้</div>
-</div>
-
-<div id="loginForm" style="display:none">
-  <div class="pair"><label>ผู้ใช้</label><input id="loginUser" placeholder="ผู้ใช้" /></div>
-  <div class="pair"><label>PIN</label><input id="loginPin" type="password" inputmode="numeric" maxlength="6" placeholder="PIN" /></div>
-  <div class="tools">
-    <button class="btn primary" id="btnLogin" type="button">เข้าระบบ</button>
-    <button class="btn" id="btnForgot" type="button">ลืม PIN</button>
-  </div>
-  <div class="note">ลืม PIN → ใช้ “รีเซ็ตข้อมูลทั้งหมด” ในหน้า “ประวัติ”</div>
-</div>
-```
-
+    <div id="loginForm" style="display:none">
+      <div class="pair"><label>ผู้ใช้</label><input id="loginUser" placeholder="ผู้ใช้" /></div>
+      <div class="pair"><label>PIN</label><input id="loginPin" type="password" inputmode="numeric" maxlength="6" placeholder="PIN" /></div>
+      <div class="tools">
+        <button class="btn primary" id="btnLogin" type="button">เข้าระบบ</button>
+        <button class="btn" id="btnForgot" type="button">ลืม PIN</button>
+      </div>
+      <div class="note">ลืม PIN → ใช้ “รีเซ็ตข้อมูลทั้งหมด” ในหน้า “ประวัติ”</div>
+    </div>
   </div>
 </div>
 
@@ -296,53 +290,48 @@ th{color:#ffe6a8}
         <div class="site-badge">🎄 Christmas Event • เติมไว ปลอดภัย</div>
       </div>
     </div>
-    <div class="tools"><button class="btn admin-hide" id="btnAdmin" type="button" title="Admin">Admin</button>
-
+    <div class="tools">
+      <button class="btn admin-hide" id="btnAdmin" type="button" title="Admin">Admin</button>
       <a class="btn" href="#packages">แพ็กเกจ</a>
       <a class="btn" href="#order">สั่งเติม</a>
       <a class="btn" href="#history">ประวัติ</a>
       <a class="btn primary" id="btnAdminNav" href="https://www.facebook.com/share/1JRkDmJDvX/" target="_blank" rel="noopener">ติดต่อแอดมิน</a>
       <button class="btn" id="btnLogout" style="display:none" type="button">ออกจากระบบ</button>
     </div>
-  </nav> 
+  </nav>
 
   <!-- HERO -->
-
   <section class="hero">
     <div class="glass" style="position:relative">
       <span class="ribbon" id="ribbonTxt">CHRISTMAS 🎄</span>
       <span class="badge">✅ เปิดรับออเดอร์ 08:30–21:30</span>
       <h1 class="drip glow">EVAN VALE — ราคาดี โปร่งใส <span style="color:var(--accent)">มีแอดมินดูแล</span></h1>
 
-```
-  <div class="countdown-strip" id="cdStrip" aria-live="polite">
-    <div class="cd-label">⏳ นับถอยหลังสู่ปีใหม่</div>
-    <div class="cd-digits" id="countdownDigits">-- วัน --:--:--</div>
-  </div>
+      <div class="countdown-strip" id="cdStrip" aria-live="polite">
+        <div class="cd-label">⏳ นับถอยหลังสู่ปีใหม่</div>
+        <div class="cd-digits" id="countdownDigits">-- วัน --:--:--</div>
+      </div>
 
-  <div class="statgrid">
-    <div class="stat"><div style="font-size:20px;font-weight:900">3–10 นาที*</div><div class="muted2">โดยเฉลี่ย</div></div>
-    <div class="stat"><div style="font-size:20px;font-weight:900">1000+</div><div class="muted2">รายการสำเร็จ</div></div>
-    <div class="stat"><div style="font-size:20px;font-weight:900">0%</div><div class="muted2">ยึด UID</div></div>
-  </div>
-  <p class="muted2" style="margin-top:8px">*ช่วงพีค/เกมปิดปรับปรุงอาจช้ากว่าปกติ</p>
-</div>
+      <div class="statgrid">
+        <div class="stat"><div style="font-size:20px;font-weight:900">3–10 นาที*</div><div class="muted2">โดยเฉลี่ย</div></div>
+        <div class="stat"><div style="font-size:20px;font-weight:900">1000+</div><div class="muted2">รายการสำเร็จ</div></div>
+        <div class="stat"><div style="font-size:20px;font-weight:900">0%</div><div class="muted2">ยึด UID</div></div>
+      </div>
+      <p class="muted2" style="margin-top:8px">*ช่วงพีค/เกมปิดปรับปรุงอาจช้ากว่าปกติ</p>
+    </div>
 
-<div class="glass" style="display:grid;place-items:center;text-align:center">
-  <div style="font-weight:800">แอดมินตอบไว</div>
-  <div class="muted2">เลือกเมนูด้านล่างได้เลย</div>
-  <div class="hero-cta">
-    <a class="btn" href="#packages">แพ็กเกจ</a>
-    <a class="btn primary" href="#order">สั่งเติม</a>
-    <a class="btn" href="#history">ประวัติ</a>
-  </div>
-</div>
-```
-
+    <div class="glass" style="display:grid;place-items:center;text-align:center">
+      <div style="font-weight:800">แอดมินตอบไว</div>
+      <div class="muted2">เลือกเมนูด้านล่างได้เลย</div>
+      <div class="hero-cta">
+        <a class="btn" href="#packages">แพ็กเกจ</a>
+        <a class="btn primary" href="#order">สั่งเติม</a>
+        <a class="btn" href="#history">ประวัติ</a>
+      </div>
+    </div>
   </section>
 
   <!-- PACKAGES -->
-
   <section id="packages" class="section">
     <div class="card">
       <h2 style="margin:0">แพ็กเกจยอดฮิต</h2>
@@ -353,98 +342,93 @@ th{color:#ffe6a8}
   </section>
 
   <!-- ORDER -->
-
   <section id="order" class="section grid two" style="align-items:start">
     <div class="card">
       <h2 style="margin-top:0">สั่งเติมเกม</h2>
 
-```
-  <div class="row">
-    <div>
-      <label>เกม</label>
-      <select id="game"></select>
-      <p id="gameNote" style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0"></p>
-      <p id="thaiOnlyNote" style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0;background:#142318;padding:6px 10px;border-radius:6px;border-left:3px solid var(--brand);">
-        ⚠️ เกมนี้รองรับเฉพาะ <b>เซิร์ฟเวอร์ไทย</b> เท่านั้น (Free Fire / RoV / PUBG Mobile / Roblox / Call of Duty)
-      </p>
-      <div class="neon mini-sum" id="miniSum" style="display:none">
-        <h3>สรุปคร่าวๆ</h3>
-        <div class="row-line"><span class="label">เกม</span><span class="value" id="mini-game">-</span></div>
-        <div class="row-line"><span class="label">เซิร์ฟเวอร์</span><span class="value" id="mini-server">-</span></div>
-        <div class="row-line"><span class="label">แพ็กเกจ</span><span class="value" id="mini-pkg">-</span></div>
-        <div class="row-line"><span class="label">ยอด</span><span class="value" id="mini-total">฿0</span></div>
+      <div class="row">
+        <div>
+          <label>เกม</label>
+          <select id="game"></select>
+          <p id="gameNote" style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0"></p>
+          <p id="thaiOnlyNote" style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0;background:#142318;padding:6px 10px;border-radius:6px;border-left:3px solid var(--brand);">
+            ⚠️ เกมนี้รองรับเฉพาะ <b>เซิร์ฟเวอร์ไทย</b> เท่านั้น (Free Fire / RoV / PUBG Mobile / Roblox / Call of Duty)
+          </p>
+          <div class="neon mini-sum" id="miniSum" style="display:none">
+            <h3>สรุปคร่าวๆ</h3>
+            <div class="row-line"><span class="label">เกม</span><span class="value" id="mini-game">-</span></div>
+            <div class="row-line"><span class="label">เซิร์ฟเวอร์</span><span class="value" id="mini-server">-</span></div>
+            <div class="row-line"><span class="label">แพ็กเกจ</span><span class="value" id="mini-pkg">-</span></div>
+            <div class="row-line"><span class="label">ยอด</span><span class="value" id="mini-total">฿0</span></div>
+          </div>
+        </div>
+        <div>
+          <label>โซน/เซิร์ฟเวอร์</label>
+          <select id="server"></select>
+        </div>
       </div>
-    </div>
-    <div>
-      <label>โซน/เซิร์ฟเวอร์</label>
-      <select id="server"></select>
-    </div>
-  </div>
 
-  <div class="row">
-    <div>
-      <label>UID / Player ID</label>
-      <input id="uid" placeholder="เช่น 812345678 หรือชื่อในเกม">
-    </div>
-    <div>
-      <label>แพ็กเกจ</label>
-      <select id="package"></select>
-    </div>
-  </div>
+      <div class="row">
+        <div>
+          <label>UID / Player ID</label>
+          <input id="uid" placeholder="เช่น 812345678 หรือชื่อในเกม">
+        </div>
+        <div>
+          <label>แพ็กเกจ</label>
+          <select id="package"></select>
+        </div>
+      </div>
 
-  <div class="row">
-    <div>
-      <label>วิธีชำระ</label>
-      <select id="method">
-        <option>PromptPay</option>
-        <option>TrueMoney Wallet</option>
-        <option>โอนธนาคาร</option>
-      </select>
-    </div>
-    <div>
-      <label>โค้ดส่วนลด (ถ้ามี)</label>
-      <input id="promo" placeholder="เช่น EVAN10">
-    </div>
-  </div>
+      <div class="row">
+        <div>
+          <label>วิธีชำระ</label>
+          <select id="method">
+            <option>PromptPay</option>
+            <option>TrueMoney Wallet</option>
+            <option>โอนธนาคาร</option>
+          </select>
+        </div>
+        <div>
+          <label>โค้ดส่วนลด (ถ้ามี)</label>
+          <input id="promo" placeholder="เช่น EVAN10">
+        </div>
+      </div>
 
-  <div class="row">
-    <div>
-      <label>ชื่อลูกค้า</label>
-      <input id="name" placeholder="ชื่อเล่นก็ได้">
+      <div class="row">
+        <div>
+          <label>ชื่อลูกค้า</label>
+          <input id="name" placeholder="ชื่อเล่นก็ได้">
+        </div>
+        <div>
+          <label>ช่องทางติดต่อ</label>
+          <input id="contact" placeholder="Line/FB/Tel">
+        </div>
+      </div>
+
+      <div class="tools" style="margin-top:12px">
+        <button class="btn" id="btnReset" type="button">ล้างฟอร์ม</button>
+        <button class="btn primary" id="btnSubmit" type="button" disabled>ยืนยันและสร้างบิล</button>
+        <button class="btn" id="btnSaveProfile" type="button" disabled>บันทึกข้อมูลลูกค้า</button>
+      </div>
+      <p class="muted2" style="margin-top:8px">กดยืนยันแล้วจะเลื่อนไปส่วน “ชำระเงิน” อัตโนมัติ</p>
     </div>
-    <div>
-      <label>ช่องทางติดต่อ</label>
-      <input id="contact" placeholder="Line/FB/Tel">
-    </div>
-  </div>
 
-  <div class="tools" style="margin-top:12px">
-    <button class="btn" id="btnReset" type="button">ล้างฟอร์ม</button>
-    <button class="btn primary" id="btnSubmit" type="button" disabled>ยืนยันและสร้างบิล</button>
-    <button class="btn" id="btnSaveProfile" type="button" disabled>บันทึกข้อมูลลูกค้า</button>
-  </div>
-  <p class="muted2" style="margin-top:8px">กดยืนยันแล้วจะเลื่อนไปส่วน “ชำระเงิน” อัตโนมัติ</p>
-</div>
-
-<aside class="card summary">
-  <h3 style="margin-top:0">สรุปบิล</h3>
-  <div class="list">
-    <div class="item"><span class="muted2">เลขบิล</span><span id="sum-bill">-</span></div>
-    <div class="item"><span class="muted2">เกม</span><span id="sum-game">-</span></div>
-    <div class="item"><span class="muted2">เซิร์ฟเวอร์</span><span id="sum-server">-</span></div>
-    <div class="item"><span class="muted2">UID</span><span id="sum-uid">-</span></div>
-    <div class="item"><span class="muted2">แพ็กเกจ</span><span id="sum-pkg">-</span></div>
-    <div class="item"><span class="muted2">วิธีชำระ</span><span id="sum-method">-</span></div>
-  </div>
-  <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:10px 0"></div>
-  <div class="item"><span class="muted2">ยอดสุทธิ</span><span class="total" id="sum-total">฿0</span></div>
-</aside>
-```
-
+    <aside class="card summary">
+      <h3 style="margin-top:0">สรุปบิล</h3>
+      <div class="list">
+        <div class="item"><span class="muted2">เลขบิล</span><span id="sum-bill">-</span></div>
+        <div class="item"><span class="muted2">เกม</span><span id="sum-game">-</span></div>
+        <div class="item"><span class="muted2">เซิร์ฟเวอร์</span><span id="sum-server">-</span></div>
+        <div class="item"><span class="muted2">UID</span><span id="sum-uid">-</span></div>
+        <div class="item"><span class="muted2">แพ็กเกจ</span><span id="sum-pkg">-</span></div>
+        <div class="item"><span class="muted2">วิธีชำระ</span><span id="sum-method">-</span></div>
+      </div>
+      <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:10px 0"></div>
+      <div class="item"><span class="muted2">ยอดสุทธิ</span><span class="total" id="sum-total">฿0</span></div>
+    </aside>
   </section>
 
   <!-- PAYMENT -->
-
   <section id="pay" class="section" style="display:none">
     <div class="card">
       <h2 style="margin-top:0">ชำระเงิน</h2>
@@ -462,39 +446,34 @@ th{color:#ffe6a8}
         </div>
       </div>
 
-```
-  <div class="glass" style="margin-top:14px">
-    <h3 style="margin-top:0">แนบหลักฐาน</h3>
-    <div class="row">
-      <div>
-        <label>อัปโหลดสลิป</label>
-        <input id="slip" type="file" accept="image/*">
-        <div class="muted2" style="margin-top:6px">เว็บสแตติกจะไม่เก็บไฟล์ ให้แนบซ้ำในแชทหากต้องใช้</div>
-      </div>
-      <div>
-        <label>เลขอ้างอิง (ถ้ามี)</label>
-        <input id="ref" placeholder="เช่น 2025-XX-XX">
+      <div class="glass" style="margin-top:14px">
+        <h3 style="margin-top:0">แนบหลักฐาน</h3>
+        <div class="row">
+          <div>
+            <label>อัปโหลดสลิป</label>
+            <input id="slip" type="file" accept="image/*">
+            <div class="muted2" style="margin-top:6px">เว็บสแตติกจะไม่เก็บไฟล์ ให้แนบซ้ำในแชทหากต้องใช้</div>
+          </div>
+          <div>
+            <label>เลขอ้างอิง (ถ้ามี)</label>
+            <input id="ref" placeholder="เช่น 2025-XX-XX">
+          </div>
+        </div>
+
+        <div class="tools" style="margin-top:12px">
+          <button class="btn" id="btnBackToForm" type="button">กลับไปแก้ฟอร์ม</button>
+          <button class="btn primary" id="btnPrepareMsg" type="button" disabled>คัดลอกสรุปบิล</button>
+          <button class="btn" id="btnMarkPaid" type="button" disabled>แจ้งชำระแล้ว</button>
+          <a class="btn" id="btnOpenAdmin" href="#" target="_blank" rel="noopener" style="pointer-events:none;opacity:.6">เปิดแชทแอดมิน</a>
+        </div>
+
+        <div id="copyHint" class="muted2" style="display:none;margin-top:8px">✔️ คัดลอกแล้ว ถ้าแชทไม่พิมพ์ให้เอง ให้ “วาง (Paste)” ได้เลย</div>
+        <textarea id="msgPreview" readonly style="display:none;width:100%;margin-top:8px;background:#0f1a13;color:#f8fff6;border:1px solid #203326;border-radius:10px;padding:10px" rows="8"></textarea>
       </div>
     </div>
-
-    <div class="tools" style="margin-top:12px">
-      <button class="btn" id="btnBackToForm" type="button">กลับไปแก้ฟอร์ม</button>
-      <button class="btn primary" id="btnPrepareMsg" type="button" disabled>คัดลอกสรุปบิล</button>
-      <!-- ปุ่มแจ้งชำระแล้ว -->
-      <button class="btn" id="btnMarkPaid" type="button" disabled>แจ้งชำระแล้ว</button>
-      <a class="btn" id="btnOpenAdmin" href="#" target="_blank" rel="noopener" style="pointer-events:none;opacity:.6">เปิดแชทแอดมิน</a>
-    </div>
-
-    <div id="copyHint" class="muted2" style="display:none;margin-top:8px">✔️ คัดลอกแล้ว ถ้าแชทไม่พิมพ์ให้เอง ให้ “วาง (Paste)” ได้เลย</div>
-    <textarea id="msgPreview" readonly style="display:none;width:100%;margin-top:8px;background:#0f1a13;color:#f8fff6;border:1px solid #203326;border-radius:10px;padding:10px" rows="8"></textarea>
-  </div>
-</div>
-```
-
   </section>
 
   <!-- HISTORY -->
-
   <section id="history" class="section">
     <div class="card">
       <h2 style="margin:0">ประวัติการทำรายการ</h2>
@@ -514,24 +493,69 @@ th{color:#ffe6a8}
         <button class="btn" id="btnClearAll" type="button">รีเซ็ตข้อมูลทั้งหมด</button>
       </div>
 
-```
-  <div class="glass table-scroll">
-    <table id="histTable">
-      <thead>
-        <tr>
-          <th>เวลา</th><th>เลขบิล</th><th>เกม</th><th>เซิร์ฟ</th><th>แพ็กเกจ</th><th>ยอด</th><th>สถานะ</th><th>UID</th><th>เครื่องมือ</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-    <div id="histEmpty" class="muted2" style="padding:8px 0;display:none">ยังไม่มีรายการ</div>
-  </div>
-</div>
-```
-
+      <div class="glass table-scroll">
+        <table id="histTable">
+          <thead>
+            <tr>
+              <th>เวลา</th><th>เลขบิล</th><th>เกม</th><th>เซิร์ฟ</th><th>แพ็กเกจ</th><th>ยอด</th><th>สถานะ</th><th>UID</th><th>เครื่องมือ</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div id="histEmpty" class="muted2" style="padding:8px 0;display:none">ยังไม่มีรายการ</div>
+      </div>
+    </div>
   </section>
 
   <div class="footer">© 2025 Evan Vale • Christmas Event</div>
+</div>
+
+<!-- ADMIN AUTH -->
+<div class="admin-overlay admin-hide" id="adminAuth">
+  <div class="admin-card">
+    <h2 style="margin:0 0 6px">🛡️ โหมดแอดมิน</h2>
+    <p class="muted2" id="adminAuthDesc">ใส่ PIN แอดมินเพื่อเข้าดูข้อมูลลูกค้า</p>
+    <div class="pair" style="grid-template-columns:140px 1fr; margin-top:10px">
+      <label>PIN แอดมิน</label>
+      <input id="adminPin" type="password" inputmode="numeric" maxlength="8" placeholder="4–8 ตัวเลข">
+    </div>
+    <div class="admin-tools" style="margin-top:10px">
+      <button class="admin-btn primary" id="btnAdminLogin" type="button">เข้าระบบแอดมิน</button>
+      <button class="admin-btn" id="btnAdminCancel" type="button">ยกเลิก</button>
+    </div>
+    <div class="note" style="margin-top:8px">ครั้งแรก: ถ้ายังไม่เคยตั้ง PIN ระบบจะให้ตั้งอัตโนมัติ</div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="admin-overlay admin-hide" id="adminPanel">
+  <div class="admin-card">
+    <div class="admin-bar">
+      <div>
+        <div style="font-weight:900; letter-spacing:.3px">📊 Admin Panel — ข้อมูลลูกค้า/บิลทั้งหมด (อุปกรณ์นี้)</div>
+        <div class="admin-tag" id="adminStat">กำลังโหลด…</div>
+      </div>
+      <div class="admin-tools">
+        <input id="adminSearch" placeholder="ค้นหา: บิล/เกม/UID/ชื่อ/ผู้ใช้" style="max-width:260px; background:#0f1a13; color:#fff; border:1px solid var(--border); padding:10px; border-radius:10px">
+        <button class="admin-btn" id="btnAdminExport" type="button">ดาวน์โหลด CSV</button>
+        <button class="admin-btn" id="btnAdminLogout" type="button">ออกจากโหมดแอดมิน</button>
+        <button class="admin-btn" id="btnAdminClose" type="button">ปิด</button>
+      </div>
+    </div>
+
+    <div class="glass table-scroll" style="padding:0; border-radius:12px">
+      <table class="admin-table" id="adminTable">
+        <thead>
+          <tr>
+            <th>เวลา</th><th>เลขบิล</th><th>ผู้ใช้</th><th>เกม</th><th>เซิร์ฟ</th>
+            <th>แพ็กเกจ</th><th>ยอด</th><th>สถานะ</th><th>UID</th><th>ลูกค้า</th><th>ติดต่อ</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div class="muted2" id="adminEmpty" style="padding:10px; display:none">ยังไม่มีข้อมูล</div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -540,7 +564,7 @@ const KEY_USER="ev_auth_user";
 const KEY_SESSION="ev_auth_session";
 function ordersKey(){ const u=userBox(); return u? `ev_orders_${u.user}` : "ev_orders__guest"; }
 
-// รองรับกรณี crypto.subtle ใช้ไม่ได้ (ไฟล์เปิดแบบ file:// หรือบราวเซอร์เก่า)
+// รองรับกรณี crypto.subtle ใช้ไม่ได้
 async function sha256(str){
   const enc=new TextEncoder().encode(str);
   const buf=await crypto.subtle.digest('SHA-256',enc);
@@ -591,7 +615,7 @@ const PACKS_BY_GAME = {
   "Honkai: Star Rail":[{name:"60 Oneiric Shard",price:35},{name:"300+30 Shard",price:145},{name:"980+110 Shard",price:425},{name:"1980+260 Shard",price:870},{name:"3280+600 Shard",price:1340},{name:"6480+1600 Shard",price:2630},{name:"Express Supply Pass",price:145}],
   "PUBG Mobile":[{name:"60 UC",price:35},{name:"325 UC",price:179},{name:"660 UC",price:346},{name:"1800 UC",price:860},{name:"3850 UC",price:1696},{name:"8100 UC",price:3305},{name:"16200 UC",price:6475},{name:"24300 UC",price:9910}],
   "Roblox":[{name:"80 Robux",price:35},{name:"160 Robux",price:70},{name:"400 Robux",price:175},{name:"800 Robux",price:350},{name:"1000 Robux",price:400},{name:"2000 Robux",price:600},{name:"4000 Robux",price:1200},{name:"รายเดือน 1000 Robux",price:380}],
-  "Roblox (สั่งซื้อโปรโมชั่น)":[{name:"500 Robux (จาก 230 เหลือ 160)",price:160},{name:"3000 Robux (จาก 1000 เหลือ 860)",price:860}],
+  "Roblox (สั่งซื้อโปรโมชั่น)": [{name:"500 Robux (จาก 230 เหลือ 160)",price:160},{name:"3000 Robux (จาก 1000 เหลือ 860)",price:860}],
   "Call of Duty":[{name:"44 โบนัส 10 CP",price:22},{name:"108 โบนัส 30 CP",price:52},{name:"194 โบนัส 55 CP",price:90},{name:"324 โบนัส 90 CP",price:152},{name:"648 โบนัส 216 CP",price:305},{name:"1080 โบนัส 480 CP",price:505},{name:"2160 โบนัส 1080 CP",price:1010}],
   "Wuthering Waves":[{name:"60 Lunite",price:35},{name:"300+30 Lunite",price:179},{name:"980+110 Lunite",price:549},{name:"Lunite Pass (รายเดือน)",price:179}]
 };
@@ -787,9 +811,7 @@ function renderHistory(){
       </td>`;
     histTableBody.appendChild(tr);
   });
-  histTableBody.querySelectorAll('button[data-del]').forEach(b=>{
-    b.onclick = ()=> deleteOrder(b.getAttribute('data-del'));
-  });
+  histTableBody.querySelectorAll('button[data-del]').forEach(b=>{ b.onclick = ()=> deleteOrder(b.getAttribute('data-del')); });
   histTableBody.querySelectorAll('button[data-view]').forEach(b=>{
     b.onclick = ()=>{
       const inv = b.getAttribute('data-view');
@@ -808,9 +830,7 @@ UID: ${x.uid||"-"}
 สถานะ: ${x.status}`);
     };
   });
-  histTableBody.querySelectorAll('select[data-inv]').forEach(s=>{
-    s.onchange = ()=> updateOrderStatus(s.getAttribute('data-inv'), s.value);
-  });
+  histTableBody.querySelectorAll('select[data-inv]').forEach(s=>{ s.onchange = ()=> updateOrderStatus(s.getAttribute('data-inv'), s.value); });
 }
 
 /* ===== MESSAGE / COPY ===== */
@@ -999,19 +1019,16 @@ document.getElementById('btnLogout').addEventListener('click', ()=>{
   setSession(false); showAuth(true); toggleProtected(true);
 });
 
-/* ===== MARK AS PAID (ลูกค้ากดแจ้งโอนเอง) ===== */
+/* ===== MARK AS PAID ===== */
 const slipInput = document.getElementById('slip');
 const refInput  = document.getElementById('ref');
 const btnMarkPaid = document.getElementById('btnMarkPaid');
-
 function canMarkPaid(){
   const hasSlip = slipInput && slipInput.files && slipInput.files.length > 0;
   const hasRef  = (refInput?.value || '').trim().length > 0;
   return !!window.invoiceId && window.invoiceId !== '-' && (hasSlip || hasRef);
 }
-function updateMarkPaidState(){
-  if(btnMarkPaid) btnMarkPaid.disabled = !canMarkPaid();
-}
+function updateMarkPaidState(){ if(btnMarkPaid) btnMarkPaid.disabled = !canMarkPaid(); }
 slipInput?.addEventListener('change', updateMarkPaidState);
 refInput?.addEventListener('input', updateMarkPaidState);
 btnMarkPaid?.addEventListener('click', ()=>{
@@ -1026,7 +1043,6 @@ const cdDigits = document.getElementById('countdownDigits');
 const ribbonTxt = document.getElementById('ribbonTxt');
 function fmt2(n){ return n.toString().padStart(2,'0'); }
 (function runCountdown(){
-  // เป้าหมาย: 1 ม.ค. 2026 00:00:00 (+07:00)
   const target = new Date('2026-01-01T00:00:00+07:00').getTime();
   function tick(){
     const now = Date.now();
@@ -1047,66 +1063,13 @@ function fmt2(n){ return n.toString().padStart(2,'0'); }
   tick();
 })();
 
-/* ===== INIT ===== */
-  <script><!-- ADMIN AUTH -->
-<div class="admin-overlay admin-hide" id="adminAuth">
-  <div class="admin-card">
-    <h2 style="margin:0 0 6px">🛡️ โหมดแอดมิน</h2>
-    <p class="muted2" id="adminAuthDesc">ใส่ PIN แอดมินเพื่อเข้าดูข้อมูลลูกค้า</p>
-    <div class="pair" style="grid-template-columns:140px 1fr; margin-top:10px">
-      <label>PIN แอดมิน</label>
-      <input id="adminPin" type="password" inputmode="numeric" maxlength="8" placeholder="4–8 ตัวเลข">
-    </div>
-    <div class="admin-tools" style="margin-top:10px">
-      <button class="admin-btn primary" id="btnAdminLogin" type="button">เข้าระบบแอดมิน</button>
-      <button class="admin-btn" id="btnAdminCancel" type="button">ยกเลิก</button>
-    </div>
-    <div class="note" style="margin-top:8px">ครั้งแรก: ถ้ายังไม่เคยตั้ง PIN ระบบจะให้ตั้งอัตโนมัติ</div>
-  </div>
-</div>
-
-<!-- ADMIN PANEL -->
-<div class="admin-overlay admin-hide" id="adminPanel">
-  <div class="admin-card">
-    <div class="admin-bar">
-      <div>
-        <div style="font-weight:900; letter-spacing:.3px">📊 Admin Panel — ข้อมูลลูกค้า/บิลทั้งหมด (อุปกรณ์นี้)</div>
-        <div class="admin-tag" id="adminStat">กำลังโหลด…</div>
-      </div>
-      <div class="admin-tools">
-        <input id="adminSearch" placeholder="ค้นหา: บิล/เกม/UID/ชื่อ/ผู้ใช้" style="max-width:260px; background:#0f1a13; color:#fff; border:1px solid var(--border); padding:10px; border-radius:10px">
-        <button class="admin-btn" id="btnAdminExport" type="button">ดาวน์โหลด CSV</button>
-        <button class="admin-btn" id="btnAdminLogout" type="button">ออกจากโหมดแอดมิน</button>
-        <button class="admin-btn" id="btnAdminClose" type="button">ปิด</button>
-      </div>
-    </div>
-
-    <div class="glass table-scroll" style="padding:0; border-radius:12px">
-      <table class="admin-table" id="adminTable">
-        <thead>
-          <tr>
-            <th>เวลา</th><th>เลขบิล</th><th>ผู้ใช้</th><th>เกม</th><th>เซิร์ฟ</th>
-            <th>แพ็กเกจ</th><th>ยอด</th><th>สถานะ</th><th>UID</th><th>ลูกค้า</th><th>ติดต่อ</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-      <div class="muted2" id="adminEmpty" style="padding:10px; display:none">ยังไม่มีข้อมูล</div>
-    </div>
-  </div>
-</div>
 /* =======================
    Admin Mode — JavaScript
    ======================= */
 const KEY_ADMIN = "ev_admin_ctrl";
 const KEY_ADMIN_SESS = "ev_admin_session";
-
-function setAdminSession(on){
-  on ? sessionStorage.setItem(KEY_ADMIN_SESS,"on")
-     : sessionStorage.removeItem(KEY_ADMIN_SESS);
-}
+function setAdminSession(on){ on ? sessionStorage.setItem(KEY_ADMIN_SESS,"on") : sessionStorage.removeItem(KEY_ADMIN_SESS); }
 function isAdmin(){ return sessionStorage.getItem(KEY_ADMIN_SESS)==="on"; }
-
 const btnAdmin       = document.getElementById('btnAdmin');
 const adminAuth      = document.getElementById('adminAuth');
 const adminPanel     = document.getElementById('adminPanel');
@@ -1122,34 +1085,24 @@ const adminTableBody = document.querySelector('#adminTable tbody');
 const adminEmpty     = document.getElementById('adminEmpty');
 const adminStat      = document.getElementById('adminStat');
 
-function adminStore(){
-  try{ return JSON.parse(localStorage.getItem(KEY_ADMIN)||"null"); }
-  catch{ return null; }
-}
+function adminStore(){ try{ return JSON.parse(localStorage.getItem(KEY_ADMIN)||"null"); } catch{ return null; }}
 function setAdminStore(v){ localStorage.setItem(KEY_ADMIN, JSON.stringify(v)); }
-
 async function sha256Admin(text){
   try{
     const enc = new TextEncoder().encode(text);
     const buf = await crypto.subtle.digest('SHA-256', enc);
     return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
   }catch{
-    let h=2166136261>>>0;
-    for(let i=0;i<text.length;i++){ h^=text.charCodeAt(i); h=(h*16777619)>>>0; }
+    let h=2166136261>>>0; for(let i=0;i<text.length;i++){ h^=text.charCodeAt(i); h=(h*16777619)>>>0; }
     return 'fhv1-'+h.toString(16);
   }
 }
 async function ensureAdminPINFlow(pinPlain){
   const cur = adminStore();
   const pinHash = await sha256Admin("admin|" + pinPlain);
-  if(!cur){
-    setAdminStore({ pinHash, created: Date.now() });
-    return true;
-  }
+  if(!cur){ setAdminStore({ pinHash, created: Date.now() }); return true; }
   return cur.pinHash === pinHash;
 }
-
-/** โชว์ปุ่ม Admin แบบชั่วคราว 10 วิ */
 function showAdminButtonTemp(){
   if(!btnAdmin) return;
   btnAdmin.classList.remove('admin-hide');
@@ -1158,8 +1111,7 @@ function showAdminButtonTemp(){
 }
 function openAdminAuth(){
   const cur = adminStore();
-  adminAuthDesc.textContent = cur ? "ใส่ PIN แอดมินเพื่อเข้าดูข้อมูลลูกค้า"
-                                  : "ตั้ง PIN แอดมินครั้งแรก (4–8 ตัวเลข)";
+  adminAuthDesc.textContent = cur ? "ใส่ PIN แอดมินเพื่อเข้าดูข้อมูลลูกค้า" : "ตั้ง PIN แอดมินครั้งแรก (4–8 ตัวเลข)";
   adminPinInput.value = "";
   adminAuth.classList.remove('admin-hide');
   setTimeout(()=> adminPinInput.focus(), 50);
@@ -1167,8 +1119,6 @@ function openAdminAuth(){
 function closeAdminAuth(){ adminAuth.classList.add('admin-hide'); }
 function openAdminPanel(){ adminPanel.classList.remove('admin-hide'); renderAdminTable(); }
 function closeAdminPanel(){ adminPanel.classList.add('admin-hide'); }
-
-/* ===== Secret Triggers ===== */
 let logoClickCount = 0;
 document.querySelector('.logo')?.addEventListener('click', ()=>{
   logoClickCount++;
@@ -1177,16 +1127,10 @@ document.querySelector('.logo')?.addEventListener('click', ()=>{
   openAdminPanel._resetT = setTimeout(()=>{ logoClickCount=0; }, 1500);
 });
 window.addEventListener('keydown', (e)=>{ if(e.altKey && (e.key==='a' || e.key==='A')) showAdminButtonTemp(); });
-
-/* ===== Auth Buttons ===== */
 btnAdmin?.addEventListener('click', openAdminAuth);
 btnAdminCancel?.addEventListener('click', closeAdminAuth);
 btnAdminClose?.addEventListener('click', closeAdminPanel);
-btnAdminLogout?.addEventListener('click', ()=>{
-  setAdminSession(false);
-  closeAdminPanel();
-  alert('ออกจากโหมดแอดมินแล้ว');
-});
+btnAdminLogout?.addEventListener('click', ()=>{ setAdminSession(false); closeAdminPanel(); alert('ออกจากโหมดแอดมินแล้ว'); });
 btnAdminLogin?.addEventListener('click', async ()=>{
   const pin = (adminPinInput.value||"").trim();
   if(pin.length<4){ alert('PIN อย่างน้อย 4 หลัก'); return; }
@@ -1196,8 +1140,6 @@ btnAdminLogin?.addEventListener('click', async ()=>{
   closeAdminAuth();
   openAdminPanel();
 });
-
-/* ===== รวบรวมทุกบิลจาก localStorage คีย์ ev_orders_* ===== */
 function collectAllOrders(){
   const out=[];
   for(let i=0;i<localStorage.length;i++){
@@ -1216,11 +1158,7 @@ function renderAdminTable(){
   const all = collectAllOrders();
   const q = (adminSearch.value||"").toLowerCase();
   const list = all.filter(x=>{
-    const txt = [
-      x.invoiceId,x.game,x.server,x.package,x.total,x.status,
-      x.uid,x.name,x.contact,x.owner,
-      x.ts? new Date(x.ts).toLocaleString() : ""
-    ].join(" ").toLowerCase();
+    const txt = [x.invoiceId,x.game,x.server,x.package,x.total,x.status,x.uid,x.name,x.contact,x.owner,x.ts? new Date(x.ts).toLocaleString() : ""].join(" ").toLowerCase();
     return txt.includes(q);
   });
   adminTableBody.innerHTML = "";
@@ -1244,8 +1182,6 @@ function renderAdminTable(){
   });
 }
 adminSearch?.addEventListener('input', renderAdminTable);
-
-/* ===== Export CSV ===== */
 btnAdminExport?.addEventListener('click', ()=>{
   const list = collectAllOrders();
   if(!list.length){ alert('ยังไม่มีข้อมูล'); return; }
@@ -1263,13 +1199,14 @@ btnAdminExport?.addEventListener('click', ()=>{
   URL.revokeObjectURL(url);
 });
 
-/* ===== Boot ===== */
+/* ===== INIT / BOOT ===== */
 if(isAdmin()){ showAdminButtonTemp(); }
+renderGameTabs();
+setGame(currentGame);
+updateSummary();
+initHistoryFilters();
+tryAutoLogin();
 </script>
-
-renderGameTabs(); setGame(currentGame); updateSummary(); initHistoryFilters(); tryAutoLogin();
-</script>
-
 </body>
-</html> 
+</html>
 
