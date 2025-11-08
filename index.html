@@ -7,7 +7,27 @@
   <title>EVAN VALE • Christmas Event | เติมเกมราคาดี โปร่งใส มีแอดมินดูแล</title>
   <meta name="description" content="EVAN VALE Christmas Event — เติมเกมราคาดี โปร่งใส ปลอดภัย มีแอดมินดูแล 24 ชั่วโมง รองรับ TrueMoney, PromptPay และธนาคาร" />
 
-  <style>
+  <style>/* ===== ADMIN PANEL (hidden) ===== */
+.admin-hide{display:none}
+.admin-overlay{
+  position:fixed; inset:0; z-index:60;
+  background:rgba(0,0,0,.65); backdrop-filter:blur(6px);
+  display:flex; align-items:center; justify-content:center;
+}
+.admin-card{
+  width:min(960px,94vw); max-height:86vh; overflow:auto;
+  background:#0e1813; border:1px solid var(--border); border-radius:18px;
+  box-shadow:var(--shadow); padding:16px;
+}
+.admin-bar{display:flex; gap:8px; align-items:center; justify-content:space-between; margin:6px 0 12px}
+.admin-tag{font-size:12px; padding:4px 8px; border-radius:999px; border:1px solid var(--border); background:#132319}
+.admin-tools{display:flex; gap:8px; flex-wrap:wrap}
+.admin-btn{padding:8px 12px; border-radius:10px; border:1px solid var(--border); background:#14241a; color:#f2fff2; font-weight:700; cursor:pointer}
+.admin-btn.primary{background:linear-gradient(90deg,var(--brand),var(--brand2)); color:#1b0d0d; border:none}
+.admin-table{width:100%; border-collapse:collapse}
+.admin-table th,.admin-table td{padding:8px 10px; border-bottom:1px solid rgba(255,255,255,.06); text-align:left}
+.admin-table th{color:#ffe6a8; position:sticky; top:0; background:#0e1813}
+
 /* ===== MOBILE (<=480px) ===== */
 @media (max-width: 480px){
   .wrap{padding:16px}
