@@ -245,7 +245,7 @@ th{color:#ffe6a8}
 <div class="snow s2"></div>
 <div class="snow s3"></div>
 
-<!-- AUTH -->
+<!-- AUTH (จะถูกซ่อนไว้หลังผ่านรหัสแอดมิน) -->
 <div class="auth" id="auth">
   <div class="panel">
     <h2 id="authTitle">🔒 สร้างบัญชีครั้งแรก</h2>
@@ -502,6 +502,30 @@ th{color:#ffe6a8}
     </div>
   </section>
 
+  <!-- ADMIN: CUSTOMERS -->
+  <section id="admin" class="section">
+    <div class="card">
+      <h2 style="margin:0">แอดมิน • รายชื่อลูกค้า</h2>
+      <div class="tools" style="margin:10px 0">
+        <input id="custSearch" placeholder="ค้นหา: ชื่อ/ติดต่อ/UID" style="max-width:260px">
+        <button class="btn" id="btnExportCustomers" type="button">ส่งออกลูกค้า CSV</button>
+        <button class="btn" id="btnChangeAdminKey" type="button">เปลี่ยนรหัสผู้ดูแล</button>
+      </div>
+
+      <div class="glass table-scroll">
+        <table id="custTable">
+          <thead>
+            <tr>
+              <th>ชื่อ</th><th>ติดต่อ</th><th>UID ล่าสุด</th><th>เกมล่าสุด</th><th>ยอดรวม (ประมาณ)</th><th>ออเดอร์</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div id="custEmpty" class="muted2" style="padding:8px 0;display:none">ยังไม่มีข้อมูลลูกค้า</div>
+      </div>
+    </div>
+  </section>
+
   <div class="footer">© 2025 Evan Vale • Christmas Event</div>
 </div>
 
@@ -543,6 +567,46 @@ function toggleProtected(disabled){
   document.getElementById('btnPrepareMsg').disabled  = disabled;
   document.getElementById('btnSaveProfile').disabled = disabled;
   document.getElementById('btnLogout').style.display = disabled ? "none" : "inline-block";
+}
+
+/* ===== ADMIN-ONLY MODE (client-side lock) ===== */
+const ADMIN_HASH_KEY = "ev_admin_hash";       // เก็บ hash รหัสแอดมิน (localStorage)
+const ADMIN_SESSION_KEY = "ev_admin_session";  // เซสชันแอดมิน (sessionStorage)
+const ADMIN_ONLY = true;                       // เปิดโหมดแอดมินเท่านั้น
+
+function isAdmin(){ return sessionStorage.getItem(ADMIN_SESSION_KEY)==='ok'; }
+function getAdminHash(){ return localStorage.getItem(ADMIN_HASH_KEY) || ""; }
+
+async function setAdminHashFromPrompt(){
+  const k1 = prompt('ตั้งรหัสผู้ดูแล (อย่างน้อย 6 ตัว)');
+  if(!k1 || k1.length<6){ alert('ต้องอย่างน้อย 6 ตัว'); return false; }
+  const k2 = prompt('พิมพ์ซ้ำรหัสผู้ดูแล');
+  if(k1!==k2){ alert('รหัสไม่ตรงกัน'); return false; }
+  const h = await hashSafe('admin|'+k1);
+  localStorage.setItem(ADMIN_HASH_KEY, h);
+  return true;
+}
+
+async function verifyAdminFromPrompt(){
+  const h = getAdminHash();
+  if(!h){
+    const ok = await setAdminHashFromPrompt();
+    if(!ok) return false;
+    sessionStorage.setItem(ADMIN_SESSION_KEY, 'ok');
+    return true;
+  }else{
+    const k = prompt('รหัสผู้ดูแล');
+    if(!k) return false;
+    const hk = await hashSafe('admin|'+k);
+    if(hk===h){ sessionStorage.setItem(ADMIN_SESSION_KEY,'ok'); return true; }
+    alert('รหัสไม่ถูกต้อง'); return false;
+  }
+}
+
+async function requireAdmin(){
+  if(!ADMIN_ONLY) return true;
+  if(isAdmin()) return true;
+  return await verifyAdminFromPrompt();
 }
 
 /* ===== DATA ===== */
@@ -766,14 +830,14 @@ function updateSummary(){
 /* ===== HISTORY ===== */
 function loadOrders(){ try{ return JSON.parse(localStorage.getItem(ordersKey())||"[]"); }catch{return [];} }
 function saveOrders(list){ localStorage.setItem(ordersKey(), JSON.stringify(list)); }
-function addOrder(row){ const list=loadOrders(); list.unshift(row); saveOrders(list); renderHistory(); }
+function addOrder(row){ const list=loadOrders(); list.unshift(row); saveOrders(list); renderHistory(); renderCustomers(); }
 function updateOrderStatus(inv, status){
   const list=loadOrders(); const idx=list.findIndex(x=>x.invoiceId===inv);
-  if(idx>-1){ list[idx].status=status; saveOrders(list); renderHistory(); }
+  if(idx>-1){ list[idx].status=status; saveOrders(list); renderHistory(); renderCustomers(); }
 }
 function deleteOrder(inv){
   const list=loadOrders().filter(x=>x.invoiceId!==inv);
-  saveOrders(list); renderHistory();
+  saveOrders(list); renderHistory(); renderCustomers();
 }
 function clearAll(){
   if(confirm('ล้างข้อมูลทั้งหมดของผู้ใช้คนนี้? (รวมบัญชี/ประวัติ)')){
@@ -992,7 +1056,78 @@ document.getElementById('btnSaveProfile')?.addEventListener('click', ()=>{
   alert('บันทึกข้อมูลลูกค้าไว้ในเครื่องแล้ว ✅');
 });
 
-/* ===== AUTH FLOW ===== */
+/* ===== ADMIN: ลูกค้ารวมจากประวัติ ===== */
+function aggregateCustomers(){
+  const list = loadOrders();
+  const map = new Map(); // key = contact|name
+
+  list.forEach(x=>{
+    const key = (x.contact||'') + '|' + (x.name||'');
+    const cur = map.get(key) || {
+      name: x.name||'-',
+      contact: x.contact||'-',
+      lastUid: x.uid||'-',
+      lastGame: x.game||'-',
+      total: 0,
+      count: 0
+    };
+    const n = Number(String(x.total||'').replace(/[^\d]/g,'')||'0');
+    cur.total += n;
+    cur.count += 1;
+    cur.lastUid = x.uid || cur.lastUid;
+    cur.lastGame = x.game || cur.lastGame;
+    map.set(key, cur);
+  });
+
+  return Array.from(map.values());
+}
+
+function renderCustomers(){
+  const data = aggregateCustomers();
+  const q = (document.getElementById('custSearch')?.value||'').toLowerCase();
+  const filtered = data.filter(c=>{
+    const t = (c.name+c.contact+c.lastUid).toLowerCase();
+    return t.includes(q);
+  });
+
+  const body = document.querySelector('#custTable tbody');
+  if(!body) return;
+  body.innerHTML = '';
+  const empty = document.getElementById('custEmpty');
+  if(empty) empty.style.display = filtered.length? 'none':'block';
+
+  filtered.forEach(c=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${c.name}</td>
+      <td>${c.contact}</td>
+      <td>${c.lastUid}</td>
+      <td>${c.lastGame}</td>
+      <td>฿${c.total.toLocaleString()}</td>
+      <td>${c.count}</td>
+    `;
+    body.appendChild(tr);
+  });
+}
+
+document.getElementById('custSearch')?.addEventListener('input', renderCustomers);
+document.getElementById('btnExportCustomers')?.addEventListener('click', ()=>{
+  const rows = [['ชื่อ','ติดต่อ','UID ล่าสุด','เกมล่าสุด','ยอดรวม','จำนวนออเดอร์']];
+  aggregateCustomers().forEach(c=>{
+    rows.push([c.name, c.contact, c.lastUid, c.lastGame, c.total, c.count]);
+  });
+  const csv = rows.map(r=>r.map(v=>`"${String(v).replaceAll('"','""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], {type:"text/csv;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'evan_customers.csv'; a.click();
+  URL.revokeObjectURL(url);
+});
+document.getElementById('btnChangeAdminKey')?.addEventListener('click', async ()=>{
+  const ok = await setAdminHashFromPrompt();
+  if(ok){ alert('อัปเดตรหัสผู้ดูแลแล้ว ✅'); }
+});
+
+/* ===== AUTH FLOW (บังคับรหัสแอดมินก่อนใช้งาน) ===== */
 function renderAuth(){
   const ub = userBox(); const hasUser = !!ub;
   document.getElementById('authTitle').textContent = hasUser? '🔐 เข้าระบบ' : '🔒 สร้างบัญชีครั้งแรก';
@@ -1001,12 +1136,14 @@ function renderAuth(){
   document.getElementById('loginForm').style.display = hasUser? 'block' : 'none';
 }
 async function tryAutoLogin(){
-  if(isLogged()){
-    showAuth(false); toggleProtected(false);
-    fillFromProfile(); initHistoryFilters(); renderHistory();
+  const ok = await requireAdmin();
+  if(!ok){
+    document.body.innerHTML = '<div style="padding:24px;color:#fff;font-family:system-ui">ต้องเป็นแอดมินเท่านั้น</div>';
     return;
   }
-  renderAuth(); showAuth(true); toggleProtected(true);
+  setSession(true);
+  showAuth(false); toggleProtected(false);
+  fillFromProfile(); initHistoryFilters(); renderHistory(); renderCustomers();
 }
 document.getElementById('btnSetup').addEventListener('click', async ()=>{
   const user = document.getElementById('setupUser').value.trim();
@@ -1019,7 +1156,7 @@ document.getElementById('btnSetup').addEventListener('click', async ()=>{
   setUserBox({user, pinHash, name, contact, last: null});
   setSession(true);
   showAuth(false); toggleProtected(false);
-  fillFromProfile(); initHistoryFilters(); renderHistory();
+  fillFromProfile(); initHistoryFilters(); renderHistory(); renderCustomers();
 });
 document.getElementById('btnLogin').addEventListener('click', async ()=>{
   const user = document.getElementById('loginUser').value.trim();
@@ -1029,7 +1166,7 @@ document.getElementById('btnLogin').addEventListener('click', async ()=>{
   if(hash===ub.pinHash){
     setSession(true);
     showAuth(false); toggleProtected(false);
-    fillFromProfile(); initHistoryFilters(); renderHistory();
+    fillFromProfile(); initHistoryFilters(); renderHistory(); renderCustomers();
   } else {
     alert('ผู้ใช้หรือ PIN ไม่ถูกต้อง');
   }
@@ -1063,7 +1200,7 @@ btnMarkPaid?.addEventListener('click', ()=>{
   alert('แจ้งชำระแล้ว ✅ แอดมินจะตรวจสอบให้เร็วที่สุด');
 });
 
-/* ===== COUNTDOWN (New Year 2026, Asia/Bangkok) – อัปเดตทุก 1 วิ เพื่อประหยัดแบต ===== */
+/* ===== COUNTDOWN (New Year 2026, Asia/Bangkok) ===== */
 const cdDigits = document.getElementById('countdownDigits');
 const ribbonTxt = document.getElementById('ribbonTxt');
 function fmt2(n){ return n.toString().padStart(2,'0'); }
@@ -1104,8 +1241,13 @@ function promoHintOnce(){
 }
 
 /* ===== INIT ===== */
-renderGameTabs(); setGame(currentGame); updateSummary(); initHistoryFilters(); tryAutoLogin();
+renderGameTabs();
+setGame(currentGame);
+updateSummary();
+initHistoryFilters();
+tryAutoLogin();
 </script>
 
 </body>
 </html>
+
