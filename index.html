@@ -32,6 +32,13 @@
   .nav .tools a[href="#packages"],
   .nav .tools a[href="#order"],
   .nav .tools a[href="#history"]{ display:none; }
+
+  /* แชทบอทบนมือถือ ย่อขึ้นมาให้ไม่บังเยอะ */
+  .chat-widget{
+    bottom:72px;
+    right:12px;
+    width:260px;
+  }
 }
 
 /* ===== TABLE SCROLL ===== */
@@ -188,16 +195,10 @@ input,select,textarea{width:100%;background:#0f1a13;border:1px solid var(--borde
 .neon h3{margin:0 0 6px;font-size:16px;text-shadow:0 0 12px rgba(255,209,102,.35)}
 .mini-sum .row-line{display:flex;justify-content:space-between;gap:10px;padding:4px 0;border-bottom:1px dashed rgba(255,255,255,.06)}
 .mini-sum .row-line:last-child{border-bottom:0}
-.ribbon{
-  position:absolute;right:14px;top:-10px;rotate:8deg;
+.ribbon{ position:absolute;right:14px;top:-10px;rotate:8deg;
   background:linear-gradient(90deg,#e53935,#36c06b); color:#1b0d0d;padding:6px 12px;border-radius:8px;font-weight:900;
-  box-shadow:0 6px 18px #36c06b60;border:1px solid #5c2a00
-}
-@media (max-width:980px){
-  .hero{grid-template-columns:1fr}
-  .grid.two{grid-template-columns:1fr}
-  .summary{position:static}
-}
+  box-shadow:0 6px 18px #36c06b60;border:1px solid #5c2a00 }
+@media (max-width:980px){.hero{grid-template-columns:1fr}.grid.two{grid-template-columns:1fr}.summary{position:static}}
 
 /* ===== AUTH ===== */
 .auth{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);z-index:50}
@@ -242,99 +243,122 @@ th{color:#ffe6a8}
   box-shadow:0 0 18px #ffd16640;
 }
 
-/* ===== ASSISTANT WIDGET (EVAN AI) ===== */
-.assistant-toggle{
+/* ===== CHAT BOT (WAY & KIN) ===== */
+.chat-widget{
   position:fixed;
-  right:16px;
-  bottom:16px;
-  z-index:60;
-  border-radius:999px;
-  padding:10px 16px;
-  background:linear-gradient(90deg,var(--brand),var(--brand2));
-  color:#1b0d0d;
-  border:none;
-  font-weight:800;
-  cursor:pointer;
-  box-shadow:0 10px 30px rgba(0,0,0,.6);
-}
-.assistant-widget{
-  position:fixed;
-  right:16px;
-  bottom:70px;
-  width:320px;
+  bottom:20px;
+  right:20px;
+  width:300px;
   max-height:420px;
-  z-index:60;
-  background:var(--panel);
+  background:#0f1a13;
   border-radius:18px;
   border:1px solid var(--border);
-  box-shadow:var(--shadow);
-  display:none;
+  box-shadow:0 16px 40px rgba(0,0,0,.7);
+  display:flex;
   flex-direction:column;
   overflow:hidden;
-}
-.assistant-widget.open{ display:flex; }
-.assistant-header{
-  padding:10px 12px;
-  border-bottom:1px solid rgba(255,255,255,.06);
-  display:flex;
-  flex-direction:column;
-  gap:2px;
-}
-.assistant-header-title{ font-weight:800; font-size:14px; }
-.assistant-header-sub{ font-size:11px; color:var(--muted2); }
-.assistant-messages{
-  flex:1;
-  padding:8px;
-  overflow-y:auto;
+  z-index:40;
   font-size:13px;
+}
+.chat-header{
+  padding:8px 12px;
+  background:linear-gradient(90deg,#e53935,#36c06b);
+  color:#1b0d0d;
   display:flex;
-  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  cursor:pointer;
+  font-weight:800;
+}
+.chat-header span{
+  display:inline-flex;
+  align-items:center;
   gap:6px;
 }
-.assistant-row{ display:flex; }
-.assistant-row.me{ justify-content:flex-end; }
-.assistant-row.bot{ justify-content:flex-start; }
-.assistant-bubble{
+.chat-header small{
+  font-size:11px;
+  opacity:.85;
+}
+.chat-body{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  padding:8px;
+  background:#101d15;
+}
+.chat-log{
+  flex:1;
+  overflow-y:auto;
+  padding-right:2px;
+}
+.chat-msg{
+  margin:4px 0;
+  display:flex;
+}
+.chat-msg.me{
+  justify-content:flex-end;
+}
+.chat-bubble{
+  max-width:85%;
   padding:6px 9px;
   border-radius:12px;
-  max-width:85%;
-  line-height:1.4;
+  line-height:1.3;
 }
-.assistant-bubble.me{
-  background:linear-gradient(120deg,var(--brand),var(--brand2));
-  color:#1b0d0d;
-  border-bottom-right-radius:4px;
+.chat-msg.me .chat-bubble{
+  background:#1d3a26;
+  border:1px solid #2b5a33;
 }
-.assistant-bubble.bot{
-  background:#16281d;
-  border-bottom-left-radius:4px;
+.chat-msg.bot .chat-bubble{
+  background:#151f18;
+  border:1px solid #25402a;
 }
-.assistant-input{
-  padding:8px;
-  border-top:1px solid rgba(255,255,255,.06);
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:6px;
+.chat-input-row{
+  display:flex;
+  gap:4px;
+  padding-top:4px;
+  border-top:1px solid rgba(255,255,255,.08);
 }
-.assistant-input textarea{
-  resize:none;
-  min-height:36px;
-  max-height:80px;
+.chat-input-row input{
+  flex:1;
+  padding:7px 9px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:#0a120d;
+  color:#f8fff6;
   font-size:13px;
-  padding:8px 10px;
 }
-.assistant-input button{
+.chat-input-row button{
+  padding:7px 11px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:#17271d;
+  color:#f8fff6;
   font-size:13px;
-  padding:0 12px;
+  cursor:pointer;
 }
-@media (max-width:480px){
-  .assistant-widget{
-    right:10px;
-    left:10px;
-    width:auto;
-    bottom:72px;
-    max-height:60vh;
-  }
+.chat-widget.collapsed .chat-body{
+  display:none;
+}
+.chat-widget.collapsed{
+  max-height:48px;
+}
+.chat-tag{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  background:rgba(0,0,0,.18);
+  padding:2px 6px;
+  border-radius:999px;
+}
+
+/* scrollbar เล็กหน่อยในแชท */
+.chat-log::-webkit-scrollbar{
+  width:6px;
+}
+.chat-log::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.12);
+  border-radius:999px;
 }
   </style>
 </head>
@@ -606,19 +630,23 @@ th{color:#ffe6a8}
   <div class="footer">© 2025 Evan Vale • Christmas Event</div>
 </div>
 
-<!-- MINI AI ASSISTANT (WAY & KIN STYLE) -->
-<div class="assistant-widget" id="evAssistant">
-  <div class="assistant-header">
-    <div class="assistant-header-title">EVAN AI (เบต้า)</div>
-    <div class="assistant-header-sub">ช่วยตอบเรื่องบิล / แพ็กเกจ ถ้าพิมพ์มั่วหรือหยาบจะโดนดุเบา ๆ 😏</div>
+<!-- CHAT BOT WIDGET -->
+<div class="chat-widget collapsed" id="chatWidget">
+  <div class="chat-header" id="chatToggle">
+    <span>
+      💬 WAY &amp; KIN
+      <span class="chat-tag">EVAN VALE BOT</span>
+    </span>
+    <span>เปิด/พับ</span>
   </div>
-  <div class="assistant-messages" id="evAssistantMessages"></div>
-  <div class="assistant-input">
-    <textarea id="evAssistantInput" placeholder="พิมพ์คำถาม หรือชื่อเกม+แพ็กเกจ..."></textarea>
-    <button class="btn primary" id="evAssistantSend" type="button">ส่ง</button>
+  <div class="chat-body">
+    <div class="chat-log" id="chatLog"></div>
+    <div class="chat-input-row">
+      <input id="chatInput" placeholder="พิมพ์มาได้เลย..." />
+      <button id="chatSend" type="button">ส่ง</button>
+    </div>
   </div>
 </div>
-<button class="assistant-toggle" id="evAssistantToggle" type="button">EVAN • Chat</button>
 
 <!-- TOAST HOLDER -->
 <div id="toast" class="toast"></div>
@@ -1218,97 +1246,117 @@ function promoHintOnce(){
   toast('🎁 โปรปีใหม่ถูกเปิดใช้งาน — ราคาในการ์ดคือราคาหลังลดแล้ว');
 }
 
-/* ===== MINI ASSISTANT (EVAN AI) ===== */
-const asToggle = document.getElementById('evAssistantToggle');
-const asBox = document.getElementById('evAssistant');
-const asMsgWrap = document.getElementById('evAssistantMessages');
-const asInput = document.getElementById('evAssistantInput');
-const asSend = document.getElementById('evAssistantSend');
+/* ===== CHAT BOT: ด่าคำหยาบ + มั่วซั่ว ===== */
+const chatWidget   = document.getElementById('chatWidget');
+const chatToggle   = document.getElementById('chatToggle');
+const chatLog      = document.getElementById('chatLog');
+const chatInput    = document.getElementById('chatInput');
+const chatSendBtn  = document.getElementById('chatSend');
 
-function addAssistantBubble(role, text){
-  if(!asMsgWrap) return;
-  const row = document.createElement('div');
-  row.className = 'assistant-row ' + (role==='user'?'me':'bot');
+const TH_PROFANITY = [
+  "ควย","เหี้ย","สัส","สัด","ไอสัส","เชี่ย","ชิบหาย","fuck","shit","bitch"
+];
+const TH_INSULTS = [
+  "พิมพ์เหี้ยอะไรของมึงเนี่ย 😂",
+  "คีย์บอร์ดมึงเมากาวเหรอ หัดพิมพ์ให้คนอ่านรู้เรื่องหน่อยไอหมา",
+  "ใจเย็นก่อน เวลาพิมพ์ลองให้สมองทำงานมากกว่านิ้วหน่อยดิ",
+  "นี่เว็บเติมเกมไม่ใช่สมุดวาดรูปตัวอักษรมั่วๆ นะเว้ย",
+  "พิมพ์ดีๆ คนอ่านก็สบายใจ มึงก็ไม่โดนบอทด่าไง เข้าใจยัง",
+  "ลองพิมพ์เป็นภาษาโลกมนุษย์ดูสักประโยคก่อนไหมสัส 😏"
+];
+const EN_INSULTS = [
+  "Bro, what the hell are you typing!? 🫠",
+  "Keyboard glitching or your brain lagging, huh?",
+  "This is not a random-keyboard-smash simulator, type like a human.",
+  "Try words, not whatever that alien code was, dude.",
+  "Calm down, smash buttons slower so I can at least ROAST you properly.",
+  "You type like your Wi-Fi signal: unstable as hell."
+];
+
+function addChatMessage(sender, text){
+  const msg = document.createElement('div');
+  msg.className = 'chat-msg ' + (sender === 'me' ? 'me' : 'bot');
   const bubble = document.createElement('div');
-  bubble.className = 'assistant-bubble ' + (role==='user'?'me':'bot');
+  bubble.className = 'chat-bubble';
   bubble.textContent = text;
-  row.appendChild(bubble);
-  asMsgWrap.appendChild(row);
-  asMsgWrap.scrollTop = asMsgWrap.scrollHeight;
+  msg.appendChild(bubble);
+  chatLog.appendChild(msg);
+  chatLog.scrollTop = chatLog.scrollHeight;
 }
 
-const BAD_WORDS = [
-  "ควย","เหี้ย","สัส","ไอเหี้ย","ไอสัส",
-  "fuck","shit","bitch"
-];
-
-function looksGibberish(txt){
-  const clean = txt.replace(/\s+/g,'');
-  if(clean.length < 6) return false;
-  const letters = clean.replace(/[^A-Za-zก-๙]/g,'').length;
-  const digits = clean.replace(/[^0-9]/g,'').length;
-  return letters>0 && digits>0 && (letters+digits===clean.length);
+function textHasProfanity(text){
+  const t = text.toLowerCase();
+  return TH_PROFANITY.some(w => t.includes(w));
 }
 
-const STRICT_REPLIES = [
-  "เฮ้ ข้อความนี้แรงไปหน่อยนะ ลองพิมพ์ใหม่ให้สุภาพกว่านี้หน่อย 😉",
-  "ตัวหนังสือเต้นระบำไปหมดเลย ลองพิมพ์ให้คนอ่านรู้เรื่องหน่อยว่าอยากทำอะไร 😊",
-  "เบา ๆ กับคำหยาบหน่อย เพื่อน แอดมินอ่านอยู่ทั้งนั้นน้า 😏",
-  "ถ้าพิมพ์ดี ๆ หน่อย เราจะช่วยเช็กบิล / เติมเกมให้ได้ง่ายขึ้นเยอะเลย 😄"
-];
+function looksGibberish(text){
+  const t = (text || "").replace(/\s+/g,"");
+  if(t.length < 6) return false;
+  const letters = (t.match(/[a-zA-Zก-ฮ]/g)||[]).length;
+  const digits  = (t.match(/\d/g)||[]).length;
+  const others  = t.length - letters - digits;
+  // มั่วๆ แบบมีตัวเลข+ตัวอักษร+ตัวประหลาด หรือปนเยอะๆ
+  return (letters > 0 && digits > 0) || others > 0;
+}
 
-const NORMAL_REPLIES = [
-  "ถ้ามีอะไรให้ช่วย ลองพิมพ์ชื่อเกม + แพ็กเกจที่อยากเติมได้เลยนะ ✨",
-  "ตัวอย่าง: \"Free Fire 517 เพชร เติมผ่านทรูมันนี่\" แล้วก็กดสร้างบิลด้านบนได้เลย 🙌",
-  "ตอนนี้บอทยังตอบได้แค่พื้นฐาน ถ้ามีคำถามละเอียดกดปุ่ม \"ติดต่อแอดมิน\" ด้านบนได้เลยนะ 💬"
-];
+function getRoast(text){
+  const hasThai = /[ก-ฮ]/.test(text);
+  const hasEng  = /[a-zA-Z]/.test(text);
 
-function pickRandom(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
-
-function handleAssistantSend(){
-  const txt = (asInput?.value || "").trim();
-  if(!txt) return;
-  addAssistantBubble('user', txt);
-  asInput.value = "";
-  let reply;
-  const lower = txt.toLowerCase();
-  const hasBad = BAD_WORDS.some(w => lower.includes(w));
-  const gib = looksGibberish(txt);
-  if(hasBad || gib){
-    reply = pickRandom(STRICT_REPLIES);
-  }else{
-    reply = pickRandom(NORMAL_REPLIES);
+  if(hasThai && !hasEng){
+    return TH_INSULTS[Math.floor(Math.random()*TH_INSULTS.length)];
   }
-  setTimeout(()=> addAssistantBubble('bot', reply), 200);
+  if(hasEng && !hasThai){
+    return EN_INSULTS[Math.floor(Math.random()*EN_INSULTS.length)];
+  }
+  // ถ้าปนกันหรือมั่วมากๆ สุ่มไทย/อังกฤษ
+  if(Math.random() < 0.5){
+    return TH_INSULTS[Math.floor(Math.random()*TH_INSULTS.length)];
+  }
+  return EN_INSULTS[Math.floor(Math.random()*EN_INSULTS.length)];
 }
 
-function initAssistant(){
-  if(!asToggle || !asBox) return;
-  asToggle.addEventListener('click', ()=>{
-    const opened = asBox.classList.toggle('open');
-    if(opened && asMsgWrap && !asMsgWrap.dataset.welcomed){
-      addAssistantBubble('bot', 'สวัสดีจาก EVAN VALE — ถ้าอยากให้ช่วยเรื่องบิลหรือแพ็กเกจ ลองพิมพ์มาคุยได้เลยนะ 😄');
-      asMsgWrap.dataset.welcomed = '1';
+function handleChatSend(){
+  const txt = (chatInput.value || "").trim();
+  if(!txt) return;
+  addChatMessage('me', txt);
+  chatInput.value = "";
+
+  setTimeout(()=>{
+    if(textHasProfanity(txt) || looksGibberish(txt)){
+      addChatMessage('bot', getRoast(txt));
+    }else{
+      // ตอบปกติถ้าไม่หยาบ/ไม่มั่ว
+      const normalReplies = [
+        "โอเค กูรับเรื่องแล้วมีไรถามก็พิมพ์มาได้",
+        "ถ้าอยากรู้ราคาแพ็กไหน พิมพ์ชื่อเกมกับแพ็กมาถามได้เลย",
+        "เติมเกมมีอะไรงงถามมา เดี๋ยวบอทเคลียร์ให้แบบไม่เหวี่ยง (ถ้ามึงพิมพ์ดีๆ นะ)",
+        "ได้ ยินแล้วๆ เดี๋ยวตอบแบบสุภาพให้ เพราะเมื่อกี้มึงยังไม่เกรียน 🤝"
+      ];
+      addChatMessage('bot', normalReplies[Math.floor(Math.random()*normalReplies.length)]);
     }
-  });
-  asSend?.addEventListener('click', handleAssistantSend);
-  asInput?.addEventListener('keydown', e=>{
-    if(e.key === 'Enter' && !e.shiftKey){
-      e.preventDefault();
-      handleAssistantSend();
-    }
-  });
+  }, 300);
 }
+
+/* toggle chat open/close */
+chatToggle?.addEventListener('click', ()=>{
+  chatWidget.classList.toggle('collapsed');
+});
+
+chatSendBtn?.addEventListener('click', handleChatSend);
+chatInput?.addEventListener('keydown', (e)=>{
+  if(e.key === 'Enter' && !e.shiftKey){
+    e.preventDefault();
+    handleChatSend();
+  }
+});
+
+/* initial bot message */
+addChatMessage('bot', "WAY & KIN พร้อมด่า… เอ้ย พร้อมตอบแล้ว พิมพ์มาดิ 😏");
 
 /* ===== INIT ===== */
-renderGameTabs();
-setGame(currentGame);
-updateSummary();
-initHistoryFilters();
-tryAutoLogin();
-initAssistant();
+renderGameTabs(); setGame(currentGame); updateSummary(); initHistoryFilters(); tryAutoLogin();
 </script>
 
 </body>
 </html>
-
