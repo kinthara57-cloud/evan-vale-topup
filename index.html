@@ -32,10 +32,6 @@
   .nav .tools a[href="#packages"],
   .nav .tools a[href="#order"],
   .nav .tools a[href="#history"]{ display:none; }
-
-  /* AI widget on mobile: ขยับขึ้นมานิดนึง */
-  .ai-widget{right:12px; bottom:12px;}
-  .ai-panel{width:96vw; max-width:none; right:2vw; bottom:76px;}
 }
 
 /* ===== TABLE SCROLL ===== */
@@ -192,10 +188,16 @@ input,select,textarea{width:100%;background:#0f1a13;border:1px solid var(--borde
 .neon h3{margin:0 0 6px;font-size:16px;text-shadow:0 0 12px rgba(255,209,102,.35)}
 .mini-sum .row-line{display:flex;justify-content:space-between;gap:10px;padding:4px 0;border-bottom:1px dashed rgba(255,255,255,.06)}
 .mini-sum .row-line:last-child{border-bottom:0}
-.ribbon{ position:absolute;right:14px;top:-10px;rotate:8deg;
+.ribbon{
+  position:absolute;right:14px;top:-10px;rotate:8deg;
   background:linear-gradient(90deg,#e53935,#36c06b); color:#1b0d0d;padding:6px 12px;border-radius:8px;font-weight:900;
-  box-shadow:0 6px 18px #36c06b60;border:1px solid #5c2a00 }
-@media (max-width:980px){.hero{grid-template-columns:1fr}.grid.two{grid-template-columns:1fr}.summary{position:static}}
+  box-shadow:0 6px 18px #36c06b60;border:1px solid #5c2a00
+}
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr}
+  .grid.two{grid-template-columns:1fr}
+  .summary{position:static}
+}
 
 /* ===== AUTH ===== */
 .auth{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);z-index:50}
@@ -240,147 +242,99 @@ th{color:#ffe6a8}
   box-shadow:0 0 18px #ffd16640;
 }
 
-/* ===== EVAN AI WIDGET ===== */
-.ai-widget{
+/* ===== ASSISTANT WIDGET (EVAN AI) ===== */
+.assistant-toggle{
   position:fixed;
-  right:20px;
-  bottom:20px;
-  z-index:65;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-  gap:10px;
-}
-.ai-toggle{
-  width:56px;
-  height:56px;
+  right:16px;
+  bottom:16px;
+  z-index:60;
   border-radius:999px;
-  border:none;
-  cursor:pointer;
-  display:grid;
-  place-items:center;
-  background:radial-gradient(circle at 30% 20%, #ffd166, #e53935 55%, #36c06b 100%);
+  padding:10px 16px;
+  background:linear-gradient(90deg,var(--brand),var(--brand2));
   color:#1b0d0d;
-  font-size:24px;
-  box-shadow:0 10px 26px rgba(0,0,0,.55),0 0 18px rgba(255,209,102,.55);
+  border:none;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 10px 30px rgba(0,0,0,.6);
 }
-.ai-toggle span{
-  font-size:26px;
-}
-.ai-panel{
-  display:none;
-  width:360px;
-  max-height:520px;
-  background:#0f1a13f0;
+.assistant-widget{
+  position:fixed;
+  right:16px;
+  bottom:70px;
+  width:320px;
+  max-height:420px;
+  z-index:60;
+  background:var(--panel);
   border-radius:18px;
   border:1px solid var(--border);
-  box-shadow:0 20px 60px rgba(0,0,0,.85);
-  backdrop-filter:blur(14px);
-  overflow:hidden;
+  box-shadow:var(--shadow);
+  display:none;
   flex-direction:column;
+  overflow:hidden;
 }
-.ai-widget.open .ai-panel{display:flex;}
-.ai-header{
-  padding:10px 14px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  border-bottom:1px solid rgba(255,255,255,.08);
-  background:linear-gradient(90deg,#182416,#132017);
-}
-.ai-header-left{
+.assistant-widget.open{ display:flex; }
+.assistant-header{
+  padding:10px 12px;
+  border-bottom:1px solid rgba(255,255,255,.06);
   display:flex;
   flex-direction:column;
   gap:2px;
 }
-.ai-title{
-  font-size:14px;
-  font-weight:800;
-  letter-spacing:.4px;
-}
-.ai-status{
-  font-size:11px;
-  color:var(--muted2);
-}
-.ai-close{
-  background:transparent;
-  border:none;
-  color:var(--muted2);
-  font-size:18px;
-  cursor:pointer;
-}
-.ai-body{
-  padding:10px 12px;
+.assistant-header-title{ font-weight:800; font-size:14px; }
+.assistant-header-sub{ font-size:11px; color:var(--muted2); }
+.assistant-messages{
+  flex:1;
+  padding:8px;
+  overflow-y:auto;
+  font-size:13px;
   display:flex;
   flex-direction:column;
-  gap:8px;
-  overflow-y:auto;
-  max-height:330px;
-}
-.ai-bubble{
-  max-width:85%;
-  padding:8px 10px;
-  border-radius:14px;
-  font-size:13px;
-  line-height:1.4;
-}
-.ai-bot{
-  align-self:flex-start;
-  background:#132319;
-  border:1px solid var(--border);
-}
-.ai-user{
-  align-self:flex-end;
-  background:linear-gradient(90deg,var(--brand),var(--brand2));
-  color:#1b0d0d;
-  font-weight:500;
-}
-.ai-quick-title{
-  font-size:12px;
-  color:var(--muted2);
-  margin-top:2px;
-}
-.ai-quick{
-  display:flex;
-  flex-wrap:wrap;
   gap:6px;
 }
-.ai-quick button{
-  border-radius:999px;
-  border:1px solid var(--border);
-  background:#132319;
-  color:var(--muted2);
-  font-size:11px;
-  padding:4px 8px;
-  cursor:pointer;
+.assistant-row{ display:flex; }
+.assistant-row.me{ justify-content:flex-end; }
+.assistant-row.bot{ justify-content:flex-start; }
+.assistant-bubble{
+  padding:6px 9px;
+  border-radius:12px;
+  max-width:85%;
+  line-height:1.4;
 }
-.ai-footer{
-  border-top:1px solid rgba(255,255,255,.06);
+.assistant-bubble.me{
+  background:linear-gradient(120deg,var(--brand),var(--brand2));
+  color:#1b0d0d;
+  border-bottom-right-radius:4px;
+}
+.assistant-bubble.bot{
+  background:#16281d;
+  border-bottom-left-radius:4px;
+}
+.assistant-input{
   padding:8px;
+  border-top:1px solid rgba(255,255,255,.06);
   display:grid;
   grid-template-columns:1fr auto;
-  gap:8px;
-  background:#0e1813;
+  gap:6px;
 }
-.ai-input{
-  width:100%;
-  border-radius:999px;
-  border:1px solid var(--border);
-  background:#0f1a13;
-  padding:8px 12px;
-  color:#f8fff6;
+.assistant-input textarea{
+  resize:none;
+  min-height:36px;
+  max-height:80px;
   font-size:13px;
+  padding:8px 10px;
 }
-.ai-send{
-  border-radius:999px;
-  border:none;
-  padding:8px 14px;
+.assistant-input button{
   font-size:13px;
-  font-weight:700;
-  cursor:pointer;
-  background:linear-gradient(90deg,var(--brand),var(--brand2));
-  color:#1b0d0d;
+  padding:0 12px;
+}
+@media (max-width:480px){
+  .assistant-widget{
+    right:10px;
+    left:10px;
+    width:auto;
+    bottom:72px;
+    max-height:60vh;
+  }
 }
   </style>
 </head>
@@ -652,40 +606,22 @@ th{color:#ffe6a8}
   <div class="footer">© 2025 Evan Vale • Christmas Event</div>
 </div>
 
+<!-- MINI AI ASSISTANT (WAY & KIN STYLE) -->
+<div class="assistant-widget" id="evAssistant">
+  <div class="assistant-header">
+    <div class="assistant-header-title">EVAN AI (เบต้า)</div>
+    <div class="assistant-header-sub">ช่วยตอบเรื่องบิล / แพ็กเกจ ถ้าพิมพ์มั่วหรือหยาบจะโดนดุเบา ๆ 😏</div>
+  </div>
+  <div class="assistant-messages" id="evAssistantMessages"></div>
+  <div class="assistant-input">
+    <textarea id="evAssistantInput" placeholder="พิมพ์คำถาม หรือชื่อเกม+แพ็กเกจ..."></textarea>
+    <button class="btn primary" id="evAssistantSend" type="button">ส่ง</button>
+  </div>
+</div>
+<button class="assistant-toggle" id="evAssistantToggle" type="button">EVAN • Chat</button>
+
 <!-- TOAST HOLDER -->
 <div id="toast" class="toast"></div>
-
-<!-- EVAN AI WIDGET -->
-<div class="ai-widget" id="aiWidget">
-  <div class="ai-panel" id="aiPanel">
-    <div class="ai-header">
-      <div class="ai-header-left">
-        <div class="ai-title">EVAN AI • เติมเกมช่วยคิด</div>
-        <div class="ai-status">บอทช่วยตอบพื้นฐาน แอดมินยังเป็นคนจัดการออเดอร์จริง</div>
-      </div>
-      <button class="ai-close" id="aiClose" type="button">&times;</button>
-    </div>
-    <div class="ai-body" id="aiMessages">
-      <!-- เติมข้อความเปิดเองด้วย JS -->
-    </div>
-    <div style="padding:0 10px 6px;">
-      <div class="ai-quick-title">ลองกดคำถามด่วน:</div>
-      <div class="ai-quick" id="aiQuick">
-        <button type="button" data-q="วิธีสั่งเติมครั้งแรก">วิธีสั่งเติมครั้งแรก</button>
-        <button type="button" data-q="เช็กสถานะบิล">เช็กสถานะบิล</button>
-        <button type="button" data-q="ช่องทางติดต่อแอดมิน">ช่องทางติดต่อแอดมิน</button>
-        <button type="button" data-q="โปรปีใหม่ตอนนี้มีอะไรบ้าง">โปรปีใหม่มีอะไร</button>
-      </div>
-    </div>
-    <div class="ai-footer">
-      <input class="ai-input" id="aiInput" placeholder="พิมพ์ถามเรื่องแพ็กเกจ / การสั่งเติม..." />
-      <button class="ai-send" id="aiSend" type="button">ส่ง</button>
-    </div>
-  </div>
-  <button class="ai-toggle" id="aiToggle" type="button" aria-label="EVAN AI">
-    <span>💬</span>
-  </button>
-</div>
 
 <script>
 /* ===== AUTH / SESSION ===== */
@@ -1282,78 +1218,97 @@ function promoHintOnce(){
   toast('🎁 โปรปีใหม่ถูกเปิดใช้งาน — ราคาในการ์ดคือราคาหลังลดแล้ว');
 }
 
-/* ===== EVAN AI LOGIC ===== */
-const aiWidget  = document.getElementById('aiWidget');
-const aiPanel   = document.getElementById('aiPanel');
-const aiToggle  = document.getElementById('aiToggle');
-const aiClose   = document.getElementById('aiClose');
-const aiBody    = document.getElementById('aiMessages');
-const aiInput   = document.getElementById('aiInput');
-const aiSend    = document.getElementById('aiSend');
-const aiQuick   = document.getElementById('aiQuick');
+/* ===== MINI ASSISTANT (EVAN AI) ===== */
+const asToggle = document.getElementById('evAssistantToggle');
+const asBox = document.getElementById('evAssistant');
+const asMsgWrap = document.getElementById('evAssistantMessages');
+const asInput = document.getElementById('evAssistantInput');
+const asSend = document.getElementById('evAssistantSend');
 
-function aiAddMessage(sender, text){
-  if(!aiBody) return;
-  const div = document.createElement('div');
-  div.className = 'ai-bubble ' + (sender === 'user' ? 'ai-user' : 'ai-bot');
-  div.textContent = text;
-  aiBody.appendChild(div);
-  aiBody.scrollTop = aiBody.scrollHeight;
+function addAssistantBubble(role, text){
+  if(!asMsgWrap) return;
+  const row = document.createElement('div');
+  row.className = 'assistant-row ' + (role==='user'?'me':'bot');
+  const bubble = document.createElement('div');
+  bubble.className = 'assistant-bubble ' + (role==='user'?'me':'bot');
+  bubble.textContent = text;
+  row.appendChild(bubble);
+  asMsgWrap.appendChild(row);
+  asMsgWrap.scrollTop = asMsgWrap.scrollHeight;
 }
 
-function aiReplyFor(text){
-  const t = text.toLowerCase();
-  if(t.includes('วิธีสั่ง') || t.includes('ครั้งแรก')){
-    return 'วิธีสั่งเติมคร่าว ๆ:\n1) เลือกเกม + เซิร์ฟ ที่หัวข้อ “สั่งเติมเกม”\n2) เลือกแพ็กเกจที่ต้องการ\n3) ใส่ UID / Player ID ให้ถูก\n4) เลือกวิธีชำระ แล้วกด “ยืนยันและสร้างบิล”\n5) ไปส่วน “ชำระเงิน” สแกนจ่าย แล้วกด “คัดลอกสรุปบิล” ส่งให้แอดมินในแชทครับ';
-  }
-  if(t.includes('เช็ก') && t.includes('บิล')){
-    return 'เช็กสถานะบิลได้ที่หัวข้อ “ประวัติการทำรายการ” ด้านล่างเลยครับ\n- ดูเลขบิล / ยอด / เกม / สถานะ\nถ้าเพิ่งโอนแล้วสถานะยังไม่เปลี่ยน ให้ส่งสลิป + สรุปบิลในแชท Facebook ให้แอดมินตรวจได้เลย';
-  }
-  if(t.includes('ช่องทาง') || t.includes('ติดต่อ') || t.includes('แอดมิน')){
-    return 'ตอนนี้หลัก ๆ ติดต่อแอดมินได้ทาง Facebook ตามปุ่ม “ติดต่อแอดมิน” ด้านบน\nกดปุ่มนั้นหรือกด “เปิดแชทแอดมิน” หลังจากคัดลอกสรุปบิลแล้ว ส่งรายละเอียดไปให้แอดมินเช็กได้เลยครับ ✉️';
-  }
-  if(t.includes('โปร') || t.includes('ปีใหม่')){
-    return 'โปรต้อนรับปีใหม่ของร้านตอนนี้คือ:\n- Free Fire / Roblox มีการ์ด “(สั่งซื้อโปรโมชั่นต้อนรับปีใหม่)” แยกไว้ให้\nราคาในการ์ดคือราคาหลังลดแล้ว กดเลือกแพ็กนั้นได้เลย ไม่ต้องใส่โค้ดเพิ่มครับ 🎁';
-  }
-  if(t.includes('uid') || t.includes('ไอดี')){
-    return 'UID / Player ID สำคัญมาก ต้องพิมพ์ให้ตรงกับในเกม:\n- แนะนำให้ “คัดลอกจากเกม” มาวาง ลดโอกาสพิมพ์ผิด\nถ้าไม่แน่ใจ ให้แคปหน้าจอ UID แล้วส่งให้แอดมินตรวจให้ก่อนได้ครับ';
-  }
-  return 'EVAN AI เป็นตัวช่วยตอบพื้นฐานเรื่องการสั่งเติม / สถานะบิล\nถ้าคำถามละเอียดเรื่องเกม, โปรเฉพาะกิจ หรือปัญหายอดไม่เข้า\nแนะนำให้กด “ติดต่อแอดมิน” แล้วส่งสลิป + เลขบิลให้คนจริงช่วยเช็กให้จะชัวร์ที่สุดครับ 🙌';
+const BAD_WORDS = [
+  "ควย","เหี้ย","สัส","ไอเหี้ย","ไอสัส",
+  "fuck","shit","bitch"
+];
+
+function looksGibberish(txt){
+  const clean = txt.replace(/\s+/g,'');
+  if(clean.length < 6) return false;
+  const letters = clean.replace(/[^A-Za-zก-๙]/g,'').length;
+  const digits = clean.replace(/[^0-9]/g,'').length;
+  return letters>0 && digits>0 && (letters+digits===clean.length);
 }
 
-function aiHandleSend(text){
-  const msg = (text || aiInput.value || '').trim();
-  if(!msg) return;
-  aiAddMessage('user', msg);
-  aiInput.value = '';
-  setTimeout(()=>{
-    aiAddMessage('bot', aiReplyFor(msg));
-  }, 200);
+const STRICT_REPLIES = [
+  "เฮ้ ข้อความนี้แรงไปหน่อยนะ ลองพิมพ์ใหม่ให้สุภาพกว่านี้หน่อย 😉",
+  "ตัวหนังสือเต้นระบำไปหมดเลย ลองพิมพ์ให้คนอ่านรู้เรื่องหน่อยว่าอยากทำอะไร 😊",
+  "เบา ๆ กับคำหยาบหน่อย เพื่อน แอดมินอ่านอยู่ทั้งนั้นน้า 😏",
+  "ถ้าพิมพ์ดี ๆ หน่อย เราจะช่วยเช็กบิล / เติมเกมให้ได้ง่ายขึ้นเยอะเลย 😄"
+];
+
+const NORMAL_REPLIES = [
+  "ถ้ามีอะไรให้ช่วย ลองพิมพ์ชื่อเกม + แพ็กเกจที่อยากเติมได้เลยนะ ✨",
+  "ตัวอย่าง: \"Free Fire 517 เพชร เติมผ่านทรูมันนี่\" แล้วก็กดสร้างบิลด้านบนได้เลย 🙌",
+  "ตอนนี้บอทยังตอบได้แค่พื้นฐาน ถ้ามีคำถามละเอียดกดปุ่ม \"ติดต่อแอดมิน\" ด้านบนได้เลยนะ 💬"
+];
+
+function pickRandom(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+function handleAssistantSend(){
+  const txt = (asInput?.value || "").trim();
+  if(!txt) return;
+  addAssistantBubble('user', txt);
+  asInput.value = "";
+  let reply;
+  const lower = txt.toLowerCase();
+  const hasBad = BAD_WORDS.some(w => lower.includes(w));
+  const gib = looksGibberish(txt);
+  if(hasBad || gib){
+    reply = pickRandom(STRICT_REPLIES);
+  }else{
+    reply = pickRandom(NORMAL_REPLIES);
+  }
+  setTimeout(()=> addAssistantBubble('bot', reply), 200);
 }
 
-aiToggle?.addEventListener('click', ()=>{
-  aiWidget.classList.toggle('open');
-  if(aiWidget.classList.contains('open') && aiBody && !aiBody.dataset.inited){
-    aiBody.dataset.inited = '1';
-    aiAddMessage('bot','สวัสดีครับ นี่คือ EVAN AI ช่วยตอบคำถามเบื้องต้นเกี่ยวกับการสั่งเติมเกมให้ไวขึ้น 🧠💡\n\nสามารถลองกดปุ่มคำถามด่วนด้านล่าง หรือพิมพ์ถามเองได้เลยครับ');
-  }
-});
-aiClose?.addEventListener('click', ()=>{
-  aiWidget.classList.remove('open');
-});
-aiSend?.addEventListener('click', ()=> aiHandleSend());
-aiInput?.addEventListener('keydown', e=>{
-  if(e.key === 'Enter'){ e.preventDefault(); aiHandleSend(); }
-});
-aiQuick?.addEventListener('click', e=>{
-  if(e.target.matches('button[data-q]')){
-    aiHandleSend(e.target.getAttribute('data-q') || '');
-  }
-});
+function initAssistant(){
+  if(!asToggle || !asBox) return;
+  asToggle.addEventListener('click', ()=>{
+    const opened = asBox.classList.toggle('open');
+    if(opened && asMsgWrap && !asMsgWrap.dataset.welcomed){
+      addAssistantBubble('bot', 'สวัสดีจาก EVAN VALE — ถ้าอยากให้ช่วยเรื่องบิลหรือแพ็กเกจ ลองพิมพ์มาคุยได้เลยนะ 😄');
+      asMsgWrap.dataset.welcomed = '1';
+    }
+  });
+  asSend?.addEventListener('click', handleAssistantSend);
+  asInput?.addEventListener('keydown', e=>{
+    if(e.key === 'Enter' && !e.shiftKey){
+      e.preventDefault();
+      handleAssistantSend();
+    }
+  });
+}
 
 /* ===== INIT ===== */
-renderGameTabs(); setGame(currentGame); updateSummary(); initHistoryFilters(); tryAutoLogin();
+renderGameTabs();
+setGame(currentGame);
+updateSummary();
+initHistoryFilters();
+tryAutoLogin();
+initAssistant();
 </script>
 
 </body>
 </html>
+
