@@ -181,7 +181,8 @@ a{color:var(--accent);text-decoration:none} img{max-width:100%;display:block}
 .grid.two{grid-template-columns:2fr 1fr}
 .card{background:#102219;border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
 label{display:block;margin-bottom:6px;color:#d6f0d8}
-input,select,textarea{width:100%;background:#0f1a13;border:1px solid var(--border);color:#fff;padding:12px;border-radius:12px}
+input,select,textarea{background:#0f1a13;border:1px solid var(--border);color:#fff;padding:12px;border-radius:12px}
+input,select,textarea{font-family:inherit;font-size:14px;width:100%}
 .price{font-size:22px;font-weight:900}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .summary{position:sticky;top:84px}
@@ -319,7 +320,7 @@ th{color:#ffe6a8}
   padding-top:4px;
   border-top:1px solid rgba(255,255,255,.08);
 }
-.chat-input-row input{
+.chat-input-row textarea{
   flex:1;
   padding:7px 9px;
   border-radius:999px;
@@ -327,6 +328,9 @@ th{color:#ffe6a8}
   background:#0a120d;
   color:#f8fff6;
   font-size:13px;
+  resize:vertical;
+  min-height:34px;
+  max-height:90px;
 }
 .chat-input-row button{
   padding:7px 11px;
@@ -642,7 +646,7 @@ th{color:#ffe6a8}
   <div class="chat-body">
     <div class="chat-log" id="chatLog"></div>
     <div class="chat-input-row">
-      <input id="chatInput" placeholder="พิมพ์มาได้เลย..." />
+      <textarea id="chatInput" placeholder="พิมพ์มาได้เลย..." rows="1"></textarea>
       <button id="chatSend" type="button">ส่ง</button>
     </div>
   </div>
@@ -1254,7 +1258,7 @@ const chatInput    = document.getElementById('chatInput');
 const chatSendBtn  = document.getElementById('chatSend');
 
 const TH_PROFANITY = [
-  "ควย","เหี้ย","สัส","สัด","ไอสัส","เชี่ย","ชิบหาย","fuck","shit","bitch"
+  "ควย","เหี้ย","เหีย","สัส","สัด","ไอสัส","เชี่ย","เชี้ย","ชิบหาย","fuck","shit","bitch"
 ];
 const TH_INSULTS = [
   "พิมพ์เหี้ยอะไรของมึงเนี่ย 😂",
@@ -1269,7 +1273,7 @@ const EN_INSULTS = [
   "Keyboard glitching or your brain lagging, huh?",
   "This is not a random-keyboard-smash simulator, type like a human.",
   "Try words, not whatever that alien code was, dude.",
-  "Calm down, smash buttons slower so I can at least ROAST you properly.",
+  "Calm down, smash buttons slower so I can at least roast you properly.",
   "You type like your Wi-Fi signal: unstable as hell."
 ];
 
