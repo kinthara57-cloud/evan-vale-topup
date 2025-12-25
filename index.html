@@ -3,1184 +3,776 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0a0f0b">
-  <!-- Favicon / App Icons -->
-  <link rel="icon" href="images/evanvale-logo.png?v=4" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="images/evanvale-logo.png?v=4">
-  <link rel="icon" type="image/png" sizes="16x16" href="images/evanvale-logo.png?v=4">
-  <link rel="apple-touch-icon" href="images/evanvale-logo.png?v=4">
-  <title>EVAN VALE • Christmas Event | เติมเกมราคาดี โปร่งใส มีแอดมินดูแล</title>
-  <meta name="description" content="EVAN VALE Christmas Event — เติมเกมราคาดี โปร่งใส ปลอดภัย มีแอดมินดูแล 24 ชั่วโมง รองรับ TrueMoney, PromptPay และธนาคาร" />
-
+  <meta name="theme-color" content="#0b0f0c" />
+  <title>EVAN VALE TOPUP — ร้านเติมเกม</title>
   <style>
-/* ===== MOBILE (<=480px) ===== */
-@media (max-width: 480px){
-  .wrap{padding:16px}
-  .nav{gap:10px; padding:12px}
-  .nav .tools{width:100%; display:grid; grid-template-columns:1fr 1fr; gap:8px}
-  .nav .tools .btn{width:100%; min-height:44px; display:flex; align-items:center; justify-content:center}
-  .nav .tools .btn.primary{grid-column:1 / -1}
-  .hero{grid-template-columns:1fr; gap:14px}
-  .grid.two{grid-template-columns:1fr}
-  .tabs{display:grid; grid-template-columns:1fr 1fr; gap:8px}
-  .tab{width:100%; text-align:center}
-  .grid.pkg{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .grid.pkg .glass{display:grid; align-content:start; min-height:128px !important}
-  .price{font-size:18px}
-  .row{grid-template-columns:1fr; gap:10px}
-  h1{font-size:22px}
-  .nav .tools a[href="#packages"],
-  .nav .tools a[href="#order"],
-  .nav .tools a[href="#history"]{ display:none; }
-}
-
-/* ===== TABLE SCROLL ===== */
-.table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
-.table-scroll table{min-width:720px}
-
-/* ===== THEME ===== */
-:root{
-  --bg:#0a0f0b; --bg2:#0f1a12;
-  --glass:#0e1511cc; --panel:#0f1a12; --card:#101d15;
-  --text:#f8fff6; --muted:#cde3cf; --muted2:#b8d2bb;
-  --brand:#e53935; --brand2:#36c06b; --accent:#ffd166;
-  --warn:#ff6b6b; --border:#203326; --shadow:0 20px 60px rgba(0,0,0,.55); --radius:18px;
-}
-*{box-sizing:border-box} html,body{height:100%}
-body{
-  margin:0; color:var(--text); font-family:system-ui,Segoe UI,Prompt,sans-serif;
-  background:
-    radial-gradient(1100px 600px at 0% 0%, #19301f 0%, transparent 60%),
-    radial-gradient(900px 700px at 100% 0%, #2a1a1a 0%, transparent 60%),
-    radial-gradient(900px 900px at 50% 120%, #112019 0%, transparent 60%),
-    linear-gradient(180deg, var(--bg), var(--bg2));
-}
-/* ลายภาพพื้นหลัง (เดสก์ท็อป/แท็บเล็ตแสดง, มือถือปิด) */
-body::before{
-  content:""; position:fixed; inset:0; z-index:-3; pointer-events:none;
-  background:radial-gradient(800px 400px at 10% 10%, #2a3f2f55, transparent 60%),
-             radial-gradient(700px 400px at 90% 0%, #4b2a2a55, transparent 60%);
-  opacity:.25;
-}
-
-/* ===== หิมะสามเลเยอร์ (เดสก์ท็อป), 1 เลเยอร์ (แท็บเล็ต), ปิดบนมือถือ ===== */
-.snow{position:fixed; inset:-120vh -20vw 0 -20vw; pointer-events:none; z-index:-2;
-  background-repeat:repeat; will-change:background-position; mix-blend-mode:screen;}
-.s1{ background-image:
-    radial-gradient(2px 2px at 20px 20px,#fff8 90%,transparent),
-    radial-gradient(2px 2px at 120px 80px,#fff8 90%,transparent),
-    radial-gradient(2px 2px at 80px 140px,#fff8 90%,transparent);
-  background-size:220px 220px, 260px 260px, 300px 300px; animation:fall1 10s linear infinite; opacity:.9;}
-.s2{ background-image:
-    radial-gradient(3px 3px at 40px 60px,#fffd 90%,transparent),
-    radial-gradient(3px 3px at 160px 40px,#fffd 90%,transparent),
-    radial-gradient(3px 3px at 100px 180px,#fffd 90%,transparent);
-  background-size:320px 320px, 380px 380px, 420px 420px; animation:fall2 18s linear infinite; filter:blur(.3px); opacity:.85;}
-.s3{ background-image:
-    radial-gradient(4px 4px at 60px 30px,#ffff 90%,transparent),
-    radial-gradient(4px 4px at 200px 90px,#ffff 90%,transparent),
-    radial-gradient(4px 4px at 140px 220px,#ffff 90%,transparent);
-  background-size:480px 480px, 560px 560px, 640px 640px; animation:fall3 28s linear infinite; filter:blur(.6px); opacity:.7;}
-@keyframes fall1{ from{ background-position: 0 -120vh, -10vw -120vh, 8vw -120vh }
-                   to  { background-position: 0 0,       -10vw 0,       8vw 0 } }
-@keyframes fall2{ from{ background-position: -8vw -120vh, 6vw -120vh, 0 -120vh }
-                   to  { background-position: -8vw 0,      6vw 0,      0 0 } }
-@keyframes fall3{ from{ background-position: 10vw -120vh, -6vw -120vh, 4vw -120vh }
-                   to  { background-position: 10vw 0,      -6vw 0,      4vw 0 } }
-/* แท็บเล็ต: เหลือเลเยอร์เดียว */
-@media (max-width: 980px){
-  .s2,.s3{display:none}
-}
-/* มือถือ: ปิดหิมะทั้งหมด + ปิดพื้นหลัง before เพื่อประหยัด */
-@media (max-width: 480px){
-  .s1,.s2,.s3{display:none !important;}
-  body::before{display:none}
-}
-
-/* ลดแอนิเมชันหากผู้ใช้ตั้งค่า reduce motion */
-@media (prefers-reduced-motion:reduce){
-  .s1,.s2,.s3{animation:none}
-  .glow{animation:none}
-}
-
-/* ===== UI ===== */
-a{color:var(--accent);text-decoration:none} img{max-width:100%;display:block}
-.wrap{max-width:1100px;margin:auto;padding:20px}
-
-/* ใช้ content-visibility ช่วยเลื่อนลื่น */
-.section{content-visibility:auto; contain-intrinsic-size:800px 600px}
-
-.nav{
-  display:flex;justify-content:space-between;align-items:center;gap:12px;
-  background:linear-gradient(180deg,#132017,#0e1812);
-  border:1px solid var(--border);border-radius:20px;padding:10px 14px;
-  box-shadow:var(--shadow);backdrop-filter: blur(8px);position:sticky;top:12px;z-index:10
-}
-@media (max-width:480px){ .nav{ box-shadow:none; backdrop-filter:none } }
-
-.brand{display:flex;gap:12px;align-items:center}
-.logo{
-  width:42px;height:42px;border-radius:12px;
-  background:conic-gradient(from 220deg,#e53935,#36c06b,#ffd166,#e53935);
-  display:grid;place-items:center;font-weight:900;color:#1b0d0d;box-shadow:0 0 18px #ffd16640
-}
-.site-badge{
-  font-size:12px;color:#ffe6a8;background:#182416;border:1px solid #274426;
-  padding:3px 8px;border-radius:999px;display:inline-flex;gap:6px;align-items:center
-}
-.btn{padding:9px 14px;border-radius:12px;border:1px solid var(--border);background:linear-gradient(180deg,#14241a,#0f1b14);color:#f2fff2;font-weight:700;cursor:pointer}
-.btn[disabled]{opacity:.6;pointer-events:none}
-.btn.primary{
-  background:linear-gradient(90deg,var(--brand),var(--brand2));
-  color:#1b0d0d;border:none;
-  box-shadow:0 0 10px #ffd16650,0 0 28px #36c06b40;text-shadow:0 0 6px rgba(255,230,170,.6)
-}
-@media (max-width:480px){ .btn.primary{ box-shadow:none; } }
-
-.hero{margin-top:16px;display:grid;grid-template-columns:2fr 1fr;gap:18px}
-.glass{
-  background:linear-gradient(180deg,var(--glass),#0e1712cc);
-  border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);backdrop-filter: blur(10px)
-}
-@media (max-width:480px){ .glass{box-shadow:none; backdrop-filter:none} }
-.badge{padding:6px 10px;border-radius:999px;background:#1b2a1e;border:1px solid var(--border);display:inline-flex;gap:8px;align-items:center}
-
-/* ===== เฮดดิ้งเรืองแสง ===== */
-.drip{letter-spacing:.2px}
-.glow{
-  text-shadow:
-    0 0 6px rgba(255,209,102,.55),
-    0 0 14px rgba(255,209,102,.45),
-    0 0 28px rgba(54,192,107,.35);
-  animation:glowPulse 2.6s ease-in-out infinite alternate;
-}
-@keyframes glowPulse{
-  from{
-    text-shadow:0 0 6px rgba(255,209,102,.55),0 0 16px rgba(255,209,102,.45),0 0 28px rgba(54,192,107,.30);
-    filter:saturate(1);
-  }
-  to{
-    text-shadow:0 0 10px rgba(255,209,102,.9),0 0 24px rgba(255,209,102,.75),0 0 48px rgba(54,192,107,.55);
-    filter:saturate(1.15);
-  }
-}
-
-.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
-.stat{background:#16281d;border:1px solid var(--border);border-radius:14px;text-align:center;padding:14px}
-.muted{color:var(--muted)} .muted2{color:var(--muted2)}
-.section{margin-top:22px}
-.grid{display:grid;gap:16px}
-.grid.pkg{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
-.grid.two{grid-template-columns:2fr 1fr}
-.card{background:#102219;border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
-label{display:block;margin-bottom:6px;color:#d6f0d8}
-input,select,textarea{width:100%;background:#0f1a13;border:1px solid var(--border);color:#fff;padding:12px;border-radius:12px}
-.price{font-size:22px;font-weight:900}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.summary{position:sticky;top:84px}
-.list{display:flex;flex-direction:column;gap:8px}
-.item{display:flex;justify-content:space-between;gap:10px}
-.total{font-size:22px;font-weight:900}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 0}
-.tab{padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:#132319;cursor:pointer}
-.tab.active{background:linear-gradient(90deg,var(--brand),var(--brand2));color:#1b0d0d;border:none;box-shadow:0 0 10px #ffd16650}
-.neon{box-shadow:0 0 12px rgba(255,209,102,.25),0 0 24px rgba(54,192,107,.18),inset 0 0 0 1px rgba(255,209,102,.18);border:1px solid rgba(255,209,102,.25);border-radius:14px;padding:12px;margin-top:10px}
-.neon h3{margin:0 0 6px;font-size:16px;text-shadow:0 0 12px rgba(255,209,102,.35)}
-.mini-sum .row-line{display:flex;justify-content:space-between;gap:10px;padding:4px 0;border-bottom:1px dashed rgba(255,255,255,.06)}
-.mini-sum .row-line:last-child{border-bottom:0}
-.ribbon{
-  position:absolute;right:14px;top:-10px;rotate:8deg;
-  background:linear-gradient(90deg,#e53935,#36c06b); color:#1b0d0d;padding:6px 12px;border-radius:8px;font-weight:900;
-  box-shadow:0 6px 18px #36c06b60;border:1px solid #5c2a00
-}
-@media (max-width:980px){
-  .hero{grid-template-columns:1fr}
-  .grid.two{grid-template-columns:1fr}
-  .summary{position:static}
-}
-
-/* ===== HISTORY ===== */
-table{width:100%;border-collapse:collapse}
-th,td{padding:10px;border-bottom:1px solid rgba(255,255,255,.06);text-align:left}
-th{color:#ffe6a8}
-.tools{display:flex;gap:8px;flex-wrap:wrap}
-.pill{display:inline-flex;gap:6px;align-items:center;padding:4px 8px;border:1px solid var(--border);border-radius:999px;background:#132319}
-
-/* ปุ่มใต้การ์ดขวา */
-.hero-cta{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; width:100%; margin-top:12px}
-.hero-cta .btn{width:100%; text-align:center}
-@media (max-width:480px){ .hero-cta{ grid-template-columns:1fr } }
-
-/* ===== COUNTDOWN STRIP ===== */
-.countdown-strip{
-  margin-top:10px; background:linear-gradient(90deg, #213726, #182b20);
-  border:1px solid var(--border); border-radius:12px; padding:10px 12px;
-  display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;
-}
-.cd-label{font-weight:800; letter-spacing:.3px}
-.cd-digits{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; font-weight:900}
-
-/* ===== TOAST ===== */
-.toast{
-  position:fixed; left:50%; bottom:16px; transform:translateX(-50%);
-  background:#132319; border:1px solid var(--border);
-  padding:10px 14px; border-radius:12px; box-shadow:var(--shadow);
-  color:#f8fff6; z-index:70; display:none
-}
-.toast.show{ display:block }
-
-/* โลโก้รูปภาพ */
-.logo-img{
-  width:42px; height:42px; border-radius:12px; object-fit:cover; display:block;
-  box-shadow:0 0 18px #ffd16640;
-}
-
-/* ===== ASSISTANT WIDGET (EVAN AI) ===== */
-.assistant-toggle{
-  position:fixed;
-  right:16px;
-  bottom:16px;
-  z-index:60;
-  border-radius:999px;
-  padding:10px 16px;
-  background:linear-gradient(90deg,var(--brand),var(--brand2));
-  color:#1b0d0d;
-  border:none;
-  font-weight:800;
-  cursor:pointer;
-  box-shadow:0 10px 30px rgba(0,0,0,.6);
-}
-.assistant-widget{
-  position:fixed;
-  right:16px;
-  bottom:70px;
-  width:320px;
-  max-height:420px;
-  z-index:60;
-  background:var(--panel);
-  border-radius:18px;
-  border:1px solid var(--border);
-  box-shadow:var(--shadow);
-  display:none;
-  flex-direction:column;
-  overflow:hidden;
-}
-.assistant-widget.open{ display:flex; }
-.assistant-header{
-  padding:10px 12px;
-  border-bottom:1px solid rgba(255,255,255,.06);
-  display:flex;
-  flex-direction:column;
-  gap:2px;
-}
-.assistant-header-title{ font-weight:800; font-size:14px; }
-.assistant-header-sub{ font-size:11px; color:var(--muted2); }
-.assistant-messages{
-  flex:1;
-  padding:8px;
-  overflow-y:auto;
-  font-size:13px;
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-}
-.assistant-row{ display:flex; }
-.assistant-row.me{ justify-content:flex-end; }
-.assistant-row.bot{ justify-content:flex-start; }
-.assistant-bubble{
-  padding:6px 9px;
-  border-radius:12px;
-  max-width:85%;
-  line-height:1.4;
-}
-.assistant-bubble.me{
-  background:linear-gradient(120deg,var(--brand),var(--brand2));
-  color:#1b0d0d;
-  border-bottom-right-radius:4px;
-}
-.assistant-bubble.bot{
-  background:#16281d;
-  border-bottom-left-radius:4px;
-}
-.assistant-input{
-  padding:8px;
-  border-top:1px solid rgba(255,255,255,.06);
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:6px;
-}
-.assistant-input textarea{
-  resize:none;
-  min-height:36px;
-  max-height:80px;
-  font-size:13px;
-  padding:8px 10px;
-}
-.assistant-input button{
-  font-size:13px;
-  padding:0 12px;
-}
-@media (max-width:480px){
-  .assistant-widget{
-    right:10px;
-    left:10px;
-    width:auto;
-    bottom:72px;
-    max-height:60vh;
-  }
-}
+    :root{
+      --bg:#0b0f0c; --bg2:#0f1713; --card:#101b16; --card2:#0f1a14;
+      --text:#f6fff6; --muted:#b9d1bd; --border:#233428;
+      --brand:#e53935; --brand2:#36c06b; --accent:#ffd166;
+      --shadow:0 18px 50px rgba(0,0,0,.55);
+      --r:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--text); font-family:system-ui,Segoe UI,Prompt,sans-serif;
+      background:
+        radial-gradient(900px 500px at 0% 0%, #1b3323 0%, transparent 60%),
+        radial-gradient(900px 500px at 100% 0%, #3a1f1f 0%, transparent 60%),
+        linear-gradient(180deg,var(--bg),var(--bg2));
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:1100px;margin:auto;padding:18px}
+    .nav{
+      position:sticky; top:12px; z-index:10;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      background:linear-gradient(180deg,#131f18,#0f1713);
+      border:1px solid var(--border); border-radius:18px; padding:10px 12px;
+      box-shadow:var(--shadow); backdrop-filter: blur(10px);
+    }
+    .brand{display:flex; gap:10px; align-items:center}
+    .logo{
+      width:40px;height:40px;border-radius:12px;
+      background:conic-gradient(from 210deg,var(--brand),var(--brand2),var(--accent),var(--brand));
+      display:grid; place-items:center; color:#190c0c; font-weight:900;
+      box-shadow:0 0 16px rgba(255,209,102,.25);
+    }
+    .title{font-weight:900; letter-spacing:.3px}
+    .tag{font-size:12px; color:#ffe6a8; border:1px solid #2d442f; background:#142015; padding:3px 8px; border-radius:999px}
+    .tools{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+    .btn{
+      border:1px solid var(--border); background:linear-gradient(180deg,#14211a,#0f1713);
+      color:var(--text); padding:9px 12px; border-radius:12px;
+      font-weight:800; cursor:pointer;
+    }
+    .btn.primary{
+      border:none;
+      background:linear-gradient(90deg,var(--brand),var(--brand2));
+      color:#190c0c;
+      box-shadow:0 0 18px rgba(54,192,107,.18), 0 0 18px rgba(255,209,102,.15);
+    }
+    .btn[disabled]{opacity:.55; cursor:not-allowed}
+    .grid{display:grid; gap:14px}
+    .hero{
+      margin-top:14px;
+      display:grid; grid-template-columns: 1.6fr 1fr; gap:14px;
+    }
+    .card{
+      background:linear-gradient(180deg,rgba(16,27,22,.9),rgba(14,24,18,.88));
+      border:1px solid var(--border); border-radius:var(--r);
+      padding:16px; box-shadow:var(--shadow); backdrop-filter: blur(10px);
+    }
+    .muted{color:var(--muted)}
+    h1{margin:0 0 6px; font-size:26px}
+    h2{margin:0 0 10px; font-size:18px}
+    .pillrow{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px; border-radius:999px; border:1px solid var(--border);
+      background:#132017; cursor:pointer; font-weight:800;
+    }
+    .pill.active{background:linear-gradient(90deg,var(--brand),var(--brand2)); color:#190c0c; border:none}
+    .cols{display:grid; grid-template-columns: 1fr 1fr; gap:14px; align-items:start}
+    .section{margin-top:14px}
+    .tabs{display:flex; gap:8px; flex-wrap:wrap}
+    .tab{
+      padding:8px 12px; border-radius:999px; border:1px solid var(--border);
+      background:#132017; cursor:pointer; font-weight:900;
+    }
+    .tab.active{background:linear-gradient(90deg,var(--brand),var(--brand2)); color:#190c0c; border:none}
+    .pkggrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px}
+    .pkg{
+      background:#101f17; border:1px solid var(--border); border-radius:16px;
+      padding:12px; display:grid; gap:8px;
+    }
+    .pkg .name{font-weight:900}
+    .pkg .price{font-weight:900; font-size:20px}
+    label{display:block; font-weight:800; margin:0 0 6px; color:#d7f1db}
+    input,select,textarea{
+      width:100%; padding:12px; border-radius:12px;
+      border:1px solid var(--border); background:#0f1713; color:var(--text);
+      outline:none;
+    }
+    .row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    .sum{
+      position:sticky; top:90px;
+    }
+    .line{display:flex; justify-content:space-between; gap:10px; padding:6px 0; border-bottom:1px dashed rgba(255,255,255,.08)}
+    .line:last-child{border-bottom:0}
+    .total{font-size:22px; font-weight:900}
+    .small{font-size:12px}
+    .divider{height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent); margin:12px 0}
+    .toast{
+      position:fixed; left:50%; bottom:16px; transform:translateX(-50%);
+      background:#132017; border:1px solid var(--border);
+      padding:10px 14px; border-radius:12px; box-shadow:var(--shadow);
+      display:none; z-index:99;
+    }
+    .toast.show{display:block}
+    .cartitem{
+      display:flex; justify-content:space-between; gap:10px; align-items:start;
+      padding:10px; border-radius:14px; border:1px solid rgba(255,255,255,.06);
+      background:#0f1913;
+    }
+    .cartitem b{display:block}
+    .carttools{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+    table{width:100%; border-collapse:collapse}
+    th,td{padding:10px; border-bottom:1px solid rgba(255,255,255,.07); text-align:left; vertical-align:top}
+    th{color:#ffe6a8}
+    .tablewrap{overflow:auto}
+    @media (max-width: 980px){
+      .hero{grid-template-columns:1fr}
+      .cols{grid-template-columns:1fr}
+      .sum{position:static}
+    }
+    @media (max-width: 480px){
+      .wrap{padding:14px}
+      h1{font-size:22px}
+      .tools .btn{width:100%}
+      .tools{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+      .tools .btn.primary{grid-column:1 / -1}
+    }
   </style>
 </head>
-
 <body>
-
-<!-- หิมะ -->
-<div class="snow s1"></div>
-<div class="snow s2"></div>
-<div class="snow s3"></div>
-
-<div class="wrap">
-  <!-- NAV -->
-  <nav class="nav">
-    <div class="brand">
-      <img src="images/evanvale-logo.png" alt="Evan Vale Logo"
-           class="logo-img" width="42" height="42" decoding="async" fetchpriority="high">
-      <div>
-        <div style="font-weight:900;letter-spacing:.5px">EVAN VALE</div>
-        <div class="site-badge">🎄 Christmas Event • เติมไว ปลอดภัย</div>
-      </div>
-    </div>
-    <div class="tools">
-      <a class="btn" href="#packages">แพ็กเกจ</a>
-      <a class="btn" href="#order">สั่งเติม</a>
-      <a class="btn" href="#history">ประวัติ</a>
-      <a class="btn primary" id="btnAdminNav" href="https://www.facebook.com/share/1JRkDmJDvX/" target="_blank" rel="noopener">ติดต่อแอดมิน</a>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="glass" style="position:relative">
-      <span class="ribbon" id="ribbonTxt">CHRISTMAS 🎄</span>
-      <span class="badge">✅ เปิดรับออเดอร์ 08:30–21:30</span>
-      <h1 class="drip glow">EVAN VALE — ราคาดี โปร่งใส <span style="color:var(--accent)">มีแอดมินดูแล</span></h1>
-
-      <div class="countdown-strip" id="cdStrip" aria-live="polite">
-        <div class="cd-label">⏳ นับถอยหลังสู่ปีใหม่</div>
-        <div class="cd-digits" id="countdownDigits">-- วัน --:--:--</div>
-      </div>
-
-      <div class="statgrid">
-        <div class="stat"><div style="font-size:20px;font-weight:900">3–10 นาที*</div><div class="muted2">โดยเฉลี่ย</div></div>
-        <div class="stat"><div style="font-size:20px;font-weight:900">1000+</div><div class="muted2">รายการสำเร็จ</div></div>
-        <div class="stat"><div style="font-size:20px;font-weight:900">0%</div><div class="muted2">ยึด UID</div></div>
-      </div>
-      <p class="muted2" style="margin-top:8px">*ช่วงพีค/เกมปิดปรับปรุงอาจช้ากว่าปกติ</p>
-    </div>
-
-    <div class="glass" style="display:grid;place-items:center;text-align:center">
-      <div style="font-weight:800">แอดมินตอบไว</div>
-      <div class="muted2">เลือกเมนูด้านล่างได้เลย</div>
-      <div class="hero-cta">
-        <a class="btn" href="#packages">แพ็กเกจ</a>
-        <a class="btn primary" href="#order">สั่งเติม</a>
-        <a class="btn" href="#history">ประวัติ</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- PACKAGES -->
-  <section id="packages" class="section">
-    <div class="card">
-      <h2 style="margin:0">แพ็กเกจยอดฮิต</h2>
-      <div class="tabs" id="game-tabs"></div>
-      <p class="muted2" style="margin:6px 0 10px">คลิก “เลือกแพ็ก” เพื่อกรอกฟอร์มให้อัตโนมัติ</p>
-      <div class="grid pkg" id="pkg-grid"></div>
-    </div>
-  </section>
-
-  <!-- ORDER -->
-  <section id="order" class="section grid two" style="align-items:start">
-    <div class="card">
-      <h2 style="margin-top:0">สั่งเติมเกม</h2>
-
-      <div class="row">
+  <div class="wrap">
+    <nav class="nav">
+      <div class="brand">
+        <div class="logo">EV</div>
         <div>
-          <label>เกม</label>
-          <select id="game"></select>
-          <p id="gameNote" style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0"></p>
-          <p id="thaiOnlyNote" style="display:none;color:#ffd166;font-size:14px;margin:6px 0 0;background:#142318;padding:6px 10px;border-radius:6px;border-left:3px solid var(--brand);">
-            ⚠️ เกมนี้รองรับเฉพาะ <b>เซิร์ฟเวอร์ไทย</b> เท่านั้น (Free Fire / RoV / PUBG Mobile / Roblox / Call of Duty)
-          </p>
-          <div class="neon mini-sum" id="miniSum" style="display:none">
-            <h3>สรุปคร่าวๆ</h3>
-            <div class="row-line"><span class="label">เกม</span><span class="value" id="mini-game">-</span></div>
-            <div class="row-line"><span class="label">เซิร์ฟเวอร์</span><span class="value" id="mini-server">-</span></div>
-            <div class="row-line"><span class="label">แพ็กเกจ</span><span class="value" id="mini-pkg">-</span></div>
-            <div class="row-line"><span class="label">ยอด</span><span class="value" id="mini-total">฿0</span></div>
-          </div>
-        </div>
-        <div>
-          <label>โซน/เซิร์ฟเวอร์</label>
-          <select id="server"></select>
+          <div class="title">EVAN VALE TOPUP</div>
+          <div class="tag">เติมง่าย • ส่งบิลไว • แอดมินดูแล</div>
         </div>
       </div>
-
-      <div class="row">
-        <div>
-          <label>UID / Player ID</label>
-          <input id="uid" placeholder="เช่น 812345678 หรือชื่อในเกม">
-        </div>
-        <div>
-          <label>แพ็กเกจ</label>
-          <select id="package"></select>
-        </div>
+      <div class="tools">
+        <button class="btn" data-page="topup">เติมเกม</button>
+        <button class="btn" data-page="angpao">อั่งเปา</button>
+        <button class="btn" data-page="history">ประวัติ</button>
+        <a class="btn primary" id="btnAdmin" target="_blank" rel="noopener">ติดต่อแอดมิน</a>
       </div>
+    </nav>
 
-      <div class="row">
-        <div>
-          <label>วิธีชำระ</label>
-          <select id="method">
-            <option>PromptPay</option>
-            <option>TrueMoney Wallet</option>
-            <option>โอนธนาคาร</option>
-          </select>
-        </div>
-        <div>
-          <label>โค้ดส่วนลด (ถ้ามี)</label>
-          <input id="promo" placeholder="เช่น EVAN10">
-        </div>
+    <section class="hero">
+      <div class="card">
+        <h1>ร้านเติมเกมแบบ “กดง่ายเหมือนเว็บดัง” 😏</h1>
+        <div class="muted">เลือกเกม → เลือกแพ็ก → ใส่ UID → สร้างบิล → คัดลอกข้อความไปทักแอดมิน (หรือส่งเมล)</div>
+        <div class="pillrow" id="quickCats"></div>
+        <div class="divider"></div>
+        <div class="muted small">ทิป: ถ้าจะทำให้โคตรสะดวกจริง ๆ ให้เอา “แพ็กยอดฮิต” ไว้หน้าแรกแบบ Quick Buy</div>
       </div>
-
-      <div class="row">
-        <div>
-          <label>ชื่อลูกค้า</label>
-          <input id="name" placeholder="ชื่อเล่นก็ได้">
+      <div class="card">
+        <h2>ตะกร้า</h2>
+        <div id="cartList" class="grid" style="gap:10px"></div>
+        <div class="divider"></div>
+        <div class="line"><span class="muted">รวม</span><span class="total" id="cartTotal">฿0</span></div>
+        <div class="carttools">
+          <button class="btn" id="btnClearCart">ล้างตะกร้า</button>
+          <button class="btn primary" id="btnGoCheckout">ไปหน้าสร้างบิล</button>
         </div>
-        <div>
-          <label>ช่องทางติดต่อ</label>
-          <input id="contact" placeholder="Line/FB/Tel">
-        </div>
+        <div class="muted small" style="margin-top:8px">*ตะกร้า/ประวัติ เก็บในเครื่องผู้ใช้ (เว็บสแตติกก็ทำได้)</div>
       </div>
+    </section>
 
-      <div class="tools" style="margin-top:12px">
-        <button class="btn" id="btnReset" type="button">ล้างฟอร์ม</button>
-        <button class="btn primary" id="btnSubmit" type="button">ยืนยันและสร้างบิล</button>
-        <button class="btn" id="btnSaveProfile" type="button">บันทึกข้อมูลลูกค้า</button>
-      </div>
-      <p class="muted2" style="margin-top:8px">กดยืนยันแล้วจะเลื่อนไปส่วน “ชำระเงิน” อัตโนมัติ</p>
-    </div>
-
-    <aside class="card summary">
-      <h3 style="margin-top:0">สรุปบิล</h3>
-      <div class="list">
-        <div class="item"><span class="muted2">เลขบิล</span><span id="sum-bill">-</span></div>
-        <div class="item"><span class="muted2">เกม</span><span id="sum-game">-</span></div>
-        <div class="item"><span class="muted2">เซิร์ฟเวอร์</span><span id="sum-server">-</span></div>
-        <div class="item"><span class="muted2">UID</span><span id="sum-uid">-</span></div>
-        <div class="item"><span class="muted2">แพ็กเกจ</span><span id="sum-pkg">-</span></div>
-        <div class="item"><span class="muted2">วิธีชำระ</span><span id="sum-method">-</span></div>
-      </div>
-      <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:10px 0"></div>
-      <div class="item"><span class="muted2">ยอดสุทธิ</span><span class="total" id="sum-total">฿0</span></div>
-    </aside>
-  </section>
-
-  <!-- PAYMENT -->
-  <section id="pay" class="section" style="display:none">
-    <div class="card">
-      <h2 style="margin-top:0">ชำระเงิน</h2>
-      <p class="muted2">เลือกช่องทาง • แนบสลิป/เลขอ้างอิง • “คัดลอกสรุปบิล” แล้ว “เปิดแชทแอดมิน”</p>
-      <div class="grid pkg">
-        <div class="glass" style="text-align:center">
-          <div style="font-weight:800;margin-bottom:8px">TrueMoney Wallet</div>
-          <img src="truemoney.png" alt="TrueMoney QR" style="border-radius:12px"
-               loading="lazy" decoding="async" width="360" height="360">
-          <div class="muted2" style="margin-top:6px">สแกนด้วยแอป TrueMoney</div>
-        </div>
-        <div class="glass" style="text-align:center">
-          <div style="font-weight:800;margin-bottom:8px">พร้อมเพย์ / ธนาคาร</div>
-          <img src="promptpay.png" alt="PromptPay QR" style="border-radius:12px"
-               loading="lazy" decoding="async" width="360" height="360">
-          <div class="muted2" style="margin-top:6px">สแกนด้วยแอปธนาคาร</div>
-        </div>
-      </div>
-
-      <div class="glass" style="margin-top:14px">
-        <h3 style="margin-top:0">แนบหลักฐาน</h3>
+    <!-- PAGE: TOPUP -->
+    <section class="section" id="page-topup">
+      <div class="card">
+        <div class="tabs" id="gameTabs"></div>
+        <div class="divider"></div>
         <div class="row">
           <div>
-            <label>อัปโหลดสลิป</label>
-            <input id="slip" type="file" accept="image/*">
-            <div class="muted2" style="margin-top:6px">เว็บสแตติกจะไม่เก็บไฟล์ ให้แนบซ้ำในแชทหากต้องใช้</div>
+            <label>เซิร์ฟเวอร์/โซน</label>
+            <select id="server"></select>
           </div>
           <div>
-            <label>เลขอ้างอิง (ถ้ามี)</label>
-            <input id="ref" placeholder="เช่น 2025-XX-XX">
+            <label>ค้นหาแพ็ก (พิมพ์ชื่อ/ราคา)</label>
+            <input id="pkgSearch" placeholder="เช่น 310 หรือ รายเดือน หรือ 285">
+          </div>
+        </div>
+        <div style="height:10px"></div>
+        <div class="pkggrid" id="pkgGrid"></div>
+      </div>
+
+      <div class="cols section">
+        <div class="card">
+          <h2>ข้อมูลเติม (กรอกครั้งเดียว)</h2>
+          <div class="row">
+            <div>
+              <label>UID / Player ID</label>
+              <input id="uid" placeholder="เช่น 812345678">
+            </div>
+            <div>
+              <label>ช่องทางติดต่อ (Line/FB/เบอร์)</label>
+              <input id="contact" placeholder="เช่น @evanvale / FB link">
+            </div>
+          </div>
+          <div class="row" style="margin-top:10px">
+            <div>
+              <label>วิธีชำระ</label>
+              <select id="payMethod">
+                <option>PromptPay</option>
+                <option>TrueMoney Wallet</option>
+                <option>โอนธนาคาร</option>
+              </select>
+            </div>
+            <div>
+              <label>หมายเหตุ (ถ้ามี)</label>
+              <input id="note" placeholder="เช่น ขอเติมด่วน / มีสลิปแล้ว">
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <h2>สร้างบิล / ส่งข้อมูล</h2>
+          <div class="row">
+            <button class="btn primary" id="btnCreateBill">สร้างบิล</button>
+            <button class="btn" id="btnCopyBill" disabled>คัดลอกข้อความ</button>
+          </div>
+          <div class="row" style="margin-top:10px">
+            <button class="btn" id="btnEmailBill" disabled>ส่งเข้า Gmail</button>
+            <button class="btn" id="btnOpenChat" disabled>เปิดแชทแอดมิน</button>
+          </div>
+
+          <textarea id="billPreview" rows="10" style="margin-top:10px; display:none" readonly></textarea>
+          <div class="muted small" style="margin-top:8px">
+            *หมายเหตุ: เว็บสแตติกส่งเมลเองไม่ได้ แต่เปิดหน้าร่างเมลให้ได้ (ผู้ใช้แนบสลิปเอง)
           </div>
         </div>
 
-        <div class="tools" style="margin-top:12px">
-          <button class="btn" id="btnBackToForm" type="button">กลับไปแก้ฟอร์ม</button>
-          <button class="btn primary" id="btnPrepareMsg" type="button" disabled>คัดลอกสรุปบิล</button>
-          <button class="btn" id="btnMarkPaid" type="button" disabled>แจ้งชำระแล้ว</button>
-          <a class="btn" id="btnOpenAdmin" href="#" target="_blank" rel="noopener" style="pointer-events:none;opacity:.6">เปิดแชทแอดมิน</a>
+        <aside class="card sum">
+          <h2>สรุปบิล</h2>
+          <div class="line"><span class="muted">เลขบิล</span><span id="sumId">-</span></div>
+          <div class="line"><span class="muted">เกม</span><span id="sumGame">-</span></div>
+          <div class="line"><span class="muted">เซิร์ฟเวอร์</span><span id="sumServer">-</span></div>
+          <div class="line"><span class="muted">UID</span><span id="sumUid">-</span></div>
+          <div class="divider"></div>
+          <div class="line"><span class="muted">รวม</span><span class="total" id="sumTotal">฿0</span></div>
+          <div class="muted small" style="margin-top:8px">กด “สร้างบิล” แล้วคัดลอกไปทักแอดมินได้เลย</div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- PAGE: ANGPAO -->
+    <section class="section" id="page-angpao" style="display:none">
+      <div class="card">
+        <h2>อั่งเปา (Angpao) — สุ่มโค้ด / สุ่มส่วนลด</h2>
+        <div class="muted">กดสุ่มแล้วได้ “โค้ด” เอาไปใส่ในแชทแอดมิน หรือใช้เป็นแคมเปญเรียกลูกค้า</div>
+        <div class="divider"></div>
+
+        <div class="row">
+          <div>
+            <label>โอกาสได้ส่วนลด</label>
+            <select id="angChance">
+              <option value="0.20">20%</option>
+              <option value="0.30" selected>30%</option>
+              <option value="0.40">40%</option>
+              <option value="0.50">50%</option>
+            </select>
+          </div>
+          <div>
+            <label>ส่วนลดที่สุ่มได้ (บาท)</label>
+            <input id="angAmounts" value="3,5,10,15" />
+          </div>
         </div>
 
-        <div id="copyHint" class="muted2" style="display:none;margin-top:8px">✔️ คัดลอกแล้ว ถ้าแชทไม่พิมพ์ให้เอง ให้ “วาง (Paste)” ได้เลย</div>
-        <textarea id="msgPreview" readonly style="display:none;width:100%;margin-top:8px;background:#0f1a13;color:#f8fff6;border:1px solid #203326;border-radius:10px;padding:10px" rows="8"></textarea>
+        <div class="divider"></div>
+
+        <div class="row">
+          <button class="btn primary" id="btnAngpao">สุ่มอั่งเปา</button>
+          <button class="btn" id="btnCopyAng" disabled>คัดลอกโค้ด</button>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="pkg" style="max-width:520px">
+          <div class="name">ผลการสุ่ม</div>
+          <div class="muted small" id="angResultHint">กดสุ่มเพื่อรับโค้ด</div>
+          <div class="price" id="angResult">—</div>
+          <div class="muted" id="angDetail" style="white-space:pre-wrap"></div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- HISTORY -->
-  <section id="history" class="section">
-    <div class="card">
-      <h2 style="margin:0">ประวัติการทำรายการ</h2>
-      <div class="tools" style="margin:10px 0">
-        <input id="histSearch" placeholder="ค้นหา: บิล/เกม/UID/ชื่อ" style="max-width:260px">
-        <select id="histGameFilter" class="pill">
-          <option value="">ทุกเกม</option>
-        </select>
-        <select id="histStatusFilter" class="pill">
-          <option value="">ทุกสถานะ</option>
-          <option>รอชำระ</option>
-          <option>ส่งรายละเอียดแล้ว</option>
-          <option>ชำระแล้ว</option>
-          <option>ยกเลิก</option>
-        </select>
-        <button class="btn" id="btnExportCsv" type="button">ดาวน์โหลด CSV</button>
-        <button class="btn" id="btnClearAll" type="button">รีเซ็ตข้อมูลทั้งหมด</button>
+    <!-- PAGE: HISTORY -->
+    <section class="section" id="page-history" style="display:none">
+      <div class="card">
+        <h2>ประวัติคำสั่งซื้อ (บนเครื่องนี้)</h2>
+        <div class="row">
+          <input id="histSearch" placeholder="ค้นหาเลขบิล/UID/เกม" />
+          <button class="btn" id="btnClearHistory">ล้างประวัติทั้งหมด</button>
+        </div>
+        <div class="divider"></div>
+        <div class="tablewrap">
+          <table>
+            <thead>
+              <tr>
+                <th>เวลา</th><th>เลขบิล</th><th>เกม</th><th>ยอด</th><th>UID</th><th>สถานะ</th><th>เครื่องมือ</th>
+              </tr>
+            </thead>
+            <tbody id="histBody"></tbody>
+          </table>
+        </div>
+        <div class="muted" id="histEmpty" style="display:none; padding-top:10px">ยังไม่มีรายการ</div>
       </div>
+    </section>
 
-      <div class="glass table-scroll">
-        <table id="histTable">
-          <thead>
-            <tr>
-              <th>เวลา</th><th>เลขบิล</th><th>เกม</th><th>เซิร์ฟ</th><th>แพ็กเกจ</th><th>ยอด</th><th>สถานะ</th><th>UID</th><th>เครื่องมือ</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-        <div id="histEmpty" class="muted2" style="padding:8px 0;display:none">ยังไม่มีรายการ</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="footer">© 2025 Sakda Akkaranuwat • Christmas Sakda</div>
-</div>
-
-<!-- MINI AI ASSISTANT (WAY & KIN STYLE) -->
-<div class="assistant-widget" id="evAssistant">
-  <div class="assistant-header">
-    <div class="assistant-header-title">EVAN AI (เบต้า)</div>
-    <div class="assistant-header-sub">ช่วยตอบเรื่องบิล / แพ็กเกจ ถ้าพิมพ์มั่วหรือหยาบจะโดนดุเบา ๆ 😏</div>
+    <div class="toast" id="toast"></div>
   </div>
-  <div class="assistant-messages" id="evAssistantMessages"></div>
-  <div class="assistant-input">
-    <textarea id="evAssistantInput" placeholder="พิมพ์คำถาม หรือชื่อเกม+แพ็กเกจ..."></textarea>
-    <button class="btn primary" id="evAssistantSend" type="button">ส่ง</button>
-  </div>
-</div>
-<button class="assistant-toggle" id="evAssistantToggle" type="button">EVAN • Chat</button>
-
-<!-- TOAST HOLDER -->
-<div id="toast" class="toast"></div>
 
 <script>
-/* ===== STORAGE (no login) ===== */
-const KEY_PROFILE = "ev_profile";
-const KEY_ORDERS  = "ev_orders";
-function loadProfile(){ try{return JSON.parse(localStorage.getItem(KEY_PROFILE)||"null");}catch{return null;} }
-function saveProfile(p){ localStorage.setItem(KEY_PROFILE, JSON.stringify(p||null)); }
-function loadOrders(){ try{ return JSON.parse(localStorage.getItem(KEY_ORDERS)||"[]"); }catch{return [];} }
-function saveOrders(list){ localStorage.setItem(KEY_ORDERS, JSON.stringify(list||[])); }
+/* =====================
+   CONFIG (แก้ตรงนี้)
+===================== */
+const ADMIN_CHAT_URL = "https://www.facebook.com/share/1JRkDmJDvX/"; // ลิงก์แชทแอดมิน
+const ADMIN_EMAIL    = "yourshop@gmail.com";                          // อีเมลแอดมิน (สำหรับปุ่ม Gmail)
 
-/* ===== DATA ===== */
-const ADMIN_URL = "https://www.facebook.com/share/1JRkDmJDvX/";
+/* =====================
+   DATA: Games / Packs
+   (โครงแบบที่ปรับเองง่าย)
+===================== */
 const GAMES = [
-  { key:"Free Fire", icon:"🔥", servers:["Thailand","SEA","Global","อื่นๆ"] },
-  { key:"Free Fire (สั่งซื้อโปรโมชั่นต้อนรับปีใหม่)", icon:"🔥", servers:["Thailand","SEA","Global","อื่นๆ"] },
-  { key:"RoV", icon:"🛡️", servers:["Thailand","Vietnam","Taiwan","อื่นๆ"] },
-  { key:"Genshin Impact", icon:"✨", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
-  { key:"Honkai: Star Rail", icon:"🚄", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
-  { key:"PUBG Mobile", icon:"🎯", servers:["Thailand","SEA","KRJP","Global","อื่นๆ"] },
-  { key:"Roblox", icon:"🧱", servers:["Thailand","Asia","USA","Global","อื่นๆ"] },
-  { key:"Roblox (สั่งซื้อโปรโมชั่นต้อนรับปีใหม่)", icon:"🎁", servers:["Thailand","Asia","USA","Global","อื่นๆ"] },
-  { key:"Call of Duty", icon:"🎮", servers:["Thailand","SEA","Global","อื่นๆ"] },
-  { key:"Wuthering Waves", icon:"🌊", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
+  { key:"Free Fire", icon:"🔥", servers:["Thailand","SEA","Global"] },
+  { key:"RoV", icon:"🛡️", servers:["Thailand","Vietnam","Taiwan"] },
+  { key:"PUBG Mobile", icon:"🎯", servers:["Thailand","SEA","KRJP","Global"] },
+  { key:"Roblox", icon:"🧱", servers:["Thailand","Asia","USA","Global"] },
+  { key:"Genshin Impact", icon:"✨", servers:["Asia","America","Europe","TW/HK/MO"] },
 ];
-const PACKS_BY_GAME = {
+
+const PACKS = {
   "Free Fire": [
-    {name:"33 เพชร",price:11},{name:"68 เพชร",price:21},{name:"172 เพชร",price:49},
-    {name:"310 เพชร",price:87},{name:"517 เพชร",price:145},{name:"690 เพชร",price:195},
-    {name:"1052 เพชร",price:290},{name:"1800 เพชร",price:480},{name:"3698 เพชร",price:950},
-    {name:"7396 เพชร",price:1900},{name:"รายสัปดาห์ดามินิ",price:32},{name:"รายสัปดาห์ดา",price:63},
-    {name:"รายเดือน",price:287},{name:"บูย่าห์พาส",price:90},{name:"อีโวพาส 3 วัน",price:46},
-    {name:"อีโวพาส 7 วัน",price:62},{name:"อีโวพาส 30 วัน",price:220}
+    {name:"33 เพชร", price:11}, {name:"68 เพชร", price:21}, {name:"172 เพชร", price:49},
+    {name:"310 เพชร", price:87}, {name:"517 เพชร", price:145}, {name:"690 เพชร", price:195},
+    {name:"บูย่าห์พาส", price:90}, {name:"รายเดือน", price:287},
   ],
-
-  "Free Fire (สั่งซื้อโปรโมชั่นต้อนรับปีใหม่)": [
-    {name:"33 เพชร",price:10},{name:"68 เพชร",price:19},{name:"172 เพชร",price:48},
-    {name:"310 เพชร",price:85},{name:"517 เพชร",price:143},{name:"690 เพชร",price:190},
-    {name:"1052 เพชร",price:284},{name:"1800 เพชร",price:474},
-    {name:"3698 เพชร",price:945},{name:"7396 เพชร",price:1890}
-  ],
-
   "RoV": [
-    {name:"11 คูปอง",price:10},{name:"24 คูปอง",price:19},{name:"60 คูปอง",price:49},
-    {name:"110 คูปอง",price:87},{name:"185 คูปอง",price:144},{name:"370 คูปอง",price:285},
-    {name:"620 คูปอง",price:478},{name:"990 คูปอง",price:765},{name:"1250 คูปอง",price:960}
+    {name:"11 คูปอง", price:10}, {name:"24 คูปอง", price:19}, {name:"60 คูปอง", price:49},
+    {name:"110 คูปอง", price:87}, {name:"370 คูปอง", price:285}, {name:"620 คูปอง", price:478},
   ],
-
-  "Genshin Impact": [
-    {name:"60 Genesis Crystals",price:30},{name:"300+30 Genesis Crystals",price:145},
-    {name:"980+110 Genesis Crystals",price:420},{name:"1980+260 Genesis Crystals",price:870},
-    {name:"3280+600 Genesis Crystals",price:1340},{name:"6480+1600 Genesis Crystals",price:2625},
-    {name:"Blessing (รายเดือน)",price:179}
-  ],
-
-  "Honkai: Star Rail": [
-    {name:"60 Oneiric Shard",price:35},{name:"300+30 Shard",price:145},
-    {name:"980+110 Shard",price:425},{name:"1980+260 Shard",price:870},
-    {name:"3280+600 Shard",price:1340},{name:"6480+1600 Shard",price:2630},
-    {name:"Express Supply Pass",price:145}
-  ],
-
   "PUBG Mobile": [
-    {name:"60 UC",price:35},{name:"325 UC",price:179},{name:"660 UC",price:346},
-    {name:"1800 UC",price:860},{name:"3850 UC",price:1696},{name:"8100 UC",price:3305},
-    {name:"16200 UC",price:6475},{name:"24300 UC",price:9910}
+    {name:"60 UC", price:35}, {name:"325 UC", price:179}, {name:"660 UC", price:346},
+    {name:"1800 UC", price:860}, {name:"3850 UC", price:1696},
   ],
-
   "Roblox": [
-    {name:"80 Robux",price:35},{name:"160 Robux",price:70},{name:"400 Robux",price:175},
-    {name:"800 Robux",price:350},{name:"1000 Robux",price:400},{name:"2000 Robux",price:600},
-    {name:"4000 Robux",price:1200},{name:"รายเดือน 1000 Robux",price:380}
+    {name:"80 Robux", price:35}, {name:"160 Robux", price:70}, {name:"400 Robux", price:175},
+    {name:"800 Robux", price:350}, {name:"1000 Robux", price:400}, {name:"2000 Robux", price:600},
   ],
-
-  "Roblox (สั่งซื้อโปรโมชั่นต้อนรับปีใหม่)": [
-    {name:"500 Robux (จาก 230 เหลือ 160)",price:160},
-    {name:"1000 Robux (จาก 500 เหลือ 320)",price:320},
-    {name:"2000 Robux (จาก 960 เหลือ 620)",price:620},
-    {name:"3000 Robux (จาก 1000 เหลือ 910)",price:910}
+  "Genshin Impact": [
+    {name:"60 Genesis", price:30}, {name:"300+30 Genesis", price:145},
+    {name:"980+110 Genesis", price:420}, {name:"Blessing (รายเดือน)", price:179},
   ],
-
-  "Call of Duty": [
-    {name:"44 โบนัส 10 CP",price:22},{name:"108 โบนัส 30 CP",price:52},{name:"194 โบนัส 55 CP",price:90},
-    {name:"324 โบนัส 90 CP",price:152},{name:"648 โบนัส 216 CP",price:305},
-    {name:"1080 โบนัส 480 CP",price:505},{name:"2160 โบนัส 1080 CP",price:1010}
-  ],
-
-  "Wuthering Waves": [
-    {name:"60 Lunite",price:35},{name:"300+30 Lunite",price:179},
-    {name:"980+110 Lunite",price:549},{name:"Lunite Pass (รายเดือน)",price:179}
-  ]
 };
 
-/* ===== REFS ===== */
-const tabs = document.getElementById('game-tabs');
-const pkgGrid = document.getElementById('pkg-grid');
-const selGame = document.getElementById('game');
-const selServer = document.getElementById('server');
-const selPackage = document.getElementById('package');
-const miniSum = document.getElementById('miniSum');
-const miniGame = document.getElementById('mini-game');
-const miniServer = document.getElementById('mini-server');
-const miniPkg = document.getElementById('mini-pkg');
-const miniTotal = document.getElementById('mini-total');
-const gameNote = document.getElementById('gameNote');
-const thaiOnlyNote = document.getElementById('thaiOnlyNote');
+/* =====================
+   STORAGE
+===================== */
+const KEY_CART = "ev_cart_v1";
+const KEY_HIST = "ev_hist_v1";
 
-let currentGame = GAMES[0].key;
-const thaiOnlyGames = ["Free Fire","RoV","PUBG Mobile","Roblox","Call of Duty"];
+const load = (k, fallback) => {
+  try{ return JSON.parse(localStorage.getItem(k) || JSON.stringify(fallback)); }
+  catch{ return fallback; }
+};
+const save = (k, v) => localStorage.setItem(k, JSON.stringify(v));
 
-/* ===== UI: Packages ===== */
-function renderGameTabs(){
-  tabs.innerHTML = ""; selGame.innerHTML = "";
-  GAMES.forEach(g=>{
-    const t = document.createElement('div');
-    t.className = 'tab' + (g.key===currentGame?' active':'');
-    t.textContent = `${g.icon} ${g.key}`;
-    t.addEventListener('click', ()=> setGame(g.key));
-    tabs.appendChild(t);
-    const opt = document.createElement('option');
-    opt.value = g.key; opt.textContent = g.key;
-    selGame.appendChild(opt);
-  });
-  selGame.value = currentGame;
-}
-function renderServers(){
-  selServer.innerHTML = "";
-  const gs = GAMES.find(x=>x.key===currentGame)?.servers || ["Global"];
-  gs.forEach(s=>{
-    const o=document.createElement('option'); o.value=s; o.textContent=s;
-    selServer.appendChild(o);
-  });
-}
-function renderPacks(){
-  const packs = PACKS_BY_GAME[currentGame]||[];
-  pkgGrid.innerHTML = "";
-  selPackage.innerHTML = "<option value='' disabled selected>— เลือกแพ็กเกจ —</option>";
-  packs.forEach(p=>{
-    const card = document.createElement('div');
-    card.className = "glass";
-    card.innerHTML = `
-      <div style="font-weight:800">${p.name}</div>
-      <div class="price">฿${p.price}</div>
-      <div style="margin-top:10px">
-        <a href="#order" class="btn primary" data-pkg="${p.name} – ฿${p.price}">เลือกแพ็ก</a>
-      </div>`;
-    pkgGrid.appendChild(card);
-    const opt = document.createElement('option');
-    opt.value = `${p.name} – ฿${p.price}`;
-    opt.textContent = `${p.name} – ฿${p.price}`;
-    selPackage.appendChild(opt);
-  });
-  pkgGrid.querySelectorAll('a[data-pkg]').forEach(a=>{
-    a.addEventListener('click',e=>{
-      e.preventDefault();
-      selPackage.value = a.getAttribute('data-pkg');
-      document.getElementById('order').scrollIntoView({behavior:'smooth'});
-      updateSummary();
-    });
-  });
-}
-function setGame(game){
-  currentGame = game;
-  [...tabs.children].forEach(el=> el.classList.toggle('active', el.textContent.endsWith(game)));
-  const isPromo = /โปรโมชั่น/.test(currentGame);
-
-  if (currentGame === "Roblox"){
-    gameNote.style.display = "block"; gameNote.textContent = "ℹ️ Roblox: ใช้เวลาเติมนานกว่าเกมอื่นเล็กน้อย (โปรดเผื่อเวลา)";
-  } else if (currentGame === "Call of Duty"){
-    gameNote.style.display = "block"; gameNote.textContent = "⚠️ COD: ถ้า ID ผูกกับ Garena จะเติมไม่ได้ (รองรับเฉพาะเซิร์ฟไทย)";
-  } else if (isPromo){
-    gameNote.style.display = "block"; gameNote.textContent = "🎁 โปรต้อนรับปีใหม่: ราคาแพ็กเกจลดพิเศษแล้ว (กดเลือกแพ็กได้เลย)";
-    promoHintOnce();
-  } else { gameNote.style.display="none"; gameNote.textContent=""; }
-
-  thaiOnlyNote.style.display = thaiOnlyGames.includes(currentGame) ? "block" : "none";
-
-  if (typeof ribbonTxt !== 'undefined' && ribbonTxt){
-    ribbonTxt.textContent = isPromo ? "NEW YEAR SALE 🎁" : "CHRISTMAS 🎄";
-  }
-
-  selGame.value = game;
-  renderServers(); renderPacks(); updateSummary(); showMini();
-}
-function showMini(){
-  const has = (selPackage.value||"").length>0 || (document.getElementById('uid').value||"").length>0;
-  miniSum.style.display = has ? "block" : "none";
-}
-
-/* ===== SUMMARY / BILL ===== */
-const pad = n => n.toString().padStart(2,'0');
-function genInvoice(){
-  const d = new Date();
-  const ts = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
-  const rnd = Math.floor(Math.random()*8999)+1000;
-  return `EV-${ts}-${rnd}`;
-}
-function money(n){ return "฿"+(n||0); }
-function updateSummary(){
-  const g = selGame.value;
-  const s = selServer.value;
-  const u = document.getElementById('uid').value || "-";
-  const p = selPackage.value || "-";
-  const m = document.getElementById('method').value;
-
-  document.getElementById('sum-game').innerText   = g;
-  document.getElementById('sum-server').innerText = s || "-";
-  document.getElementById('sum-uid').innerText    = u;
-  document.getElementById('sum-pkg').innerText    = p;
-  document.getElementById('sum-method').innerText = m;
-
-  const price = Number((p.split("฿")[1] || "0").replace(/[^\d]/g,""));
-  const totalTxt = money(price);
-  document.getElementById('sum-total').innerText = totalTxt;
-
-  miniGame.textContent  = g;
-  miniServer.textContent= s || "-";
-  miniPkg.textContent   = p;
-  miniTotal.textContent = totalTxt;
-
-  showMini();
-}
-["game","server","uid","package","method","name","contact","promo"].forEach(id=>{
-  const el = document.getElementById(id);
-  el.addEventListener('input', updateSummary);
-  el.addEventListener('change', updateSummary);
-});
-
-/* ===== HISTORY ===== */
-function addOrder(row){ const list=loadOrders(); list.unshift(row); saveOrders(list); renderHistory(); }
-function updateOrderStatus(inv, status){
-  const list=loadOrders(); const idx=list.findIndex(x=>x.invoiceId===inv);
-  if(idx>-1){ list[idx].status=status; saveOrders(list); renderHistory(); }
-}
-function deleteOrder(inv){
-  const list=loadOrders().filter(x=>x.invoiceId!==inv);
-  saveOrders(list); renderHistory();
-}
-function clearAll(){
-  if(confirm('ล้างข้อมูลทั้งหมดบนเครื่องนี้? (โปรไฟล์/ประวัติ/ทิปโปร)')){
-    localStorage.removeItem(KEY_PROFILE);
-    localStorage.removeItem(KEY_ORDERS);
-    localStorage.removeItem('ev_promo_hint_shown');
-    location.reload();
-  }
-}
-const histTableBody = document.querySelector('#histTable tbody');
-const histEmpty = document.getElementById('histEmpty');
-const histSearch = document.getElementById('histSearch');
-const histGameFilter = document.getElementById('histGameFilter');
-const histStatusFilter = document.getElementById('histStatusFilter');
-
-function initHistoryFilters(){
-  histGameFilter.innerHTML = '<option value="">ทุกเกม</option>' + GAMES.map(g=>`<option>${g.key}</option>`).join('');
-  [histSearch,histGameFilter,histStatusFilter].forEach(el=>{
-    el.addEventListener('input', renderHistory);
-    el.addEventListener('change', renderHistory);
-  });
-}
-function renderHistory(){
-  const q = (histSearch.value||"").toLowerCase();
-  const g = histGameFilter.value||"";
-  const st= histStatusFilter.value||"";
-  const list = loadOrders().filter(x=>{
-    const inTxt = (x.invoiceId+x.game+x.uid+(x.name||"")+(x.package||"")).toLowerCase().includes(q);
-    const gOk = g? x.game===g : true;
-    const sOk = st? x.status===st : true;
-    return inTxt && gOk && sOk;
-  });
-  histTableBody.innerHTML = "";
-  histEmpty.style.display = list.length? "none":"block";
-  list.forEach(x=>{
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>${new Date(x.ts).toLocaleString()}</td>
-      <td>${x.invoiceId}</td>
-      <td>${x.game}</td>
-      <td>${x.server||"-"}</td>
-      <td>${x.package||"-"}</td>
-      <td>${x.total||"฿0"}</td>
-      <td>
-        <select data-inv="${x.invoiceId}">
-          ${["รอชำระ","ส่งรายละเอียดแล้ว","ชำระแล้ว","ยกเลิก"].map(s=>`<option ${x.status===s?"selected":""}>${s}</option>`).join('')}
-        </select>
-      </td>
-      <td>${x.uid||"-"}</td>
-      <td>
-        <button class="btn" data-view="${x.invoiceId}" type="button">ดู</button>
-        <button class="btn" data-del="${x.invoiceId}" type="button">ลบ</button>
-      </td>`;
-    histTableBody.appendChild(tr);
-  });
-  histTableBody.querySelectorAll('button[data-del]').forEach(b=>{
-    b.onclick = ()=> deleteOrder(b.getAttribute('data-del'));
-  });
-  histTableBody.querySelectorAll('button[data-view]').forEach(b=>{
-    b.onclick = ()=>{
-      const inv = b.getAttribute('data-view');
-      const x = loadOrders().find(o=>o.invoiceId===inv);
-      if(!x) return;
-      alert(
-`เลขบิล: ${x.invoiceId}
-เวลา: ${new Date(x.ts).toLocaleString()}
-เกม: ${x.game}
-เซิร์ฟเวอร์: ${x.server||"-"}
-แพ็กเกจ: ${x.package||"-"}
-ยอด: ${x.total||"฿0"}
-วิธีชำระ: ${x.method}
-UID: ${x.uid||"-"}
-ลูกค้า: ${x.name||"-"} | ติดต่อ: ${x.contact||"-"}
-สถานะ: ${x.status}`);
-    };
-  });
-  histTableBody.querySelectorAll('select[data-inv]').forEach(s=>{
-    s.onchange = ()=> updateOrderStatus(s.getAttribute('data-inv'), s.value);
-  });
-}
-
-/* ===== MESSAGE / COPY ===== */
-function buildMessage(){
-  const g = selGame.value, s = selServer.value, u = document.getElementById('uid').value || "-";
-  const p = selPackage.value || "-", m = document.getElementById('method').value;
-  const name = document.getElementById('name').value || "-", contact = document.getElementById('contact').value || "-";
-  const total = document.getElementById('sum-total').innerText || "฿0";
-  const ref = (document.getElementById('ref')?.value || "").trim();
-  return `ออร์เดอร์เติมเกม Evan Vale
-เลขบิล: ${window.invoiceId}
-เกม: ${g}
-เซิร์ฟเวอร์/โซน: ${s || "-"}
-UID/Player ID: ${u}
-แพ็กเกจ: ${p}
-วิธีชำระ: ${m}
-ยอดสุทธิ: ${total}
-ชื่อลูกค้า: ${name}
-ติดต่อ: ${contact}
-เลขอ้างอิง: ${ref||"-"}
-โปรดตรวจสอบสลิปที่แนบด้วยครับ`;
-}
-const btnPrepare   = document.getElementById('btnPrepareMsg');
-const btnOpenAdmin = document.getElementById('btnOpenAdmin');
-const msgPreview   = document.getElementById('msgPreview');
-const copyHint     = document.getElementById('copyHint');
-function makeAdminUrl(){ return ADMIN_URL; }
-async function copyTextSafe(text){
+/* =====================
+   UTIL
+===================== */
+const $ = (id)=>document.getElementById(id);
+const money = (n)=>"฿"+(Number(n)||0);
+const toast = (msg)=>{
+  const t = $("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"), 2200);
+};
+const pad2 = (n)=>String(n).padStart(2,"0");
+const genBillId = ()=>{
+  const d=new Date();
+  const ts=`${d.getFullYear()}${pad2(d.getMonth()+1)}${pad2(d.getDate())}-${pad2(d.getHours())}${pad2(d.getMinutes())}${pad2(d.getSeconds())}`;
+  return `EV-${ts}-${Math.floor(Math.random()*9000+1000)}`;
+};
+const copySafe = async (text)=>{
   try{ await navigator.clipboard.writeText(text); return true; }
   catch{
-    const ta = document.createElement('textarea'); ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+    const ta=document.createElement("textarea");
+    ta.value=text; ta.style.position="fixed"; ta.style.opacity="0";
     document.body.appendChild(ta); ta.focus(); ta.select();
-    let ok=false; try{ ok=document.execCommand('copy'); }catch{}
-    document.body.removeChild(ta); return !!ok;
+    let ok=false; try{ ok=document.execCommand("copy"); }catch{}
+    document.body.removeChild(ta);
+    return ok;
   }
+};
+
+/* =====================
+   STATE
+===================== */
+let page = "topup";
+let currentGame = GAMES[0].key;
+let cart = load(KEY_CART, []);
+let history = load(KEY_HIST, []);
+let currentBill = null;
+
+/* =====================
+   NAV / PAGES
+===================== */
+$("btnAdmin").href = ADMIN_CHAT_URL;
+
+document.querySelectorAll("[data-page]").forEach(b=>{
+  b.addEventListener("click", ()=> setPage(b.dataset.page));
+});
+
+function setPage(p){
+  page = p;
+  $("page-topup").style.display  = (p==="topup")  ? "" : "none";
+  $("page-angpao").style.display = (p==="angpao") ? "" : "none";
+  $("page-history").style.display= (p==="history")? "" : "none";
+
+  document.querySelectorAll("[data-page]").forEach(x=>{
+    x.classList.toggle("primary", x.dataset.page===p);
+  });
+
+  if(p==="history") renderHistory();
+  window.scrollTo({top:0, behavior:"smooth"});
 }
-btnPrepare?.addEventListener('click', async ()=>{
-  if(!window.invoiceId || window.invoiceId === '-'){ alert('ยังไม่ได้สร้างบิล'); return; }
-  const msg = buildMessage();
-  if (msgPreview){ msgPreview.value = msg; msgPreview.style.display = 'block'; }
-  if (copyHint){ copyHint.style.display = 'block'; copyHint.textContent = 'กำลังคัดลอกสรุปบิล...'; }
-  const copied = await copyTextSafe(msg);
-  if (copyHint){
-    copyHint.textContent = copied
-      ? 'คัดลอกสรุปบิลแล้ว ✅ ต่อไปกด "เปิดแชทแอดมิน" ได้เลย'
-      : 'คัดลอกอัตโนมัติไม่สำเร็จ ให้คัดลอกจากช่องสรุปด้านบน แล้วค่อยกด "เปิดแชทแอดมิน"';
+
+/* =====================
+   QUICK CATS (หน้าแรก)
+===================== */
+const quickCats = $("quickCats");
+function renderQuickCats(){
+  quickCats.innerHTML = "";
+  GAMES.forEach(g=>{
+    const btn = document.createElement("div");
+    btn.className = "pill" + (g.key===currentGame ? " active" : "");
+    btn.textContent = `${g.icon} ${g.key}`;
+    btn.onclick = ()=> { currentGame=g.key; renderAll(); toast(`เลือกเกม: ${g.key}`); };
+    quickCats.appendChild(btn);
+  });
+}
+renderQuickCats();
+
+/* =====================
+   TABS / PACKAGES
+===================== */
+const gameTabs = $("gameTabs");
+function renderGameTabs(){
+  gameTabs.innerHTML = "";
+  GAMES.forEach(g=>{
+    const t=document.createElement("div");
+    t.className="tab"+(g.key===currentGame?" active":"");
+    t.textContent = `${g.icon} ${g.key}`;
+    t.onclick = ()=> { currentGame=g.key; renderAll(); };
+    gameTabs.appendChild(t);
+  });
+}
+function renderServers(){
+  const s = $("server");
+  s.innerHTML = "";
+  const list = (GAMES.find(x=>x.key===currentGame)?.servers)||["Global"];
+  list.forEach(z=>{
+    const o=document.createElement("option");
+    o.value=z; o.textContent=z;
+    s.appendChild(o);
+  });
+}
+function renderPackages(){
+  const q = ($("pkgSearch").value||"").trim().toLowerCase();
+  const grid = $("pkgGrid");
+  grid.innerHTML = "";
+  (PACKS[currentGame]||[]).filter(p=>{
+    if(!q) return true;
+    return (`${p.name} ${p.price}`).toLowerCase().includes(q);
+  }).forEach(p=>{
+    const el=document.createElement("div");
+    el.className="pkg";
+    el.innerHTML = `
+      <div class="name">${p.name}</div>
+      <div class="price">${money(p.price)}</div>
+      <button class="btn primary" type="button">ใส่ตะกร้า</button>
+    `;
+    el.querySelector("button").onclick = ()=>{
+      const server = $("server").value || "-";
+      cart.push({ game: currentGame, server, name:p.name, price:p.price, qty:1 });
+      save(KEY_CART, cart);
+      renderCart();
+      updateSummary();
+      toast("เพิ่มเข้าตะกร้าแล้ว ✅");
+    };
+    grid.appendChild(el);
+  });
+}
+$("pkgSearch").addEventListener("input", renderPackages);
+
+/* =====================
+   CART
+===================== */
+function cartTotal(){
+  return cart.reduce((sum,i)=> sum + (i.price*i.qty), 0);
+}
+function renderCart(){
+  const list = $("cartList");
+  list.innerHTML = "";
+  if(!cart.length){
+    list.innerHTML = `<div class="muted">ยังไม่มีของในตะกร้า</div>`;
+    $("cartTotal").textContent = money(0);
+    return;
   }
-  btnOpenAdmin.href = makeAdminUrl();
-  btnOpenAdmin.style.pointerEvents = 'auto';
-  btnOpenAdmin.style.opacity = '1';
+  cart.forEach((i,idx)=>{
+    const row=document.createElement("div");
+    row.className="cartitem";
+    row.innerHTML = `
+      <div>
+        <b>${i.game}</b>
+        <div class="muted">${i.server} • ${i.name}</div>
+        <div class="muted small">฿${i.price} x ${i.qty}</div>
+      </div>
+      <div style="display:grid; gap:6px; justify-items:end">
+        <div style="font-weight:900">${money(i.price*i.qty)}</div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end">
+          <button class="btn" type="button" data-act="minus">-</button>
+          <button class="btn" type="button" data-act="plus">+</button>
+          <button class="btn" type="button" data-act="del">ลบ</button>
+        </div>
+      </div>
+    `;
+    row.querySelector('[data-act="minus"]').onclick=()=>{
+      i.qty = Math.max(1, i.qty-1);
+      save(KEY_CART, cart); renderCart(); updateSummary();
+    };
+    row.querySelector('[data-act="plus"]').onclick=()=>{
+      i.qty += 1;
+      save(KEY_CART, cart); renderCart(); updateSummary();
+    };
+    row.querySelector('[data-act="del"]').onclick=()=>{
+      cart.splice(idx,1);
+      save(KEY_CART, cart); renderCart(); updateSummary();
+    };
+    list.appendChild(row);
+  });
+  $("cartTotal").textContent = money(cartTotal());
+}
+$("btnClearCart").onclick = ()=>{
+  cart = [];
+  save(KEY_CART, cart);
+  renderCart(); updateSummary();
+  toast("ล้างตะกร้าแล้ว");
+};
+$("btnGoCheckout").onclick = ()=>{
+  setPage("topup");
+  document.querySelector("#page-topup").scrollIntoView({behavior:"smooth"});
+};
 
-  if(window.invoiceId){ updateOrderStatus(window.invoiceId, 'ส่งรายละเอียดแล้ว'); }
-});
-btnOpenAdmin?.addEventListener('click', (e)=>{
-  if (!btnOpenAdmin.href || btnOpenAdmin.getAttribute('href') === '#'){
-    e.preventDefault(); window.open(makeAdminUrl(), '_blank');
-  }
+/* =====================
+   SUMMARY + BILL
+===================== */
+function updateSummary(){
+  $("sumGame").textContent = currentGame;
+  $("sumServer").textContent = $("server").value || "-";
+  $("sumUid").textContent = ($("uid").value||"-").trim() || "-";
+  $("sumTotal").textContent = money(cartTotal());
+}
+["uid","contact","payMethod","note","server"].forEach(id=>{
+  $(id).addEventListener("input", updateSummary);
+  $(id).addEventListener("change", updateSummary);
 });
 
-/* ===== FORM ACTIONS ===== */
-document.getElementById('btnReset')?.addEventListener('click', ()=>{
-  document.querySelectorAll('#order input').forEach(i=>i.value="");
-  selPackage.selectedIndex = 0; updateSummary();
-});
-window.invoiceId = "-";
-document.getElementById('btnSubmit')?.addEventListener('click', ()=>{
-  if(!selPackage.value){ alert('เลือกแพ็กเกจก่อน'); return; }
-  window.invoiceId = genInvoice();
-  document.getElementById('sum-bill').innerText = window.invoiceId;
-  const pay = document.getElementById('pay'); pay.style.display = ""; pay.scrollIntoView({behavior:'smooth'});
+function buildBillText(bill){
+  const lines = [];
+  lines.push("EVAN VALE TOPUP");
+  lines.push(`เลขบิล: ${bill.id}`);
+  lines.push(`เวลา: ${new Date(bill.ts).toLocaleString()}`);
+  lines.push(`วิธีชำระ: ${bill.payMethod}`);
+  lines.push(`UID: ${bill.uid || "-"}`);
+  lines.push(`ติดต่อ: ${bill.contact || "-"}`);
+  if(bill.note) lines.push(`หมายเหตุ: ${bill.note}`);
+  lines.push("");
+  lines.push("รายการ:");
+  bill.items.forEach((i,n)=>{
+    lines.push(`${n+1}) ${i.game} | ${i.server} | ${i.name} x${i.qty} = ฿${i.price*i.qty}`);
+  });
+  lines.push("");
+  lines.push(`รวมทั้งสิ้น: ฿${bill.total}`);
+  lines.push("");
+  lines.push("แนบสลิป/หลักฐาน แล้วส่งให้แอดมินตรวจสอบครับ");
+  return lines.join("\n");
+}
 
-  const row = {
+$("btnCreateBill").onclick = ()=>{
+  const uid = ($("uid").value||"").trim();
+  const contact = ($("contact").value||"").trim();
+  if(!cart.length){ toast("ตะกร้าว่างอยู่ไอหมา 😑"); return; }
+  if(!uid){ toast("ใส่ UID ก่อน"); return; }
+  if(!contact){ toast("ใส่ช่องทางติดต่อก่อน"); return; }
+
+  currentBill = {
+    id: genBillId(),
     ts: Date.now(),
-    invoiceId: window.invoiceId,
-    game: selGame.value,
-    server: selServer.value,
-    package: selPackage.value,
-    total: document.getElementById('sum-total').innerText,
-    method: document.getElementById('method').value,
-    uid: document.getElementById('uid').value.trim(),
-    name: document.getElementById('name').value.trim(),
-    contact: document.getElementById('contact').value.trim(),
-    status: 'รอชำระ'
+    payMethod: $("payMethod").value,
+    uid, contact,
+    note: ($("note").value||"").trim(),
+    items: cart.map(x=>({...x})),
+    total: cartTotal(),
+    status: "รอชำระ"
   };
-  addOrder(row);
-});
-document.getElementById('btnBackToForm')?.addEventListener('click', ()=>{
-  document.getElementById('pay').style.display = "none";
-  document.getElementById('order').scrollIntoView({behavior:'smooth'});
-});
 
-/* ===== EXPORT / CLEAR ===== */
-document.getElementById('btnExportCsv')?.addEventListener('click', ()=>{
-  const list = loadOrders();
-  if(!list.length){ alert('ยังไม่มีข้อมูล'); return; }
-  const header = ["เวลา","เลขบิล","เกม","เซิร์ฟ","แพ็กเกจ","ยอด","สถานะ","UID","ลูกค้า","ติดต่อ"].join(",");
-  const rows = list.map(x=>[
-    new Date(x.ts).toLocaleString().replaceAll(","," "),
-    x.invoiceId, x.game, x.server||"-", x.package||"-",
-    (x.total||"฿0").replaceAll(",",""),
-    x.status, x.uid||"-", x.name||"-", x.contact||"-"
-  ].map(v=>`"${String(v).replaceAll('"','""')}"`).join(","));
-  const csv = [header, ...rows].join("\n");
-  const blob = new Blob([csv], {type:"text/csv;charset=utf-8"});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href = url; a.download = 'evan_orders.csv'; a.click();
-  URL.revokeObjectURL(url);
-});
-document.getElementById('btnClearAll')?.addEventListener('click', clearAll);
+  $("sumId").textContent = currentBill.id;
+  $("billPreview").style.display = "";
+  $("billPreview").value = buildBillText(currentBill);
 
-/* ===== PROFILE SAVE/FILL (no login) ===== */
-function fillFromProfile(){
-  const p = loadProfile(); if(!p) return;
-  if(p.name)    document.getElementById('name').value = p.name;
-  if(p.contact) document.getElementById('contact').value = p.contact;
-  if(p.last){
-    if(p.last.game && GAMES.find(g=>g.key===p.last.game)){ setGame(p.last.game); }
-    if(p.last.server){ selServer.value = p.last.server; }
-    if(p.last.package){ selPackage.value = p.last.package; }
-    if(p.last.method){ document.getElementById('method').value = p.last.method; }
-    if(p.last.uid){ document.getElementById('uid').value = p.last.uid; }
+  $("btnCopyBill").disabled = false;
+  $("btnOpenChat").disabled = false;
+  $("btnEmailBill").disabled = false;
+
+  // บันทึกประวัติ
+  history.unshift(currentBill);
+  save(KEY_HIST, history);
+
+  toast("สร้างบิลแล้ว ✅");
+};
+
+$("btnCopyBill").onclick = async ()=>{
+  if(!currentBill) return;
+  const ok = await copySafe(buildBillText(currentBill));
+  toast(ok ? "คัดลอกแล้ว ✅ ไปวางในแชทได้เลย" : "คัดลอกไม่สำเร็จ ลองคัดลอกจากกล่อง");
+};
+
+$("btnOpenChat").onclick = ()=>{
+  window.open(ADMIN_CHAT_URL, "_blank");
+};
+
+$("btnEmailBill").onclick = ()=>{
+  if(!currentBill) return;
+  const subject = `EVAN VALE • ใบสั่งเติม #${currentBill.id}`;
+  const body = buildBillText(currentBill) + "\n\nหมายเหตุ: แนบสลิปในอีเมลนี้ได้เลยครับ";
+  const url = `mailto:${encodeURIComponent(ADMIN_EMAIL)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = url;
+};
+
+/* =====================
+   ANGPAO
+===================== */
+let lastAngText = "";
+function parseAmounts(text){
+  return (text||"")
+    .split(",")
+    .map(x=>Number(String(x).trim()))
+    .filter(n=>Number.isFinite(n) && n>0)
+    .slice(0,20);
+}
+function genCode(){
+  const chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  let s="EV-";
+  for(let i=0;i<10;i++) s += chars[Math.floor(Math.random()*chars.length)];
+  return s;
+}
+
+$("btnAngpao").onclick = ()=>{
+  const chance = Number($("angChance").value || 0.3);
+  const amounts = parseAmounts($("angAmounts").value);
+  if(!amounts.length){ toast("ใส่รายการส่วนลดให้ถูกก่อน"); return; }
+
+  const code = genCode();
+  const win = Math.random() < chance;
+
+  if(win){
+    const discount = amounts[Math.floor(Math.random()*amounts.length)];
+    lastAngText =
+`🎁 EVAN VALE ANGPAO
+โค้ด: ${code}
+รางวัล: ส่วนลด ${discount} บาท
+เงื่อนไข: ใช้ได้ 1 ครั้ง/บิล • ส่งโค้ดนี้ให้แอดมินตอนสั่งซื้อ`;
+    $("angResultHint").textContent = "ได้รางวัลแล้ว!";
+    $("angResult").textContent = `ลด ${discount} บาท`;
+    $("angDetail").textContent = lastAngText;
+    toast("เฮ้ย! ได้อั่งเปา 🎉");
+  }else{
+    lastAngText =
+`🎁 EVAN VALE ANGPAO
+โค้ด: ${code}
+ผล: ไม่ถูกรางวัล (ไว้สุ่มใหม่ได้)
+ทิป: ลองอีกที เผื่อดวงมา 😏`;
+    $("angResultHint").textContent = "ยังไม่ถูกรางวัล";
+    $("angResult").textContent = "ไม่ถูกรางวัล";
+    $("angDetail").textContent = lastAngText;
+    toast("ยังไม่ถูกรางวัล ลองใหม่ได้ 😏");
   }
+
+  $("btnCopyAng").disabled = false;
+};
+
+$("btnCopyAng").onclick = async ()=>{
+  if(!lastAngText) return;
+  const ok = await copySafe(lastAngText);
+  toast(ok ? "คัดลอกโค้ดอั่งเปาแล้ว ✅" : "คัดลอกไม่สำเร็จ");
+};
+
+/* =====================
+   HISTORY
+===================== */
+function renderHistory(){
+  const q = ($("histSearch").value||"").trim().toLowerCase();
+  const body = $("histBody");
+  body.innerHTML = "";
+  const list = history.filter(h=>{
+    if(!q) return true;
+    return (h.id+h.uid+(h.items?.[0]?.game||"")).toLowerCase().includes(q);
+  });
+
+  $("histEmpty").style.display = list.length ? "none" : "";
+
+  list.forEach((h,idx)=>{
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${new Date(h.ts).toLocaleString()}</td>
+      <td>${h.id}</td>
+      <td>${h.items?.[0]?.game || "-" }${(h.items?.length>1)?` (+${h.items.length-1})`:""}</td>
+      <td>฿${h.total}</td>
+      <td>${h.uid || "-"}</td>
+      <td>${h.status || "-"}</td>
+      <td style="white-space:nowrap">
+        <button class="btn" type="button" data-act="view">ดู</button>
+        <button class="btn" type="button" data-act="copy">คัดลอก</button>
+        <button class="btn" type="button" data-act="del">ลบ</button>
+      </td>
+    `;
+    tr.querySelector('[data-act="view"]').onclick=()=>{
+      alert(buildBillText(h));
+    };
+    tr.querySelector('[data-act="copy"]').onclick= async ()=>{
+      const ok = await copySafe(buildBillText(h));
+      toast(ok ? "คัดลอกบิลแล้ว ✅" : "คัดลอกไม่สำเร็จ");
+    };
+    tr.querySelector('[data-act="del"]').onclick=()=>{
+      history.splice(idx,1);
+      save(KEY_HIST, history);
+      renderHistory();
+      toast("ลบรายการแล้ว");
+    };
+    body.appendChild(tr);
+  });
+}
+$("histSearch").addEventListener("input", renderHistory);
+
+$("btnClearHistory").onclick = ()=>{
+  if(!confirm("ล้างประวัติทั้งหมดบนเครื่องนี้?")) return;
+  history = [];
+  save(KEY_HIST, history);
+  renderHistory();
+  toast("ล้างประวัติแล้ว");
+};
+
+/* =====================
+   INIT
+===================== */
+function renderAll(){
+  renderQuickCats();
+  renderGameTabs();
+  renderServers();
+  renderPackages();
+  renderCart();
   updateSummary();
 }
-document.getElementById('btnSaveProfile')?.addEventListener('click', ()=>{
-  const p = loadProfile() || {};
-  p.name = document.getElementById('name').value.trim();
-  p.contact = document.getElementById('contact').value.trim();
-  p.last = {
-    game: selGame.value, server: selServer.value, package: selPackage.value,
-    method: document.getElementById('method').value, uid: document.getElementById('uid').value.trim()
-  };
-  saveProfile(p);
-  alert('บันทึกโปรไฟล์ไว้ในเครื่องแล้ว ✅');
-});
-
-/* ===== MARK AS PAID ===== */
-const slipInput = document.getElementById('slip');
-const refInput  = document.getElementById('ref');
-const btnMarkPaid = document.getElementById('btnMarkPaid');
-
-function canMarkPaid(){
-  const hasSlip = slipInput && slipInput.files && slipInput.files.length > 0;
-  const hasRef  = (refInput?.value || '').trim().length > 0;
-  return !!window.invoiceId && window.invoiceId !== '-' && (hasSlip || hasRef);
-}
-function updateMarkPaidState(){
-  if(btnMarkPaid) btnMarkPaid.disabled = !canMarkPaid();
-}
-slipInput?.addEventListener('change', updateMarkPaidState);
-refInput?.addEventListener('input', updateMarkPaidState);
-btnMarkPaid?.addEventListener('click', ()=>{
-  if(!window.invoiceId || window.invoiceId==='-'){ alert('ยังไม่มีเลขบิล'); return; }
-  if(!canMarkPaid()){ alert('แนบสลิปหรือกรอกเลขอ้างอิงก่อน'); return; }
-  updateOrderStatus(window.invoiceId, 'ชำระแล้ว');
-  alert('แจ้งชำระแล้ว ✅ แอดมินจะตรวจสอบให้เร็วที่สุด');
-});
-
-/* ===== COUNTDOWN (New Year 2026, Asia/Bangkok) – อัปเดตทุก 1 วิ เพื่อประหยัดแบต ===== */
-const cdDigits = document.getElementById('countdownDigits');
-const ribbonTxt = document.getElementById('ribbonTxt');
-function fmt2(n){ return n.toString().padStart(2,'0'); }
-(function runCountdown(){
-  const target = new Date('2026-01-01T00:00:00+07:00').getTime();
-  function tick(){
-    const now = Date.now();
-    let diff = target - now;
-    if(diff <= 0){
-      cdDigits.textContent = '00 วัน 00:00:00';
-      ribbonTxt.textContent = '🎉 HAPPY NEW YEAR 2026';
-      ribbonTxt.style.boxShadow = '0 0 20px #ffd166aa, 0 0 40px #36c06baa';
-      return;
-    }
-    const d = Math.floor(diff / 86400000); diff %= 86400000;
-    const h = Math.floor(diff / 3600000);  diff %= 3600000;
-    const m = Math.floor(diff / 60000);    diff %= 60000;
-    const s = Math.floor(diff / 1000);
-    cdDigits.textContent = `${fmt2(d)} วัน ${fmt2(h)}:${fmt2(m)}:${fmt2(s)}`;
-    setTimeout(tick, 1000);
-  }
-  tick();
-})();
-
-/* ===== TOAST ===== */
-function toast(msg){
-  const t = document.getElementById('toast');
-  if(!t) return;
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(()=> t.classList.remove('show'), 2200);
-}
-function promoHintOnce(){
-  const K = 'ev_promo_hint_shown';
-  if(localStorage.getItem(K) === '1') return;
-  localStorage.setItem(K, '1');
-  toast('🎁 โปรปีใหม่ถูกเปิดใช้งาน — ราคาในการ์ดคือราคาหลังลดแล้ว');
-}
-
-/* ===== MINI ASSISTANT (EVAN AI) ===== */
-const asToggle = document.getElementById('evAssistantToggle');
-const asBox = document.getElementById('evAssistant');
-const asMsgWrap = document.getElementById('evAssistantMessages');
-const asInput = document.getElementById('evAssistantInput');
-const asSend = document.getElementById('evAssistantSend');
-
-function addAssistantBubble(role, text){
-  if(!asMsgWrap) return;
-  const row = document.createElement('div');
-  row.className = 'assistant-row ' + (role==='user'?'me':'bot');
-  const bubble = document.createElement('div');
-  bubble.className = 'assistant-bubble ' + (role==='user'?'me':'bot');
-  bubble.textContent = text;
-  row.appendChild(bubble);
-  asMsgWrap.appendChild(row);
-  asMsgWrap.scrollTop = asMsgWrap.scrollHeight;
-}
-function pickRandom(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
-const NORMAL_REPLIES = [
-  "บอกเลขบิล/ชื่อเกม/แพ็กเกจมา เดี๋ยวช่วยสรุปให้ 😏",
-  "ได้เลย ส่ง UID กับแพ็กมา เดี๋ยวเวย์เช็กให้",
-  "ถ้าจะกดสั่งเติม เลือกแพ็กก่อนนะ แล้วกดยืนยันสร้างบิล",
-  "กด 'คัดลอกสรุปบิล' แล้วไปแปะในแชทแอดมินได้เลย",
-];
-const STRICT_REPLIES = [
-  "ปากดีนะมึง 😏 พิมพ์ให้สุภาพหน่อย เดี๋ยวกูช่วยเต็มที่",
-  "เออ ๆ ใจเย็นไอหมา ส่งข้อมูลให้ครบก่อน",
-  "มึงพิมพ์มั่วเกิน เดี๋ยวกูงง… เอาแค่ 'เกม + แพ็ก + UID' พอ",
-];
-const BAD_WORDS = ["ควย","เหี้ย","สัส","fuck","shit"];
-function looksGibberish(t){
-  const s = (t||"").trim();
-  if(!s) return false;
-  const letters = s.replace(/[0-9\s\W_]/g,'');
-  return letters.length>0 && (letters.length/s.length) < 0.25;
-}
-function handleAssistantSend(){
-  const txt = (asInput?.value||"").trim();
-  if(!txt) return;
-  addAssistantBubble('user', txt);
-  asInput.value = "";
-
-  let reply = pickRandom(NORMAL_REPLIES);
-  const lower = txt.toLowerCase();
-  const hasBad = BAD_WORDS.some(w => lower.includes(w));
-  const gib = looksGibberish(txt);
-  if(hasBad || gib){
-    reply = pickRandom(STRICT_REPLIES);
-  }else{
-    reply = pickRandom(NORMAL_REPLIES);
-  }
-  setTimeout(()=> addAssistantBubble('bot', reply), 200);
-}
-
-function initAssistant(){
-  if(!asToggle || !asBox) return;
-  asToggle.addEventListener('click', ()=>{
-    const opened = asBox.classList.toggle('open');
-    if(opened && asMsgWrap && !asMsgWrap.dataset.welcomed){
-      asMsgWrap.dataset.welcomed = "1";
-      addAssistantBubble('bot',"เวย์อยู่นี่ 😏 พิมพ์ 'เกม + แพ็ก + UID' มาได้เลย");
-    }
-  });
-  asSend?.addEventListener('click', handleAssistantSend);
-  asInput?.addEventListener('keydown', (e)=>{
-    if(e.key === 'Enter' && !e.shiftKey){
-      e.preventDefault();
-      handleAssistantSend();
-    }
-  });
-}
-
-/* ===== INIT ===== */
-renderGameTabs();
-setGame(currentGame);
-fillFromProfile();
-updateSummary();
-initHistoryFilters();
-renderHistory();
-initAssistant();
+renderAll();
 </script>
-
 </body>
 </html>
