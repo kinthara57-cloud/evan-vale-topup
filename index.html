@@ -338,7 +338,7 @@ th{color:#ffe6a8}
 <div class="snow s1"></div>
 <div class="snow s2"></div>
 <div class="snow s3"></div>
-  
+
 <div class="wrap">
   <!-- NAV -->
   <nav class="nav">
@@ -355,7 +355,6 @@ th{color:#ffe6a8}
       <a class="btn" href="#order">สั่งเติม</a>
       <a class="btn" href="#history">ประวัติ</a>
       <a class="btn primary" id="btnAdminNav" href="https://www.facebook.com/share/1JRkDmJDvX/" target="_blank" rel="noopener">ติดต่อแอดมิน</a>
-      <button class="btn" id="btnLogout" style="display:none" type="button">ออกจากระบบ</button>
     </div>
   </nav>
 
@@ -466,8 +465,8 @@ th{color:#ffe6a8}
 
       <div class="tools" style="margin-top:12px">
         <button class="btn" id="btnReset" type="button">ล้างฟอร์ม</button>
-        <button class="btn primary" id="btnSubmit" type="button" disabled>ยืนยันและสร้างบิล</button>
-        <button class="btn" id="btnSaveProfile" type="button" disabled>บันทึกข้อมูลลูกค้า</button>
+        <button class="btn primary" id="btnSubmit" type="button">ยืนยันและสร้างบิล</button>
+        <button class="btn" id="btnSaveProfile" type="button">บันทึกข้อมูลลูกค้า</button>
       </div>
       <p class="muted2" style="margin-top:8px">กดยืนยันแล้วจะเลื่อนไปส่วน “ชำระเงิน” อัตโนมัติ</p>
     </div>
@@ -587,38 +586,15 @@ th{color:#ffe6a8}
 
 <!-- TOAST HOLDER -->
 <div id="toast" class="toast"></div>
-function ordersKey(){ const u=userBox(); return u? `ev_orders_${u.user}` : "ev_orders__guest"; }
 
-// รองรับกรณี crypto.subtle ใช้ไม่ได้
-async function sha256(str){
-  const enc=new TextEncoder().encode(str);
-  const buf=await crypto.subtle.digest('SHA-256',enc);
-  return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
-}
-function simpleHash(s){
-  let h=2166136261>>>0;
-  for(let i=0;i<s.length;i++){ h^=s.charCodeAt(i); h=(h*16777619)>>>0; }
-  return 'fhv1-'+h.toString(16);
-}
-async function hashSafe(str){
-  try{
-    if(!crypto?.subtle) throw new Error('no subtle');
-    return await sha256(str);
-  }catch{
-    return simpleHash(str);
-  }
-}
-function userBox(){ try{ return JSON.parse(localStorage.getItem(KEY_USER)||"null"); }catch{return null;} }
-function setUserBox(v){ localStorage.setItem(KEY_USER, JSON.stringify(v)); }
-function setSession(on){ if(on){ sessionStorage.setItem(KEY_SESSION,"ok"); } else { sessionStorage.removeItem(KEY_SESSION); } }
-function isLogged(){ return sessionStorage.getItem(KEY_SESSION)==="ok"; }
-function showAuth(show){ document.getElementById('auth').classList.toggle('hide', !show); }
-function toggleProtected(disabled){
-  document.getElementById('btnSubmit').disabled      = disabled;
-  document.getElementById('btnPrepareMsg').disabled  = disabled;
-  document.getElementById('btnSaveProfile').disabled = disabled;
-  document.getElementById('btnLogout').style.display = disabled ? "none" : "inline-block";
-}
+<script>
+/* ===== STORAGE (no login) ===== */
+const KEY_PROFILE = "ev_profile";
+const KEY_ORDERS  = "ev_orders";
+function loadProfile(){ try{return JSON.parse(localStorage.getItem(KEY_PROFILE)||"null");}catch{return null;} }
+function saveProfile(p){ localStorage.setItem(KEY_PROFILE, JSON.stringify(p||null)); }
+function loadOrders(){ try{ return JSON.parse(localStorage.getItem(KEY_ORDERS)||"[]"); }catch{return [];} }
+function saveOrders(list){ localStorage.setItem(KEY_ORDERS, JSON.stringify(list||[])); }
 
 /* ===== DATA ===== */
 const ADMIN_URL = "https://www.facebook.com/share/1JRkDmJDvX/";
@@ -715,7 +691,6 @@ const miniPkg = document.getElementById('mini-pkg');
 const miniTotal = document.getElementById('mini-total');
 const gameNote = document.getElementById('gameNote');
 const thaiOnlyNote = document.getElementById('thaiOnlyNote');
-const btnLogout = document.getElementById('btnLogout');
 
 let currentGame = GAMES[0].key;
 const thaiOnlyGames = ["Free Fire","RoV","PUBG Mobile","Roblox","Call of Duty"];
@@ -839,8 +814,6 @@ function updateSummary(){
 });
 
 /* ===== HISTORY ===== */
-function loadOrders(){ try{ return JSON.parse(localStorage.getItem(ordersKey())||"[]"); }catch{return [];} }
-function saveOrders(list){ localStorage.setItem(ordersKey(), JSON.stringify(list)); }
 function addOrder(row){ const list=loadOrders(); list.unshift(row); saveOrders(list); renderHistory(); }
 function updateOrderStatus(inv, status){
   const list=loadOrders(); const idx=list.findIndex(x=>x.invoiceId===inv);
@@ -851,10 +824,10 @@ function deleteOrder(inv){
   saveOrders(list); renderHistory();
 }
 function clearAll(){
-  if(confirm('ล้างข้อมูลทั้งหมดของผู้ใช้คนนี้? (รวมบัญชี/ประวัติ)')){
-    localStorage.removeItem(KEY_USER);
-    sessionStorage.removeItem(KEY_SESSION);
-    localStorage.removeItem(ordersKey());
+  if(confirm('ล้างข้อมูลทั้งหมดบนเครื่องนี้? (โปรไฟล์/ประวัติ/ทิปโปร)')){
+    localStorage.removeItem(KEY_PROFILE);
+    localStorage.removeItem(KEY_ORDERS);
+    localStorage.removeItem('ev_promo_hint_shown');
     location.reload();
   }
 }
@@ -965,7 +938,6 @@ async function copyTextSafe(text){
   }
 }
 btnPrepare?.addEventListener('click', async ()=>{
-  if(!isLogged()){ alert('กรุณาเข้าสู่ระบบก่อน'); return; }
   if(!window.invoiceId || window.invoiceId === '-'){ alert('ยังไม่ได้สร้างบิล'); return; }
   const msg = buildMessage();
   if (msgPreview){ msgPreview.value = msg; msgPreview.style.display = 'block'; }
@@ -995,7 +967,6 @@ document.getElementById('btnReset')?.addEventListener('click', ()=>{
 });
 window.invoiceId = "-";
 document.getElementById('btnSubmit')?.addEventListener('click', ()=>{
-  if(!isLogged()){ alert('กรุณาเข้าสู่ระบบก่อน'); return; }
   if(!selPackage.value){ alert('เลือกแพ็กเกจก่อน'); return; }
   window.invoiceId = genInvoice();
   document.getElementById('sum-bill').innerText = window.invoiceId;
@@ -1040,80 +1011,30 @@ document.getElementById('btnExportCsv')?.addEventListener('click', ()=>{
 });
 document.getElementById('btnClearAll')?.addEventListener('click', clearAll);
 
-/* ===== PROFILE SAVE/FILL ===== */
+/* ===== PROFILE SAVE/FILL (no login) ===== */
 function fillFromProfile(){
-  const ub = userBox(); if(!ub) return;
-  if(ub.name)    document.getElementById('name').value = ub.name;
-  if(ub.contact) document.getElementById('contact').value = ub.contact;
-  if(ub.last){
-    if(ub.last.game && GAMES.find(g=>g.key===ub.last.game)){ setGame(ub.last.game); }
-    if(ub.last.server){ selServer.value = ub.last.server; }
-    if(ub.last.package){ selPackage.value = ub.last.package; }
-    if(ub.last.method){ document.getElementById('method').value = ub.last.method; }
-    if(ub.last.uid){ document.getElementById('uid').value = ub.last.uid; }
+  const p = loadProfile(); if(!p) return;
+  if(p.name)    document.getElementById('name').value = p.name;
+  if(p.contact) document.getElementById('contact').value = p.contact;
+  if(p.last){
+    if(p.last.game && GAMES.find(g=>g.key===p.last.game)){ setGame(p.last.game); }
+    if(p.last.server){ selServer.value = p.last.server; }
+    if(p.last.package){ selPackage.value = p.last.package; }
+    if(p.last.method){ document.getElementById('method').value = p.last.method; }
+    if(p.last.uid){ document.getElementById('uid').value = p.last.uid; }
   }
   updateSummary();
 }
 document.getElementById('btnSaveProfile')?.addEventListener('click', ()=>{
-  if(!isLogged()){ alert('ต้องเข้าสู่ระบบก่อน'); return; }
-  const ub = userBox(); if(!ub){ alert('ต้องตั้งบัญชีก่อน'); return; }
-  ub.name = document.getElementById('name').value.trim();
-  ub.contact = document.getElementById('contact').value.trim();
-  ub.last = {
+  const p = loadProfile() || {};
+  p.name = document.getElementById('name').value.trim();
+  p.contact = document.getElementById('contact').value.trim();
+  p.last = {
     game: selGame.value, server: selServer.value, package: selPackage.value,
     method: document.getElementById('method').value, uid: document.getElementById('uid').value.trim()
   };
-  setUserBox(ub);
-  alert('บันทึกข้อมูลลูกค้าไว้ในเครื่องแล้ว ✅');
-});
-
-/* ===== AUTH FLOW ===== */
-function renderAuth(){
-  const ub = userBox(); const hasUser = !!ub;
-  document.getElementById('authTitle').textContent = hasUser? '🔐 เข้าระบบ' : '🔒 สร้างบัญชีครั้งแรก';
-  document.getElementById('authDesc').textContent = hasUser? 'ใส่ผู้ใช้และ PIN เพื่อเข้าใช้งาน' : 'ตั้งผู้ใช้ + PIN และบันทึกโปรไฟล์ (ถ้าต้องการ)';
-  document.getElementById('setupForm').style.display = hasUser? 'none' : 'block';
-  document.getElementById('loginForm').style.display = hasUser? 'block' : 'none';
-}
-async function tryAutoLogin(){
-  if(isLogged()){
-    showAuth(false); toggleProtected(false);
-    fillFromProfile(); initHistoryFilters(); renderHistory();
-    return;
-  }
-  renderAuth(); showAuth(true); toggleProtected(true);
-}
-document.getElementById('btnSetup').addEventListener('click', async ()=>{
-  const user = document.getElementById('setupUser').value.trim();
-  const p1 = document.getElementById('setupPin').value.trim();
-  const p2 = document.getElementById('setupPin2').value.trim();
-  if(!user || p1.length<4 || p1!==p2){ alert('ตรวจชื่อผู้ใช้ และ PIN (อย่างน้อย 4 หลัก และต้องตรงกัน)'); return; }
-  const name = document.getElementById('setupName').value.trim();
-  const contact = document.getElementById('setupContact').value.trim();
-  const pinHash = await hashSafe(user+'|'+p1);
-  setUserBox({user, pinHash, name, contact, last: null});
-  setSession(true);
-  showAuth(false); toggleProtected(false);
-  fillFromProfile(); initHistoryFilters(); renderHistory();
-});
-document.getElementById('btnLogin').addEventListener('click', async ()=>{
-  const user = document.getElementById('loginUser').value.trim();
-  const pin = document.getElementById('loginPin').value.trim();
-  const ub = userBox(); if(!ub){ alert('ยังไม่มีบัญชี ให้ตั้งบัญชีก่อน'); return; }
-  const hash = await hashSafe(user+'|'+pin);
-  if(hash===ub.pinHash){
-    setSession(true);
-    showAuth(false); toggleProtected(false);
-    fillFromProfile(); initHistoryFilters(); renderHistory();
-  } else {
-    alert('ผู้ใช้หรือ PIN ไม่ถูกต้อง');
-  }
-});
-document.getElementById('btnForgot').addEventListener('click', ()=>{
-  alert('ลืม PIN: ใช้ปุ่ม “รีเซ็ตข้อมูลทั้งหมด” (หน้า ประวัติ) เพื่อล้างข้อมูลบนเครื่อง แล้วตั้งใหม่');
-});
-document.getElementById('btnLogout').addEventListener('click', ()=>{
-  setSession(false); showAuth(true); toggleProtected(true);
+  saveProfile(p);
+  alert('บันทึกโปรไฟล์ไว้ในเครื่องแล้ว ✅');
 });
 
 /* ===== MARK AS PAID ===== */
@@ -1196,41 +1117,32 @@ function addAssistantBubble(role, text){
   asMsgWrap.appendChild(row);
   asMsgWrap.scrollTop = asMsgWrap.scrollHeight;
 }
-
-const BAD_WORDS = [
-  "ควย","เหี้ย","สัส","ไอเหี้ย","ไอสัส",
-  "fuck","shit","bitch"
-];
-
-function looksGibberish(txt){
-  const clean = txt.replace(/\s+/g,'');
-  if(clean.length < 6) return false;
-  const letters = clean.replace(/[^A-Za-zก-๙]/g,'').length;
-  const digits = clean.replace(/[^0-9]/g,'').length;
-  return letters>0 && digits>0 && (letters+digits===clean.length);
-}
-
-const STRICT_REPLIES = [
-  "เฮ้ ข้อความนี้แรงไปหน่อยนะ ลองพิมพ์ใหม่ให้สุภาพกว่านี้หน่อย 😉",
-  "ตัวหนังสือเต้นระบำไปหมดเลย ลองพิมพ์ให้คนอ่านรู้เรื่องหน่อยว่าอยากทำอะไร 😊",
-  "เบา ๆ กับคำหยาบหน่อย เพื่อน แอดมินอ่านอยู่ทั้งนั้นน้า 😏",
-  "ถ้าพิมพ์ดี ๆ หน่อย เราจะช่วยเช็กบิล / เติมเกมให้ได้ง่ายขึ้นเยอะเลย 😄"
-];
-
-const NORMAL_REPLIES = [
-  "ถ้ามีอะไรให้ช่วย ลองพิมพ์ชื่อเกม + แพ็กเกจที่อยากเติมได้เลยนะ ✨",
-  "ตัวอย่าง: \"Free Fire 517 เพชร เติมผ่านทรูมันนี่\" แล้วก็กดสร้างบิลด้านบนได้เลย 🙌",
-  "ตอนนี้บอทยังตอบได้แค่พื้นฐาน ถ้ามีคำถามละเอียดกดปุ่ม \"ติดต่อแอดมิน\" ด้านบนได้เลยนะ 💬"
-];
-
 function pickRandom(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
-
+const NORMAL_REPLIES = [
+  "บอกเลขบิล/ชื่อเกม/แพ็กเกจมา เดี๋ยวช่วยสรุปให้ 😏",
+  "ได้เลย ส่ง UID กับแพ็กมา เดี๋ยวเวย์เช็กให้",
+  "ถ้าจะกดสั่งเติม เลือกแพ็กก่อนนะ แล้วกดยืนยันสร้างบิล",
+  "กด 'คัดลอกสรุปบิล' แล้วไปแปะในแชทแอดมินได้เลย",
+];
+const STRICT_REPLIES = [
+  "ปากดีนะมึง 😏 พิมพ์ให้สุภาพหน่อย เดี๋ยวกูช่วยเต็มที่",
+  "เออ ๆ ใจเย็นไอหมา ส่งข้อมูลให้ครบก่อน",
+  "มึงพิมพ์มั่วเกิน เดี๋ยวกูงง… เอาแค่ 'เกม + แพ็ก + UID' พอ",
+];
+const BAD_WORDS = ["ควย","เหี้ย","สัส","fuck","shit"];
+function looksGibberish(t){
+  const s = (t||"").trim();
+  if(!s) return false;
+  const letters = s.replace(/[0-9\s\W_]/g,'');
+  return letters.length>0 && (letters.length/s.length) < 0.25;
+}
 function handleAssistantSend(){
-  const txt = (asInput?.value || "").trim();
+  const txt = (asInput?.value||"").trim();
   if(!txt) return;
   addAssistantBubble('user', txt);
   asInput.value = "";
-  let reply;
+
+  let reply = pickRandom(NORMAL_REPLIES);
   const lower = txt.toLowerCase();
   const hasBad = BAD_WORDS.some(w => lower.includes(w));
   const gib = looksGibberish(txt);
@@ -1247,12 +1159,12 @@ function initAssistant(){
   asToggle.addEventListener('click', ()=>{
     const opened = asBox.classList.toggle('open');
     if(opened && asMsgWrap && !asMsgWrap.dataset.welcomed){
-      addAssistantBubble('bot', 'สวัสดีจาก EVAN VALE — ถ้าอยากให้ช่วยเรื่องบิลหรือแพ็กเกจ ลองพิมพ์มาคุยได้เลยนะ 😄');
-      asMsgWrap.dataset.welcomed = '1';
+      asMsgWrap.dataset.welcomed = "1";
+      addAssistantBubble('bot',"เวย์อยู่นี่ 😏 พิมพ์ 'เกม + แพ็ก + UID' มาได้เลย");
     }
   });
   asSend?.addEventListener('click', handleAssistantSend);
-  asInput?.addEventListener('keydown', e=>{
+  asInput?.addEventListener('keydown', (e)=>{
     if(e.key === 'Enter' && !e.shiftKey){
       e.preventDefault();
       handleAssistantSend();
@@ -1263,12 +1175,12 @@ function initAssistant(){
 /* ===== INIT ===== */
 renderGameTabs();
 setGame(currentGame);
+fillFromProfile();
 updateSummary();
 initHistoryFilters();
-tryAutoLogin();
+renderHistory();
 initAssistant();
 </script>
 
 </body>
 </html>
-
