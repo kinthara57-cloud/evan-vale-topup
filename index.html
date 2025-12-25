@@ -587,11 +587,6 @@ th{color:#ffe6a8}
 
 <!-- TOAST HOLDER -->
 <div id="toast" class="toast"></div>
-
-<script>
-/* ===== AUTH / SESSION ===== */
-const KEY_USER="ev_auth_user";
-const KEY_SESSION="ev_auth_session";
 function ordersKey(){ const u=userBox(); return u? `ev_orders_${u.user}` : "ev_orders__guest"; }
 
 // รองรับกรณี crypto.subtle ใช้ไม่ได้
