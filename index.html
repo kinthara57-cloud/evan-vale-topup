@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0b0f0c">
-  <link rel="icon" href="images/evanvale-logo.png?v=5" sizes="any">
-  <link rel="apple-touch-icon" href="images/evanvale-logo.png?v=5">
+  <link rel="icon" href="images/evanvale-logo.png?v=6" sizes="any">
+  <link rel="apple-touch-icon" href="images/evanvale-logo.png?v=6">
 
   <title>EVAN VALE • Topup | เติมเกมไว โปร่งใส มีแอดมินดูแล</title>
   <meta name="description" content="EVAN VALE — เติมเกมไว โปร่งใส ปลอดภัย มีแอดมินดูแล รองรับ TrueMoney, PromptPay และธนาคาร" />
@@ -37,11 +37,24 @@
         radial-gradient(900px 500px at 0% 0%, rgba(54,192,107,.12), transparent 60%),
         radial-gradient(900px 500px at 100% 0%, rgba(229,57,53,.12), transparent 60%),
         linear-gradient(180deg, var(--bg), #070a08);
+      overflow-x:hidden;
     }
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
 
-    .wrap{max-width:1100px;margin:auto;padding:18px}
+    .wrap{max-width:1100px;margin:auto;padding:18px; position:relative; z-index:10;} /* ให้อยู่เหนือหิมะ */
+
+    /* ===== Snow Canvas ===== */
+    #snow{
+      position:fixed;
+      inset:0;
+      width:100vw;
+      height:100vh;
+      pointer-events:none;
+      z-index:5;          /* ใต้เนื้อหา แต่เหนือพื้นหลัง */
+      opacity:.75;        /* ปรับเบา-หนักได้ */
+      mix-blend-mode: screen;
+    }
 
     /* Header */
     .header{
@@ -373,11 +386,15 @@
     @media (prefers-reduced-motion:reduce){
       *{scroll-behavior:auto !important}
       .btn,.tab{transition:none}
+      #snow{display:none;} /* เคารพคนที่ไม่อยากให้มี motion */
     }
   </style>
 </head>
 
 <body>
+  <!-- Snow overlay -->
+  <canvas id="snow" aria-hidden="true"></canvas>
+
   <div class="wrap">
     <!-- Header -->
     <header class="header">
@@ -1240,6 +1257,89 @@ asInput?.addEventListener('keydown', (e)=>{
     handleAssistantSend();
   }
 });
+
+/* ===== SNOW (lightweight canvas) ===== */
+(function snowInit(){
+  const c = document.getElementById('snow');
+  if(!c) return;
+
+  // ถ้า reduce motion: ไม่รัน
+  const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if(mq.matches) return;
+
+  const ctx = c.getContext('2d', { alpha:true });
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+  let W=0, H=0, flakes=[];
+  let running = true;
+
+  function resize(){
+    W = Math.floor(window.innerWidth);
+    H = Math.floor(window.innerHeight);
+    c.width  = Math.floor(W * DPR);
+    c.height = Math.floor(H * DPR);
+    c.style.width = W + 'px';
+    c.style.height = H + 'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+
+  function makeFlake(){
+    const r = 1 + Math.random()*2.8;
+    return {
+      x: Math.random()*W,
+      y: -10 - Math.random()*H,
+      r,
+      vy: 0.55 + Math.random()*1.85,
+      vx: -0.7 + Math.random()*1.4,
+      sway: 0.6 + Math.random()*1.6,
+      a: 0.25 + Math.random()*0.55
+    };
+  }
+
+  function computeCount(){
+    const base = Math.round((W*H) / 18000);
+    return Math.max(40, Math.min(160, base));
+  }
+
+  function reset(){
+    flakes = Array.from({length: computeCount()}, makeFlake);
+  }
+
+  function draw(){
+    if(!running) return;
+    ctx.clearRect(0,0,W,H);
+
+    for(const f of flakes){
+      f.y += f.vy;
+      f.x += f.vx + Math.sin((f.y/40)) * f.sway * 0.15;
+
+      if(f.y > H + 20){ f.y = -20; f.x = Math.random()*W; }
+      if(f.x < -20) f.x = W+20;
+      if(f.x > W+20) f.x = -20;
+
+      ctx.beginPath();
+      ctx.arc(f.x, f.y, f.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(255,255,255,${f.a})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  reset();
+  draw();
+
+  window.addEventListener('resize', ()=>{
+    resize();
+    reset();
+  });
+
+  mq.addEventListener?.('change', (e)=>{
+    running = !e.matches;
+    if(running) draw();
+    else ctx.clearRect(0,0,W,H);
+  });
+})();
 
 /* ===== INIT ===== */
 renderGameTabs();
