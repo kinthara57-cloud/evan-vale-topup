@@ -731,35 +731,131 @@
  <!-- Toast -->
 <div id="toast" class="toast"></div>
 
-<!-- ================= SUPABASE SDK ================= -->
+<!-- ✅ SUPABASE SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<!-- ✅ SUPABASE CONFIG + HELPERS (ต้องอยู่ก่อน MAIN SCRIPT) -->
 <script>
-  // ================= SUPABASE CONFIG =================
+  // ====== ใส่ของมึงตรงนี้ ======
   const SUPABASE_URL = "https://cnaukrfxxthemdmavuou.supabase.co";
   const SUPABASE_KEY = "sb_publishable_PJvhWJNhD6YlaAxOMgS9Uw_7bDlSzb4";
 
+  // ====== ปรับได้ ======
   const SB_TABLE_ORDERS = "orders";
   const SB_TABLE_SLIPS  = "slips";
-  const SB_BUCKET_SLIPS = "slips"; // bucket ใน Storage
+  const SB_BUCKET_SLIPS = "slips"; // bucket ใน Storage (มึงสร้างแล้วชื่อ slips)
 
   // init client
   window.sb = null;
-  try {
-    window.sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-  } catch (e) {
-    console.error("Supabase init error", e);
+  try{
+    if(SUPABASE_URL && SUPABASE_KEY && !SUPABASE_URL.includes("PASTE_")){
+      window.sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    }
+  }catch(e){
+    console.error("Supabase init error:", e);
     window.sb = null;
   }
 
-  function sbReady() {
-    return !!window.sb;
+  function sbReady(){ return !!window.sb; }
+
+  // ===== SUPABASE HELPERS =====
+  async function syncOrderToSupabase(row){
+    if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
+    try{
+      const payload = {
+        order_code: row.invoiceId,
+        product_name: row.package || "-",
+        game_uid: row.uid || null,
+        note: JSON.stringify({
+          game: row.game,
+          server: row.server,
+          method: row.method,
+          name: row.name,
+          contact: row.contact,
+          promo: (document.getElementById('promo')?.value || "").trim()
+        }),
+        amount: Number(String(row.total||"").replace(/[^\d]/g,"")) || 0,
+        status: "pending_payment"
+      };
+
+      const { data, error } = await window.sb
+        .from(SB_TABLE_ORDERS)
+        .insert(payload)
+        .select("id")
+        .single();
+
+      if(error) throw error;
+      row.sb_order_id = data?.id || null;
+      return { ok:true, id: row.sb_order_id };
+    }catch(err){
+      console.warn("Supabase syncOrder error:", err);
+      return { ok:false, reason: err?.message || "insert_failed" };
+    }
+  }
+
+  async function uploadSlipToSupabase(file, invoiceId){
+    if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
+    if(!file) return { ok:false, reason:"no_file" };
+    try{
+      const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
+      const safeExt = ["jpg","jpeg","png","webp"].includes(ext) ? ext : "jpg";
+      const path = `orders/${invoiceId}/${Date.now()}.${safeExt}`;
+
+      const { error: upErr } = await window.sb
+        .storage
+        .from(SB_BUCKET_SLIPS)
+        .upload(path, file, { upsert: true, contentType: file.type || "image/jpeg" });
+
+      if(upErr) throw upErr;
+      return { ok:true, path };
+    }catch(err){
+      console.warn("Supabase upload slip error:", err);
+      return { ok:false, reason: err?.message || "upload_failed" };
+    }
+  }
+
+  async function addSlipRecordToSupabase(sbOrderId, filePath){
+    if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
+    if(!sbOrderId || !filePath) return { ok:false, reason:"missing_data" };
+    try{
+      const { error } = await window.sb
+        .from(SB_TABLE_SLIPS)
+        .insert({ order_id: sbOrderId, file_path: filePath });
+
+      if(error) throw error;
+      return { ok:true };
+    }catch(err){
+      console.warn("Supabase insert slip record error:", err);
+      return { ok:false, reason: err?.message || "insert_slip_failed" };
+    }
+  }
+
+  async function markPaidSupabase(sbOrderId, referenceText){
+    if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
+    if(!sbOrderId) return { ok:false, reason:"missing_order_id" };
+    try{
+      const { error } = await window.sb
+        .from(SB_TABLE_ORDERS)
+        .update({
+          status: "paid",
+          note: JSON.stringify({ paid_ref: referenceText || "" })
+        })
+        .eq("id", sbOrderId);
+
+      if(error) throw error;
+      return { ok:true };
+    }catch(err){
+      console.warn("Supabase mark paid error:", err);
+      return { ok:false, reason: err?.message || "update_failed" };
+    }
   }
 </script>
 
-<!-- ================= MAIN SCRIPT ================= -->
+<!-- ✅ MAIN SCRIPT: เอาโค้ดเว็บเดิมของมึงทั้งหมด (ตัวใหญ่ 1600 บรรทัด) มาเริ่มตรงนี้ -->
 <script>
-/* ===== STORAGE (no login) ===== */
+  /* ===== STORAGE (no login) ===== */
+  // ... โค้ดเดิมของมึงทั้งหมด ...
+</script>
 const KEY_PROFILE = "ev_profile";
 const KEY_ORDERS  = "ev_orders";
 function loadProfile(){ try{return JSON.parse(localStorage.getItem(KEY_PROFILE)||"null");}catch{return null;} }
