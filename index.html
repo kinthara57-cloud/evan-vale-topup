@@ -728,36 +728,36 @@
   </div>
   <button class="assistant-toggle" id="evAssistantToggle" type="button">EVAN • Chat</button>
 
-  <!-- Toast -->
-  <div id="toast" class="toast"></div>
+ <!-- Toast -->
+<div id="toast" class="toast"></div>
 
-  <!-- ✅ SUPABASE (เพิ่มให้แล้ว) -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script>
-   // ====== ใส่ของมึงตรงนี้ ======
-    const SUPABASE_URL = "https://cnaukrfxxthemdmavuou.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_PJvhWJNhD6YlaAxOMgS9Uw_7bDlSzb4";
+<!-- ================= SUPABASE SDK ================= -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    // ====== ปรับได้ ======
-    const SB_TABLE_ORDERS = "orders";
-    const SB_TABLE_SLIPS  = "slips";
-    const SB_BUCKET_SLIPS = "slips"; // ต้องไปสร้าง bucket ชื่อ slips ใน Storage ก่อน
+<script>
+  // ================= SUPABASE CONFIG =================
+  const SUPABASE_URL = "https://cnaukrfxxthemdmavuou.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_PJvhWJNhD6YlaAxOMgS9Uw_7bDlSzb4";
 
-    // init
+  const SB_TABLE_ORDERS = "orders";
+  const SB_TABLE_SLIPS  = "slips";
+  const SB_BUCKET_SLIPS = "slips"; // bucket ใน Storage
+
+  // init client
+  window.sb = null;
+  try {
+    window.sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  } catch (e) {
+    console.error("Supabase init error", e);
     window.sb = null;
-    try{
-      if(SUPABASE_URL && SUPABASE_KEY && !SUPABASE_URL.includes("PASTE_")){
-        window.sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-      }
-    }catch(e){
-      window.sb = null;
-    }
+  }
 
-    function sbReady(){
-      return !!window.sb;
-    }
-  </script>
+  function sbReady() {
+    return !!window.sb;
+  }
+</script>
 
+<!-- ================= MAIN SCRIPT ================= -->
 <script>
 /* ===== STORAGE (no login) ===== */
 const KEY_PROFILE = "ev_profile";
@@ -767,6 +767,8 @@ function saveProfile(p){ localStorage.setItem(KEY_PROFILE, JSON.stringify(p||nul
 function loadOrders(){ try{ return JSON.parse(localStorage.getItem(KEY_ORDERS)||"[]"); }catch{return [];} }
 function saveOrders(list){ localStorage.setItem(KEY_ORDERS, JSON.stringify(list||[])); }
 
+/* 🔥 โค้ดเว็บเดิมของมึงทั้งหมด อยู่ต่อจากนี้ตามปกติ */
+</script>
 /* ===== SUPABASE HELPERS (เพิ่มให้แล้ว) ===== */
 async function syncOrderToSupabase(row){
   // row: object ที่มึงสร้างตอนกด submit
