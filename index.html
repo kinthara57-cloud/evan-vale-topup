@@ -728,243 +728,139 @@
   </div>
   <button class="assistant-toggle" id="evAssistantToggle" type="button">EVAN • Chat</button>
 
- <!-- Toast -->
-<div id="toast" class="toast"></div>
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
 
-<!-- ✅ SUPABASE SDK -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- ✅ SUPABASE SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<!-- ✅ SUPABASE CONFIG + HELPERS (ต้องอยู่ก่อน MAIN SCRIPT) -->
-<script>
-  // ====== ใส่ของมึงตรงนี้ ======
-  const SUPABASE_URL = "https://cnaukrfxxthemdmavuou.supabase.co";
-  const SUPABASE_KEY = "sb_publishable_PJvhWJNhD6YlaAxOMgS9Uw_7bDlSzb4";
+  <!-- ✅ SUPABASE CONFIG + HELPERS -->
+  <script>
+    // ====== ใส่ของมึงตรงนี้ ======
+    const SUPABASE_URL = "https://cnaukrfxxthemdmavuou.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_PJvhWJNhD6YlaAxOMgS9Uw_7bDlSzb4";
 
-  // ====== ปรับได้ ======
-  const SB_TABLE_ORDERS = "orders";
-  const SB_TABLE_SLIPS  = "slips";
-  const SB_BUCKET_SLIPS = "slips"; // bucket ใน Storage (มึงสร้างแล้วชื่อ slips)
+    // ====== ปรับได้ ======
+    const SB_TABLE_ORDERS = "orders";
+    const SB_TABLE_SLIPS  = "slips";
+    const SB_BUCKET_SLIPS = "slips"; // Storage bucket
 
-  // init client
-  window.sb = null;
-  try{
-    if(SUPABASE_URL && SUPABASE_KEY && !SUPABASE_URL.includes("PASTE_")){
-      window.sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-    }
-  }catch(e){
-    console.error("Supabase init error:", e);
+    // init
     window.sb = null;
-  }
-
-  function sbReady(){ return !!window.sb; }
-
-  // ===== SUPABASE HELPERS =====
-  async function syncOrderToSupabase(row){
-    if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
     try{
-      const payload = {
-        order_code: row.invoiceId,
-        product_name: row.package || "-",
-        game_uid: row.uid || null,
-        note: JSON.stringify({
-          game: row.game,
-          server: row.server,
-          method: row.method,
-          name: row.name,
-          contact: row.contact,
-          promo: (document.getElementById('promo')?.value || "").trim()
-        }),
-        amount: Number(String(row.total||"").replace(/[^\d]/g,"")) || 0,
-        status: "pending_payment"
-      };
-
-      const { data, error } = await window.sb
-        .from(SB_TABLE_ORDERS)
-        .insert(payload)
-        .select("id")
-        .single();
-
-      if(error) throw error;
-      row.sb_order_id = data?.id || null;
-      return { ok:true, id: row.sb_order_id };
-    }catch(err){
-      console.warn("Supabase syncOrder error:", err);
-      return { ok:false, reason: err?.message || "insert_failed" };
+      window.sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    }catch(e){
+      console.error("Supabase init error:", e);
+      window.sb = null;
     }
-  }
+    function sbReady(){ return !!window.sb; }
 
-  async function uploadSlipToSupabase(file, invoiceId){
-    if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
-    if(!file) return { ok:false, reason:"no_file" };
-    try{
-      const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
-      const safeExt = ["jpg","jpeg","png","webp"].includes(ext) ? ext : "jpg";
-      const path = `orders/${invoiceId}/${Date.now()}.${safeExt}`;
+    // ========= HELPERS =========
+    // rows are from your localStorage order object (invoiceId, game, server, package, total, method, uid, name, contact, status)
+    async function sbInsertOrder(row){
+      if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
 
-      const { error: upErr } = await window.sb
-        .storage
-        .from(SB_BUCKET_SLIPS)
-        .upload(path, file, { upsert: true, contentType: file.type || "image/jpeg" });
+      try{
+        const amount = Number(String(row.total||"").replace(/[^\d]/g,"")) || 0;
+        const payload = {
+          order_code: row.invoiceId,
+          product_name: row.package || "-",
+          game_uid: row.uid || null,
+          amount,
+          status: "pending_payment",
+          note: JSON.stringify({
+            game: row.game,
+            server: row.server,
+            method: row.method,
+            name: row.name,
+            contact: row.contact,
+            promo: (document.getElementById('promo')?.value || "").trim(),
+          })
+        };
 
-      if(upErr) throw upErr;
-      return { ok:true, path };
-    }catch(err){
-      console.warn("Supabase upload slip error:", err);
-      return { ok:false, reason: err?.message || "upload_failed" };
+        const { data, error } = await window.sb
+          .from(SB_TABLE_ORDERS)
+          .insert(payload)
+          .select("id")
+          .single();
+
+        if(error) throw error;
+        return { ok:true, id: data?.id || null };
+      }catch(err){
+        console.warn("sbInsertOrder error:", err);
+        return { ok:false, reason: err?.message || "insert_failed" };
+      }
     }
-  }
 
-  async function addSlipRecordToSupabase(sbOrderId, filePath){
-    if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
-    if(!sbOrderId || !filePath) return { ok:false, reason:"missing_data" };
-    try{
-      const { error } = await window.sb
-        .from(SB_TABLE_SLIPS)
-        .insert({ order_id: sbOrderId, file_path: filePath });
+    async function sbUploadSlip(file, invoiceId){
+      if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
+      if(!file) return { ok:false, reason:"no_file" };
 
-      if(error) throw error;
-      return { ok:true };
-    }catch(err){
-      console.warn("Supabase insert slip record error:", err);
-      return { ok:false, reason: err?.message || "insert_slip_failed" };
+      try{
+        const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
+        const safeExt = ["jpg","jpeg","png","webp"].includes(ext) ? ext : "jpg";
+        const path = `orders/${invoiceId}/${Date.now()}.${safeExt}`;
+
+        const { error } = await window.sb
+          .storage
+          .from(SB_BUCKET_SLIPS)
+          .upload(path, file, { upsert:true, contentType: file.type || "image/jpeg" });
+
+        if(error) throw error;
+        return { ok:true, path };
+      }catch(err){
+        console.warn("sbUploadSlip error:", err);
+        return { ok:false, reason: err?.message || "upload_failed" };
+      }
     }
-  }
 
-  async function markPaidSupabase(sbOrderId, referenceText){
-    if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
-    if(!sbOrderId) return { ok:false, reason:"missing_order_id" };
-    try{
-      const { error } = await window.sb
-        .from(SB_TABLE_ORDERS)
-        .update({
-          status: "paid",
-          note: JSON.stringify({ paid_ref: referenceText || "" })
-        })
-        .eq("id", sbOrderId);
+    async function sbInsertSlipRecord(sbOrderId, filePath){
+      if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
+      if(!sbOrderId || !filePath) return { ok:false, reason:"missing_data" };
 
-      if(error) throw error;
-      return { ok:true };
-    }catch(err){
-      console.warn("Supabase mark paid error:", err);
-      return { ok:false, reason: err?.message || "update_failed" };
+      try{
+        const { error } = await window.sb
+          .from(SB_TABLE_SLIPS)
+          .insert({ order_id: sbOrderId, file_path: filePath });
+
+        if(error) throw error;
+        return { ok:true };
+      }catch(err){
+        console.warn("sbInsertSlipRecord error:", err);
+        return { ok:false, reason: err?.message || "insert_slip_failed" };
+      }
     }
-  }
-</script>
 
-<!-- ✅ MAIN SCRIPT: เอาโค้ดเว็บเดิมของมึงทั้งหมด (ตัวใหญ่ 1600 บรรทัด) มาเริ่มตรงนี้ -->
+    async function sbMarkPaid(sbOrderId, referenceText){
+      if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
+      if(!sbOrderId) return { ok:false, reason:"missing_order_id" };
+
+      try{
+        const { error } = await window.sb
+          .from(SB_TABLE_ORDERS)
+          .update({
+            status: "paid",
+            note: JSON.stringify({ paid_ref: referenceText || "" })
+          })
+          .eq("id", sbOrderId);
+
+        if(error) throw error;
+        return { ok:true };
+      }catch(err){
+        console.warn("sbMarkPaid error:", err);
+        return { ok:false, reason: err?.message || "update_failed" };
+      }
+    }
+  </script>
+
 <script>
-  /* ===== STORAGE (no login) ===== */
-  // ... โค้ดเดิมของมึงทั้งหมด ...
-</script>
+/* ===== STORAGE (no login) ===== */
 const KEY_PROFILE = "ev_profile";
 const KEY_ORDERS  = "ev_orders";
 function loadProfile(){ try{return JSON.parse(localStorage.getItem(KEY_PROFILE)||"null");}catch{return null;} }
 function saveProfile(p){ localStorage.setItem(KEY_PROFILE, JSON.stringify(p||null)); }
 function loadOrders(){ try{ return JSON.parse(localStorage.getItem(KEY_ORDERS)||"[]"); }catch{return [];} }
 function saveOrders(list){ localStorage.setItem(KEY_ORDERS, JSON.stringify(list||[])); }
-
-/* 🔥 โค้ดเว็บเดิมของมึงทั้งหมด อยู่ต่อจากนี้ตามปกติ */
-</script>
-/* ===== SUPABASE HELPERS (เพิ่มให้แล้ว) ===== */
-async function syncOrderToSupabase(row){
-  // row: object ที่มึงสร้างตอนกด submit
-  if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
-
-  try{
-    // insert order
-    const payload = {
-      order_code: row.invoiceId,
-      product_name: row.package || "-",
-      game_uid: row.uid || null,
-      note: JSON.stringify({
-        game: row.game,
-        server: row.server,
-        method: row.method,
-        name: row.name,
-        contact: row.contact,
-        promo: (document.getElementById('promo')?.value || "").trim()
-      }),
-      amount: Number(String(row.total||"").replace(/[^\d]/g,"")) || 0,
-      status: "pending_payment"
-    };
-
-    const { data, error } = await window.sb
-      .from(SB_TABLE_ORDERS)
-      .insert(payload)
-      .select("id")
-      .single();
-
-    if(error) throw error;
-
-    // เก็บ id ที่ฝั่ง DB ไว้ใน row (ไว้ใช้ตอนอัปสลิป)
-    row.sb_order_id = data?.id || null;
-    return { ok:true, id: row.sb_order_id };
-  }catch(err){
-    console.warn("Supabase syncOrder error:", err);
-    return { ok:false, reason: err?.message || "insert_failed" };
-  }
-}
-
-async function uploadSlipToSupabase(file, invoiceId){
-  if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
-  if(!file) return { ok:false, reason:"no_file" };
-
-  try{
-    const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
-    const safeExt = ["jpg","jpeg","png","webp"].includes(ext) ? ext : "jpg";
-    const path = `orders/${invoiceId}/${Date.now()}.${safeExt}`;
-
-    const { error: upErr } = await window.sb
-      .storage
-      .from(SB_BUCKET_SLIPS)
-      .upload(path, file, { upsert: true, contentType: file.type || "image/jpeg" });
-
-    if(upErr) throw upErr;
-
-    return { ok:true, path };
-  }catch(err){
-    console.warn("Supabase upload slip error:", err);
-    return { ok:false, reason: err?.message || "upload_failed" };
-  }
-}
-
-async function addSlipRecordToSupabase(sbOrderId, filePath){
-  if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
-  if(!sbOrderId || !filePath) return { ok:false, reason:"missing_data" };
-
-  try{
-    const { error } = await window.sb
-      .from(SB_TABLE_SLIPS)
-      .insert({ order_id: sbOrderId, file_path: filePath });
-
-    if(error) throw error;
-    return { ok:true };
-  }catch(err){
-    console.warn("Supabase insert slip record error:", err);
-    return { ok:false, reason: err?.message || "insert_slip_failed" };
-  }
-}
-
-async function markPaidSupabase(sbOrderId, referenceText){
-  if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
-  if(!sbOrderId) return { ok:false, reason:"missing_order_id" };
-
-  try{
-    const { error } = await window.sb
-      .from(SB_TABLE_ORDERS)
-      .update({
-        status: "paid",
-        note: JSON.stringify({ paid_ref: referenceText || "" })
-      })
-      .eq("id", sbOrderId);
-
-    if(error) throw error;
-    return { ok:true };
-  }catch(err){
-    console.warn("Supabase mark paid error:", err);
-    return { ok:false, reason: err?.message || "update_failed" };
-  }
-}
 
 /* ===== DATA ===== */
 const ADMIN_URL = "https://www.facebook.com/share/1JRkDmJDvX/";
@@ -1204,15 +1100,6 @@ function updateOrderStatus(inv, status){
   const list=loadOrders(); const idx=list.findIndex(x=>x.invoiceId===inv);
   if(idx>-1){ list[idx].status=status; saveOrders(list); renderHistory(); }
 }
-function patchOrder(inv, patch){
-  const list = loadOrders();
-  const idx = list.findIndex(x=>x.invoiceId===inv);
-  if(idx>-1){
-    list[idx] = { ...list[idx], ...patch };
-    saveOrders(list);
-    renderHistory();
-  }
-}
 function deleteOrder(inv){
   const list=loadOrders().filter(x=>x.invoiceId!==inv);
   saveOrders(list); renderHistory();
@@ -1256,7 +1143,7 @@ function renderHistory(){
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td>${new Date(x.ts).toLocaleString()}</td>
-      <td>${x.invoiceId}${x.sb_order_id ? " ✅" : ""}</td>
+      <td>${x.invoiceId}</td>
       <td>${x.game}</td>
       <td>${x.server||"-"}</td>
       <td>${x.package||"-"}</td>
@@ -1292,9 +1179,7 @@ function renderHistory(){
 วิธีชำระ: ${x.method}
 UID: ${x.uid||"-"}
 ลูกค้า: ${x.name||"-"} | ติดต่อ: ${x.contact||"-"}
-สถานะ: ${x.status}
-Supabase: ${x.sb_order_id ? "เชื่อมแล้ว ✅" : "ยังไม่เชื่อม"}`
-      );
+สถานะ: ${x.status}`);
     };
   });
   histTableBody.querySelectorAll('select[data-inv]').forEach(s=>{
@@ -1368,9 +1253,24 @@ document.getElementById('btnReset')?.addEventListener('click', ()=>{
 });
 window.invoiceId = "-";
 
+// Supabase mapping fields stored in local order
+function setLocalOrderSbId(invoiceId, sbId){
+  try{
+    const list = loadOrders();
+    const idx = list.findIndex(x=>x.invoiceId===invoiceId);
+    if(idx>-1){
+      list[idx].sb_order_id = sbId;
+      saveOrders(list);
+    }
+  }catch{}
+}
+function getLocalOrder(invoiceId){
+  try{ return loadOrders().find(x=>x.invoiceId===invoiceId) || null; }
+  catch{ return null; }
+}
+
 document.getElementById('btnSubmit')?.addEventListener('click', async ()=>{
   if(!selPackage.value){ alert('เลือกแพ็กเกจก่อน'); return; }
-
   window.invoiceId = genInvoice();
   document.getElementById('sum-bill').innerText = window.invoiceId;
 
@@ -1390,21 +1290,18 @@ document.getElementById('btnSubmit')?.addEventListener('click', async ()=>{
     name: document.getElementById('name').value.trim(),
     contact: document.getElementById('contact').value.trim(),
     status: 'รอชำระ',
-    sb_order_id: null,
-    sb_slip_path: null
+    sb_order_id: null
   };
-
-  // เก็บ local ก่อน (กันพัง)
   addOrder(row);
 
-  // ✅ sync ขึ้น Supabase (ถ้าพร้อม)
-  const res = await syncOrderToSupabase(row);
-  if(res.ok){
-    patchOrder(row.invoiceId, { sb_order_id: row.sb_order_id });
-    toast('บิลถูกบันทึกขึ้นระบบแล้ว ✅');
-  }else{
-    // ไม่พร้อม / RLS บล็อก ก็ยังใช้เว็บได้
-    toast('บันทึกในเครื่องแล้ว (Supabase ยังไม่พร้อม) ⚠️');
+  // ---- SYNC TO SUPABASE (best effort) ----
+  if(typeof sbInsertOrder === "function"){
+    const res = await sbInsertOrder(row);
+    if(res?.ok && res?.id){
+      setLocalOrderSbId(row.invoiceId, res.id);
+    }else{
+      console.warn("Supabase order sync skipped/failed:", res);
+    }
   }
 
   btnPrepare.disabled = false;
@@ -1481,36 +1378,36 @@ btnMarkPaid?.addEventListener('click', async ()=>{
   if(!window.invoiceId || window.invoiceId==='-'){ alert('ยังไม่มีเลขบิล'); return; }
   if(!canMarkPaid()){ alert('แนบสลิปหรือกรอกเลขอ้างอิงก่อน'); return; }
 
-  const refText = (refInput?.value || "").trim();
-  const file = (slipInput?.files && slipInput.files[0]) ? slipInput.files[0] : null;
-
-  // update local ก่อน
+  // update local status
   updateOrderStatus(window.invoiceId, 'ชำระแล้ว');
 
-  // ถ้าเชื่อม Supabase แล้ว → อัปสลิป + update status
-  const x = loadOrders().find(o=>o.invoiceId===window.invoiceId);
-  if(x?.sb_order_id && sbReady()){
-    // 1) upload slip (ถ้ามี)
-    let slipPath = null;
-    if(file){
-      const up = await uploadSlipToSupabase(file, window.invoiceId);
-      if(up.ok){
-        slipPath = up.path;
-        patchOrder(window.invoiceId, { sb_slip_path: slipPath });
-        // 2) insert slips record
-        await addSlipRecordToSupabase(x.sb_order_id, slipPath);
-      }else{
-        toast('อัปสลิปไม่ขึ้น (Storage/RLS บล็อก) ⚠️');
+  // ---- Supabase: upload slip + insert slip record + mark paid (best effort) ----
+  const local = getLocalOrder(window.invoiceId);
+  const sbOrderId = local?.sb_order_id || null;
+
+  const refTxt = (refInput?.value || "").trim();
+  const file = (slipInput?.files && slipInput.files[0]) ? slipInput.files[0] : null;
+
+  if(sbOrderId && typeof sbUploadSlip === "function"){
+    const up = await sbUploadSlip(file, window.invoiceId);
+    if(up?.ok && up?.path){
+      if(typeof sbInsertSlipRecord === "function"){
+        await sbInsertSlipRecord(sbOrderId, up.path);
+      }
+      if(typeof sbMarkPaid === "function"){
+        await sbMarkPaid(sbOrderId, refTxt);
+      }
+    }else{
+      console.warn("Supabase slip upload skipped/failed:", up);
+      if(typeof sbMarkPaid === "function"){
+        await sbMarkPaid(sbOrderId, refTxt);
       }
     }
-
-    // 3) mark paid
-    const upPaid = await markPaidSupabase(x.sb_order_id, refText || "");
-    if(upPaid.ok) toast('แจ้งชำระแล้ว ✅ (Sync ขึ้นระบบแล้ว)');
-    else toast('แจ้งชำระแล้ว ✅ (แต่ Sync DB ไม่ผ่าน) ⚠️');
   }else{
-    toast('แจ้งชำระแล้ว ✅ (เก็บในเครื่อง)');
+    console.warn("Supabase order not linked (no sb_order_id) or helpers missing. Only local updated.");
   }
+
+  toast('แจ้งชำระแล้ว ✅ แอดมินจะตรวจสอบให้เร็วที่สุด');
 });
 
 /* ===== COUNTDOWN (New Year 2026, Asia/Bangkok) ===== */
