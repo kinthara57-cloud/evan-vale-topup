@@ -1410,28 +1410,43 @@ btnMarkPaid?.addEventListener('click', async ()=>{
   toast('แจ้งชำระแล้ว ✅ แอดมินจะตรวจสอบให้เร็วที่สุด');
 });
 
-/* ===== COUNTDOWN (New Year 2026, Asia/Bangkok) ===== */
+/* ===== COUNTDOWN (Auto Next New Year, Asia/Bangkok) ===== */
 const cdDigits = document.getElementById('countdownDigits');
 function fmt2(n){ return n.toString().padStart(2,'0'); }
+
 (function runCountdown(){
-  const target = new Date('2026-01-01T00:00:00+07:00').getTime();
+  function getNextNewYear(){
+    const now = new Date();
+    const year = now.getFullYear();
+    let target = new Date(`${year + 1}-01-01T00:00:00+07:00`);
+    if (now < new Date(`${year}-01-01T00:00:00+07:00`)) {
+      target = new Date(`${year}-01-01T00:00:00+07:00`);
+    }
+    return target.getTime();
+  }
+
+  let target = getNextNewYear();
+
   function tick(){
     const now = Date.now();
     let diff = target - now;
+
     if(diff <= 0){
-      cdDigits.textContent = '00 วัน 00:00:00';
-      return;
+      target = getNextNewYear(); // 🔁 วนไปปีถัดไปอัตโนมัติ
+      diff = target - now;
     }
+
     const d = Math.floor(diff / 86400000); diff %= 86400000;
     const h = Math.floor(diff / 3600000);  diff %= 3600000;
     const m = Math.floor(diff / 60000);    diff %= 60000;
     const s = Math.floor(diff / 1000);
+
     cdDigits.textContent = `${fmt2(d)} วัน ${fmt2(h)}:${fmt2(m)}:${fmt2(s)}`;
     setTimeout(tick, 1000);
   }
+
   tick();
 })();
-
 /* ===== TOAST ===== */
 function toast(msg){
   const t = document.getElementById('toast');
