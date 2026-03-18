@@ -4,68 +4,63 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0b0f0c">
- <link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" href="images/evanvale-logo.png" type="image/png" sizes="32x32">
-<link rel="apple-touch-icon" href="images/evanvale-logo.png">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="images/evanvale-logo.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="images/evanvale-logo.png">
   <title>EVAN VALE TOPUP SERVICE | เติมเกมไว โปร่งใส มีแอดมินดูแล</title>
   <meta name="description" content="EVAN VALE — เติมเกมไว โปร่งใส ปลอดภัย มีแอดมินดูแล รองรับ TrueMoney, PromptPay และธนาคาร" />
 
   <style>
     :root{
-  --bg:#140202;
-  --panel:#1a0404;
-  --card:#220505;
-  --border: rgba(255,215,0,.22);
+      --bg:#140202;
+      --panel:#1a0404;
+      --card:#220505;
+      --border: rgba(255,215,0,.22);
 
-  --text:#fff4d6;
-  --muted: rgba(255,244,214,.72);
+      --text:#fff4d6;
+      --muted: rgba(255,244,214,.72);
 
-  /* 🧧 Chinese theme */
-  --brand:#c40000;
-  --brand2:#ffd700;
-  --accent:#ffcc33;
+      --brand:#c40000;
+      --brand2:#ffd700;
+      --accent:#ffcc33;
 
-  --radius:18px;
-  --shadow: 0 20px 60px rgba(0,0,0,.7);
+      --radius:18px;
+      --shadow: 0 20px 60px rgba(0,0,0,.7);
 
-  --glow1: rgba(255,215,0,.45);
-  --glow2: rgba(196,0,0,.55);
-  --glowW: rgba(255,230,170,.45);
-}
+      --glow1: rgba(255,215,0,.45);
+      --glow2: rgba(196,0,0,.55);
+      --glowW: rgba(255,230,170,.45);
+    }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
       font-family:system-ui, -apple-system, Segoe UI, Prompt, sans-serif;
       color:var(--text);
-    background:
-  radial-gradient(900px 500px at 0% 0%, rgba(255,215,0,.12), transparent 60%),
-  radial-gradient(900px 500px at 100% 0%, rgba(196,0,0,.28), transparent 60%),
-  linear-gradient(180deg, #140202, #070101);
+      background:
+        radial-gradient(900px 500px at 0% 0%, rgba(255,215,0,.12), transparent 60%),
+        radial-gradient(900px 500px at 100% 0%, rgba(196,0,0,.28), transparent 60%),
+        linear-gradient(180deg, #140202, #070101);
       overflow-x:hidden;
-
-      /* text rendering */
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
 
-    .wrap{max-width:1100px;margin:auto;padding:18px; position:relative; z-index:10;} /* ให้อยู่เหนือหิมะ */
+    .wrap{max-width:1100px;margin:auto;padding:18px; position:relative; z-index:10;}
 
-    /* ===== Snow Canvas ===== */
     #snow{
       position:fixed;
       inset:0;
       width:100vw;
       height:100vh;
       pointer-events:none;
-      z-index:5;          /* ใต้เนื้อหา แต่เหนือพื้นหลัง */
-      opacity:.75;        /* ปรับเบา-หนักได้ */
+      z-index:5;
+      opacity:.75;
       mix-blend-mode: screen;
     }
 
-    /* Header */
     .header{
       position:sticky; top:12px; z-index:50;
       border:1px solid var(--border);
@@ -88,7 +83,6 @@
     }
     .brand-title{
       font-weight:900; letter-spacing:.4px; line-height:1.1;
-      /* Glow */
       text-shadow:
         0 0 10px var(--glowW),
         0 0 22px rgba(255,255,255,.18),
@@ -124,7 +118,6 @@
     .btn.ghost{ background:transparent; }
     .btn[disabled]{opacity:.55; pointer-events:none}
 
-    /* Mobile menu */
     .hamburger{display:none}
     @media (max-width: 520px){
       .wrap{padding:14px}
@@ -143,7 +136,6 @@
       .menu .btn{width:100%; justify-content:center; display:flex}
     }
 
-    /* Layout */
     .grid{display:grid; gap:14px}
     .hero{
       margin-top:14px;
@@ -167,7 +159,6 @@
     }
 
     h1,h2,h3{margin:0}
-    /* Glow headings */
     h1, h2, h3{
       text-shadow:
         0 0 10px rgba(255,255,255,.18),
@@ -188,7 +179,6 @@
       text-shadow: 0 0 10px rgba(255,255,255,.18);
     }
 
-    /* h1 highlight glow */
     h1 span{
       text-shadow:
         0 0 12px rgba(255,209,102,.35),
@@ -235,12 +225,10 @@
         0 0 22px rgba(255,255,255,.12);
     }
 
-    /* Sections */
     .section{margin-top:16px}
     .section-title{display:flex; align-items:end; justify-content:space-between; gap:10px; flex-wrap:wrap}
     .section-title p{margin:6px 0 0}
 
-    /* Tabs + packages */
     .tabs{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
     .tab{
       border:1px solid var(--border);
@@ -283,7 +271,6 @@
     }
     .pkg .actions{margin-top:auto}
 
-    /* Form */
     label{display:block; font-weight:800; font-size:13px; color:rgba(242,255,243,.85); margin-bottom:6px}
     input,select,textarea{
       width:100%;
@@ -316,7 +303,6 @@
         0 0 22px rgba(255,255,255,.12);
     }
 
-    /* History table */
     .table-wrap{
       border:1px solid var(--border);
       border-radius:18px;
@@ -337,7 +323,6 @@
     .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
     .table-scroll table{min-width:780px}
 
-    /* Payment cards */
     .pay-grid{
       display:grid; gap:12px;
       grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
@@ -352,7 +337,6 @@
     }
     .paybox img{border-radius:14px}
 
-    /* Toast */
     .toast{
       position:fixed;
       left:50%;
@@ -370,7 +354,6 @@
     }
     .toast.show{display:block}
 
-    /* Assistant */
     .assistant-toggle{
       position:fixed;
       right:16px; bottom:16px;
@@ -458,11 +441,9 @@
 </head>
 
 <body>
-  <!-- Snow overlay -->
   <canvas id="snow" aria-hidden="true"></canvas>
 
   <div class="wrap">
-    <!-- Header -->
     <header class="header">
       <div class="brand">
         <img class="logo" src="images/evanvale-logo.png" alt="EVAN VALE" width="42" height="42" decoding="async" fetchpriority="high" />
@@ -489,7 +470,6 @@
       <a class="btn primary" href="https://www.facebook.com/share/1JRkDmJDvX/" target="_blank" rel="noopener">ติดต่อแอดมิน</a>
     </div>
 
-    <!-- Hero -->
     <section class="grid hero">
       <div class="card">
         <span class="pill">✅ เปิดรับออเดอร์ 08:30–21:30</span>
@@ -508,12 +488,12 @@
           <div class="kpi"><div class="num">1000+</div><div class="lab">รายการสำเร็จ</div></div>
           <div class="kpi"><div class="num">0%</div><div class="lab">ยึด UID</div></div>
         </div>
-        <p class="muted" style="margin:10px 0 0; font-size:12px">*ช่วงพีค/เกมปิดปรับปรุงอาจช้ากว่าปกติ</p>
+        <p class="muted" style="margin:10px 0 0; font-size:12px">*ช่วงพีคหรือช่วงที่เกมปิดปรับปรุง อาจใช้เวลานานกว่าปกติ</p>
       </div>
 
       <div class="card soft">
-        <h3 style="font-weight:950">เริ่มต้นแบบไวๆ</h3>
-        <p class="muted" style="margin:6px 0 0">กดด้านล่างเพื่อไปในส่วนที่คุณต้องการ</p>
+        <h3 style="font-weight:950">เริ่มต้นได้อย่างรวดเร็ว</h3>
+        <p class="muted" style="margin:6px 0 0">เลือกส่วนที่ต้องการใช้งานได้จากปุ่มด้านล่าง</p>
         <div class="grid" style="margin-top:12px">
           <a class="btn" href="#packages">ดูแพ็กเกจ</a>
           <a class="btn primary" href="#order">ไปสั่งเติม</a>
@@ -522,7 +502,6 @@
       </div>
     </section>
 
-    <!-- Packages -->
     <section id="packages" class="section">
       <div class="card">
         <div class="section-title">
@@ -537,7 +516,6 @@
       </div>
     </section>
 
-    <!-- Order + Summary -->
     <section id="order" class="section grid two-col">
       <div class="card">
         <h2 style="font-weight:950">สั่งเติมเกม</h2>
@@ -599,10 +577,10 @@
           <button class="btn" id="btnSaveProfile" type="button">บันทึกข้อมูล</button>
           <button class="btn primary" id="btnSubmit" type="button">ยืนยันและสร้างบิล</button>
         </div>
-        <p class="muted" style="margin:10px 0 0">กดยืนยันแล้วจะเลื่อนไปส่วน “ชำระเงิน” อัตโนมัติ</p>
+        <p class="muted" style="margin:10px 0 0">เมื่อกดยืนยันแล้ว ระบบจะเลื่อนไปส่วน “ชำระเงิน” โดยอัตโนมัติ</p>
 
         <div id="miniSum" style="display:none; margin-top:14px; border:1px solid var(--border); border-radius:18px; padding:12px; background:rgba(15,22,18,.9)">
-          <div style="font-weight:950">สรุปคร่าว ๆ</div>
+          <div style="font-weight:950">สรุปข้อมูลเบื้องต้น</div>
           <div class="list">
             <div class="item"><span class="muted">เกม</span><span id="mini-game">-</span></div>
             <div class="item"><span class="muted">เซิร์ฟเวอร์</span><span id="mini-server">-</span></div>
@@ -627,11 +605,10 @@
       </aside>
     </section>
 
-    <!-- Payment -->
     <section id="pay" class="section" style="display:none">
       <div class="card">
         <h2 style="font-weight:950">ชำระเงิน</h2>
-        <p class="muted" style="margin:6px 0 0">แนบสลิป/เลขอ้างอิง → กด “คัดลอกสรุปบิล” → เปิดแชทแอดมิน</p>
+        <p class="muted" style="margin:6px 0 0">แนบสลิปหรือเลขอ้างอิง → กด “คัดลอกสรุปบิล” → เปิดแชทแอดมิน</p>
 
         <div class="pay-grid">
           <div class="paybox">
@@ -653,7 +630,7 @@
             <div>
               <label>อัปโหลดสลิป</label>
               <input id="slip" type="file" accept="image/*">
-              <div class="muted" style="margin-top:6px; font-size:12px">เว็บสแตติกจะไม่เก็บไฟล์ ให้แนบซ้ำในแชทหากต้องใช้</div>
+              <div class="muted" style="margin-top:6px; font-size:12px">เว็บสแตติกจะไม่เก็บไฟล์ไว้ในเครื่องผู้ดูแล กรุณาแนบซ้ำในแชทหากจำเป็น</div>
             </div>
             <div>
               <label>เลขอ้างอิง (ถ้ามี)</label>
@@ -674,7 +651,6 @@
       </div>
     </section>
 
-    <!-- History -->
     <section id="history" class="section">
       <div class="card">
         <h2 style="font-weight:950">ประวัติการทำรายการ</h2>
@@ -714,11 +690,10 @@
     <div class="footer">© 2025 EVAN VALE • Static Topup Page</div>
   </div>
 
-  <!-- Assistant -->
   <div class="assistant" id="evAssistant" aria-label="EVAN AI">
     <div class="assistant-head">
       <div class="assistant-title">EVAN AI (เบต้า)</div>
-      <div class="assistant-sub">ช่วยสรุปบิล/แพ็ก • พิมพ์ “เกม + แพ็ก + UID”</div>
+      <div class="assistant-sub">ช่วยสรุปบิลและแพ็กเกจ • พิมพ์ “เกม + แพ็ก + UID”</div>
     </div>
     <div class="assistant-body" id="evAssistantMessages"></div>
     <div class="assistant-input">
@@ -728,24 +703,18 @@
   </div>
   <button class="assistant-toggle" id="evAssistantToggle" type="button">EVAN • Chat</button>
 
-  <!-- Toast -->
   <div id="toast" class="toast"></div>
 
-  <!-- ✅ SUPABASE SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <!-- ✅ SUPABASE CONFIG + HELPERS -->
   <script>
-    // ====== ใส่ของมึงตรงนี้ ======
     const SUPABASE_URL = "https://cnaukrfxxthemdmavuou.supabase.co";
     const SUPABASE_KEY = "sb_publishable_PJvhWJNhD6YlaAxOMgS9Uw_7bDlSzb4";
 
-    // ====== ปรับได้ ======
     const SB_TABLE_ORDERS = "orders";
     const SB_TABLE_SLIPS  = "slips";
-    const SB_BUCKET_SLIPS = "slips"; // Storage bucket
+    const SB_BUCKET_SLIPS = "slips";
 
-    // init
     window.sb = null;
     try{
       window.sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -755,8 +724,6 @@
     }
     function sbReady(){ return !!window.sb; }
 
-    // ========= HELPERS =========
-    // rows are from your localStorage order object (invoiceId, game, server, package, total, method, uid, name, contact, status)
     async function sbInsertOrder(row){
       if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
 
@@ -854,7 +821,6 @@
   </script>
 
 <script>
-/* ===== STORAGE (no login) ===== */
 const KEY_PROFILE = "ev_profile";
 const KEY_ORDERS  = "ev_orders";
 function loadProfile(){ try{return JSON.parse(localStorage.getItem(KEY_PROFILE)||"null");}catch{return null;} }
@@ -862,7 +828,6 @@ function saveProfile(p){ localStorage.setItem(KEY_PROFILE, JSON.stringify(p||nul
 function loadOrders(){ try{ return JSON.parse(localStorage.getItem(KEY_ORDERS)||"[]"); }catch{return [];} }
 function saveOrders(list){ localStorage.setItem(KEY_ORDERS, JSON.stringify(list||[])); }
 
-/* ===== DATA ===== */
 const ADMIN_URL = "https://www.facebook.com/share/1JRkDmJDvX/";
 const GAMES = [
   { key:"Free Fire", icon:"🔥", servers:["Thailand","SEA","Global","อื่นๆ"] },
@@ -935,7 +900,6 @@ const PACKS_BY_GAME = {
   ]
 };
 
-/* ===== REFS ===== */
 const tabs = document.getElementById('game-tabs');
 const pkgGrid = document.getElementById('pkg-grid');
 const selGame = document.getElementById('game');
@@ -954,7 +918,6 @@ const thaiOnlyNote = document.getElementById('thaiOnlyNote');
 let currentGame = GAMES[0].key;
 const thaiOnlyGames = ["Free Fire","RoV","PUBG Mobile","Roblox","Call of Duty"];
 
-/* ===== Mobile Menu ===== */
 const btnMenu = document.getElementById('btnMenu');
 const mobileMenu = document.getElementById('mobileMenu');
 btnMenu?.addEventListener('click', ()=> mobileMenu.classList.toggle('open'));
@@ -962,7 +925,6 @@ mobileMenu?.querySelectorAll('a').forEach(a=>{
   a.addEventListener('click', ()=> mobileMenu.classList.remove('open'));
 });
 
-/* ===== UI: Packages ===== */
 function renderGameTabs(){
   tabs.innerHTML = ""; selGame.innerHTML = "";
   GAMES.forEach(g=>{
@@ -1020,7 +982,6 @@ function renderPacks(){
 function setGame(game){
   currentGame = game;
 
-  // tabs UI
   [...tabs.children].forEach((el, i)=>{
     el.classList.toggle('active', GAMES[i].key===currentGame);
   });
@@ -1029,13 +990,13 @@ function setGame(game){
 
   if (currentGame === "Roblox"){
     gameNote.style.display = "block";
-    gameNote.textContent = "ℹ️ Roblox: ใช้เวลาเติมนานกว่าเกมอื่นเล็กน้อย (โปรดเผื่อเวลา)";
+    gameNote.textContent = "ℹ️ Roblox: อาจใช้เวลาเติมนานกว่าเกมอื่นเล็กน้อย กรุณาเผื่อเวลา";
   } else if (currentGame === "Call of Duty"){
     gameNote.style.display = "block";
-    gameNote.textContent = "⚠️ COD: ถ้า ID ผูกกับ Garena จะเติมไม่ได้ (รองรับเฉพาะเซิร์ฟไทย)";
+    gameNote.textContent = "⚠️ Call of Duty: หาก ID ผูกกับ Garena จะไม่สามารถเติมได้ (รองรับเฉพาะเซิร์ฟไทย)";
   } else if (isPromo){
     gameNote.style.display = "block";
-    gameNote.textContent = "🎁 โปรต้อนรับปีใหม่: ราคาในการ์ดคือราคาหลังลดแล้ว";
+    gameNote.textContent = "🎁 โปรโมชั่นต้อนรับปีใหม่: ราคาในการ์ดคือราคาหลังหักส่วนลดแล้ว";
     promoHintOnce();
   } else {
     gameNote.style.display="none";
@@ -1055,7 +1016,6 @@ function showMini(){
   miniSum.style.display = has ? "block" : "none";
 }
 
-/* ===== SUMMARY / BILL ===== */
 const pad = n => n.toString().padStart(2,'0');
 function genInvoice(){
   const d = new Date();
@@ -1094,7 +1054,6 @@ function updateSummary(){
   el.addEventListener('change', updateSummary);
 });
 
-/* ===== HISTORY ===== */
 function addOrder(row){ const list=loadOrders(); list.unshift(row); saveOrders(list); renderHistory(); }
 function updateOrderStatus(inv, status){
   const list=loadOrders(); const idx=list.findIndex(x=>x.invoiceId===inv);
@@ -1105,7 +1064,7 @@ function deleteOrder(inv){
   saveOrders(list); renderHistory();
 }
 function clearAll(){
-  if(confirm('ล้างข้อมูลทั้งหมดบนเครื่องนี้? (โปรไฟล์/ประวัติ/ทิปโปร)')){
+  if(confirm('ล้างข้อมูลทั้งหมดบนอุปกรณ์นี้หรือไม่? (โปรไฟล์ / ประวัติ / ข้อมูลแจ้งเตือนโปรโมชั่น)')){
     localStorage.removeItem(KEY_PROFILE);
     localStorage.removeItem(KEY_ORDERS);
     localStorage.removeItem('ev_promo_hint_shown');
@@ -1187,7 +1146,6 @@ UID: ${x.uid||"-"}
   });
 }
 
-/* ===== MESSAGE / COPY ===== */
 function buildMessage(){
   const g = selGame.value, s = selServer.value, u = document.getElementById('uid').value || "-";
   const p = selPackage.value || "-", m = document.getElementById('method').value;
@@ -1205,7 +1163,7 @@ UID/Player ID: ${u}
 ชื่อลูกค้า: ${name}
 ติดต่อ: ${contact}
 เลขอ้างอิง: ${ref||"-"}
-โปรดตรวจสอบสลิปที่แนบด้วยครับ`;
+โปรดตรวจสอบสลิปที่แนบมาด้วย`;
 }
 const btnPrepare   = document.getElementById('btnPrepareMsg');
 const btnOpenAdmin = document.getElementById('btnOpenAdmin');
@@ -1231,8 +1189,8 @@ btnPrepare?.addEventListener('click', async ()=>{
 
   const copied = await copyTextSafe(msg);
   copyHint.textContent = copied
-    ? 'คัดลอกสรุปบิลแล้ว ✅ ต่อไปกด “เปิดแชทแอดมิน” ได้เลย'
-    : 'คัดลอกอัตโนมัติไม่สำเร็จ ให้คัดลอกจากช่องสรุปด้านบน แล้วค่อยกด “เปิดแชทแอดมิน”';
+    ? 'คัดลอกสรุปบิลแล้ว ✅ ต่อไปสามารถกด “เปิดแชทแอดมิน” ได้ทันที'
+    : 'ไม่สามารถคัดลอกอัตโนมัติได้ กรุณาคัดลอกจากช่องสรุปด้านบน แล้วจึงกด “เปิดแชทแอดมิน”';
 
   btnOpenAdmin.href = makeAdminUrl();
   btnOpenAdmin.style.pointerEvents = 'auto';
@@ -1246,14 +1204,12 @@ btnOpenAdmin?.addEventListener('click', (e)=>{
   }
 });
 
-/* ===== FORM ACTIONS ===== */
 document.getElementById('btnReset')?.addEventListener('click', ()=>{
   document.querySelectorAll('#order input').forEach(i=>i.value="");
   selPackage.selectedIndex = 0; updateSummary();
 });
 window.invoiceId = "-";
 
-// Supabase mapping fields stored in local order
 function setLocalOrderSbId(invoiceId, sbId){
   try{
     const list = loadOrders();
@@ -1270,7 +1226,7 @@ function getLocalOrder(invoiceId){
 }
 
 document.getElementById('btnSubmit')?.addEventListener('click', async ()=>{
-  if(!selPackage.value){ alert('เลือกแพ็กเกจก่อน'); return; }
+  if(!selPackage.value){ alert('กรุณาเลือกแพ็กเกจก่อน'); return; }
   window.invoiceId = genInvoice();
   document.getElementById('sum-bill').innerText = window.invoiceId;
 
@@ -1294,7 +1250,6 @@ document.getElementById('btnSubmit')?.addEventListener('click', async ()=>{
   };
   addOrder(row);
 
-  // ---- SYNC TO SUPABASE (best effort) ----
   if(typeof sbInsertOrder === "function"){
     const res = await sbInsertOrder(row);
     if(res?.ok && res?.id){
@@ -1313,7 +1268,6 @@ document.getElementById('btnBackToForm')?.addEventListener('click', ()=>{
   document.getElementById('order').scrollIntoView({behavior:'smooth'});
 });
 
-/* ===== EXPORT / CLEAR ===== */
 document.getElementById('btnExportCsv')?.addEventListener('click', ()=>{
   const list = loadOrders();
   if(!list.length){ alert('ยังไม่มีข้อมูล'); return; }
@@ -1332,7 +1286,6 @@ document.getElementById('btnExportCsv')?.addEventListener('click', ()=>{
 });
 document.getElementById('btnClearAll')?.addEventListener('click', clearAll);
 
-/* ===== PROFILE SAVE/FILL (no login) ===== */
 function fillFromProfile(){
   const p = loadProfile(); if(!p) return;
   if(p.name)    document.getElementById('name').value = p.name;
@@ -1355,10 +1308,9 @@ document.getElementById('btnSaveProfile')?.addEventListener('click', ()=>{
     method: document.getElementById('method').value, uid: document.getElementById('uid').value.trim()
   };
   saveProfile(p);
-  toast('บันทึกข้อมูลไว้ในเครื่องแล้ว ✅');
+  toast('บันทึกข้อมูลไว้ในอุปกรณ์แล้ว ✅');
 });
 
-/* ===== MARK AS PAID ===== */
 const slipInput = document.getElementById('slip');
 const refInput  = document.getElementById('ref');
 const btnMarkPaid = document.getElementById('btnMarkPaid');
@@ -1376,12 +1328,10 @@ refInput?.addEventListener('input', updateMarkPaidState);
 
 btnMarkPaid?.addEventListener('click', async ()=>{
   if(!window.invoiceId || window.invoiceId==='-'){ alert('ยังไม่มีเลขบิล'); return; }
-  if(!canMarkPaid()){ alert('แนบสลิปหรือกรอกเลขอ้างอิงก่อน'); return; }
+  if(!canMarkPaid()){ alert('กรุณาแนบสลิปหรือกรอกเลขอ้างอิงก่อน'); return; }
 
-  // update local status
   updateOrderStatus(window.invoiceId, 'ชำระแล้ว');
 
-  // ---- Supabase: upload slip + insert slip record + mark paid (best effort) ----
   const local = getLocalOrder(window.invoiceId);
   const sbOrderId = local?.sb_order_id || null;
 
@@ -1404,13 +1354,12 @@ btnMarkPaid?.addEventListener('click', async ()=>{
       }
     }
   }else{
-    console.warn("Supabase order not linked (no sb_order_id) or helpers missing. Only local updated.");
+    console.warn("Supabase order not linked or helper functions unavailable. Local status updated only.");
   }
 
-  toast('แจ้งชำระแล้ว ✅ แอดมินจะตรวจสอบให้เร็วที่สุด');
+  toast('แจ้งชำระแล้ว ✅ แอดมินจะตรวจสอบให้โดยเร็วที่สุด');
 });
 
-/* ===== COUNTDOWN (Auto Next New Year, Asia/Bangkok) ===== */
 const cdDigits = document.getElementById('countdownDigits');
 function fmt2(n){ return n.toString().padStart(2,'0'); }
 
@@ -1432,7 +1381,7 @@ function fmt2(n){ return n.toString().padStart(2,'0'); }
     let diff = target - now;
 
     if(diff <= 0){
-      target = getNextNewYear(); // 🔁 วนไปปีถัดไปอัตโนมัติ
+      target = getNextNewYear();
       diff = target - now;
     }
 
@@ -1447,7 +1396,7 @@ function fmt2(n){ return n.toString().padStart(2,'0'); }
 
   tick();
 })();
-/* ===== TOAST ===== */
+
 function toast(msg){
   const t = document.getElementById('toast');
   if(!t) return;
@@ -1459,10 +1408,9 @@ function promoHintOnce(){
   const K = 'ev_promo_hint_shown';
   if(localStorage.getItem(K) === '1') return;
   localStorage.setItem(K, '1');
-  toast('🎁 โปรปีใหม่ถูกเปิดใช้งาน — ราคาในการ์ดคือราคาหลังลดแล้ว');
+  toast('🎁 โปรโมชั่นปีใหม่เปิดใช้งานแล้ว — ราคาในการ์ดเป็นราคาหลังหักส่วนลด');
 }
 
-/* ===== MINI ASSISTANT ===== */
 const asToggle = document.getElementById('evAssistantToggle');
 const asBox = document.getElementById('evAssistant');
 const asMsgWrap = document.getElementById('evAssistantMessages');
@@ -1471,45 +1419,53 @@ const asSend = document.getElementById('evAssistantSend');
 
 function addAssistantBubble(role, text){
   const bubble = document.createElement('div');
-  bubble.className = 'bubble' + (role==='user' ? ' me' : '');
+  bubble.className = 'bubble' + (role === 'user' ? ' me' : '');
   bubble.textContent = text;
   asMsgWrap.appendChild(bubble);
   asMsgWrap.scrollTop = asMsgWrap.scrollHeight;
 }
-function pickRandom(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
-const NORMAL_REPLIES = [
-  "บอกเลขบิล/ชื่อเกม/แพ็กเกจ/UID มา เดี๋ยวช่วยสรุปให้",
-  "ถ้าจะสั่งเติม: เลือกแพ็ก → กดยืนยันสร้างบิล → ไปชำระเงิน",
-  "กด “คัดลอกสรุปบิล” แล้วเอาไปวางในแชทแอดมินได้เลย",
-];
-const STRICT_REPLIES = [
-  "พิมพ์ให้ชัดหน่อยนะ เอาแค่ “เกม + แพ็ก + UID” พอ",
-  "ใจเย็น ๆ ส่งข้อมูลให้ครบก่อน เดี๋ยวช่วยให้ไว",
-];
-const BAD_WORDS = ["ควย","เหี้ย","สัส","fuck","shit"];
-function looksGibberish(t){
-  const s = (t||"").trim();
-  if(!s) return false;
-  const letters = s.replace(/[0-9\s\W_]/g,'');
-  return letters.length>0 && (letters.length/s.length) < 0.25;
+
+function pickRandom(arr){
+  return arr[Math.floor(Math.random() * arr.length)];
 }
+
+const NORMAL_REPLIES = [
+  "แจ้งเลขบิล ชื่อเกม แพ็กเกจ หรือ UID มาได้เลย ระบบจะช่วยสรุปให้",
+  "หากต้องการสั่งเติม กรุณาเลือกแพ็กเกจ กดยืนยันสร้างบิล แล้วไปที่หน้าชำระเงิน",
+  "หลังจากคัดลอกสรุปบิลแล้ว สามารถนำไปส่งต่อในแชทแอดมินได้ทันที",
+];
+
+const GUIDE_REPLIES = [
+  "กรุณาพิมพ์ข้อมูลให้ชัดเจน เช่น เกม + แพ็กเกจ + UID",
+  "ขอข้อมูลเพิ่มเติมอีกเล็กน้อย เพื่อให้ระบบช่วยตรวจสอบได้ถูกต้อง",
+];
+
+function looksGibberish(t){
+  const s = (t || "").trim();
+  if(!s) return false;
+  const letters = s.replace(/[0-9\s\W_]/g, '');
+  return letters.length > 0 && (letters.length / s.length) < 0.25;
+}
+
 function handleAssistantSend(){
-  const txt = (asInput.value||"").trim();
+  const txt = (asInput.value || "").trim();
   if(!txt) return;
+
   addAssistantBubble('user', txt);
   asInput.value = "";
 
-  const lower = txt.toLowerCase();
-  const hasBad = BAD_WORDS.some(w => lower.includes(w));
   const gib = looksGibberish(txt);
-  const reply = (hasBad || gib) ? pickRandom(STRICT_REPLIES) : pickRandom(NORMAL_REPLIES);
-  setTimeout(()=> addAssistantBubble('bot', reply), 180);
+  const tooShort = txt.length < 2;
+  const reply = (gib || tooShort) ? pickRandom(GUIDE_REPLIES) : pickRandom(NORMAL_REPLIES);
+
+  setTimeout(() => addAssistantBubble('bot', reply), 180);
 }
-asToggle?.addEventListener('click', ()=>{
+
+asToggle?.addEventListener('click', () => {
   const opened = asBox.classList.toggle('open');
   if(opened && !asMsgWrap.dataset.welcomed){
-    asMsgWrap.dataset.welcomed="1";
-    addAssistantBubble('bot', "พิมพ์ “เกม + แพ็ก + UID” มาได้เลย");
+    asMsgWrap.dataset.welcomed = "1";
+    addAssistantBubble('bot', "พิมพ์ข้อมูลในรูปแบบ เกม + แพ็กเกจ + UID ได้เลย");
   }
 });
 asSend?.addEventListener('click', handleAssistantSend);
@@ -1520,12 +1476,10 @@ asInput?.addEventListener('keydown', (e)=>{
   }
 });
 
-/* ===== SNOW (lightweight canvas) ===== */
 (function snowInit(){
   const c = document.getElementById('snow');
   if(!c) return;
 
-  // ถ้า reduce motion: ไม่รัน
   const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
   if(mq.matches) return;
 
@@ -1603,7 +1557,6 @@ asInput?.addEventListener('keydown', (e)=>{
   });
 })();
 
-/* ===== INIT ===== */
 renderGameTabs();
 setGame(currentGame);
 fillFromProfile();
