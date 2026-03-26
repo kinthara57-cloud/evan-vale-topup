@@ -3,493 +3,1566 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="EVAN VALE GARAGE x อู่ช่างป๊อป หนองบัว ระยอง • ซ่อม Big Bike, Pickup, กระบะโหลดเตี้ย และรถใช้งาน งานเนี๊ยบ โปร่งใส สไตล์อเมริกัน" />
-  <meta name="keywords" content="อู่รถระยอง, ซ่อมรถกระบะ, Big Bike ระยอง, โหลดเตี้ย, EVAN VALE GARAGE, Garage P ช่างป๊อป, หนองบัวระยอง" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="EVAN VALE GARAGE x อู่ช่างป๊อป | Rayong Garage" />
-  <meta property="og:description" content="อู่ซ่อมรถสไตล์อเมริกันที่หนองบัว ระยอง รับงานเครื่อง ช่วงล่าง Big Bike และกระบะ งานโปร่งใส เนี๊ยบ" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://evanvale-garage.com" /> <!-- เปลี่ยนเป็นลิงก์จริงของคุณ -->
-  <meta property="og:image" content="images/evanvale-cover.jpg" />
-  <meta property="og:locale" content="th_TH" />
-
-  <title>EVAN VALE GARAGE x อู่ช่างป๊อป | Rayong Garage</title>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#0b0f0c">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="images/evanvale-logo.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="images/evanvale-logo.png">
+  <title>EVAN VALE TOPUP SERVICE | เติมเกมไว โปร่งใส มีแอดมินดูแล (เว็บสิ้นสุดบริการอย่างถาวรแล้วค่ะ)</title>
+  <meta name="description" content="EVAN VALE — เติมเกมไว โปร่งใส ปลอดภัย มีแอดมินดูแล รองรับ TrueMoney, PromptPay และธนาคาร" />
 
   <style>
-    :root {
-      --bg-main: #050508;
-      --bg-section: #0c0f16;
-      --accent-red: #e53935;
-      --accent-blue: #1976d2;
-      --text-main: #f5f5f5;
-      --text-muted: #9ea4b8;
-      --border-soft: rgba(255, 255, 255, 0.1);
-      --card-bg: #111522;
-      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.7);
-      --radius-lg: 18px;
-      --radius-xl: 24px;
-      --transition-fast: 0.2s ease-out;
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    html { scroll-behavior: smooth; }
-    body {
-      background: radial-gradient(circle at top, #141824 0, #050508 45%, #020308 100%);
-      color: var(--text-main);
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-    button, input, select, textarea { font: inherit; }
+    :root{
+      --bg:#140202;
+      --panel:#1a0404;
+      --card:#220505;
+      --border: rgba(255,215,0,.22);
 
-    .page-wrap {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+      --text:#fff4d6;
+      --muted: rgba(255,244,214,.72);
 
-    /* ==================== Header ==================== */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(14px);
-      background: linear-gradient(to bottom, rgba(5,5,8,0.95), rgba(5,5,8,0.82), rgba(5,5,8,0.25));
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-    }
-    .nav-container {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 12px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .brand-logo {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      border: 2px solid var(--accent-red);
-      object-fit: cover;
-      box-shadow: 0 0 24px rgba(229,57,53,0.6);
-    }
-    .brand-title {
-      font-family: 'Oswald', sans-serif;
-      letter-spacing: 0.18em;
-      font-size: 13px;
-      text-transform: uppercase;
-    }
-    .brand-sub {
-      font-size: 11px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-    }
-    .nav-links {
-      display: flex;
-      gap: 18px;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-    }
-    .nav-links a {
-      color: var(--text-muted);
-      padding: 4px 0;
-      border-bottom: 1px solid transparent;
-      transition: all var(--transition-fast);
-    }
-    .nav-links a:hover {
-      color: #fff;
-      border-color: var(--accent-red);
-    }
-    .nav-cta {
-      padding: 7px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.09);
-      background: radial-gradient(circle at 0 0, rgba(25,118,210,0.4), rgba(5,5,8,0.95));
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      box-shadow: 0 0 18px rgba(25,118,210,0.4);
-      cursor: pointer;
-      color: #fff;
-    }
-    .nav-toggle {
-      display: none;
-      flex-direction: column;
-      gap: 4px;
-      padding: 8px 9px;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(5,7,14,0.95);
-      cursor: pointer;
-    }
-    .nav-toggle-line {
-      width: 18px;
-      height: 2px;
-      background: #fff;
-      border-radius: 999px;
-    }
-    .nav-links-mobile {
-      display: none;
-      position: absolute;
-      top: calc(100% + 8px);
-      right: 18px;
-      width: min(260px, calc(100vw - 36px));
-      background: rgba(3,7,18,0.98);
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.12);
-      padding: 10px 12px;
-      flex-direction: column;
-      gap: 8px;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      box-shadow: 0 18px 30px rgba(0,0,0,0.85);
-    }
-    .nav-links-mobile.show { display: flex; }
+      --brand:#c40000;
+      --brand2:#ffd700;
+      --accent:#ffcc33;
 
-    /* ==================== Hero ==================== */
-    .hero {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 26px 18px 48px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-      gap: 26px;
-      align-items: center;
+      --radius:18px;
+      --shadow: 0 20px 60px rgba(0,0,0,.7);
+
+      --glow1: rgba(255,215,0,.45);
+      --glow2: rgba(196,0,0,.55);
+      --glowW: rgba(255,230,170,.45);
     }
-    .hero-title {
-      font-family: 'Oswald', sans-serif;
-      font-size: clamp(32px, 5vw, 42px);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      line-height: 1.1;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:system-ui, -apple-system, Segoe UI, Prompt, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 500px at 0% 0%, rgba(255,215,0,.12), transparent 60%),
+        radial-gradient(900px 500px at 100% 0%, rgba(196,0,0,.28), transparent 60%),
+        linear-gradient(180deg, #140202, #070101);
+      overflow-x:hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
-    .hero-title-flag {
-      background: linear-gradient(90deg, #e53935, #ffffff, #1976d2);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .hero-garage {
-      height: 210px;
-      border-radius: 16px;
-      background-size: cover;
-      background-position: center;
-      background-color: #0b1018;
-      box-shadow: 0 18px 36px rgba(0,0,0,0.85);
-      position: relative;
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    .wrap{max-width:1100px;margin:auto;padding:18px; position:relative; z-index:10;}
+
+    #snow{
+      position:fixed;
+      inset:0;
+      width:100vw;
+      height:100vh;
+      pointer-events:none;
+      z-index:5;
+      opacity:.75;
+      mix-blend-mode: screen;
     }
 
-    /* ==================== Sections ==================== */
-    .section {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 20px 18px 30px;
+    .header{
+      position:sticky; top:12px; z-index:50;
+      border:1px solid var(--border);
+      background:rgba(15,22,18,.78);
+      backdrop-filter: blur(10px);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      padding:10px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
     }
-    .section-title {
-      font-family: 'Oswald', sans-serif;
-      font-size: 18px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
+    .brand{
+      display:flex; align-items:center; gap:10px; min-width:0;
     }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
+    .logo{
+      width:42px;height:42px;border-radius:14px; object-fit:cover;
+      box-shadow:0 0 0 1px rgba(255,255,255,.10), 0 12px 30px rgba(0,0,0,.45);
     }
-    .works-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
+    .brand-title{
+      font-weight:900; letter-spacing:.4px; line-height:1.1;
+      text-shadow:
+        0 0 10px var(--glowW),
+        0 0 22px rgba(255,255,255,.18),
+        0 0 28px rgba(54,192,107,.10);
     }
-    .work-photos-grid img {
-      width: 100%;
-      height: 90px;
-      object-fit: cover;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    /* ==================== Booking & Others ==================== */
-    .booking {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      gap: 18px;
-    }
-    .booking-card, .contact-card, .about-card {
-      background: linear-gradient(135deg, #101320, #05060a);
-      border-radius: var(--radius-xl);
-      padding: 16px;
-      border: 1px solid rgba(255,255,255,0.08);
+    .brand-sub{font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:56vw}
+    .nav{
+      display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; align-items:center;
     }
 
-    /* ==================== Footer ==================== */
-    footer {
-      border-top: 1px solid rgba(255,255,255,0.06);
-      margin-top: auto;
-      padding: 12px 18px 14px;
-      font-size: 11px;
-      color: var(--text-muted);
+    .btn{
+      border:1px solid var(--border);
+      background:rgba(16,27,21,.9);
+      color:var(--text);
+      padding:10px 14px;
+      border-radius:14px;
+      font-weight:800;
+      cursor:pointer;
+      transition:transform .12s ease, opacity .12s ease;
+      user-select:none;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn:active{transform:translateY(0px); opacity:.9}
+    .btn.primary{
+      border:none;
+      color:#140a0a;
+      background:linear-gradient(90deg,var(--brand),var(--brand2));
+      box-shadow:
+        0 12px 30px rgba(0,0,0,.45),
+        0 0 22px rgba(54,192,107,.18),
+        0 0 18px rgba(229,57,53,.14);
+    }
+    .btn.ghost{ background:transparent; }
+    .btn[disabled]{opacity:.55; pointer-events:none}
+
+    .hamburger{display:none}
+    @media (max-width: 520px){
+      .wrap{padding:14px}
+      .brand-sub{display:none}
+      .nav{display:none}
+      .hamburger{display:inline-flex}
+      .menu{
+        display:none;
+        margin-top:10px;
+        border:1px solid var(--border);
+        background:rgba(15,22,18,.88);
+        border-radius:18px;
+        padding:10px;
+      }
+      .menu.open{display:block}
+      .menu .btn{width:100%; justify-content:center; display:flex}
     }
 
-    /* ==================== AI Panel & Snow ==================== */
-    .ai-fab {
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      z-index: 80;
-      border-radius: 999px;
-      padding: 8px 14px;
-      background: linear-gradient(135deg, var(--accent-blue), #42a5f5);
-      border: 1px solid rgba(255,255,255,0.22);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      text-transform: uppercase;
-      cursor: pointer;
-      box-shadow: 0 18px 30px rgba(0,0,0,0.7);
+    .grid{display:grid; gap:14px}
+    .hero{
+      margin-top:14px;
+      grid-template-columns: 1.2fr .8fr;
+      align-items:stretch;
     }
-    .ai-panel {
-      position: fixed;
-      right: 18px;
-      bottom: 70px;
-      width: 280px;
-      max-height: 380px;
-      background: rgba(3,7,18,0.96);
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.14);
-      box-shadow: 0 22px 40px rgba(0,0,0,0.85);
-      display: none;
-      flex-direction: column;
-      z-index: 80;
-    }
-    .ai-panel.show { display: flex; }
-
-    #snow {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 5;
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      #snow { display: none; }
+    .card{
+      border:1px solid var(--border);
+      background:rgba(16,27,21,.72);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:16px;
+    }
+    .card.soft{
+      background:rgba(16,27,21,.55);
+      box-shadow:none;
     }
 
-    @media (max-width: 880px) {
-      .hero, .booking, .about { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
-      .nav-toggle { display: flex; }
-      .services-grid { grid-template-columns: repeat(2, 1fr); }
-      .works-grid { grid-template-columns: 1fr; }
+    h1,h2,h3{margin:0}
+    h1, h2, h3{
+      text-shadow:
+        0 0 10px rgba(255,255,255,.18),
+        0 0 20px rgba(54,192,107,.12),
+        0 0 26px rgba(229,57,53,.10);
     }
-    @media (max-width: 600px) {
-      .services-grid, .booking-grid { grid-template-columns: 1fr; }
+
+    .muted{color:var(--muted)}
+    .pill{
+      display:inline-flex; gap:8px; align-items:center;
+      border:1px solid var(--border);
+      background:rgba(16,27,21,.85);
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:var(--muted);
+      font-weight:800;
+      text-shadow: 0 0 10px rgba(255,255,255,.18);
+    }
+
+    h1 span{
+      text-shadow:
+        0 0 12px rgba(255,209,102,.35),
+        0 0 26px rgba(255,209,102,.18);
+    }
+
+    .kpis{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+    }
+    .kpi{
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:12px;
+      background:rgba(15,22,18,.9);
+    }
+    .kpi .num{
+      font-weight:900; font-size:18px;
+      text-shadow:
+        0 0 12px rgba(54,192,107,.20),
+        0 0 22px rgba(255,255,255,.12);
+    }
+    .kpi .lab{font-size:12px; color:var(--muted); margin-top:2px}
+
+    .strip{
+      margin-top:10px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:10px 12px;
+      background:rgba(15,22,18,.9);
+    }
+    .mono{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-weight:900;
+      text-shadow:
+        0 0 12px rgba(54,192,107,.20),
+        0 0 22px rgba(255,255,255,.12);
+    }
+
+    .section{margin-top:16px}
+    .section-title{display:flex; align-items:end; justify-content:space-between; gap:10px; flex-wrap:wrap}
+    .section-title p{margin:6px 0 0}
+
+    .tabs{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+    .tab{
+      border:1px solid var(--border);
+      background:rgba(15,22,18,.9);
+      padding:8px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:900;
+      font-size:13px;
+      color:var(--muted);
+    }
+    .tab.active{
+      color:#140a0a;
+      border:none;
+      background:linear-gradient(90deg,var(--brand),var(--brand2));
+    }
+
+    .pkg-grid{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+      gap:12px;
+    }
+    .pkg{
+      border:1px solid var(--border);
+      background:rgba(15,22,18,.92);
+      border-radius:18px;
+      padding:14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      min-height:128px;
+    }
+    .pkg .name{font-weight:900}
+    .pkg .price{
+      font-weight:950; font-size:20px;
+      text-shadow:
+        0 0 12px rgba(54,192,107,.18),
+        0 0 22px rgba(255,255,255,.10);
+    }
+    .pkg .actions{margin-top:auto}
+
+    label{display:block; font-weight:800; font-size:13px; color:rgba(242,255,243,.85); margin-bottom:6px}
+    input,select,textarea{
+      width:100%;
+      background:rgba(11,15,12,.75);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px;
+      color:var(--text);
+      outline:none;
+    }
+    input::placeholder, textarea::placeholder{color:rgba(242,255,243,.45)}
+
+    .two-col{grid-template-columns:1fr 360px; align-items:start}
+    @media (max-width: 980px){ .two-col{grid-template-columns:1fr} }
+
+    .row{display:grid; gap:12px; grid-template-columns:1fr 1fr}
+    @media (max-width: 650px){ .row{grid-template-columns:1fr} }
+
+    .summary{
+      position:sticky; top:92px;
+    }
+    @media (max-width: 980px){ .summary{position:static} }
+
+    .list{display:flex; flex-direction:column; gap:8px; margin-top:10px}
+    .item{display:flex; justify-content:space-between; gap:10px; color:rgba(242,255,243,.88)}
+    .total{
+      font-weight:950; font-size:22px;
+      text-shadow:
+        0 0 12px rgba(54,192,107,.20),
+        0 0 22px rgba(255,255,255,.12);
+    }
+
+    .table-wrap{
+      border:1px solid var(--border);
+      border-radius:18px;
+      overflow:hidden;
+      background:rgba(15,22,18,.85);
+    }
+    .table-tools{
+      display:flex; gap:8px; flex-wrap:wrap; align-items:center;
+      margin:10px 0 0;
+    }
+    table{width:100%; border-collapse:collapse}
+    th,td{padding:10px; border-bottom:1px solid rgba(255,255,255,.06); text-align:left; font-size:14px}
+    th{
+      color:rgba(255,209,102,.92);
+      font-weight:900;
+      text-shadow: 0 0 10px rgba(255,209,102,.15);
+    }
+    .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
+    .table-scroll table{min-width:780px}
+
+    .pay-grid{
+      display:grid; gap:12px;
+      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+      margin-top:12px;
+    }
+    .paybox{
+      border:1px solid var(--border);
+      background:rgba(15,22,18,.92);
+      border-radius:18px;
+      padding:14px;
+      text-align:center;
+    }
+    .paybox img{border-radius:14px}
+
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:16px;
+      transform:translateX(-50%);
+      z-index:80;
+      display:none;
+      background:rgba(15,22,18,.95);
+      border:1px solid var(--border);
+      color:var(--text);
+      padding:10px 14px;
+      border-radius:14px;
+      box-shadow:var(--shadow);
+      text-shadow: 0 0 10px rgba(255,255,255,.14);
+    }
+    .toast.show{display:block}
+
+    .assistant-toggle{
+      position:fixed;
+      right:16px; bottom:16px;
+      z-index:70;
+      border:none;
+      border-radius:999px;
+      padding:10px 14px;
+      font-weight:950;
+      color:#140a0a;
+      background:linear-gradient(90deg,var(--brand),var(--brand2));
+      box-shadow:0 16px 40px rgba(0,0,0,.55);
+      cursor:pointer;
+    }
+    .assistant{
+      position:fixed;
+      right:16px; bottom:70px;
+      width:320px; max-height:460px;
+      display:none;
+      flex-direction:column;
+      border:1px solid var(--border);
+      border-radius:18px;
+      background:rgba(15,22,18,.96);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      z-index:70;
+    }
+    .assistant.open{display:flex}
+    .assistant-head{
+      padding:10px 12px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .assistant-title{
+      font-weight:950; font-size:14px;
+      text-shadow: 0 0 10px rgba(255,255,255,.12);
+    }
+    .assistant-sub{font-size:11px; color:var(--muted); margin-top:2px}
+    .assistant-body{
+      padding:10px;
+      overflow:auto;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      font-size:13px;
+    }
+    .bubble{
+      max-width:85%;
+      padding:8px 10px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(16,27,21,.75);
+      text-shadow: 0 0 10px rgba(255,255,255,.08);
+    }
+    .bubble.me{
+      margin-left:auto;
+      color:#140a0a;
+      border:none;
+      background:linear-gradient(90deg,var(--brand),var(--brand2));
+      text-shadow:none;
+    }
+    .assistant-input{
+      padding:10px;
+      border-top:1px solid rgba(255,255,255,.06);
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:8px;
+      align-items:end;
+    }
+    .assistant-input textarea{min-height:40px; max-height:90px; resize:none}
+
+    .footer{
+      margin:18px 0 6px;
+      color:rgba(242,255,243,.55);
+      font-size:12px;
+      text-align:center;
+      text-shadow: 0 0 10px rgba(255,255,255,.08);
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      *{scroll-behavior:auto !important}
+      .btn,.tab{transition:none}
+      #snow{display:none;}
+      h1,h2,h3,.brand-title,.kpi .num,.total,.mono{ text-shadow:none; }
     }
   </style>
 </head>
-<body>
-<div class="page-wrap">
-  <header>
-    <div class="nav-container">
-      <div class="brand">
-        <img src="images/evanvale-logo.png" alt="Evan Vale Garage Logo" class="brand-logo">
-        <div class="brand-text">
-          <div class="brand-title">EVAN VALE GARAGE</div>
-          <div class="brand-sub">garage p • nongbua rayong</div>
-        </div>
-      </div>
-      <nav class="nav-links">
-        <a href="#services">Services</a>
-        <a href="#works">Concept Work</a>
-        <a href="#realworks">Real Jobs</a>
-        <a href="#booking">Booking</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <button type="button" class="nav-cta" onclick="scrollToSection('booking')">BOOK SLOT <span>จองคิวเข้าอู่</span></button>
-      </nav>
-      <button type="button" class="nav-toggle" onclick="toggleMobileNav()">
-        <span class="nav-toggle-line"></span>
-        <span class="nav-toggle-line"></span>
-        <span class="nav-toggle-line"></span>
-      </button>
-      <nav class="nav-links-mobile" id="mobileNav">
-        <a href="#services" onclick="toggleMobileNav(false)">Services</a>
-        <a href="#works" onclick="toggleMobileNav(false)">Concept Work</a>
-        <a href="#realworks" onclick="toggleMobileNav(false)">Real Jobs</a>
-        <a href="#booking" onclick="toggleMobileNav(false)">Booking</a>
-        <a href="#about" onclick="toggleMobileNav(false)">About</a>
-        <a href="#contact" onclick="toggleMobileNav(false)">Contact</a>
-        <button type="button" class="nav-cta-mobile" onclick="toggleMobileNav(false); scrollToSection('booking');">BOOK SLOT</button>
-      </nav>
-    </div>
-  </header>
 
-  <main>
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-left">
-        <div class="hero-tag">
-          <span class="hero-tag-dot"></span>
-          GARAGE P • NONGBUA RAYONG → USA VIBE
-        </div>
-        <h1 class="hero-title glow-text">
-          <span>BIG BIKE & PICKUP</span>
-          <span class="hero-title-flag">AMERICAN STYLE GARAGE</span>
-        </h1>
-        <p class="hero-subtitle">
-          ตอนนี้บ้านเปิดอู่ <strong>Garage P ช่างป๊อป</strong> รับงานซ่อมรถใช้งานประจำ และ <strong>EVAN VALE GARAGE</strong> คือโปรเจ็กต์สไตล์อเมริกัน งานเนี๊ยบ โปร่งใส
-        </p>
-        <div class="hero-actions">
-          <button type="button" class="btn-primary" onclick="scrollToSection('booking')">จองคิวเข้าอู่</button>
-          <button type="button" class="btn-ghost" onclick="scrollToSection('realworks')">ดูงานจริง</button>
-        </div>
-        <div class="countdown-box">
-          <span class="countdown-label">COUNTDOWN TO GARAGE GOAL 2026</span>
-          <span class="countdown-time" id="newYearCountdown">-- วัน -- ชม. -- นาที</span>
+<body>
+  <canvas id="snow" aria-hidden="true"></canvas>
+
+  <div class="wrap">
+    <header class="header">
+      <div class="brand">
+        <img class="logo" src="images/evanvale-logo.png" alt="EVAN VALE" width="42" height="42" decoding="async" fetchpriority="high" />
+        <div style="min-width:0">
+          <div class="brand-title">EVAN VALE TOPUP SERVICE</div>
+          <div class="brand-sub">เติมเกมไว • โปร่งใส • มีแอดมินดูแล</div>
         </div>
       </div>
-      <div class="hero-right">
-        <div class="hero-card">
-          <div class="hero-image-overlay">
-            <div class="hero-garage" style="background-image: linear-gradient(120deg, rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url('images/evanvale-cover.jpg');">
-              <div class="hero-floating-tag">
-                <span class="hero-floating-dot"></span>
-                REAL WORKSHOP • FUTURE BRAND
-              </div>
+
+      <nav class="nav" aria-label="Primary">
+        <a class="btn ghost" href="#packages">แพ็กเกจ</a>
+        <a class="btn ghost" href="#order">สั่งเติม</a>
+        <a class="btn ghost" href="#history">ประวัติ</a>
+        <a class="btn primary" id="btnAdminNav" href="https://www.facebook.com/share/1JRkDmJDvX/" target="_blank" rel="noopener">ติดต่อแอดมิน</a>
+      </nav>
+
+      <button class="btn hamburger" id="btnMenu" type="button">เมนู</button>
+    </header>
+
+    <div class="menu" id="mobileMenu">
+      <a class="btn" href="#packages">แพ็กเกจ</a>
+      <a class="btn" href="#order">สั่งเติม</a>
+      <a class="btn" href="#history">ประวัติ</a>
+      <a class="btn primary" href="https://www.facebook.com/share/1JRkDmJDvX/" target="_blank" rel="noopener">ติดต่อแอดมิน</a>
+    </div>
+
+    <section class="grid hero">
+      <div class="card">
+        <span class="pill">✅ เปิดรับออเดอร์ 08:30–21:30</span>
+        <h1 style="margin-top:10px; font-weight:950; letter-spacing:.2px">
+          เติมเกมไว โปร่งใส <span style="color:var(--accent)">มีแอดมินดูแล</span>
+        </h1>
+        <p class="muted" style="margin:8px 0 0">เลือกแพ็ก → กรอก UID → ยืนยันบิล → ชำระเงิน</p>
+
+        <div class="strip" id="cdStrip" aria-live="polite">
+          <div style="font-weight:900">🧧 นับถอยหลังสู่ตรุษจีน</div>
+          <div class="mono" id="countdownDigits">-- วัน --:--:--</div>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi"><div class="num">3–10 นาที*</div><div class="lab">โดยเฉลี่ย</div></div>
+          <div class="kpi"><div class="num">1000+</div><div class="lab">รายการสำเร็จ</div></div>
+          <div class="kpi"><div class="num">0%</div><div class="lab">ยึด UID</div></div>
+        </div>
+        <p class="muted" style="margin:10px 0 0; font-size:12px">*ช่วงพีคหรือช่วงที่เกมปิดปรับปรุง อาจใช้เวลานานกว่าปกติ</p>
+      </div>
+
+      <div class="card soft">
+        <h3 style="font-weight:950">เริ่มต้นได้อย่างรวดเร็ว</h3>
+        <p class="muted" style="margin:6px 0 0">เลือกส่วนที่ต้องการใช้งานได้จากปุ่มด้านล่าง</p>
+        <div class="grid" style="margin-top:12px">
+          <a class="btn" href="#packages">ดูแพ็กเกจ</a>
+          <a class="btn primary" href="#order">ไปสั่งเติม</a>
+          <a class="btn" href="#history">ดูประวัติ</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="packages" class="section">
+      <div class="card">
+        <div class="section-title">
+          <div>
+            <h2 style="font-weight:950">แพ็กเกจยอดฮิต</h2>
+            <p class="muted">คลิก “เลือกแพ็ก” เพื่อกรอกฟอร์มให้อัตโนมัติ</p>
+          </div>
+        </div>
+
+        <div class="tabs" id="game-tabs"></div>
+        <div class="pkg-grid" id="pkg-grid"></div>
+      </div>
+    </section>
+
+    <section id="order" class="section grid two-col">
+      <div class="card">
+        <h2 style="font-weight:950">สั่งเติมเกม</h2>
+
+        <div class="row" style="margin-top:12px">
+          <div>
+            <label>เกม</label>
+            <select id="game"></select>
+            <p id="gameNote" class="muted" style="display:none;margin:8px 0 0"></p>
+            <p id="thaiOnlyNote" style="display:none;margin:8px 0 0;border-left:3px solid var(--brand);padding:8px 10px;border-radius:12px;background:rgba(15,22,18,.9)">
+              ⚠️ เกมนี้รองรับเฉพาะ <b>เซิร์ฟเวอร์ไทย</b> เท่านั้น (Free Fire / RoV / PUBG Mobile / Roblox / Call of Duty)
+            </p>
+          </div>
+          <div>
+            <label>โซน/เซิร์ฟเวอร์</label>
+            <select id="server"></select>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:12px">
+          <div>
+            <label>UID / Player ID</label>
+            <input id="uid" placeholder="เช่น 812345678 หรือชื่อในเกม">
+          </div>
+          <div>
+            <label>แพ็กเกจ</label>
+            <select id="package"></select>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:12px">
+          <div>
+            <label>วิธีชำระ</label>
+            <select id="method">
+              <option>PromptPay</option>
+              <option>TrueMoney Wallet</option>
+              <option>โอนธนาคาร</option>
+            </select>
+          </div>
+          <div>
+            <label>โค้ดส่วนลด (ถ้ามี)</label>
+            <input id="promo" placeholder="เช่น EVAN10">
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:12px">
+          <div>
+            <label>ชื่อลูกค้า</label>
+            <input id="name" placeholder="ชื่อเล่นก็ได้">
+          </div>
+          <div>
+            <label>ช่องทางติดต่อ</label>
+            <input id="contact" placeholder="Line/FB/Tel">
+          </div>
+        </div>
+
+        <div class="grid" style="grid-template-columns:1fr 1fr 1fr; gap:10px; margin-top:14px">
+          <button class="btn" id="btnReset" type="button">ล้างฟอร์ม</button>
+          <button class="btn" id="btnSaveProfile" type="button">บันทึกข้อมูล</button>
+          <button class="btn primary" id="btnSubmit" type="button">ยืนยันและสร้างบิล</button>
+        </div>
+        <p class="muted" style="margin:10px 0 0">เมื่อกดยืนยันแล้ว ระบบจะเลื่อนไปส่วน “ชำระเงิน” โดยอัตโนมัติ</p>
+
+        <div id="miniSum" style="display:none; margin-top:14px; border:1px solid var(--border); border-radius:18px; padding:12px; background:rgba(15,22,18,.9)">
+          <div style="font-weight:950">สรุปข้อมูลเบื้องต้น</div>
+          <div class="list">
+            <div class="item"><span class="muted">เกม</span><span id="mini-game">-</span></div>
+            <div class="item"><span class="muted">เซิร์ฟเวอร์</span><span id="mini-server">-</span></div>
+            <div class="item"><span class="muted">แพ็กเกจ</span><span id="mini-pkg">-</span></div>
+            <div class="item"><span class="muted">ยอด</span><span id="mini-total">฿0</span></div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="card summary">
+        <h3 style="font-weight:950">สรุปบิล</h3>
+        <div class="list">
+          <div class="item"><span class="muted">เลขบิล</span><span id="sum-bill">-</span></div>
+          <div class="item"><span class="muted">เกม</span><span id="sum-game">-</span></div>
+          <div class="item"><span class="muted">เซิร์ฟเวอร์</span><span id="sum-server">-</span></div>
+          <div class="item"><span class="muted">UID</span><span id="sum-uid">-</span></div>
+          <div class="item"><span class="muted">แพ็กเกจ</span><span id="sum-pkg">-</span></div>
+          <div class="item"><span class="muted">วิธีชำระ</span><span id="sum-method">-</span></div>
+        </div>
+        <div style="height:1px;background:rgba(255,255,255,.08);margin:12px 0"></div>
+        <div class="item"><span class="muted">ยอดสุทธิ</span><span class="total" id="sum-total">฿0</span></div>
+      </aside>
+    </section>
+
+    <section id="pay" class="section" style="display:none">
+      <div class="card">
+        <h2 style="font-weight:950">ชำระเงิน</h2>
+        <p class="muted" style="margin:6px 0 0">แนบสลิปหรือเลขอ้างอิง → กด “คัดลอกสรุปบิล” → เปิดแชทแอดมิน</p>
+
+        <div class="pay-grid">
+          <div class="paybox">
+            <div style="font-weight:950">TrueMoney Wallet</div>
+            <p class="muted" style="margin:6px 0 10px">สแกนด้วยแอป TrueMoney</p>
+            <img src="truemoney.png" alt="TrueMoney QR" loading="lazy" decoding="async" width="360" height="360">
+          </div>
+          <div class="paybox">
+            <div style="font-weight:950">พร้อมเพย์ / ธนาคาร</div>
+            <p class="muted" style="margin:6px 0 10px">สแกนด้วยแอปธนาคาร</p>
+            <img src="promptpay.png" alt="PromptPay QR" loading="lazy" decoding="async" width="360" height="360">
+          </div>
+        </div>
+
+        <div class="card soft" style="margin-top:12px">
+          <h3 style="font-weight:950">แนบหลักฐาน</h3>
+
+          <div class="row" style="margin-top:10px">
+            <div>
+              <label>อัปโหลดสลิป</label>
+              <input id="slip" type="file" accept="image/*">
+              <div class="muted" style="margin-top:6px; font-size:12px">เว็บสแตติกจะไม่เก็บไฟล์ไว้ในเครื่องผู้ดูแล กรุณาแนบซ้ำในแชทหากจำเป็น</div>
+            </div>
+            <div>
+              <label>เลขอ้างอิง (ถ้ามี)</label>
+              <input id="ref" placeholder="เช่น 2025-XX-XX">
             </div>
           </div>
+
+          <div class="grid" style="grid-template-columns:1fr 1fr 1fr 1fr; gap:10px; margin-top:12px">
+            <button class="btn" id="btnBackToForm" type="button">กลับไปแก้ฟอร์ม</button>
+            <button class="btn primary" id="btnPrepareMsg" type="button" disabled>คัดลอกสรุปบิล</button>
+            <button class="btn" id="btnMarkPaid" type="button" disabled>แจ้งชำระแล้ว</button>
+            <a class="btn" id="btnOpenAdmin" href="#" target="_blank" rel="noopener" style="pointer-events:none;opacity:.6;display:flex;justify-content:center;align-items:center">เปิดแชทแอดมิน</a>
+          </div>
+
+          <div id="copyHint" class="muted" style="display:none;margin-top:10px"></div>
+          <textarea id="msgPreview" readonly style="display:none;margin-top:10px" rows="8"></textarea>
         </div>
       </div>
     </section>
 
-    <!-- Services -->
-    <section id="services" class="section">
-      <div class="section-header">
-        <h2 class="section-title">SERVICES</h2>
-        <p class="section-sub">บริการที่อู่ EVAN VALE GARAGE หนองบัว ระยอง</p>
-      </div>
-      <div class="services-grid">
-        <article class="service-card">
-          <div class="service-tag">ENGINE & PERFORMANCE</div>
-          <div class="service-name">เช็คระยะ • จูนเครื่อง • ตั้งวาล์ว</div>
-          <div class="service-desc">ดูแลเครื่องยนต์ทั้งมอไซค์และรถยนต์ เน้นงานจริง ไม่มั่ว</div>
-          <div class="service-footer">
-            <div class="service-price">สอบถามราคา</div>
-            <a href="#contact" class="service-link">ติดต่อ</a>
+    <section id="history" class="section">
+      <div class="card">
+        <h2 style="font-weight:950">ประวัติการทำรายการ</h2>
+
+        <div class="table-tools">
+          <input id="histSearch" placeholder="ค้นหา: บิล/เกม/UID/ชื่อ" style="max-width:280px">
+          <select id="histGameFilter" class="btn" style="padding:10px 12px">
+            <option value="">ทุกเกม</option>
+          </select>
+          <select id="histStatusFilter" class="btn" style="padding:10px 12px">
+            <option value="">ทุกสถานะ</option>
+            <option>รอชำระ</option>
+            <option>ส่งรายละเอียดแล้ว</option>
+            <option>ชำระแล้ว</option>
+            <option>ยกเลิก</option>
+          </select>
+          <button class="btn" id="btnExportCsv" type="button">ดาวน์โหลด CSV</button>
+          <button class="btn" id="btnClearAll" type="button">รีเซ็ตข้อมูลทั้งหมด</button>
+        </div>
+
+        <div class="table-wrap" style="margin-top:12px">
+          <div class="table-scroll">
+            <table id="histTable">
+              <thead>
+                <tr>
+                  <th>เวลา</th><th>เลขบิล</th><th>เกม</th><th>เซิร์ฟ</th><th>แพ็กเกจ</th><th>ยอด</th><th>สถานะ</th><th>UID</th><th>เครื่องมือ</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
           </div>
-        </article>
-        <!-- เพิ่มการ์ดอื่น ๆ ตามเดิม (ฉันย่อเพื่อความกระชับ คุณสามารถ copy จากโค้ดเก่าเพิ่มได้) -->
+          <div id="histEmpty" class="muted" style="padding:12px;display:none">ยังไม่มีรายการ</div>
+        </div>
       </div>
     </section>
 
-    <!-- Real Jobs และส่วนอื่น ๆ ตามเดิม -->
+    <div class="footer">© 2025 EVAN VALE • Static Topup Page</div>
+  </div>
 
-    <!-- Booking -->
-    <section id="booking" class="section">
-      <!-- วางโค้ด booking เดิมทั้งหมดที่นี่ (ฟอร์ม + contact) -->
-      <!-- ... (เหมือนโค้ดเดิม) ... -->
-    </section>
-
-    <!-- About -->
-    <section id="about" class="section">
-      <!-- ... โค้ด about เดิม ... -->
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-brand">EVAN VALE GARAGE x GARAGE P</div>
-      <div class="footer-links">
-        <span>© 2026 Concept Site for Ryu • Nongbua, Rayong</span>
-      </div>
+  <div class="assistant" id="evAssistant" aria-label="EVAN AI">
+    <div class="assistant-head">
+      <div class="assistant-title">EVAN AI (เบต้า)</div>
+      <div class="assistant-sub">ช่วยสรุปบิลและแพ็กเกจ • พิมพ์ “เกม + แพ็ก + UID”</div>
     </div>
-  </footer>
-</div>
+    <div class="assistant-body" id="evAssistantMessages"></div>
+    <div class="assistant-input">
+      <textarea id="evAssistantInput" placeholder="พิมพ์คำถาม..."></textarea>
+      <button class="btn primary" id="evAssistantSend" type="button">ส่ง</button>
+    </div>
+  </div>
+  <button class="assistant-toggle" id="evAssistantToggle" type="button">EVAN • Chat</button>
 
-<!-- AI Panel -->
-<div class="ai-panel" id="aiPanel">
-  <!-- ... โค้ด AI Panel เดิม ... -->
-</div>
-<button type="button" class="ai-fab" onclick="toggleAiPanel();">
-  <span class="ai-fab-dot"></span>
-  <span>EVAN VALE AI (DEMO)</span>
-</button>
-<canvas id="snow"></canvas>
+  <div id="toast" class="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const SUPABASE_URL = "https://cnaukrfxxthemdmavuou.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_PJvhWJNhD6YlaAxOMgS9Uw_7bDlSzb4";
+
+    const SB_TABLE_ORDERS = "orders";
+    const SB_TABLE_SLIPS  = "slips";
+    const SB_BUCKET_SLIPS = "slips";
+
+    window.sb = null;
+    try{
+      window.sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    }catch(e){
+      console.error("Supabase init error:", e);
+      window.sb = null;
+    }
+    function sbReady(){ return !!window.sb; }
+
+    async function sbInsertOrder(row){
+      if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
+
+      try{
+        const amount = Number(String(row.total||"").replace(/[^\d]/g,"")) || 0;
+        const payload = {
+          order_code: row.invoiceId,
+          product_name: row.package || "-",
+          game_uid: row.uid || null,
+          amount,
+          status: "pending_payment",
+          note: JSON.stringify({
+            game: row.game,
+            server: row.server,
+            method: row.method,
+            name: row.name,
+            contact: row.contact,
+            promo: (document.getElementById('promo')?.value || "").trim(),
+          })
+        };
+
+        const { data, error } = await window.sb
+          .from(SB_TABLE_ORDERS)
+          .insert(payload)
+          .select("id")
+          .single();
+
+        if(error) throw error;
+        return { ok:true, id: data?.id || null };
+      }catch(err){
+        console.warn("sbInsertOrder error:", err);
+        return { ok:false, reason: err?.message || "insert_failed" };
+      }
+    }
+
+    async function sbUploadSlip(file, invoiceId){
+      if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
+      if(!file) return { ok:false, reason:"no_file" };
+
+      try{
+        const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
+        const safeExt = ["jpg","jpeg","png","webp"].includes(ext) ? ext : "jpg";
+        const path = `orders/${invoiceId}/${Date.now()}.${safeExt}`;
+
+        const { error } = await window.sb
+          .storage
+          .from(SB_BUCKET_SLIPS)
+          .upload(path, file, { upsert:true, contentType: file.type || "image/jpeg" });
+
+        if(error) throw error;
+        return { ok:true, path };
+      }catch(err){
+        console.warn("sbUploadSlip error:", err);
+        return { ok:false, reason: err?.message || "upload_failed" };
+      }
+    }
+
+    async function sbInsertSlipRecord(sbOrderId, filePath){
+      if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
+      if(!sbOrderId || !filePath) return { ok:false, reason:"missing_data" };
+
+      try{
+        const { error } = await window.sb
+          .from(SB_TABLE_SLIPS)
+          .insert({ order_id: sbOrderId, file_path: filePath });
+
+        if(error) throw error;
+        return { ok:true };
+      }catch(err){
+        console.warn("sbInsertSlipRecord error:", err);
+        return { ok:false, reason: err?.message || "insert_slip_failed" };
+      }
+    }
+
+    async function sbMarkPaid(sbOrderId, referenceText){
+      if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
+      if(!sbOrderId) return { ok:false, reason:"missing_order_id" };
+
+      try{
+        const { error } = await window.sb
+          .from(SB_TABLE_ORDERS)
+          .update({
+            status: "paid",
+            note: JSON.stringify({ paid_ref: referenceText || "" })
+          })
+          .eq("id", sbOrderId);
+
+        if(error) throw error;
+        return { ok:true };
+      }catch(err){
+        console.warn("sbMarkPaid error:", err);
+        return { ok:false, reason: err?.message || "update_failed" };
+      }
+    }
+  </script>
 
 <script>
-  const facebookPageUrl = "https://www.facebook.com/share/1KcFHbNt7A/";
+const KEY_PROFILE = "ev_profile";
+const KEY_ORDERS  = "ev_orders";
+function loadProfile(){ try{return JSON.parse(localStorage.getItem(KEY_PROFILE)||"null");}catch{return null;} }
+function saveProfile(p){ localStorage.setItem(KEY_PROFILE, JSON.stringify(p||null)); }
+function loadOrders(){ try{ return JSON.parse(localStorage.getItem(KEY_ORDERS)||"[]"); }catch{return [];} }
+function saveOrders(list){ localStorage.setItem(KEY_ORDERS, JSON.stringify(list||[])); }
 
-  function scrollToSection(id) {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
+const ADMIN_URL = "https://www.facebook.com/share/1JRkDmJDvX/";
+const GAMES = [
+  { key:"Free Fire", icon:"🔥", servers:["Thailand","SEA","Global","อื่นๆ"] },
+  { key:"Free Fire (สั่งซื้อโปรโมชั่นต้อนรับตรุจีน🧧)", icon:"🔥", servers:["Thailand","SEA","Global","อื่นๆ"] },
+  { key:"RoV", icon:"🛡️", servers:["Thailand","Vietnam","Taiwan","อื่นๆ"] },
+  { key:"Genshin Impact", icon:"✨", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
+  { key:"Honkai: Star Rail", icon:"🚄", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
+  { key:"PUBG Mobile", icon:"🎯", servers:["Thailand","SEA","KRJP","Global","อื่นๆ"] },
+  { key:"Roblox", icon:"🧱", servers:["Thailand","Asia","USA","Global","อื่นๆ"] },
+  { key:"Roblox (สั่งซื้อโปรโมชั่นต้อนรับตรุจีน🧧)", icon:"🎁", servers:["Thailand","Asia","USA","Global","อื่นๆ"] },
+  { key:"Call of Duty", icon:"🎮", servers:["Thailand","SEA","Global","อื่นๆ"] },
+  { key:"Wuthering Waves", icon:"🌊", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
+];
+const PACKS_BY_GAME = {
+  "Free Fire": [
+    {name:"33 เพชร",price:11},{name:"68 เพชร",price:21},{name:"172 เพชร",price:49},
+    {name:"310 เพชร",price:87},{name:"517 เพชร",price:145},{name:"690 เพชร",price:195},
+    {name:"1052 เพชร",price:290},{name:"1800 เพชร",price:480},{name:"3698 เพชร",price:950},
+    {name:"7396 เพชร",price:1900},{name:"รายสัปดาห์ดามินิ",price:32},{name:"รายสัปดาห์ดา",price:63},
+    {name:"รายเดือน",price:287},{name:"บูย่าห์พาส",price:90},{name:"อีโวพาส 3 วัน",price:46},
+    {name:"อีโวพาส 7 วัน",price:62},{name:"อีโวพาส 30 วัน",price:220}
+  ],
+  "Free Fire (สั่งซื้อโปรโมชั่นต้อนรับตรุจีน🧧)": [
+    {name:"33 เพชร",price:10},{name:"68 เพชร",price:19},{name:"172 เพชร",price:48},
+    {name:"310 เพชร",price:85},{name:"517 เพชร",price:143},{name:"690 เพชร",price:190},
+    {name:"1052 เพชร",price:284},{name:"1800 เพชร",price:474},
+    {name:"3698 เพชร",price:945},{name:"7396 เพชร",price:1890}
+  ],
+  "RoV": [
+    {name:"11 คูปอง",price:10},{name:"24 คูปอง",price:19},{name:"60 คูปอง",price:49},
+    {name:"110 คูปอง",price:87},{name:"185 คูปอง",price:144},{name:"370 คูปอง",price:285},
+    {name:"620 คูปอง",price:478},{name:"990 คูปอง",price:765},{name:"1250 คูปอง",price:960}
+  ],
+  "Genshin Impact": [
+    {name:"60 Genesis Crystals",price:30},{name:"300+30 Genesis Crystals",price:145},
+    {name:"980+110 Genesis Crystals",price:420},{name:"1980+260 Genesis Crystals",price:870},
+    {name:"3280+600 Genesis Crystals",price:1340},{name:"6480+1600 Genesis Crystals",price:2625},
+    {name:"Blessing (รายเดือน)",price:179}
+  ],
+  "Honkai: Star Rail": [
+    {name:"60 Oneiric Shard",price:35},{name:"300+30 Shard",price:145},
+    {name:"980+110 Shard",price:425},{name:"1980+260 Shard",price:870},
+    {name:"3280+600 Shard",price:1340},{name:"6480+1600 Shard",price:2630},
+    {name:"Express Supply Pass",price:145}
+  ],
+  "PUBG Mobile": [
+    {name:"60 UC",price:35},{name:"325 UC",price:179},{name:"660 UC",price:346},
+    {name:"1800 UC",price:860},{name:"3850 UC",price:1696},{name:"8100 UC",price:3305},
+    {name:"16200 UC",price:6475},{name:"24300 UC",price:9910}
+  ],
+  "Roblox": [
+    {name:"80 Robux",price:35},{name:"160 Robux",price:70},{name:"400 Robux",price:175},
+    {name:"800 Robux",price:350},{name:"1000 Robux",price:400},{name:"2000 Robux",price:600},
+    {name:"4000 Robux",price:1200},{name:"รายเดือน 1000 Robux",price:380}
+  ],
+  "Roblox (สั่งซื้อโปรโมชั่นต้อนรับตรุจีน🧧)": [
+    {name:"500 Robux (จาก 230 เหลือ 155)",price:155},
+    {name:"1000 Robux (จาก 500 เหลือ 315)",price:315},
+    {name:"2000 Robux (จาก 960 เหลือ 615)",price:615},
+    {name:"3000 Robux (จาก 1000 เหลือ 910)",price:910}
+  ],
+  "Call of Duty": [
+    {name:"44 โบนัส 10 CP",price:22},{name:"108 โบนัส 30 CP",price:52},{name:"194 โบนัส 55 CP",price:90},
+    {name:"324 โบนัส 90 CP",price:152},{name:"648 โบนัส 216 CP",price:305},
+    {name:"1080 โบนัส 480 CP",price:505},{name:"2160 โบนัส 1080 CP",price:1010}
+  ],
+  "Wuthering Waves": [
+    {name:"60 Lunite",price:35},{name:"300+30 Lunite",price:179},
+    {name:"980+110 Lunite",price:549},{name:"Lunite Pass (รายเดือน)",price:179}
+  ]
+};
 
-  // Countdown to Garage Goal 2026 (31 ธันวาคม 2026)
-  (function() {
-    const countdownEl = document.getElementById('newYearCountdown');
-    if (!countdownEl) return;
-    function updateCountdown() {
-      const target = new Date(2026, 11, 31, 23, 59, 59);
-      const now = new Date();
-      const diff = target - now;
-      if (diff <= 0) {
-        countdownEl.textContent = "HAPPY NEW YEAR 2027!";
-        return;
-      }
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      countdownEl.textContent = `${days} วัน ${hours} ชม. ${minutes} นาที`;
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 60000);
-  })();
+const tabs = document.getElementById('game-tabs');
+const pkgGrid = document.getElementById('pkg-grid');
+const selGame = document.getElementById('game');
+const selServer = document.getElementById('server');
+const selPackage = document.getElementById('package');
 
-  function toggleMobileNav(force) {
-    const nav = document.getElementById("mobileNav");
-    if (!nav) return;
-    if (typeof force === "boolean") nav.classList.toggle("show", force);
-    else nav.classList.toggle("show");
-  }
+const miniSum = document.getElementById('miniSum');
+const miniGame = document.getElementById('mini-game');
+const miniServer = document.getElementById('mini-server');
+const miniPkg = document.getElementById('mini-pkg');
+const miniTotal = document.getElementById('mini-total');
 
-  function toggleAiPanel(force) {
-    const panel = document.getElementById('aiPanel');
-    if (!panel) return;
-    if (typeof force === 'boolean') panel.classList.toggle('show', force);
-    else panel.classList.toggle('show');
-  }
+const gameNote = document.getElementById('gameNote');
+const thaiOnlyNote = document.getElementById('thaiOnlyNote');
 
-  // ESC Key Support
-  document.addEventListener('keydown', (e) => {
-    if (e.key === "Escape") {
-      const panel = document.getElementById('aiPanel');
-      const mobileNav = document.getElementById('mobileNav');
-      if (panel?.classList.contains('show')) toggleAiPanel(false);
-      if (mobileNav?.classList.contains('show')) toggleMobileNav(false);
-    }
+let currentGame = GAMES[0].key;
+const thaiOnlyGames = ["Free Fire","RoV","PUBG Mobile","Roblox","Call of Duty"];
+
+const btnMenu = document.getElementById('btnMenu');
+const mobileMenu = document.getElementById('mobileMenu');
+btnMenu?.addEventListener('click', ()=> mobileMenu.classList.toggle('open'));
+mobileMenu?.querySelectorAll('a').forEach(a=>{
+  a.addEventListener('click', ()=> mobileMenu.classList.remove('open'));
+});
+
+function renderGameTabs(){
+  tabs.innerHTML = ""; selGame.innerHTML = "";
+  GAMES.forEach(g=>{
+    const t = document.createElement('div');
+    t.className = 'tab' + (g.key===currentGame?' active':'');
+    t.textContent = `${g.icon} ${g.key}`;
+    t.addEventListener('click', ()=> setGame(g.key));
+    tabs.appendChild(t);
+
+    const opt = document.createElement('option');
+    opt.value = g.key; opt.textContent = g.key;
+    selGame.appendChild(opt);
+  });
+  selGame.value = currentGame;
+}
+function renderServers(){
+  selServer.innerHTML = "";
+  const gs = GAMES.find(x=>x.key===currentGame)?.servers || ["Global"];
+  gs.forEach(s=>{
+    const o=document.createElement('option'); o.value=s; o.textContent=s;
+    selServer.appendChild(o);
+  });
+}
+function renderPacks(){
+  const packs = PACKS_BY_GAME[currentGame]||[];
+  pkgGrid.innerHTML = "";
+  selPackage.innerHTML = "<option value='' disabled selected>— เลือกแพ็กเกจ —</option>";
+
+  packs.forEach(p=>{
+    const card = document.createElement('div');
+    card.className = "pkg";
+    card.innerHTML = `
+      <div class="name">${p.name}</div>
+      <div class="price">฿${p.price}</div>
+      <div class="actions">
+        <a href="#order" class="btn primary" data-pkg="${p.name} – ฿${p.price}">เลือกแพ็ก</a>
+      </div>`;
+    pkgGrid.appendChild(card);
+
+    const opt = document.createElement('option');
+    opt.value = `${p.name} – ฿${p.price}`;
+    opt.textContent = `${p.name} – ฿${p.price}`;
+    selPackage.appendChild(opt);
   });
 
-  // Snow Canvas (เดิม)
-  // ... (คัดลอก snow script จากโค้ดเดิมของคุณมาใส่ที่นี่)
+  pkgGrid.querySelectorAll('a[data-pkg]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      selPackage.value = a.getAttribute('data-pkg');
+      document.getElementById('order').scrollIntoView({behavior:'smooth'});
+      updateSummary();
+    });
+  });
+}
+function setGame(game){
+  currentGame = game;
 
-  // Booking functions (generateBookingText, copyBookingText, etc.) - คัดลอกจากเดิมทั้งหมด
+  [...tabs.children].forEach((el, i)=>{
+    el.classList.toggle('active', GAMES[i].key===currentGame);
+  });
+
+  const isPromo = /โปรโมชั่น/.test(currentGame);
+
+  if (currentGame === "Roblox"){
+    gameNote.style.display = "block";
+    gameNote.textContent = "ℹ️ Roblox: อาจใช้เวลาเติมนานกว่าเกมอื่นเล็กน้อย กรุณาเผื่อเวลา";
+  } else if (currentGame === "Call of Duty"){
+    gameNote.style.display = "block";
+    gameNote.textContent = "⚠️ Call of Duty: หาก ID ผูกกับ Garena จะไม่สามารถเติมได้ (รองรับเฉพาะเซิร์ฟไทย)";
+  } else if (isPromo){
+    gameNote.style.display = "block";
+    gameNote.textContent = "🎁 โปรโมชั่นต้อนรับปีใหม่: ราคาในการ์ดคือราคาหลังหักส่วนลดแล้ว";
+    promoHintOnce();
+  } else {
+    gameNote.style.display="none";
+    gameNote.textContent="";
+  }
+
+  thaiOnlyNote.style.display = thaiOnlyGames.includes(currentGame) ? "block" : "none";
+
+  selGame.value = game;
+  renderServers();
+  renderPacks();
+  updateSummary();
+  showMini();
+}
+function showMini(){
+  const has = (selPackage.value||"").length>0 || (document.getElementById('uid').value||"").length>0;
+  miniSum.style.display = has ? "block" : "none";
+}
+
+const pad = n => n.toString().padStart(2,'0');
+function genInvoice(){
+  const d = new Date();
+  const ts = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
+  const rnd = Math.floor(Math.random()*8999)+1000;
+  return `EV-${ts}-${rnd}`;
+}
+function money(n){ return "฿"+(n||0); }
+function updateSummary(){
+  const g = selGame.value;
+  const s = selServer.value;
+  const u = document.getElementById('uid').value || "-";
+  const p = selPackage.value || "-";
+  const m = document.getElementById('method').value;
+
+  document.getElementById('sum-game').innerText   = g;
+  document.getElementById('sum-server').innerText = s || "-";
+  document.getElementById('sum-uid').innerText    = u;
+  document.getElementById('sum-pkg').innerText    = p;
+  document.getElementById('sum-method').innerText = m;
+
+  const price = Number((p.split("฿")[1] || "0").replace(/[^\d]/g,""));
+  const totalTxt = money(price);
+  document.getElementById('sum-total').innerText = totalTxt;
+
+  miniGame.textContent = g;
+  miniServer.textContent = s || "-";
+  miniPkg.textContent = p;
+  miniTotal.textContent = totalTxt;
+
+  showMini();
+}
+["game","server","uid","package","method","name","contact","promo"].forEach(id=>{
+  const el = document.getElementById(id);
+  el.addEventListener('input', updateSummary);
+  el.addEventListener('change', updateSummary);
+});
+
+function addOrder(row){ const list=loadOrders(); list.unshift(row); saveOrders(list); renderHistory(); }
+function updateOrderStatus(inv, status){
+  const list=loadOrders(); const idx=list.findIndex(x=>x.invoiceId===inv);
+  if(idx>-1){ list[idx].status=status; saveOrders(list); renderHistory(); }
+}
+function deleteOrder(inv){
+  const list=loadOrders().filter(x=>x.invoiceId!==inv);
+  saveOrders(list); renderHistory();
+}
+function clearAll(){
+  if(confirm('ล้างข้อมูลทั้งหมดบนอุปกรณ์นี้หรือไม่? (โปรไฟล์ / ประวัติ / ข้อมูลแจ้งเตือนโปรโมชั่น)')){
+    localStorage.removeItem(KEY_PROFILE);
+    localStorage.removeItem(KEY_ORDERS);
+    localStorage.removeItem('ev_promo_hint_shown');
+    location.reload();
+  }
+}
+const histTableBody = document.querySelector('#histTable tbody');
+const histEmpty = document.getElementById('histEmpty');
+const histSearch = document.getElementById('histSearch');
+const histGameFilter = document.getElementById('histGameFilter');
+const histStatusFilter = document.getElementById('histStatusFilter');
+
+function initHistoryFilters(){
+  histGameFilter.innerHTML = '<option value="">ทุกเกม</option>' + GAMES.map(g=>`<option>${g.key}</option>`).join('');
+  [histSearch,histGameFilter,histStatusFilter].forEach(el=>{
+    el.addEventListener('input', renderHistory);
+    el.addEventListener('change', renderHistory);
+  });
+}
+function renderHistory(){
+  const q = (histSearch.value||"").toLowerCase();
+  const g = histGameFilter.value||"";
+  const st= histStatusFilter.value||"";
+  const list = loadOrders().filter(x=>{
+    const inTxt = (x.invoiceId+x.game+x.uid+(x.name||"")+(x.package||"")).toLowerCase().includes(q);
+    const gOk = g? x.game===g : true;
+    const sOk = st? x.status===st : true;
+    return inTxt && gOk && sOk;
+  });
+
+  histTableBody.innerHTML = "";
+  histEmpty.style.display = list.length? "none":"block";
+
+  list.forEach(x=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${new Date(x.ts).toLocaleString()}</td>
+      <td>${x.invoiceId}</td>
+      <td>${x.game}</td>
+      <td>${x.server||"-"}</td>
+      <td>${x.package||"-"}</td>
+      <td>${x.total||"฿0"}</td>
+      <td>
+        <select data-inv="${x.invoiceId}">
+          ${["รอชำระ","ส่งรายละเอียดแล้ว","ชำระแล้ว","ยกเลิก"].map(s=>`<option ${x.status===s?"selected":""}>${s}</option>`).join('')}
+        </select>
+      </td>
+      <td>${x.uid||"-"}</td>
+      <td>
+        <button class="btn" data-view="${x.invoiceId}" type="button">ดู</button>
+        <button class="btn" data-del="${x.invoiceId}" type="button">ลบ</button>
+      </td>`;
+    histTableBody.appendChild(tr);
+  });
+
+  histTableBody.querySelectorAll('button[data-del]').forEach(b=>{
+    b.onclick = ()=> deleteOrder(b.getAttribute('data-del'));
+  });
+  histTableBody.querySelectorAll('button[data-view]').forEach(b=>{
+    b.onclick = ()=>{
+      const inv = b.getAttribute('data-view');
+      const x = loadOrders().find(o=>o.invoiceId===inv);
+      if(!x) return;
+      alert(
+`เลขบิล: ${x.invoiceId}
+เวลา: ${new Date(x.ts).toLocaleString()}
+เกม: ${x.game}
+เซิร์ฟเวอร์: ${x.server||"-"}
+แพ็กเกจ: ${x.package||"-"}
+ยอด: ${x.total||"฿0"}
+วิธีชำระ: ${x.method}
+UID: ${x.uid||"-"}
+ลูกค้า: ${x.name||"-"} | ติดต่อ: ${x.contact||"-"}
+สถานะ: ${x.status}`);
+    };
+  });
+  histTableBody.querySelectorAll('select[data-inv]').forEach(s=>{
+    s.onchange = ()=> updateOrderStatus(s.getAttribute('data-inv'), s.value);
+  });
+}
+
+function buildMessage(){
+  const g = selGame.value, s = selServer.value, u = document.getElementById('uid').value || "-";
+  const p = selPackage.value || "-", m = document.getElementById('method').value;
+  const name = document.getElementById('name').value || "-", contact = document.getElementById('contact').value || "-";
+  const total = document.getElementById('sum-total').innerText || "฿0";
+  const ref = (document.getElementById('ref')?.value || "").trim();
+  return `ออร์เดอร์เติมเกม Evan Vale
+เลขบิล: ${window.invoiceId}
+เกม: ${g}
+เซิร์ฟเวอร์/โซน: ${s || "-"}
+UID/Player ID: ${u}
+แพ็กเกจ: ${p}
+วิธีชำระ: ${m}
+ยอดสุทธิ: ${total}
+ชื่อลูกค้า: ${name}
+ติดต่อ: ${contact}
+เลขอ้างอิง: ${ref||"-"}
+โปรดตรวจสอบสลิปที่แนบมาด้วย`;
+}
+const btnPrepare   = document.getElementById('btnPrepareMsg');
+const btnOpenAdmin = document.getElementById('btnOpenAdmin');
+const msgPreview   = document.getElementById('msgPreview');
+const copyHint     = document.getElementById('copyHint');
+
+function makeAdminUrl(){ return ADMIN_URL; }
+async function copyTextSafe(text){
+  try{ await navigator.clipboard.writeText(text); return true; }
+  catch{
+    const ta = document.createElement('textarea'); ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    let ok=false; try{ ok=document.execCommand('copy'); }catch{}
+    document.body.removeChild(ta); return !!ok;
+  }
+}
+btnPrepare?.addEventListener('click', async ()=>{
+  if(!window.invoiceId || window.invoiceId === '-'){ alert('ยังไม่ได้สร้างบิล'); return; }
+  const msg = buildMessage();
+  msgPreview.value = msg; msgPreview.style.display = 'block';
+  copyHint.style.display = 'block';
+  copyHint.textContent = 'กำลังคัดลอกสรุปบิล...';
+
+  const copied = await copyTextSafe(msg);
+  copyHint.textContent = copied
+    ? 'คัดลอกสรุปบิลแล้ว ✅ ต่อไปสามารถกด “เปิดแชทแอดมิน” ได้ทันที'
+    : 'ไม่สามารถคัดลอกอัตโนมัติได้ กรุณาคัดลอกจากช่องสรุปด้านบน แล้วจึงกด “เปิดแชทแอดมิน”';
+
+  btnOpenAdmin.href = makeAdminUrl();
+  btnOpenAdmin.style.pointerEvents = 'auto';
+  btnOpenAdmin.style.opacity = '1';
+
+  if(window.invoiceId){ updateOrderStatus(window.invoiceId, 'ส่งรายละเอียดแล้ว'); }
+});
+btnOpenAdmin?.addEventListener('click', (e)=>{
+  if (!btnOpenAdmin.href || btnOpenAdmin.getAttribute('href') === '#'){
+    e.preventDefault(); window.open(makeAdminUrl(), '_blank');
+  }
+});
+
+document.getElementById('btnReset')?.addEventListener('click', ()=>{
+  document.querySelectorAll('#order input').forEach(i=>i.value="");
+  selPackage.selectedIndex = 0; updateSummary();
+});
+window.invoiceId = "-";
+
+function setLocalOrderSbId(invoiceId, sbId){
+  try{
+    const list = loadOrders();
+    const idx = list.findIndex(x=>x.invoiceId===invoiceId);
+    if(idx>-1){
+      list[idx].sb_order_id = sbId;
+      saveOrders(list);
+    }
+  }catch{}
+}
+function getLocalOrder(invoiceId){
+  try{ return loadOrders().find(x=>x.invoiceId===invoiceId) || null; }
+  catch{ return null; }
+}
+
+document.getElementById('btnSubmit')?.addEventListener('click', async ()=>{
+  if(!selPackage.value){ alert('กรุณาเลือกแพ็กเกจก่อน'); return; }
+  window.invoiceId = genInvoice();
+  document.getElementById('sum-bill').innerText = window.invoiceId;
+
+  const pay = document.getElementById('pay');
+  pay.style.display = "";
+  pay.scrollIntoView({behavior:'smooth'});
+
+  const row = {
+    ts: Date.now(),
+    invoiceId: window.invoiceId,
+    game: selGame.value,
+    server: selServer.value,
+    package: selPackage.value,
+    total: document.getElementById('sum-total').innerText,
+    method: document.getElementById('method').value,
+    uid: document.getElementById('uid').value.trim(),
+    name: document.getElementById('name').value.trim(),
+    contact: document.getElementById('contact').value.trim(),
+    status: 'รอชำระ',
+    sb_order_id: null
+  };
+  addOrder(row);
+
+  if(typeof sbInsertOrder === "function"){
+    const res = await sbInsertOrder(row);
+    if(res?.ok && res?.id){
+      setLocalOrderSbId(row.invoiceId, res.id);
+    }else{
+      console.warn("Supabase order sync skipped/failed:", res);
+    }
+  }
+
+  btnPrepare.disabled = false;
+  updateMarkPaidState();
+});
+
+document.getElementById('btnBackToForm')?.addEventListener('click', ()=>{
+  document.getElementById('pay').style.display = "none";
+  document.getElementById('order').scrollIntoView({behavior:'smooth'});
+});
+
+document.getElementById('btnExportCsv')?.addEventListener('click', ()=>{
+  const list = loadOrders();
+  if(!list.length){ alert('ยังไม่มีข้อมูล'); return; }
+  const header = ["เวลา","เลขบิล","เกม","เซิร์ฟ","แพ็กเกจ","ยอด","สถานะ","UID","ลูกค้า","ติดต่อ"].join(",");
+  const rows = list.map(x=>[
+    new Date(x.ts).toLocaleString().replaceAll(","," "),
+    x.invoiceId, x.game, x.server||"-", x.package||"-",
+    (x.total||"฿0").replaceAll(",",""),
+    x.status, x.uid||"-", x.name||"-", x.contact||"-"
+  ].map(v=>`"${String(v).replaceAll('"','""')}"`).join(","));
+  const csv = [header, ...rows].join("\n");
+  const blob = new Blob([csv], {type:"text/csv;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'evan_orders.csv'; a.click();
+  URL.revokeObjectURL(url);
+});
+document.getElementById('btnClearAll')?.addEventListener('click', clearAll);
+
+function fillFromProfile(){
+  const p = loadProfile(); if(!p) return;
+  if(p.name)    document.getElementById('name').value = p.name;
+  if(p.contact) document.getElementById('contact').value = p.contact;
+  if(p.last){
+    if(p.last.game && GAMES.find(g=>g.key===p.last.game)){ setGame(p.last.game); }
+    if(p.last.server){ selServer.value = p.last.server; }
+    if(p.last.package){ selPackage.value = p.last.package; }
+    if(p.last.method){ document.getElementById('method').value = p.last.method; }
+    if(p.last.uid){ document.getElementById('uid').value = p.last.uid; }
+  }
+  updateSummary();
+}
+document.getElementById('btnSaveProfile')?.addEventListener('click', ()=>{
+  const p = loadProfile() || {};
+  p.name = document.getElementById('name').value.trim();
+  p.contact = document.getElementById('contact').value.trim();
+  p.last = {
+    game: selGame.value, server: selServer.value, package: selPackage.value,
+    method: document.getElementById('method').value, uid: document.getElementById('uid').value.trim()
+  };
+  saveProfile(p);
+  toast('บันทึกข้อมูลไว้ในอุปกรณ์แล้ว ✅');
+});
+
+const slipInput = document.getElementById('slip');
+const refInput  = document.getElementById('ref');
+const btnMarkPaid = document.getElementById('btnMarkPaid');
+
+function canMarkPaid(){
+  const hasSlip = slipInput && slipInput.files && slipInput.files.length > 0;
+  const hasRef  = (refInput?.value || '').trim().length > 0;
+  return !!window.invoiceId && window.invoiceId !== '-' && (hasSlip || hasRef);
+}
+function updateMarkPaidState(){
+  btnMarkPaid.disabled = !canMarkPaid();
+}
+slipInput?.addEventListener('change', updateMarkPaidState);
+refInput?.addEventListener('input', updateMarkPaidState);
+
+btnMarkPaid?.addEventListener('click', async ()=>{
+  if(!window.invoiceId || window.invoiceId==='-'){ alert('ยังไม่มีเลขบิล'); return; }
+  if(!canMarkPaid()){ alert('กรุณาแนบสลิปหรือกรอกเลขอ้างอิงก่อน'); return; }
+
+  updateOrderStatus(window.invoiceId, 'ชำระแล้ว');
+
+  const local = getLocalOrder(window.invoiceId);
+  const sbOrderId = local?.sb_order_id || null;
+
+  const refTxt = (refInput?.value || "").trim();
+  const file = (slipInput?.files && slipInput.files[0]) ? slipInput.files[0] : null;
+
+  if(sbOrderId && typeof sbUploadSlip === "function"){
+    const up = await sbUploadSlip(file, window.invoiceId);
+    if(up?.ok && up?.path){
+      if(typeof sbInsertSlipRecord === "function"){
+        await sbInsertSlipRecord(sbOrderId, up.path);
+      }
+      if(typeof sbMarkPaid === "function"){
+        await sbMarkPaid(sbOrderId, refTxt);
+      }
+    }else{
+      console.warn("Supabase slip upload skipped/failed:", up);
+      if(typeof sbMarkPaid === "function"){
+        await sbMarkPaid(sbOrderId, refTxt);
+      }
+    }
+  }else{
+    console.warn("Supabase order not linked or helper functions unavailable. Local status updated only.");
+  }
+
+  toast('แจ้งชำระแล้ว ✅ แอดมินจะตรวจสอบให้โดยเร็วที่สุด');
+});
+
+const cdDigits = document.getElementById('countdownDigits');
+function fmt2(n){ return n.toString().padStart(2,'0'); }
+
+(function runCountdown(){
+  function getNextNewYear(){
+    const now = new Date();
+    const year = now.getFullYear();
+    let target = new Date(`${year + 1}-01-01T00:00:00+07:00`);
+    if (now < new Date(`${year}-01-01T00:00:00+07:00`)) {
+      target = new Date(`${year}-01-01T00:00:00+07:00`);
+    }
+    return target.getTime();
+  }
+
+  let target = getNextNewYear();
+
+  function tick(){
+    const now = Date.now();
+    let diff = target - now;
+
+    if(diff <= 0){
+      target = getNextNewYear();
+      diff = target - now;
+    }
+
+    const d = Math.floor(diff / 86400000); diff %= 86400000;
+    const h = Math.floor(diff / 3600000);  diff %= 3600000;
+    const m = Math.floor(diff / 60000);    diff %= 60000;
+    const s = Math.floor(diff / 1000);
+
+    cdDigits.textContent = `${fmt2(d)} วัน ${fmt2(h)}:${fmt2(m)}:${fmt2(s)}`;
+    setTimeout(tick, 1000);
+  }
+
+  tick();
+})();
+
+function toast(msg){
+  const t = document.getElementById('toast');
+  if(!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=> t.classList.remove('show'), 2200);
+}
+function promoHintOnce(){
+  const K = 'ev_promo_hint_shown';
+  if(localStorage.getItem(K) === '1') return;
+  localStorage.setItem(K, '1');
+  toast('🎁 โปรโมชั่นปีใหม่เปิดใช้งานแล้ว — ราคาในการ์ดเป็นราคาหลังหักส่วนลด');
+}
+
+const asToggle = document.getElementById('evAssistantToggle');
+const asBox = document.getElementById('evAssistant');
+const asMsgWrap = document.getElementById('evAssistantMessages');
+const asInput = document.getElementById('evAssistantInput');
+const asSend = document.getElementById('evAssistantSend');
+
+function addAssistantBubble(role, text){
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble' + (role === 'user' ? ' me' : '');
+  bubble.textContent = text;
+  asMsgWrap.appendChild(bubble);
+  asMsgWrap.scrollTop = asMsgWrap.scrollHeight;
+}
+
+function pickRandom(arr){
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+const NORMAL_REPLIES = [
+  "แจ้งเลขบิล ชื่อเกม แพ็กเกจ หรือ UID มาได้เลย ระบบจะช่วยสรุปให้",
+  "หากต้องการสั่งเติม กรุณาเลือกแพ็กเกจ กดยืนยันสร้างบิล แล้วไปที่หน้าชำระเงิน",
+  "หลังจากคัดลอกสรุปบิลแล้ว สามารถนำไปส่งต่อในแชทแอดมินได้ทันที",
+];
+
+const GUIDE_REPLIES = [
+  "กรุณาพิมพ์ข้อมูลให้ชัดเจน เช่น เกม + แพ็กเกจ + UID",
+  "ขอข้อมูลเพิ่มเติมอีกเล็กน้อย เพื่อให้ระบบช่วยตรวจสอบได้ถูกต้อง",
+];
+
+function looksGibberish(t){
+  const s = (t || "").trim();
+  if(!s) return false;
+  const letters = s.replace(/[0-9\s\W_]/g, '');
+  return letters.length > 0 && (letters.length / s.length) < 0.25;
+}
+
+function handleAssistantSend(){
+  const txt = (asInput.value || "").trim();
+  if(!txt) return;
+
+  addAssistantBubble('user', txt);
+  asInput.value = "";
+
+  const gib = looksGibberish(txt);
+  const tooShort = txt.length < 2;
+  const reply = (gib || tooShort) ? pickRandom(GUIDE_REPLIES) : pickRandom(NORMAL_REPLIES);
+
+  setTimeout(() => addAssistantBubble('bot', reply), 180);
+}
+
+asToggle?.addEventListener('click', () => {
+  const opened = asBox.classList.toggle('open');
+  if(opened && !asMsgWrap.dataset.welcomed){
+    asMsgWrap.dataset.welcomed = "1";
+    addAssistantBubble('bot', "พิมพ์ข้อมูลในรูปแบบ เกม + แพ็กเกจ + UID ได้เลย");
+  }
+});
+asSend?.addEventListener('click', handleAssistantSend);
+asInput?.addEventListener('keydown', (e)=>{
+  if(e.key === 'Enter' && !e.shiftKey){
+    e.preventDefault();
+    handleAssistantSend();
+  }
+});
+
+(function snowInit(){
+  const c = document.getElementById('snow');
+  if(!c) return;
+
+  const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if(mq.matches) return;
+
+  const ctx = c.getContext('2d', { alpha:true });
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+  let W=0, H=0, flakes=[];
+  let running = true;
+
+  function resize(){
+    W = Math.floor(window.innerWidth);
+    H = Math.floor(window.innerHeight);
+    c.width  = Math.floor(W * DPR);
+    c.height = Math.floor(H * DPR);
+    c.style.width = W + 'px';
+    c.style.height = H + 'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+
+  function makeFlake(){
+    const r = 1 + Math.random()*2.8;
+    return {
+      x: Math.random()*W,
+      y: -10 - Math.random()*H,
+      r,
+      vy: 0.55 + Math.random()*1.85,
+      vx: -0.7 + Math.random()*1.4,
+      sway: 0.6 + Math.random()*1.6,
+      a: 0.25 + Math.random()*0.55
+    };
+  }
+
+  function computeCount(){
+    const base = Math.round((W*H) / 18000);
+    return Math.max(40, Math.min(160, base));
+  }
+
+  function reset(){
+    flakes = Array.from({length: computeCount()}, makeFlake);
+  }
+
+  function draw(){
+    if(!running) return;
+    ctx.clearRect(0,0,W,H);
+
+    for(const f of flakes){
+      f.y += f.vy;
+      f.x += f.vx + Math.sin((f.y/40)) * f.sway * 0.15;
+
+      if(f.y > H + 20){ f.y = -20; f.x = Math.random()*W; }
+      if(f.x < -20) f.x = W+20;
+      if(f.x > W+20) f.x = -20;
+
+      ctx.beginPath();
+      ctx.arc(f.x, f.y, f.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(255,215,0,${f.a})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  reset();
+  draw();
+
+  window.addEventListener('resize', ()=>{
+    resize();
+    reset();
+  });
+
+  mq.addEventListener?.('change', (e)=>{
+    running = !e.matches;
+    if(running) draw();
+    else ctx.clearRect(0,0,W,H);
+  });
+})();
+
+renderGameTabs();
+setGame(currentGame);
+fillFromProfile();
+updateSummary();
+initHistoryFilters();
+renderHistory();
 </script>
 </body>
 </html>
