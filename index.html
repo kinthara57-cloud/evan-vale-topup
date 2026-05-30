@@ -499,7 +499,7 @@
         <p class="muted" style="margin:8px 0 0">เลือกแพ็ก → กรอก UID → ยืนยันบิล → ชำระเงิน</p>
 
         <div class="strip" id="cdStrip" aria-live="polite">
-          <div style="font-weight:900">🧧 นับถอยหลังสู่ตรุษจีน</div>
+          <div style="font-weight:900">🎁นับถอยหลังสู่ปีใหม่🎁</div>
           <div class="mono" id="countdownDigits">-- วัน --:--:--</div>
         </div>
 
@@ -885,7 +885,7 @@ const PACKS_BY_GAME = {
     {name:"รายเดือน",price:287},{name:"บูย่าห์พาส",price:90},{name:"อีโวพาส 3 วัน",price:46},
     {name:"อีโวพาส 7 วัน",price:62},{name:"อีโวพาส 30 วัน",price:220}
   ],
-  "Free Fire (สั่งซื้อโปรโมชั่นต้อนรับตรุจีน🧧)": [
+  "Free Fire (ไม่พร้มให้ใช้บริการ)": [
     {name:"33 เพชร",price:10},{name:"68 เพชร",price:19},{name:"172 เพชร",price:48},
     {name:"310 เพชร",price:85},{name:"517 เพชร",price:143},{name:"690 เพชร",price:190},
     {name:"1052 เพชร",price:284},{name:"1800 เพชร",price:474},
@@ -918,7 +918,7 @@ const PACKS_BY_GAME = {
     {name:"800 Robux",price:350},{name:"1000 Robux",price:400},{name:"2000 Robux",price:600},
     {name:"4000 Robux",price:1200},{name:"รายเดือน 1000 Robux",price:380}
   ],
-  "Roblox (สั่งซื้อโปรโมชั่นต้อนรับตรุจีน🧧)": [
+  "Roblox (ไม่พร้อมให้ใช้บริการ)": [
     {name:"500 Robux (จาก 230 เหลือ 155)",price:155},
     {name:"1000 Robux (จาก 500 เหลือ 315)",price:315},
     {name:"2000 Robux (จาก 960 เหลือ 615)",price:615},
@@ -1459,7 +1459,7 @@ function promoHintOnce(){
   const K = 'ev_promo_hint_shown';
   if(localStorage.getItem(K) === '1') return;
   localStorage.setItem(K, '1');
-  toast('🎁 โปรปีใหม่ถูกเปิดใช้งาน — ราคาในการ์ดคือราคาหลังลดแล้ว');
+  toast('🎁โปรปีใหม่ถูกปิดใช้งาน — ราคาในการ์ดคือราคาจริง');
 }
 
 /* ===== MINI ASSISTANT ===== */
