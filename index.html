@@ -3,1613 +3,949 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0b0f0c">
- <link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" href="images/evanvale-logo.png" type="image/png" sizes="32x32">
-<link rel="apple-touch-icon" href="images/evanvale-logo.png">
-  <title>EVAN VALE TOPUP SERVICE | เติมเกมไว โปร่งใส มีแอดมินดูแล</title>
-  <meta name="description" content="EVAN VALE — เติมเกมไว โปร่งใส ปลอดภัย มีแอดมินดูแล รองรับ TrueMoney, PromptPay และธนาคาร" />
+  <title>EVAN VALE — Portfolio</title>
+  <meta name="description" content="Portfolio ของ EVAN VALE — นักพัฒนา, ผู้ให้บริการเติมเกม, และ Creator" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800;900&family=Noto+Sans+Thai:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-  --bg:#140202;
-  --panel:#1a0404;
-  --card:#220505;
-  --border: rgba(255,215,0,.22);
+    :root {
+      --bg:         #040d1a;
+      --panel:      #071428;
+      --card:       #0a1c38;
+      --card2:      #0d2244;
+      --border:     rgba(80,160,255,.18);
+      --border2:    rgba(80,160,255,.30);
 
-  --text:#fff4d6;
-  --muted: rgba(255,244,214,.72);
+      --text:       #d6eaff;
+      --muted:      rgba(174,210,255,.65);
+      --accent1:    #4fa3ff;
+      --accent2:    #1a6cff;
+      --accent3:    #60c8ff;
+      --glow:       rgba(79,163,255,.35);
+      --glowS:      rgba(96,200,255,.22);
 
-  /* 🧧 Chinese theme */
-  --brand:#c40000;
-  --brand2:#ffd700;
-  --accent:#ffcc33;
+      --radius:     20px;
+      --shadow:     0 24px 64px rgba(0,0,15,.7);
+    }
 
-  --radius:18px;
-  --shadow: 0 20px 60px rgba(0,0,0,.7);
-
-  --glow1: rgba(255,215,0,.45);
-  --glow2: rgba(196,0,0,.55);
-  --glowW: rgba(255,230,170,.45);
-}
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:system-ui, -apple-system, Segoe UI, Prompt, sans-serif;
-      color:var(--text);
-    background:
-  radial-gradient(900px 500px at 0% 0%, rgba(255,215,0,.12), transparent 60%),
-  radial-gradient(900px 500px at 100% 0%, rgba(196,0,0,.28), transparent 60%),
-  linear-gradient(180deg, #140202, #070101);
-      overflow-x:hidden;
-
-      /* text rendering */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans Thai', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
     }
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
 
-    .wrap{max-width:1100px;margin:auto;padding:18px; position:relative; z-index:10;} /* ให้อยู่เหนือหิมะ */
-
-    /* ===== Snow Canvas ===== */
-    #snow{
-      position:fixed;
-      inset:0;
-      width:100vw;
-      height:100vh;
-      pointer-events:none;
-      z-index:5;          /* ใต้เนื้อหา แต่เหนือพื้นหลัง */
-      opacity:200;        /* ปรับเบา-หนักได้ */
-      mix-blend-mode: screen;
+    /* ── BG BLOBS ── */
+    .bg-blobs {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
     }
-
-    /* Header */
-    .header{
-      position:sticky; top:12px; z-index:50;
-      border:1px solid var(--border);
-      background:rgba(15,22,18,.78);
-      backdrop-filter: blur(10px);
-      border-radius:22px;
-      box-shadow:var(--shadow);
-      padding:10px 12px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
+    .bg-blobs span {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: .28;
+      animation: blobFloat 14s ease-in-out infinite alternate;
     }
-    .brand{
-      display:flex; align-items:center; gap:10px; min-width:0;
+    .bg-blobs span:nth-child(1) {
+      width: 700px; height: 500px; top: -150px; left: -200px;
+      background: radial-gradient(circle, #1a6cff 0%, transparent 70%);
+      animation-duration: 16s;
     }
-    .logo{
-      width:42px;height:42px;border-radius:14px; object-fit:cover;
-      box-shadow:0 0 0 1px rgba(255,255,255,.10), 0 12px 30px rgba(0,0,0,.45);
+    .bg-blobs span:nth-child(2) {
+      width: 600px; height: 600px; top: 30%; right: -200px;
+      background: radial-gradient(circle, #0047cc 0%, transparent 70%);
+      animation-duration: 20s; animation-delay: -6s;
     }
-    .brand-title{
-      font-weight:900; letter-spacing:.4px; line-height:1.1;
-      /* Glow */
-      text-shadow:
-        0 0 10px var(--glowW),
-        0 0 22px rgba(255,255,255,.18),
-        0 0 28px rgba(54,192,107,.10);
+    .bg-blobs span:nth-child(3) {
+      width: 500px; height: 400px; bottom: 10%; left: 20%;
+      background: radial-gradient(circle, #003fa3 0%, transparent 70%);
+      animation-duration: 18s; animation-delay: -3s;
     }
-    .brand-sub{font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:56vw}
-    .nav{
-      display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; align-items:center;
+    @keyframes blobFloat {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(30px, 20px) scale(1.08); }
     }
 
-    .btn{
-      border:1px solid var(--border);
-      background:rgba(16,27,21,.9);
-      color:var(--text);
-      padding:10px 14px;
-      border-radius:14px;
-      font-weight:800;
-      cursor:pointer;
-      transition:transform .12s ease, opacity .12s ease;
-      user-select:none;
-    }
-    .btn:hover{transform:translateY(-1px)}
-    .btn:active{transform:translateY(0px); opacity:.9}
-    .btn.primary{
-      border:none;
-      color:#140a0a;
-      background:linear-gradient(90deg,var(--brand),var(--brand2));
-      box-shadow:
-        0 12px 30px rgba(0,0,0,.45),
-        0 0 22px rgba(54,192,107,.18),
-        0 0 18px rgba(229,57,53,.14);
-    }
-    .btn.ghost{ background:transparent; }
-    .btn[disabled]{opacity:.55; pointer-events:none}
+    /* ── PARTICLES CANVAS ── */
+    #particles { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
 
-    /* Mobile menu */
-    .hamburger{display:none}
-    @media (max-width: 520px){
-      .wrap{padding:14px}
-      .brand-sub{display:none}
-      .nav{display:none}
-      .hamburger{display:inline-flex}
-      .menu{
-        display:none;
-        margin-top:10px;
-        border:1px solid var(--border);
-        background:rgba(15,22,18,.88);
-        border-radius:18px;
-        padding:10px;
-      }
-      .menu.open{display:block}
-      .menu .btn{width:100%; justify-content:center; display:flex}
-    }
+    /* ── WRAP ── */
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 10; }
 
-    /* Layout */
-    .grid{display:grid; gap:14px}
-    .hero{
-      margin-top:14px;
-      grid-template-columns: 1.2fr .8fr;
-      align-items:stretch;
+    /* ── HEADER ── */
+    .site-header {
+      position: sticky; top: 14px; z-index: 50;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(4, 13, 26, .7);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(16px) saturate(180%);
+      border-radius: 24px;
+      padding: 12px 20px;
+      box-shadow: 0 8px 32px rgba(0,0,20,.5), 0 0 0 1px rgba(79,163,255,.08);
+      margin-top: 14px;
     }
-    @media (max-width: 900px){
-      .hero{grid-template-columns:1fr}
+    .brand {
+      display: flex; align-items: center; gap: 12px;
     }
+    .brand-logo {
+      width: 44px; height: 44px; border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent3));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 900; font-size: 18px; color: #fff;
+      box-shadow: 0 0 20px rgba(79,163,255,.4);
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .brand-logo img { width: 44px; height: 44px; object-fit: cover; border-radius: 14px; }
+    .brand-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 900; font-size: 16px;
+      letter-spacing: .5px;
+      background: linear-gradient(90deg, #7dc9ff, #fff 60%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .brand-tag { font-size: 11px; color: var(--muted); margin-top: 1px; }
 
-    .card{
-      border:1px solid var(--border);
-      background:rgba(16,27,21,.72);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:16px;
+    .nav-links {
+      display: flex; gap: 6px; align-items: center;
     }
-    .card.soft{
-      background:rgba(16,27,21,.55);
-      box-shadow:none;
+    .nav-links a {
+      padding: 8px 14px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      transition: color .2s, background .2s;
     }
+    .nav-links a:hover { color: var(--text); background: rgba(79,163,255,.1); }
+    .nav-links .cta {
+      background: linear-gradient(90deg, var(--accent2), var(--accent1));
+      color: #fff;
+      box-shadow: 0 0 20px rgba(26,108,255,.4);
+      padding: 8px 16px;
+    }
+    .nav-links .cta:hover { opacity: .9; background: linear-gradient(90deg, var(--accent2), var(--accent1)); }
 
-    h1,h2,h3{margin:0}
-    /* Glow headings */
-    h1, h2, h3{
-      text-shadow:
-        0 0 10px rgba(255,255,255,.18),
-        0 0 20px rgba(54,192,107,.12),
-        0 0 26px rgba(229,57,53,.10);
+    .hamburger-btn {
+      display: none;
+      background: rgba(79,163,255,.15);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 12px;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
     }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger-btn { display: block; }
+    }
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      background: rgba(4,13,26,.92);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 12px;
+      margin-top: 8px;
+      position: relative; z-index: 50;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text);
+    }
+    .mobile-nav a:hover { background: rgba(79,163,255,.1); }
 
-    .muted{color:var(--muted)}
-    .pill{
-      display:inline-flex; gap:8px; align-items:center;
-      border:1px solid var(--border);
-      background:rgba(16,27,21,.85);
-      padding:6px 10px;
-      border-radius:999px;
-      font-size:12px;
-      color:var(--muted);
-      font-weight:800;
-      text-shadow: 0 0 10px rgba(255,255,255,.18);
+    /* ── HERO ── */
+    .hero {
+      padding: 80px 0 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
     }
+    @media (max-width: 860px) { .hero { grid-template-columns: 1fr; padding: 50px 0 40px; } }
 
-    /* h1 highlight glow */
-    h1 span{
-      text-shadow:
-        0 0 12px rgba(255,209,102,.35),
-        0 0 26px rgba(255,209,102,.18);
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(79,163,255,.12);
+      border: 1px solid rgba(79,163,255,.3);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent1);
+      margin-bottom: 20px;
     }
+    .hero-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent1); box-shadow: 0 0 8px var(--accent1); animation: pulse 2s ease infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
 
-    .kpis{
-      margin-top:12px;
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:10px;
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -.5px;
+      margin-bottom: 16px;
     }
-    .kpi{
-      border:1px solid var(--border);
-      border-radius:16px;
-      padding:12px;
-      background:rgba(15,22,18,.9);
+    .hero-title .grad {
+      background: linear-gradient(120deg, #4fa3ff 0%, #60c8ff 50%, #a0d8ff 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .kpi .num{
-      font-weight:900; font-size:18px;
-      text-shadow:
-        0 0 12px rgba(54,192,107,.20),
-        0 0 22px rgba(255,255,255,.12);
-    }
-    .kpi .lab{font-size:12px; color:var(--muted); margin-top:2px}
-
-    .strip{
-      margin-top:10px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:10px 12px;
-      background:rgba(15,22,18,.9);
-    }
-    .mono{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-weight:900;
-      text-shadow:
-        0 0 12px rgba(54,192,107,.20),
-        0 0 22px rgba(255,255,255,.12);
-    }
-
-    /* Sections */
-    .section{margin-top:16px}
-    .section-title{display:flex; align-items:end; justify-content:space-between; gap:10px; flex-wrap:wrap}
-    .section-title p{margin:6px 0 0}
-
-    /* Tabs + packages */
-    .tabs{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
-    .tab{
-      border:1px solid var(--border);
-      background:rgba(15,22,18,.9);
-      padding:8px 12px;
-      border-radius:999px;
-      cursor:pointer;
-      font-weight:900;
-      font-size:13px;
-      color:var(--muted);
-    }
-    .tab.active{
-      color:#140a0a;
-      border:none;
-      background:linear-gradient(90deg,var(--brand),var(--brand2));
+    .hero-desc {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 28px;
+      max-width: 480px;
     }
 
-    .pkg-grid{
-      margin-top:12px;
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-      gap:12px;
+    .hero-ctas { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(90deg, var(--accent2), var(--accent1));
+      color: #fff;
+      padding: 12px 22px;
+      border-radius: 14px;
+      font-weight: 700; font-size: 14px;
+      box-shadow: 0 8px 28px rgba(26,108,255,.45), 0 0 0 1px rgba(255,255,255,.08);
+      transition: transform .15s, box-shadow .15s;
+      border: none; cursor: pointer;
     }
-    .pkg{
-      border:1px solid var(--border);
-      background:rgba(15,22,18,.92);
-      border-radius:18px;
-      padding:14px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      min-height:128px;
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(26,108,255,.55); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(79,163,255,.1);
+      border: 1px solid var(--border2);
+      color: var(--accent1);
+      padding: 12px 22px;
+      border-radius: 14px;
+      font-weight: 700; font-size: 14px;
+      transition: background .15s, transform .15s;
+      cursor: pointer;
     }
-    .pkg .name{font-weight:900}
-    .pkg .price{
-      font-weight:950; font-size:20px;
-      text-shadow:
-        0 0 12px rgba(54,192,107,.18),
-        0 0 22px rgba(255,255,255,.10);
-    }
-    .pkg .actions{margin-top:auto}
+    .btn-secondary:hover { background: rgba(79,163,255,.18); transform: translateY(-2px); }
 
-    /* Form */
-    label{display:block; font-weight:800; font-size:13px; color:rgba(242,255,243,.85); margin-bottom:6px}
-    input,select,textarea{
-      width:100%;
-      background:rgba(11,15,12,.75);
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:12px;
-      color:var(--text);
-      outline:none;
+    /* ── STATS ── */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 32px;
     }
-    input::placeholder, textarea::placeholder{color:rgba(242,255,243,.45)}
+    .stat-item {
+      background: rgba(10, 28, 56, .85);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      transition: border-color .2s;
+    }
+    .stat-item:hover { border-color: var(--border2); }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--accent1);
+      text-shadow: 0 0 20px rgba(79,163,255,.4);
+    }
+    .stat-lab { font-size: 11px; color: var(--muted); margin-top: 3px; }
 
-    .two-col{grid-template-columns:1fr 360px; align-items:start}
-    @media (max-width: 980px){ .two-col{grid-template-columns:1fr} }
+    /* ── HERO CARD ── */
+    .hero-card-wrap { display: flex; justify-content: center; align-items: center; }
+    .hero-card {
+      width: 100%;
+      max-width: 400px;
+      background: rgba(10,28,56,.7);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow), 0 0 0 1px rgba(79,163,255,.05);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(79,163,255,.12), transparent 60%);
+      pointer-events: none;
+    }
+    .hc-avatar {
+      width: 72px; height: 72px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #1a6cff, #60c8ff);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 900; font-size: 26px;
+      margin-bottom: 16px;
+      box-shadow: 0 8px 28px rgba(26,108,255,.5);
+      overflow: hidden;
+    }
+    .hc-avatar img { width: 72px; height: 72px; object-fit: cover; border-radius: 20px; }
+    .hc-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px; font-weight: 900;
+      background: linear-gradient(90deg, #7dc9ff, #fff 70%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hc-role { font-size: 13px; color: var(--muted); margin-top: 4px; margin-bottom: 20px; }
 
-    .row{display:grid; gap:12px; grid-template-columns:1fr 1fr}
-    @media (max-width: 650px){ .row{grid-template-columns:1fr} }
-
-    .summary{
-      position:sticky; top:92px;
-    }
-    @media (max-width: 980px){ .summary{position:static} }
-
-    .list{display:flex; flex-direction:column; gap:8px; margin-top:10px}
-    .item{display:flex; justify-content:space-between; gap:10px; color:rgba(242,255,243,.88)}
-    .total{
-      font-weight:950; font-size:22px;
-      text-shadow:
-        0 0 12px rgba(54,192,107,.20),
-        0 0 22px rgba(255,255,255,.12);
-    }
-
-    /* History table */
-    .table-wrap{
-      border:1px solid var(--border);
-      border-radius:18px;
-      overflow:hidden;
-      background:rgba(15,22,18,.85);
-    }
-    .table-tools{
-      display:flex; gap:8px; flex-wrap:wrap; align-items:center;
-      margin:10px 0 0;
-    }
-    table{width:100%; border-collapse:collapse}
-    th,td{padding:10px; border-bottom:1px solid rgba(255,255,255,.06); text-align:left; font-size:14px}
-    th{
-      color:rgba(255,209,102,.92);
-      font-weight:900;
-      text-shadow: 0 0 10px rgba(255,209,102,.15);
-    }
-    .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
-    .table-scroll table{min-width:780px}
-
-    /* Payment cards */
-    .pay-grid{
-      display:grid; gap:12px;
-      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
-      margin-top:12px;
-    }
-    .paybox{
-      border:1px solid var(--border);
-      background:rgba(15,22,18,.92);
-      border-radius:18px;
-      padding:14px;
-      text-align:center;
-    }
-    .paybox img{border-radius:14px}
-
-    /* Toast */
-    .toast{
-      position:fixed;
-      left:50%;
-      bottom:16px;
-      transform:translateX(-50%);
-      z-index:80;
-      display:none;
-      background:rgba(15,22,18,.95);
-      border:1px solid var(--border);
-      color:var(--text);
-      padding:10px 14px;
-      border-radius:14px;
-      box-shadow:var(--shadow);
-      text-shadow: 0 0 10px rgba(255,255,255,.14);
-    }
-    .toast.show{display:block}
-
-    /* Assistant */
-    .assistant-toggle{
-      position:fixed;
-      right:16px; bottom:16px;
-      z-index:70;
-      border:none;
-      border-radius:999px;
-      padding:10px 14px;
-      font-weight:950;
-      color:#140a0a;
-      background:linear-gradient(90deg,var(--brand),var(--brand2));
-      box-shadow:0 16px 40px rgba(0,0,0,.55);
-      cursor:pointer;
-    }
-    .assistant{
-      position:fixed;
-      right:16px; bottom:70px;
-      width:320px; max-height:460px;
-      display:none;
-      flex-direction:column;
-      border:1px solid var(--border);
-      border-radius:18px;
-      background:rgba(15,22,18,.96);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-      z-index:70;
-    }
-    .assistant.open{display:flex}
-    .assistant-head{
-      padding:10px 12px;
-      border-bottom:1px solid rgba(255,255,255,.06);
-    }
-    .assistant-title{
-      font-weight:950; font-size:14px;
-      text-shadow: 0 0 10px rgba(255,255,255,.12);
-    }
-    .assistant-sub{font-size:11px; color:var(--muted); margin-top:2px}
-    .assistant-body{
-      padding:10px;
-      overflow:auto;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      font-size:13px;
-    }
-    .bubble{
-      max-width:85%;
-      padding:8px 10px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(16,27,21,.75);
-      text-shadow: 0 0 10px rgba(255,255,255,.08);
-    }
-    .bubble.me{
-      margin-left:auto;
-      color:#140a0a;
-      border:none;
-      background:linear-gradient(90deg,var(--brand),var(--brand2));
-      text-shadow:none;
-    }
-    .assistant-input{
-      padding:10px;
-      border-top:1px solid rgba(255,255,255,.06);
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:8px;
-      align-items:end;
-    }
-    .assistant-input textarea{min-height:40px; max-height:90px; resize:none}
-
-    .footer{
-      margin:18px 0 6px;
-      color:rgba(242,255,243,.55);
-      font-size:12px;
-      text-align:center;
-      text-shadow: 0 0 10px rgba(255,255,255,.08);
+    .hc-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    .tag {
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(79,163,255,.12);
+      border: 1px solid rgba(79,163,255,.22);
+      color: var(--accent1);
     }
 
-    @media (prefers-reduced-motion:reduce){
-      *{scroll-behavior:auto !important}
-      .btn,.tab{transition:none}
-      #snow{display:none;}
-      h1,h2,h3,.brand-title,.kpi .num,.total,.mono{ text-shadow:none; }
+    /* Social links in card */
+    .hc-socials { display: flex; flex-direction: column; gap: 8px; }
+    .social-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(79,163,255,.12);
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      transition: background .2s, border-color .2s, transform .15s;
+    }
+    .social-row:hover { background: rgba(79,163,255,.12); border-color: var(--border2); transform: translateX(4px); }
+    .social-icon {
+      width: 30px; height: 30px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .si-fb { background: linear-gradient(135deg, #1877f2, #42a5f5); }
+    .si-line { background: linear-gradient(135deg, #06c755, #00e676); }
+    .si-yt { background: linear-gradient(135deg, #ff0000, #ff6b6b); }
+    .si-ig { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366); }
+    .si-tg { background: linear-gradient(135deg, #0088cc, #44c7f0); }
+    .si-tw { background: linear-gradient(135deg, #1da1f2, #0d8ecf); }
+    .si-dc { background: linear-gradient(135deg, #5865f2, #7289da); }
+    .si-tt { background: linear-gradient(135deg, #010101, #69c9d0); }
+    .social-url { margin-left: auto; font-size: 11px; color: var(--muted); }
+
+    /* ── SECTION HEADER ── */
+    .section { padding: 50px 0; }
+    .section-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(79,163,255,.1);
+      border: 1px solid rgba(79,163,255,.2);
+      color: var(--accent1);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+    .section-desc { font-size: 15px; color: var(--muted); line-height: 1.6; max-width: 600px; }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+    .skill-card {
+      background: rgba(10,28,56,.75);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(79,163,255,.15), transparent 70%);
+      transition: opacity .3s;
+    }
+    .skill-card:hover { border-color: var(--border2); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,20,.5); }
+    .skill-card:hover::before { opacity: 1; }
+    .skill-emoji { font-size: 28px; margin-bottom: 12px; }
+    .skill-name { font-weight: 800; font-size: 15px; margin-bottom: 6px; }
+    .skill-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .project-card {
+      background: rgba(10,28,56,.75);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+      display: flex; flex-direction: column;
+    }
+    .project-card:hover { border-color: var(--border2); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,20,.5); }
+    .project-banner {
+      height: 140px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 52px;
+      position: relative;
+      overflow: hidden;
+    }
+    .pb-topup  { background: linear-gradient(135deg, #071428 0%, #0d2244 50%, #1a4080 100%); }
+    .pb-game   { background: linear-gradient(135deg, #07190f 0%, #0d3520 50%, #1a6030 100%); }
+    .pb-web    { background: linear-gradient(135deg, #190714 0%, #350d28 50%, #602050 100%); }
+    .pb-tools  { background: linear-gradient(135deg, #191207 0%, #352b0d 50%, #604515 100%); }
+    .project-body { padding: 18px; flex: 1; display: flex; flex-direction: column; }
+    .project-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 16px; margin-bottom: 6px; }
+    .project-desc { font-size: 13px; color: var(--muted); line-height: 1.5; flex: 1; }
+    .project-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+    .project-tag {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(79,163,255,.1);
+      border: 1px solid rgba(79,163,255,.2);
+      color: var(--accent3);
+    }
+    .project-footer {
+      display: flex; justify-content: flex-end;
+      padding: 12px 18px 16px;
+      border-top: 1px solid rgba(79,163,255,.08);
+    }
+
+    /* ── CONNECT ── */
+    .connect-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+    .connect-card {
+      background: rgba(10,28,56,.75);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: border-color .2s, transform .2s;
+    }
+    .connect-card:hover { border-color: var(--border2); transform: translateY(-3px); }
+    .cc-head { display: flex; align-items: center; gap: 14px; }
+    .cc-icon {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .cc-name { font-weight: 800; font-size: 15px; }
+    .cc-handle { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .cc-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .cc-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 9px 16px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      background: rgba(79,163,255,.1);
+      border: 1px solid var(--border2);
+      color: var(--accent1);
+      transition: background .15s;
+      align-self: flex-start;
+    }
+    .cc-btn:hover { background: rgba(79,163,255,.2); }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      margin-top: 60px;
+      padding: 32px 0 28px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 900;
+      background: linear-gradient(90deg, #4fa3ff, #a0d8ff 60%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+    .footer-desc { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+    .footer-links { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+    .footer-links a {
+      font-size: 12px;
+      color: var(--muted);
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      transition: color .15s, border-color .15s;
+    }
+    .footer-links a:hover { color: var(--accent1); border-color: var(--border2); }
+    .footer-copy { font-size: 11px; color: rgba(174,210,255,.3); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 480px) {
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+      .hero-stats .stat-item:last-child { grid-column: span 2; }
     }
   </style>
 </head>
 
 <body>
-  <!-- Snow overlay -->
-  <canvas id="snow" aria-hidden="true"></canvas>
+
+  <div class="bg-blobs" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </div>
+  <canvas id="particles" aria-hidden="true"></canvas>
 
   <div class="wrap">
-    <!-- Header -->
-    <header class="header">
+
+    <!-- HEADER -->
+    <header class="site-header">
       <div class="brand">
-        <img class="logo" src="images/evanvale-logo.png" alt="EVAN VALE" width="42" height="42" decoding="async" fetchpriority="high" />
-        <div style="min-width:0">
-          <div class="brand-title">EVAN VALE TOPUP SERVICE เว็ปปิดให้บริการแบบไม่มีกำหนดค้าบบ </div>
-          <div class="brand-sub">เติมเกมไว • โปร่งใส • มีแอดมินดูแล</div>
+        <div class="brand-logo">
+          <img src="images/evanvale-logo.png" alt="EVAN VALE" onerror="this.parentElement.textContent='EV'" />
+        </div>
+        <div>
+          <div class="brand-name">EVAN VALE</div>
+          <div class="brand-tag">Developer · Creator · Admin</div>
         </div>
       </div>
 
-      <nav class="nav" aria-label="Primary">
-        <a class="btn ghost" href="#packages">แพ็กเกจ</a>
-        <a class="btn ghost" href="#order">สั่งเติม</a>
-        <a class="btn ghost" href="#history">ประวัติ</a>
-        <a class="btn primary" id="btnAdminNav" href="https://www.facebook.com/share/1JRkDmJDvX/" target="_blank" rel="noopener">ติดต่อแอดมิน</a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="#about">เกี่ยวกับ</a>
+        <a href="#projects">ผลงาน</a>
+        <a href="#skills">ทักษะ</a>
+        <a href="#connect">ติดต่อ</a>
+        <a href="https://www.facebook.com/share/1JRkDmJDvX/" target="_blank" rel="noopener" class="cta">เติมเกม →</a>
       </nav>
 
-      <button class="btn hamburger" id="btnMenu" type="button">เมนู</button>
+      <button class="hamburger-btn" id="menuBtn" type="button" aria-label="เมนู">☰ เมนู</button>
     </header>
 
-    <div class="menu" id="mobileMenu">
-      <a class="btn" href="#packages">แพ็กเกจ</a>
-      <a class="btn" href="#order">สั่งเติม</a>
-      <a class="btn" href="#history">ประวัติ</a>
-      <a class="btn primary" href="https://www.facebook.com/share/1JRkDmJDvX/" target="_blank" rel="noopener">ติดต่อแอดมิน</a>
-    </div>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
+      <a href="#about" onclick="closeMobile()">เกี่ยวกับ</a>
+      <a href="#projects" onclick="closeMobile()">ผลงาน</a>
+      <a href="#skills" onclick="closeMobile()">ทักษะ</a>
+      <a href="#connect" onclick="closeMobile()">ติดต่อ</a>
+      <a href="https://www.facebook.com/share/1JRkDmJDvX/" target="_blank" rel="noopener" style="color:#4fa3ff">เติมเกม →</a>
+    </nav>
 
-    <!-- Hero -->
-    <section class="grid hero">
-      <div class="card">
-        <span class="pill">✅ เปิดรับออเดอร์ 08:30–21:30</span>
-        <h1 style="margin-top:10px; font-weight:950; letter-spacing:.2px">
-          เติมเกมไว โปร่งใส <span style="color:var(--accent)">มีแอดมินดูแล</span>
-        </h1>
-        <p class="muted" style="margin:8px 0 0">เลือกแพ็ก → กรอก UID → ยืนยันบิล → ชำระเงิน</p>
-
-        <div class="strip" id="cdStrip" aria-live="polite">
-          <div style="font-weight:900">🧧 นับถอยหลังสู่ตรุษจีน</div>
-          <div class="mono" id="countdownDigits">-- วัน --:--:--</div>
-        </div>
-
-        <div class="kpis">
-          <div class="kpi"><div class="num">3–10 นาที*</div><div class="lab">โดยเฉลี่ย</div></div>
-          <div class="kpi"><div class="num">1000+</div><div class="lab">รายการสำเร็จ</div></div>
-          <div class="kpi"><div class="num">0%</div><div class="lab">ยึด UID</div></div>
-        </div>
-        <p class="muted" style="margin:10px 0 0; font-size:12px">*ช่วงพีค/เกมปิดปรับปรุงอาจช้ากว่าปกติ</p>
-      </div>
-
-      <div class="card soft">
-        <h3 style="font-weight:950">เริ่มต้นแบบไวๆ</h3>
-        <p class="muted" style="margin:6px 0 0">กดด้านล่างเพื่อไปในส่วนที่คุณต้องการ</p>
-        <div class="grid" style="margin-top:12px">
-          <a class="btn" href="#packages">ดูแพ็กเกจ</a>
-          <a class="btn primary" href="#order">ไปสั่งเติม</a>
-          <a class="btn" href="#history">ดูประวัติ</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Packages -->
-    <section id="packages" class="section">
-      <div class="card">
-        <div class="section-title">
-          <div>
-            <h2 style="font-weight:950">แพ็กเกจยอดฮิต</h2>
-            <p class="muted">คลิก “เลือกแพ็ก” เพื่อกรอกฟอร์มให้อัตโนมัติ</p>
+    <!-- HERO -->
+    <section id="about">
+      <div class="hero">
+        <div class="hero-left">
+          <div class="hero-badge">✅ พร้อมรับงาน / สั่งเติมเกม</div>
+          <h1 class="hero-title">
+            สวัสดี ผม<br>
+            <span class="grad">EVAN VALE</span>
+          </h1>
+          <p class="hero-desc">
+            Developer • Admin บริการเติมเกม • Content Creator
+            ทำงานโปร่งใส รวดเร็ว และมีคุณภาพมาตลอด
+          </p>
+          <div class="hero-ctas">
+            <a href="#projects" class="btn-primary">🎯 ดูผลงาน</a>
+            <a href="#connect" class="btn-secondary">📬 ติดต่อ</a>
           </div>
-        </div>
 
-        <div class="tabs" id="game-tabs"></div>
-        <div class="pkg-grid" id="pkg-grid"></div>
-      </div>
-    </section>
-
-    <!-- Order + Summary -->
-    <section id="order" class="section grid two-col">
-      <div class="card">
-        <h2 style="font-weight:950">สั่งเติมเกม</h2>
-
-        <div class="row" style="margin-top:12px">
-          <div>
-            <label>เกม</label>
-            <select id="game"></select>
-            <p id="gameNote" class="muted" style="display:none;margin:8px 0 0"></p>
-            <p id="thaiOnlyNote" style="display:none;margin:8px 0 0;border-left:3px solid var(--brand);padding:8px 10px;border-radius:12px;background:rgba(15,22,18,.9)">
-              ⚠️ เกมนี้รองรับเฉพาะ <b>เซิร์ฟเวอร์ไทย</b> เท่านั้น (Free Fire / RoV / PUBG Mobile / Roblox / Call of Duty)
-            </p>
-          </div>
-          <div>
-            <label>โซน/เซิร์ฟเวอร์</label>
-            <select id="server"></select>
-          </div>
-        </div>
-
-        <div class="row" style="margin-top:12px">
-          <div>
-            <label>UID / Player ID</label>
-            <input id="uid" placeholder="เช่น 812345678 หรือชื่อในเกม">
-          </div>
-          <div>
-            <label>แพ็กเกจ</label>
-            <select id="package"></select>
-          </div>
-        </div>
-
-        <div class="row" style="margin-top:12px">
-          <div>
-            <label>วิธีชำระ</label>
-            <select id="method">
-              <option>PromptPay</option>
-              <option>TrueMoney Wallet</option>
-              <option>โอนธนาคาร</option>
-            </select>
-          </div>
-          <div>
-            <label>โค้ดส่วนลด (ถ้ามี)</label>
-            <input id="promo" placeholder="เช่น EVAN10">
-          </div>
-        </div>
-
-        <div class="row" style="margin-top:12px">
-          <div>
-            <label>ชื่อลูกค้า</label>
-            <input id="name" placeholder="ชื่อเล่นก็ได้">
-          </div>
-          <div>
-            <label>ช่องทางติดต่อ</label>
-            <input id="contact" placeholder="Line/FB/Tel">
-          </div>
-        </div>
-
-        <div class="grid" style="grid-template-columns:1fr 1fr 1fr; gap:10px; margin-top:14px">
-          <button class="btn" id="btnReset" type="button">ล้างฟอร์ม</button>
-          <button class="btn" id="btnSaveProfile" type="button">บันทึกข้อมูล</button>
-          <button class="btn primary" id="btnSubmit" type="button">ยืนยันและสร้างบิล</button>
-        </div>
-        <p class="muted" style="margin:10px 0 0">กดยืนยันแล้วจะเลื่อนไปส่วน “ชำระเงิน” อัตโนมัติ</p>
-
-        <div id="miniSum" style="display:none; margin-top:14px; border:1px solid var(--border); border-radius:18px; padding:12px; background:rgba(15,22,18,.9)">
-          <div style="font-weight:950">สรุปคร่าว ๆ</div>
-          <div class="list">
-            <div class="item"><span class="muted">เกม</span><span id="mini-game">-</span></div>
-            <div class="item"><span class="muted">เซิร์ฟเวอร์</span><span id="mini-server">-</span></div>
-            <div class="item"><span class="muted">แพ็กเกจ</span><span id="mini-pkg">-</span></div>
-            <div class="item"><span class="muted">ยอด</span><span id="mini-total">฿0</span></div>
-          </div>
-        </div>
-      </div>
-
-      <aside class="card summary">
-        <h3 style="font-weight:950">สรุปบิล</h3>
-        <div class="list">
-          <div class="item"><span class="muted">เลขบิล</span><span id="sum-bill">-</span></div>
-          <div class="item"><span class="muted">เกม</span><span id="sum-game">-</span></div>
-          <div class="item"><span class="muted">เซิร์ฟเวอร์</span><span id="sum-server">-</span></div>
-          <div class="item"><span class="muted">UID</span><span id="sum-uid">-</span></div>
-          <div class="item"><span class="muted">แพ็กเกจ</span><span id="sum-pkg">-</span></div>
-          <div class="item"><span class="muted">วิธีชำระ</span><span id="sum-method">-</span></div>
-        </div>
-        <div style="height:1px;background:rgba(255,255,255,.08);margin:12px 0"></div>
-        <div class="item"><span class="muted">ยอดสุทธิ</span><span class="total" id="sum-total">฿0</span></div>
-      </aside>
-    </section>
-
-    <!-- Payment -->
-    <section id="pay" class="section" style="display:none">
-      <div class="card">
-        <h2 style="font-weight:950">ชำระเงิน</h2>
-        <p class="muted" style="margin:6px 0 0">แนบสลิป/เลขอ้างอิง → กด “คัดลอกสรุปบิล” → เปิดแชทแอดมิน</p>
-
-        <div class="pay-grid">
-          <div class="paybox">
-            <div style="font-weight:950">TrueMoney Wallet</div>
-            <p class="muted" style="margin:6px 0 10px">สแกนด้วยแอป TrueMoney</p>
-            <img src="truemoney.png" alt="TrueMoney QR" loading="lazy" decoding="async" width="360" height="360">
-          </div>
-          <div class="paybox">
-            <div style="font-weight:950">พร้อมเพย์ / ธนาคาร</div>
-            <p class="muted" style="margin:6px 0 10px">สแกนด้วยแอปธนาคาร</p>
-            <img src="promptpay.png" alt="PromptPay QR" loading="lazy" decoding="async" width="360" height="360">
-          </div>
-        </div>
-
-        <div class="card soft" style="margin-top:12px">
-          <h3 style="font-weight:950">แนบหลักฐาน</h3>
-
-          <div class="row" style="margin-top:10px">
-            <div>
-              <label>อัปโหลดสลิป</label>
-              <input id="slip" type="file" accept="image/*">
-              <div class="muted" style="margin-top:6px; font-size:12px">เว็บสแตติกจะไม่เก็บไฟล์ ให้แนบซ้ำในแชทหากต้องใช้</div>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-num">1000+</div>
+              <div class="stat-lab">รายการสำเร็จ</div>
             </div>
-            <div>
-              <label>เลขอ้างอิง (ถ้ามี)</label>
-              <input id="ref" placeholder="เช่น 2025-XX-XX">
+            <div class="stat-item">
+              <div class="stat-num">10+</div>
+              <div class="stat-lab">เกมที่รองรับ</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">0%</div>
+              <div class="stat-lab">ยึด UID</div>
             </div>
           </div>
+        </div>
 
-          <div class="grid" style="grid-template-columns:1fr 1fr 1fr 1fr; gap:10px; margin-top:12px">
-            <button class="btn" id="btnBackToForm" type="button">กลับไปแก้ฟอร์ม</button>
-            <button class="btn primary" id="btnPrepareMsg" type="button" disabled>คัดลอกสรุปบิล</button>
-            <button class="btn" id="btnMarkPaid" type="button" disabled>แจ้งชำระแล้ว</button>
-            <a class="btn" id="btnOpenAdmin" href="#" target="_blank" rel="noopener" style="pointer-events:none;opacity:.6;display:flex;justify-content:center;align-items:center">เปิดแชทแอดมิน</a>
+        <!-- PROFILE CARD -->
+        <div class="hero-card-wrap">
+          <div class="hero-card">
+            <div class="hc-avatar">
+              <img src="images/evanvale-logo.png" alt="EVAN VALE" onerror="this.parentElement.textContent='EV'" />
+            </div>
+            <div class="hc-name">EVAN VALE</div>
+            <div class="hc-role">Developer · Game Topup Admin · Creator</div>
+
+            <div class="hc-tags">
+              <span class="tag">Free Fire</span>
+              <span class="tag">Roblox</span>
+              <span class="tag">Genshin</span>
+              <span class="tag">RoV</span>
+              <span class="tag">HTML/CSS/JS</span>
+              <span class="tag">Admin</span>
+            </div>
+
+            <!-- 🔗 แก้ href ตรงนี้ -->
+            <div class="hc-socials">
+              <a class="social-row" href="https://www.facebook.com/share/1JRkDmJDvX/" target="_blank" rel="noopener">
+                <div class="social-icon si-fb">📘</div>
+                <span>Facebook</span>
+                <span class="social-url">EVAN VALE →</span>
+              </a>
+              <a class="social-row" href="#" target="_blank" rel="noopener">
+                <div class="social-icon si-line">💬</div>
+                <span>LINE</span>
+                <span class="social-url">ใส่ ID Line →</span>
+              </a>
+              <a class="social-row" href="#" target="_blank" rel="noopener">
+                <div class="social-icon si-ig">📷</div>
+                <span>Instagram</span>
+                <span class="social-url">ใส่ @handle →</span>
+              </a>
+              <a class="social-row" href="#" target="_blank" rel="noopener">
+                <div class="social-icon si-yt">▶️</div>
+                <span>YouTube</span>
+                <span class="social-url">ใส่ Channel →</span>
+              </a>
+              <a class="social-row" href="#" target="_blank" rel="noopener">
+                <div class="social-icon si-dc">🎮</div>
+                <span>Discord</span>
+                <span class="social-url">ใส่ Server →</span>
+              </a>
+            </div>
           </div>
-
-          <div id="copyHint" class="muted" style="display:none;margin-top:10px"></div>
-          <textarea id="msgPreview" readonly style="display:none;margin-top:10px" rows="8"></textarea>
         </div>
       </div>
     </section>
 
-    <!-- History -->
-    <section id="history" class="section">
-      <div class="card">
-        <h2 style="font-weight:950">ประวัติการทำรายการ</h2>
+    <div class="divider"></div>
 
-        <div class="table-tools">
-          <input id="histSearch" placeholder="ค้นหา: บิล/เกม/UID/ชื่อ" style="max-width:280px">
-          <select id="histGameFilter" class="btn" style="padding:10px 12px">
-            <option value="">ทุกเกม</option>
-          </select>
-          <select id="histStatusFilter" class="btn" style="padding:10px 12px">
-            <option value="">ทุกสถานะ</option>
-            <option>รอชำระ</option>
-            <option>ส่งรายละเอียดแล้ว</option>
-            <option>ชำระแล้ว</option>
-            <option>ยกเลิก</option>
-          </select>
-          <button class="btn" id="btnExportCsv" type="button">ดาวน์โหลด CSV</button>
-          <button class="btn" id="btnClearAll" type="button">รีเซ็ตข้อมูลทั้งหมด</button>
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <div class="section-badge">💡 ทักษะ</div>
+      <h2 class="section-title">สิ่งที่ผมทำได้</h2>
+      <p class="section-desc">ทักษะและความเชี่ยวชาญที่สะสมมาจากประสบการณ์จริง</p>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-emoji">🎮</div>
+          <div class="skill-name">Game Top-up Admin</div>
+          <div class="skill-desc">เติมเกมรวดเร็ว 3-10 นาที รองรับกว่า 10 เกม โปร่งใส ปลอดภัย มีระบบติดตามสถานะ</div>
         </div>
-
-        <div class="table-wrap" style="margin-top:12px">
-          <div class="table-scroll">
-            <table id="histTable">
-              <thead>
-                <tr>
-                  <th>เวลา</th><th>เลขบิล</th><th>เกม</th><th>เซิร์ฟ</th><th>แพ็กเกจ</th><th>ยอด</th><th>สถานะ</th><th>UID</th><th>เครื่องมือ</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-          <div id="histEmpty" class="muted" style="padding:12px;display:none">ยังไม่มีรายการ</div>
+        <div class="skill-card">
+          <div class="skill-emoji">💻</div>
+          <div class="skill-name">Web Development</div>
+          <div class="skill-desc">พัฒนาเว็บด้วย HTML, CSS, JavaScript ออกแบบ UI/UX ที่ใช้งานง่ายและสวยงาม</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-emoji">🎨</div>
+          <div class="skill-name">UI / UX Design</div>
+          <div class="skill-desc">ออกแบบหน้าเว็บที่สวยงาม มีความสอดคล้องทางสายตา รองรับทุกขนาดหน้าจอ</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-emoji">🛡️</div>
+          <div class="skill-name">Customer Service</div>
+          <div class="skill-desc">ดูแลลูกค้าด้วยความใส่ใจ ตอบกลับไว แก้ปัญหาได้ตรงจุด เปิดรับ 08:30–21:30</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-emoji">📊</div>
+          <div class="skill-name">Order Management</div>
+          <div class="skill-desc">ระบบจัดการออร์เดอร์ ติดตาม ประวัติ Export CSV มี Backend Supabase รองรับ</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-emoji">🔗</div>
+          <div class="skill-name">Social Media</div>
+          <div class="skill-desc">บริหารช่องทางโซเชียล สร้างคอนเทนต์ที่มีคุณภาพ ดึงดูดกลุ่มเป้าหมาย</div>
         </div>
       </div>
     </section>
 
-    <div class="footer">© 2025 EVAN VALE • Static Topup Page</div>
+    <div class="divider"></div>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <div class="section-badge">🚀 ผลงาน</div>
+      <h2 class="section-title">โปรเจกต์ที่ภูมิใจ</h2>
+      <p class="section-desc">ตัวอย่างงานที่ได้ทำและผ่านมือจริง</p>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-banner pb-topup">🎯</div>
+          <div class="project-body">
+            <div class="project-name">EVAN VALE Topup Service</div>
+            <div class="project-desc">เว็บเติมเกมครบวงจร มีระบบบิล ประวัติการสั่งซื้อ QR ชำระเงิน และ Supabase Backend</div>
+            <div class="project-tags">
+              <span class="project-tag">HTML</span>
+              <span class="project-tag">CSS</span>
+              <span class="project-tag">JavaScript</span>
+              <span class="project-tag">Supabase</span>
+            </div>
+          </div>
+          <div class="project-footer">
+            <a href="#" class="btn-secondary" style="font-size:12px; padding:7px 14px">ดูโปรเจกต์ →</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-banner pb-game">🎮</div>
+          <div class="project-body">
+            <div class="project-name">Game Admin Service</div>
+            <div class="project-desc">บริการเติมเกมโดยตรง รองรับ Free Fire, RoV, Genshin, HSR, PUBG, Roblox, COD, WW</div>
+            <div class="project-tags">
+              <span class="project-tag">Free Fire</span>
+              <span class="project-tag">Genshin</span>
+              <span class="project-tag">Roblox</span>
+              <span class="project-tag">RoV</span>
+            </div>
+          </div>
+          <div class="project-footer">
+            <a href="https://www.facebook.com/share/1JRkDmJDvX/" target="_blank" rel="noopener" class="btn-secondary" style="font-size:12px; padding:7px 14px">ติดต่อ Admin →</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-banner pb-web">🌐</div>
+          <div class="project-body">
+            <div class="project-name">Portfolio Website</div>
+            <div class="project-desc">เว็บ Portfolio นี้ — ออกแบบสไตล์น้ำเงินกรมท่า มีอนิเมชั่น particles และ blob animations</div>
+            <div class="project-tags">
+              <span class="project-tag">HTML</span>
+              <span class="project-tag">CSS Animation</span>
+              <span class="project-tag">Canvas</span>
+            </div>
+          </div>
+          <div class="project-footer">
+            <a href="#" class="btn-secondary" style="font-size:12px; padding:7px 14px">ดูโปรเจกต์ →</a>
+          </div>
+        </div>
+
+        <div class="project-card" style="border-style:dashed; opacity:.5">
+          <div class="project-banner pb-tools">➕</div>
+          <div class="project-body">
+            <div class="project-name">โปรเจกต์ถัดไป</div>
+            <div class="project-desc">พื้นที่สำหรับผลงานชิ้นต่อไป — ใส่ชื่อ คำอธิบาย และ tags ได้เลย</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CONNECT -->
+    <section id="connect" class="section">
+      <div class="section-badge">📬 ติดต่อ</div>
+      <h2 class="section-title">ช่องทางติดต่อ</h2>
+      <p class="section-desc">ติดต่อผมได้ผ่านช่องทางเหล่านี้ — ตอบไวทุกช่องทาง</p>
+
+      <div class="connect-grid">
+        <div class="connect-card">
+          <div class="cc-head">
+            <div class="cc-icon si-fb" style="border-radius:14px;">📘</div>
+            <div>
+              <div class="cc-name">Facebook</div>
+              <div class="cc-handle">EVAN VALE Topup Service</div>
+            </div>
+          </div>
+          <div class="cc-desc">ช่องทางหลักสำหรับสั่งเติมเกมและติดต่อแอดมิน ตอบไวที่สุด</div>
+          <a class="cc-btn" href="https://www.facebook.com/share/1JRkDmJDvX/" target="_blank" rel="noopener">เปิด Facebook →</a>
+        </div>
+
+        <div class="connect-card">
+          <div class="cc-head">
+            <div class="cc-icon si-line" style="border-radius:14px;">💬</div>
+            <div>
+              <div class="cc-name">LINE</div>
+              <div class="cc-handle">ใส่ LINE ID ของคุณ</div>
+            </div>
+          </div>
+          <div class="cc-desc">ติดต่อผ่าน LINE ได้ — เหมาะสำหรับส่งสลิปและยืนยันออร์เดอร์</div>
+          <a class="cc-btn" href="#" target="_blank" rel="noopener">เปิด LINE →</a>
+        </div>
+
+        <div class="connect-card">
+          <div class="cc-head">
+            <div class="cc-icon si-ig" style="border-radius:14px;">📷</div>
+            <div>
+              <div class="cc-name">Instagram</div>
+              <div class="cc-handle">ใส่ @handle ของคุณ</div>
+            </div>
+          </div>
+          <div class="cc-desc">ติดตามคอนเทนต์ อัปเดตโปรโมชั่น และผลงานใหม่ๆ ได้ที่นี่</div>
+          <a class="cc-btn" href="#" target="_blank" rel="noopener">เปิด Instagram →</a>
+        </div>
+
+        <div class="connect-card">
+          <div class="cc-head">
+            <div class="cc-icon si-yt" style="border-radius:14px;">▶️</div>
+            <div>
+              <div class="cc-name">YouTube</div>
+              <div class="cc-handle">ใส่ชื่อช่อง YouTube</div>
+            </div>
+          </div>
+          <div class="cc-desc">วิดีโอรีวิว เกมเพลย์ และคอนเทนต์อื่นๆ ที่น่าสนใจ</div>
+          <a class="cc-btn" href="#" target="_blank" rel="noopener">เปิด YouTube →</a>
+        </div>
+
+        <div class="connect-card">
+          <div class="cc-head">
+            <div class="cc-icon si-dc" style="border-radius:14px;">🎮</div>
+            <div>
+              <div class="cc-name">Discord</div>
+              <div class="cc-handle">ใส่ Discord Server/Tag</div>
+            </div>
+          </div>
+          <div class="cc-desc">เข้าร่วม Server สำหรับอัปเดตโปรโมชั่น คุยเรื่องเกม และชุมชน</div>
+          <a class="cc-btn" href="#" target="_blank" rel="noopener">เข้า Discord →</a>
+        </div>
+
+        <div class="connect-card">
+          <div class="cc-head">
+            <div class="cc-icon si-tg" style="border-radius:14px;">✈️</div>
+            <div>
+              <div class="cc-name">Telegram</div>
+              <div class="cc-handle">ใส่ @username Telegram</div>
+            </div>
+          </div>
+          <div class="cc-desc">ช่องทางสำรอง — แจ้งเตือนโปรโมชั่นและข่าวสาร</div>
+          <a class="cc-btn" href="#" target="_blank" rel="noopener">เปิด Telegram →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-logo">EVAN VALE</div>
+      <div class="footer-desc">Developer · Game Topup Admin · Creator</div>
+      <div class="footer-links">
+        <a href="#about">เกี่ยวกับ</a>
+        <a href="#projects">ผลงาน</a>
+        <a href="#skills">ทักษะ</a>
+        <a href="#connect">ติดต่อ</a>
+        <a href="https://www.facebook.com/share/1JRkDmJDvX/" target="_blank" rel="noopener">บริการเติมเกม</a>
+      </div>
+      <div class="footer-copy">© 2025 EVAN VALE • Made with 💙 • All rights reserved</div>
+    </footer>
+
   </div>
 
-  <!-- Assistant -->
-  <div class="assistant" id="evAssistant" aria-label="EVAN AI">
-    <div class="assistant-head">
-      <div class="assistant-title">EVAN AI (เบต้า)</div>
-      <div class="assistant-sub">ช่วยสรุปบิล/แพ็ก • พิมพ์ “เกม + แพ็ก + UID”</div>
-    </div>
-    <div class="assistant-body" id="evAssistantMessages"></div>
-    <div class="assistant-input">
-      <textarea id="evAssistantInput" placeholder="พิมพ์คำถาม..."></textarea>
-      <button class="btn primary" id="evAssistantSend" type="button">ส่ง</button>
-    </div>
-  </div>
-  <button class="assistant-toggle" id="evAssistantToggle" type="button">EVAN • Chat</button>
-
-  <!-- Toast -->
-  <div id="toast" class="toast"></div>
-
-  <!-- ✅ SUPABASE SDK -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <!-- ✅ SUPABASE CONFIG + HELPERS -->
   <script>
-    // ====== ใส่ของมึงตรงนี้ ======
-    const SUPABASE_URL = "https://cnaukrfxxthemdmavuou.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_PJvhWJNhD6YlaAxOMgS9Uw_7bDlSzb4";
+    // MOBILE MENU
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    menuBtn?.addEventListener('click', () => mobileNav.classList.toggle('open'));
+    function closeMobile(){ mobileNav.classList.remove('open'); }
 
-    // ====== ปรับได้ ======
-    const SB_TABLE_ORDERS = "orders";
-    const SB_TABLE_SLIPS  = "slips";
-    const SB_BUCKET_SLIPS = "slips"; // Storage bucket
+    // PARTICLES
+    (function(){
+      const canvas = document.getElementById('particles');
+      if(!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const DPR = Math.min(window.devicePixelRatio || 1, 2);
+      let W, H, pts = [];
 
-    // init
-    window.sb = null;
-    try{
-      window.sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-    }catch(e){
-      console.error("Supabase init error:", e);
-      window.sb = null;
-    }
-    function sbReady(){ return !!window.sb; }
+      function resize(){
+        W = window.innerWidth; H = window.innerHeight;
+        canvas.width = W * DPR; canvas.height = H * DPR;
+        canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+        ctx.setTransform(DPR,0,0,DPR,0,0);
+      }
 
-    // ========= HELPERS =========
-    // rows are from your localStorage order object (invoiceId, game, server, package, total, method, uid, name, contact, status)
-    async function sbInsertOrder(row){
-      if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
-
-      try{
-        const amount = Number(String(row.total||"").replace(/[^\d]/g,"")) || 0;
-        const payload = {
-          order_code: row.invoiceId,
-          product_name: row.package || "-",
-          game_uid: row.uid || null,
-          amount,
-          status: "pending_payment",
-          note: JSON.stringify({
-            game: row.game,
-            server: row.server,
-            method: row.method,
-            name: row.name,
-            contact: row.contact,
-            promo: (document.getElementById('promo')?.value || "").trim(),
-          })
+      function mkPt(){
+        return {
+          x: Math.random()*W, y: Math.random()*H,
+          vx: (Math.random()-.5)*.35, vy: (Math.random()-.5)*.35,
+          r: .6 + Math.random()*1.4,
+          a: .1 + Math.random()*.35
         };
-
-        const { data, error } = await window.sb
-          .from(SB_TABLE_ORDERS)
-          .insert(payload)
-          .select("id")
-          .single();
-
-        if(error) throw error;
-        return { ok:true, id: data?.id || null };
-      }catch(err){
-        console.warn("sbInsertOrder error:", err);
-        return { ok:false, reason: err?.message || "insert_failed" };
       }
-    }
 
-    async function sbUploadSlip(file, invoiceId){
-      if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
-      if(!file) return { ok:false, reason:"no_file" };
-
-      try{
-        const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
-        const safeExt = ["jpg","jpeg","png","webp"].includes(ext) ? ext : "jpg";
-        const path = `orders/${invoiceId}/${Date.now()}.${safeExt}`;
-
-        const { error } = await window.sb
-          .storage
-          .from(SB_BUCKET_SLIPS)
-          .upload(path, file, { upsert:true, contentType: file.type || "image/jpeg" });
-
-        if(error) throw error;
-        return { ok:true, path };
-      }catch(err){
-        console.warn("sbUploadSlip error:", err);
-        return { ok:false, reason: err?.message || "upload_failed" };
+      function init(){
+        const n = Math.min(Math.round(W*H/14000), 120);
+        pts = Array.from({length:n}, mkPt);
       }
-    }
 
-    async function sbInsertSlipRecord(sbOrderId, filePath){
-      if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
-      if(!sbOrderId || !filePath) return { ok:false, reason:"missing_data" };
-
-      try{
-        const { error } = await window.sb
-          .from(SB_TABLE_SLIPS)
-          .insert({ order_id: sbOrderId, file_path: filePath });
-
-        if(error) throw error;
-        return { ok:true };
-      }catch(err){
-        console.warn("sbInsertSlipRecord error:", err);
-        return { ok:false, reason: err?.message || "insert_slip_failed" };
+      function draw(){
+        ctx.clearRect(0,0,W,H);
+        for(const p of pts){
+          p.x += p.vx; p.y += p.vy;
+          if(p.x<0) p.x=W; if(p.x>W) p.x=0;
+          if(p.y<0) p.y=H; if(p.y>H) p.y=0;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+          ctx.fillStyle = `rgba(79,163,255,${p.a})`;
+          ctx.fill();
+        }
+        for(let i=0;i<pts.length;i++){
+          for(let j=i+1;j<pts.length;j++){
+            const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y;
+            const d=Math.sqrt(dx*dx+dy*dy);
+            if(d<120){
+              ctx.beginPath();
+              ctx.moveTo(pts[i].x, pts[i].y);
+              ctx.lineTo(pts[j].x, pts[j].y);
+              ctx.strokeStyle = `rgba(79,163,255,${.07*(1-d/120)})`;
+              ctx.lineWidth = .5;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(draw);
       }
-    }
 
-    async function sbMarkPaid(sbOrderId, referenceText){
-      if(!sbReady()) return { ok:false, reason:"sb_not_ready" };
-      if(!sbOrderId) return { ok:false, reason:"missing_order_id" };
+      resize(); init(); draw();
+      window.addEventListener('resize', ()=>{ resize(); init(); });
+      if(window.matchMedia('(prefers-reduced-motion:reduce)').matches) canvas.style.display='none';
+    })();
 
-      try{
-        const { error } = await window.sb
-          .from(SB_TABLE_ORDERS)
-          .update({
-            status: "paid",
-            note: JSON.stringify({ paid_ref: referenceText || "" })
-          })
-          .eq("id", sbOrderId);
-
-        if(error) throw error;
-        return { ok:true };
-      }catch(err){
-        console.warn("sbMarkPaid error:", err);
-        return { ok:false, reason: err?.message || "update_failed" };
-      }
-    }
-  </script>
-
-<script>
-/* ===== STORAGE (no login) ===== */
-const KEY_PROFILE = "ev_profile";
-const KEY_ORDERS  = "ev_orders";
-function loadProfile(){ try{return JSON.parse(localStorage.getItem(KEY_PROFILE)||"null");}catch{return null;} }
-function saveProfile(p){ localStorage.setItem(KEY_PROFILE, JSON.stringify(p||null)); }
-function loadOrders(){ try{ return JSON.parse(localStorage.getItem(KEY_ORDERS)||"[]"); }catch{return [];} }
-function saveOrders(list){ localStorage.setItem(KEY_ORDERS, JSON.stringify(list||[])); }
-
-/* ===== DATA ===== */
-const ADMIN_URL = "https://www.facebook.com/share/1JRkDmJDvX/";
-const GAMES = [
-  { key:"Free Fire", icon:"🔥", servers:["Thailand","SEA","Global","อื่นๆ"] },
-  { key:"Free Fire (สั่งซื้อโปรโมชั่นต้อนรับตรุจีน🧧)", icon:"🔥", servers:["Thailand","SEA","Global","อื่นๆ"] },
-  { key:"RoV", icon:"🛡️", servers:["Thailand","Vietnam","Taiwan","อื่นๆ"] },
-  { key:"Genshin Impact", icon:"✨", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
-  { key:"Honkai: Star Rail", icon:"🚄", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
-  { key:"PUBG Mobile", icon:"🎯", servers:["Thailand","SEA","KRJP","Global","อื่นๆ"] },
-  { key:"Roblox", icon:"🧱", servers:["Thailand","Asia","USA","Global","อื่นๆ"] },
-  { key:"Roblox (สั่งซื้อโปรโมชั่นต้อนรับตรุจีน🧧)", icon:"🎁", servers:["Thailand","Asia","USA","Global","อื่นๆ"] },
-  { key:"Call of Duty", icon:"🎮", servers:["Thailand","SEA","Global","อื่นๆ"] },
-  { key:"Wuthering Waves", icon:"🌊", servers:["เอเชีย (Asia)","อเมริกา (America)","ยุโรป (Europe)","TW, HK, MO","อื่นๆ"] },
-];
-const PACKS_BY_GAME = {
-  "Free Fire": [
-    {name:"33 เพชร",price:11},{name:"68 เพชร",price:21},{name:"172 เพชร",price:49},
-    {name:"310 เพชร",price:87},{name:"517 เพชร",price:145},{name:"690 เพชร",price:195},
-    {name:"1052 เพชร",price:290},{name:"1800 เพชร",price:480},{name:"3698 เพชร",price:950},
-    {name:"7396 เพชร",price:1900},{name:"รายสัปดาห์ดามินิ",price:32},{name:"รายสัปดาห์ดา",price:63},
-    {name:"รายเดือน",price:287},{name:"บูย่าห์พาส",price:90},{name:"อีโวพาส 3 วัน",price:46},
-    {name:"อีโวพาส 7 วัน",price:62},{name:"อีโวพาส 30 วัน",price:220}
-  ],
-  "Free Fire (สั่งซื้อโปรโมชั่นต้อนรับตรุจีน🧧)": [
-    {name:"33 เพชร",price:10},{name:"68 เพชร",price:19},{name:"172 เพชร",price:48},
-    {name:"310 เพชร",price:85},{name:"517 เพชร",price:143},{name:"690 เพชร",price:190},
-    {name:"1052 เพชร",price:284},{name:"1800 เพชร",price:474},
-    {name:"3698 เพชร",price:945},{name:"7396 เพชร",price:1890}
-  ],
-  "RoV": [
-    {name:"11 คูปอง",price:10},{name:"24 คูปอง",price:19},{name:"60 คูปอง",price:49},
-    {name:"110 คูปอง",price:87},{name:"185 คูปอง",price:144},{name:"370 คูปอง",price:285},
-    {name:"620 คูปอง",price:478},{name:"990 คูปอง",price:765},{name:"1250 คูปอง",price:960}
-  ],
-  "Genshin Impact": [
-    {name:"60 Genesis Crystals",price:30},{name:"300+30 Genesis Crystals",price:145},
-    {name:"980+110 Genesis Crystals",price:420},{name:"1980+260 Genesis Crystals",price:870},
-    {name:"3280+600 Genesis Crystals",price:1340},{name:"6480+1600 Genesis Crystals",price:2625},
-    {name:"Blessing (รายเดือน)",price:179}
-  ],
-  "Honkai: Star Rail": [
-    {name:"60 Oneiric Shard",price:35},{name:"300+30 Shard",price:145},
-    {name:"980+110 Shard",price:425},{name:"1980+260 Shard",price:870},
-    {name:"3280+600 Shard",price:1340},{name:"6480+1600 Shard",price:2630},
-    {name:"Express Supply Pass",price:145}
-  ],
-  "PUBG Mobile": [
-    {name:"60 UC",price:35},{name:"325 UC",price:179},{name:"660 UC",price:346},
-    {name:"1800 UC",price:860},{name:"3850 UC",price:1696},{name:"8100 UC",price:3305},
-    {name:"16200 UC",price:6475},{name:"24300 UC",price:9910}
-  ],
-  "Roblox": [
-    {name:"80 Robux",price:35},{name:"160 Robux",price:70},{name:"400 Robux",price:175},
-    {name:"800 Robux",price:350},{name:"1000 Robux",price:400},{name:"2000 Robux",price:600},
-    {name:"4000 Robux",price:1200},{name:"รายเดือน 1000 Robux",price:380}
-  ],
-  "Roblox (สั่งซื้อโปรโมชั่นต้อนรับตรุจีน🧧)": [
-    {name:"500 Robux (จาก 230 เหลือ 155)",price:155},
-    {name:"1000 Robux (จาก 500 เหลือ 315)",price:315},
-    {name:"2000 Robux (จาก 960 เหลือ 615)",price:615},
-    {name:"3000 Robux (จาก 1000 เหลือ 910)",price:910}
-  ],
-  "Call of Duty": [
-    {name:"44 โบนัส 10 CP",price:22},{name:"108 โบนัส 30 CP",price:52},{name:"194 โบนัส 55 CP",price:90},
-    {name:"324 โบนัส 90 CP",price:152},{name:"648 โบนัส 216 CP",price:305},
-    {name:"1080 โบนัส 480 CP",price:505},{name:"2160 โบนัส 1080 CP",price:1010}
-  ],
-  "Wuthering Waves": [
-    {name:"60 Lunite",price:35},{name:"300+30 Lunite",price:179},
-    {name:"980+110 Lunite",price:549},{name:"Lunite Pass (รายเดือน)",price:179}
-  ]
-};
-
-/* ===== REFS ===== */
-const tabs = document.getElementById('game-tabs');
-const pkgGrid = document.getElementById('pkg-grid');
-const selGame = document.getElementById('game');
-const selServer = document.getElementById('server');
-const selPackage = document.getElementById('package');
-
-const miniSum = document.getElementById('miniSum');
-const miniGame = document.getElementById('mini-game');
-const miniServer = document.getElementById('mini-server');
-const miniPkg = document.getElementById('mini-pkg');
-const miniTotal = document.getElementById('mini-total');
-
-const gameNote = document.getElementById('gameNote');
-const thaiOnlyNote = document.getElementById('thaiOnlyNote');
-
-let currentGame = GAMES[0].key;
-const thaiOnlyGames = ["Free Fire","RoV","PUBG Mobile","Roblox","Call of Duty"];
-
-/* ===== Mobile Menu ===== */
-const btnMenu = document.getElementById('btnMenu');
-const mobileMenu = document.getElementById('mobileMenu');
-btnMenu?.addEventListener('click', ()=> mobileMenu.classList.toggle('open'));
-mobileMenu?.querySelectorAll('a').forEach(a=>{
-  a.addEventListener('click', ()=> mobileMenu.classList.remove('open'));
-});
-
-/* ===== UI: Packages ===== */
-function renderGameTabs(){
-  tabs.innerHTML = ""; selGame.innerHTML = "";
-  GAMES.forEach(g=>{
-    const t = document.createElement('div');
-    t.className = 'tab' + (g.key===currentGame?' active':'');
-    t.textContent = `${g.icon} ${g.key}`;
-    t.addEventListener('click', ()=> setGame(g.key));
-    tabs.appendChild(t);
-
-    const opt = document.createElement('option');
-    opt.value = g.key; opt.textContent = g.key;
-    selGame.appendChild(opt);
-  });
-  selGame.value = currentGame;
-}
-function renderServers(){
-  selServer.innerHTML = "";
-  const gs = GAMES.find(x=>x.key===currentGame)?.servers || ["Global"];
-  gs.forEach(s=>{
-    const o=document.createElement('option'); o.value=s; o.textContent=s;
-    selServer.appendChild(o);
-  });
-}
-function renderPacks(){
-  const packs = PACKS_BY_GAME[currentGame]||[];
-  pkgGrid.innerHTML = "";
-  selPackage.innerHTML = "<option value='' disabled selected>— เลือกแพ็กเกจ —</option>";
-
-  packs.forEach(p=>{
-    const card = document.createElement('div');
-    card.className = "pkg";
-    card.innerHTML = `
-      <div class="name">${p.name}</div>
-      <div class="price">฿${p.price}</div>
-      <div class="actions">
-        <a href="#order" class="btn primary" data-pkg="${p.name} – ฿${p.price}">เลือกแพ็ก</a>
-      </div>`;
-    pkgGrid.appendChild(card);
-
-    const opt = document.createElement('option');
-    opt.value = `${p.name} – ฿${p.price}`;
-    opt.textContent = `${p.name} – ฿${p.price}`;
-    selPackage.appendChild(opt);
-  });
-
-  pkgGrid.querySelectorAll('a[data-pkg]').forEach(a=>{
-    a.addEventListener('click',e=>{
-      e.preventDefault();
-      selPackage.value = a.getAttribute('data-pkg');
-      document.getElementById('order').scrollIntoView({behavior:'smooth'});
-      updateSummary();
+    // SCROLL REVEAL
+    const reveal = document.querySelectorAll('.skill-card, .project-card, .connect-card');
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+      });
+    }, {threshold:.1});
+    reveal.forEach(el=>{
+      el.style.opacity='0'; el.style.transform='translateY(20px)';
+      el.style.transition='opacity .5s ease, transform .5s ease';
+      obs.observe(el);
     });
-  });
-}
-function setGame(game){
-  currentGame = game;
-
-  // tabs UI
-  [...tabs.children].forEach((el, i)=>{
-    el.classList.toggle('active', GAMES[i].key===currentGame);
-  });
-
-  const isPromo = /โปรโมชั่น/.test(currentGame);
-
-  if (currentGame === "Roblox"){
-    gameNote.style.display = "block";
-    gameNote.textContent = "ℹ️ Roblox: ใช้เวลาเติมนานกว่าเกมอื่นเล็กน้อย (โปรดเผื่อเวลา)";
-  } else if (currentGame === "Call of Duty"){
-    gameNote.style.display = "block";
-    gameNote.textContent = "⚠️ COD: ถ้า ID ผูกกับ Garena จะเติมไม่ได้ (รองรับเฉพาะเซิร์ฟไทย)";
-  } else if (isPromo){
-    gameNote.style.display = "block";
-    gameNote.textContent = "🎁 โปรต้อนรับปีใหม่: ราคาในการ์ดคือราคาหลังลดแล้ว";
-    promoHintOnce();
-  } else {
-    gameNote.style.display="none";
-    gameNote.textContent="";
-  }
-
-  thaiOnlyNote.style.display = thaiOnlyGames.includes(currentGame) ? "block" : "none";
-
-  selGame.value = game;
-  renderServers();
-  renderPacks();
-  updateSummary();
-  showMini();
-}
-function showMini(){
-  const has = (selPackage.value||"").length>0 || (document.getElementById('uid').value||"").length>0;
-  miniSum.style.display = has ? "block" : "none";
-}
-
-/* ===== SUMMARY / BILL ===== */
-const pad = n => n.toString().padStart(2,'0');
-function genInvoice(){
-  const d = new Date();
-  const ts = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
-  const rnd = Math.floor(Math.random()*8999)+1000;
-  return `EV-${ts}-${rnd}`;
-}
-function money(n){ return "฿"+(n||0); }
-function updateSummary(){
-  const g = selGame.value;
-  const s = selServer.value;
-  const u = document.getElementById('uid').value || "-";
-  const p = selPackage.value || "-";
-  const m = document.getElementById('method').value;
-
-  document.getElementById('sum-game').innerText   = g;
-  document.getElementById('sum-server').innerText = s || "-";
-  document.getElementById('sum-uid').innerText    = u;
-  document.getElementById('sum-pkg').innerText    = p;
-  document.getElementById('sum-method').innerText = m;
-
-  const price = Number((p.split("฿")[1] || "0").replace(/[^\d]/g,""));
-  const totalTxt = money(price);
-  document.getElementById('sum-total').innerText = totalTxt;
-
-  miniGame.textContent = g;
-  miniServer.textContent = s || "-";
-  miniPkg.textContent = p;
-  miniTotal.textContent = totalTxt;
-
-  showMini();
-}
-["game","server","uid","package","method","name","contact","promo"].forEach(id=>{
-  const el = document.getElementById(id);
-  el.addEventListener('input', updateSummary);
-  el.addEventListener('change', updateSummary);
-});
-
-/* ===== HISTORY ===== */
-function addOrder(row){ const list=loadOrders(); list.unshift(row); saveOrders(list); renderHistory(); }
-function updateOrderStatus(inv, status){
-  const list=loadOrders(); const idx=list.findIndex(x=>x.invoiceId===inv);
-  if(idx>-1){ list[idx].status=status; saveOrders(list); renderHistory(); }
-}
-function deleteOrder(inv){
-  const list=loadOrders().filter(x=>x.invoiceId!==inv);
-  saveOrders(list); renderHistory();
-}
-function clearAll(){
-  if(confirm('ล้างข้อมูลทั้งหมดบนเครื่องนี้? (โปรไฟล์/ประวัติ/ทิปโปร)')){
-    localStorage.removeItem(KEY_PROFILE);
-    localStorage.removeItem(KEY_ORDERS);
-    localStorage.removeItem('ev_promo_hint_shown');
-    location.reload();
-  }
-}
-const histTableBody = document.querySelector('#histTable tbody');
-const histEmpty = document.getElementById('histEmpty');
-const histSearch = document.getElementById('histSearch');
-const histGameFilter = document.getElementById('histGameFilter');
-const histStatusFilter = document.getElementById('histStatusFilter');
-
-function initHistoryFilters(){
-  histGameFilter.innerHTML = '<option value="">ทุกเกม</option>' + GAMES.map(g=>`<option>${g.key}</option>`).join('');
-  [histSearch,histGameFilter,histStatusFilter].forEach(el=>{
-    el.addEventListener('input', renderHistory);
-    el.addEventListener('change', renderHistory);
-  });
-}
-function renderHistory(){
-  const q = (histSearch.value||"").toLowerCase();
-  const g = histGameFilter.value||"";
-  const st= histStatusFilter.value||"";
-  const list = loadOrders().filter(x=>{
-    const inTxt = (x.invoiceId+x.game+x.uid+(x.name||"")+(x.package||"")).toLowerCase().includes(q);
-    const gOk = g? x.game===g : true;
-    const sOk = st? x.status===st : true;
-    return inTxt && gOk && sOk;
-  });
-
-  histTableBody.innerHTML = "";
-  histEmpty.style.display = list.length? "none":"block";
-
-  list.forEach(x=>{
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>${new Date(x.ts).toLocaleString()}</td>
-      <td>${x.invoiceId}</td>
-      <td>${x.game}</td>
-      <td>${x.server||"-"}</td>
-      <td>${x.package||"-"}</td>
-      <td>${x.total||"฿0"}</td>
-      <td>
-        <select data-inv="${x.invoiceId}">
-          ${["รอชำระ","ส่งรายละเอียดแล้ว","ชำระแล้ว","ยกเลิก"].map(s=>`<option ${x.status===s?"selected":""}>${s}</option>`).join('')}
-        </select>
-      </td>
-      <td>${x.uid||"-"}</td>
-      <td>
-        <button class="btn" data-view="${x.invoiceId}" type="button">ดู</button>
-        <button class="btn" data-del="${x.invoiceId}" type="button">ลบ</button>
-      </td>`;
-    histTableBody.appendChild(tr);
-  });
-
-  histTableBody.querySelectorAll('button[data-del]').forEach(b=>{
-    b.onclick = ()=> deleteOrder(b.getAttribute('data-del'));
-  });
-  histTableBody.querySelectorAll('button[data-view]').forEach(b=>{
-    b.onclick = ()=>{
-      const inv = b.getAttribute('data-view');
-      const x = loadOrders().find(o=>o.invoiceId===inv);
-      if(!x) return;
-      alert(
-`เลขบิล: ${x.invoiceId}
-เวลา: ${new Date(x.ts).toLocaleString()}
-เกม: ${x.game}
-เซิร์ฟเวอร์: ${x.server||"-"}
-แพ็กเกจ: ${x.package||"-"}
-ยอด: ${x.total||"฿0"}
-วิธีชำระ: ${x.method}
-UID: ${x.uid||"-"}
-ลูกค้า: ${x.name||"-"} | ติดต่อ: ${x.contact||"-"}
-สถานะ: ${x.status}`);
-    };
-  });
-  histTableBody.querySelectorAll('select[data-inv]').forEach(s=>{
-    s.onchange = ()=> updateOrderStatus(s.getAttribute('data-inv'), s.value);
-  });
-}
-
-/* ===== MESSAGE / COPY ===== */
-function buildMessage(){
-  const g = selGame.value, s = selServer.value, u = document.getElementById('uid').value || "-";
-  const p = selPackage.value || "-", m = document.getElementById('method').value;
-  const name = document.getElementById('name').value || "-", contact = document.getElementById('contact').value || "-";
-  const total = document.getElementById('sum-total').innerText || "฿0";
-  const ref = (document.getElementById('ref')?.value || "").trim();
-  return `ออร์เดอร์เติมเกม Evan Vale
-เลขบิล: ${window.invoiceId}
-เกม: ${g}
-เซิร์ฟเวอร์/โซน: ${s || "-"}
-UID/Player ID: ${u}
-แพ็กเกจ: ${p}
-วิธีชำระ: ${m}
-ยอดสุทธิ: ${total}
-ชื่อลูกค้า: ${name}
-ติดต่อ: ${contact}
-เลขอ้างอิง: ${ref||"-"}
-โปรดตรวจสอบสลิปที่แนบด้วยครับ`;
-}
-const btnPrepare   = document.getElementById('btnPrepareMsg');
-const btnOpenAdmin = document.getElementById('btnOpenAdmin');
-const msgPreview   = document.getElementById('msgPreview');
-const copyHint     = document.getElementById('copyHint');
-
-function makeAdminUrl(){ return ADMIN_URL; }
-async function copyTextSafe(text){
-  try{ await navigator.clipboard.writeText(text); return true; }
-  catch{
-    const ta = document.createElement('textarea'); ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
-    document.body.appendChild(ta); ta.focus(); ta.select();
-    let ok=false; try{ ok=document.execCommand('copy'); }catch{}
-    document.body.removeChild(ta); return !!ok;
-  }
-}
-btnPrepare?.addEventListener('click', async ()=>{
-  if(!window.invoiceId || window.invoiceId === '-'){ alert('ยังไม่ได้สร้างบิล'); return; }
-  const msg = buildMessage();
-  msgPreview.value = msg; msgPreview.style.display = 'block';
-  copyHint.style.display = 'block';
-  copyHint.textContent = 'กำลังคัดลอกสรุปบิล...';
-
-  const copied = await copyTextSafe(msg);
-  copyHint.textContent = copied
-    ? 'คัดลอกสรุปบิลแล้ว ✅ ต่อไปกด “เปิดแชทแอดมิน” ได้เลย'
-    : 'คัดลอกอัตโนมัติไม่สำเร็จ ให้คัดลอกจากช่องสรุปด้านบน แล้วค่อยกด “เปิดแชทแอดมิน”';
-
-  btnOpenAdmin.href = makeAdminUrl();
-  btnOpenAdmin.style.pointerEvents = 'auto';
-  btnOpenAdmin.style.opacity = '1';
-
-  if(window.invoiceId){ updateOrderStatus(window.invoiceId, 'ส่งรายละเอียดแล้ว'); }
-});
-btnOpenAdmin?.addEventListener('click', (e)=>{
-  if (!btnOpenAdmin.href || btnOpenAdmin.getAttribute('href') === '#'){
-    e.preventDefault(); window.open(makeAdminUrl(), '_blank');
-  }
-});
-
-/* ===== FORM ACTIONS ===== */
-document.getElementById('btnReset')?.addEventListener('click', ()=>{
-  document.querySelectorAll('#order input').forEach(i=>i.value="");
-  selPackage.selectedIndex = 0; updateSummary();
-});
-window.invoiceId = "-";
-
-// Supabase mapping fields stored in local order
-function setLocalOrderSbId(invoiceId, sbId){
-  try{
-    const list = loadOrders();
-    const idx = list.findIndex(x=>x.invoiceId===invoiceId);
-    if(idx>-1){
-      list[idx].sb_order_id = sbId;
-      saveOrders(list);
-    }
-  }catch{}
-}
-function getLocalOrder(invoiceId){
-  try{ return loadOrders().find(x=>x.invoiceId===invoiceId) || null; }
-  catch{ return null; }
-}
-
-document.getElementById('btnSubmit')?.addEventListener('click', async ()=>{
-  if(!selPackage.value){ alert('เลือกแพ็กเกจก่อน'); return; }
-  window.invoiceId = genInvoice();
-  document.getElementById('sum-bill').innerText = window.invoiceId;
-
-  const pay = document.getElementById('pay');
-  pay.style.display = "";
-  pay.scrollIntoView({behavior:'smooth'});
-
-  const row = {
-    ts: Date.now(),
-    invoiceId: window.invoiceId,
-    game: selGame.value,
-    server: selServer.value,
-    package: selPackage.value,
-    total: document.getElementById('sum-total').innerText,
-    method: document.getElementById('method').value,
-    uid: document.getElementById('uid').value.trim(),
-    name: document.getElementById('name').value.trim(),
-    contact: document.getElementById('contact').value.trim(),
-    status: 'รอชำระ',
-    sb_order_id: null
-  };
-  addOrder(row);
-
-  // ---- SYNC TO SUPABASE (best effort) ----
-  if(typeof sbInsertOrder === "function"){
-    const res = await sbInsertOrder(row);
-    if(res?.ok && res?.id){
-      setLocalOrderSbId(row.invoiceId, res.id);
-    }else{
-      console.warn("Supabase order sync skipped/failed:", res);
-    }
-  }
-
-  btnPrepare.disabled = false;
-  updateMarkPaidState();
-});
-
-document.getElementById('btnBackToForm')?.addEventListener('click', ()=>{
-  document.getElementById('pay').style.display = "none";
-  document.getElementById('order').scrollIntoView({behavior:'smooth'});
-});
-
-/* ===== EXPORT / CLEAR ===== */
-document.getElementById('btnExportCsv')?.addEventListener('click', ()=>{
-  const list = loadOrders();
-  if(!list.length){ alert('ยังไม่มีข้อมูล'); return; }
-  const header = ["เวลา","เลขบิล","เกม","เซิร์ฟ","แพ็กเกจ","ยอด","สถานะ","UID","ลูกค้า","ติดต่อ"].join(",");
-  const rows = list.map(x=>[
-    new Date(x.ts).toLocaleString().replaceAll(","," "),
-    x.invoiceId, x.game, x.server||"-", x.package||"-",
-    (x.total||"฿0").replaceAll(",",""),
-    x.status, x.uid||"-", x.name||"-", x.contact||"-"
-  ].map(v=>`"${String(v).replaceAll('"','""')}"`).join(","));
-  const csv = [header, ...rows].join("\n");
-  const blob = new Blob([csv], {type:"text/csv;charset=utf-8"});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href = url; a.download = 'evan_orders.csv'; a.click();
-  URL.revokeObjectURL(url);
-});
-document.getElementById('btnClearAll')?.addEventListener('click', clearAll);
-
-/* ===== PROFILE SAVE/FILL (no login) ===== */
-function fillFromProfile(){
-  const p = loadProfile(); if(!p) return;
-  if(p.name)    document.getElementById('name').value = p.name;
-  if(p.contact) document.getElementById('contact').value = p.contact;
-  if(p.last){
-    if(p.last.game && GAMES.find(g=>g.key===p.last.game)){ setGame(p.last.game); }
-    if(p.last.server){ selServer.value = p.last.server; }
-    if(p.last.package){ selPackage.value = p.last.package; }
-    if(p.last.method){ document.getElementById('method').value = p.last.method; }
-    if(p.last.uid){ document.getElementById('uid').value = p.last.uid; }
-  }
-  updateSummary();
-}
-document.getElementById('btnSaveProfile')?.addEventListener('click', ()=>{
-  const p = loadProfile() || {};
-  p.name = document.getElementById('name').value.trim();
-  p.contact = document.getElementById('contact').value.trim();
-  p.last = {
-    game: selGame.value, server: selServer.value, package: selPackage.value,
-    method: document.getElementById('method').value, uid: document.getElementById('uid').value.trim()
-  };
-  saveProfile(p);
-  toast('บันทึกข้อมูลไว้ในเครื่องแล้ว ✅');
-});
-
-/* ===== MARK AS PAID ===== */
-const slipInput = document.getElementById('slip');
-const refInput  = document.getElementById('ref');
-const btnMarkPaid = document.getElementById('btnMarkPaid');
-
-function canMarkPaid(){
-  const hasSlip = slipInput && slipInput.files && slipInput.files.length > 0;
-  const hasRef  = (refInput?.value || '').trim().length > 0;
-  return !!window.invoiceId && window.invoiceId !== '-' && (hasSlip || hasRef);
-}
-function updateMarkPaidState(){
-  btnMarkPaid.disabled = !canMarkPaid();
-}
-slipInput?.addEventListener('change', updateMarkPaidState);
-refInput?.addEventListener('input', updateMarkPaidState);
-
-btnMarkPaid?.addEventListener('click', async ()=>{
-  if(!window.invoiceId || window.invoiceId==='-'){ alert('ยังไม่มีเลขบิล'); return; }
-  if(!canMarkPaid()){ alert('แนบสลิปหรือกรอกเลขอ้างอิงก่อน'); return; }
-
-  // update local status
-  updateOrderStatus(window.invoiceId, 'ชำระแล้ว');
-
-  // ---- Supabase: upload slip + insert slip record + mark paid (best effort) ----
-  const local = getLocalOrder(window.invoiceId);
-  const sbOrderId = local?.sb_order_id || null;
-
-  const refTxt = (refInput?.value || "").trim();
-  const file = (slipInput?.files && slipInput.files[0]) ? slipInput.files[0] : null;
-
-  if(sbOrderId && typeof sbUploadSlip === "function"){
-    const up = await sbUploadSlip(file, window.invoiceId);
-    if(up?.ok && up?.path){
-      if(typeof sbInsertSlipRecord === "function"){
-        await sbInsertSlipRecord(sbOrderId, up.path);
-      }
-      if(typeof sbMarkPaid === "function"){
-        await sbMarkPaid(sbOrderId, refTxt);
-      }
-    }else{
-      console.warn("Supabase slip upload skipped/failed:", up);
-      if(typeof sbMarkPaid === "function"){
-        await sbMarkPaid(sbOrderId, refTxt);
-      }
-    }
-  }else{
-    console.warn("Supabase order not linked (no sb_order_id) or helpers missing. Only local updated.");
-  }
-
-  toast('แจ้งชำระแล้ว ✅ แอดมินจะตรวจสอบให้เร็วที่สุด');
-});
-
-/* ===== COUNTDOWN (Auto Next New Year, Asia/Bangkok) ===== */
-const cdDigits = document.getElementById('countdownDigits');
-function fmt2(n){ return n.toString().padStart(2,'0'); }
-
-(function runCountdown(){
-  function getNextNewYear(){
-    const now = new Date();
-    const year = now.getFullYear();
-    let target = new Date(`${year + 1}-01-01T00:00:00+07:00`);
-    if (now < new Date(`${year}-01-01T00:00:00+07:00`)) {
-      target = new Date(`${year}-01-01T00:00:00+07:00`);
-    }
-    return target.getTime();
-  }
-
-  let target = getNextNewYear();
-
-  function tick(){
-    const now = Date.now();
-    let diff = target - now;
-
-    if(diff <= 0){
-      target = getNextNewYear(); // 🔁 วนไปปีถัดไปอัตโนมัติ
-      diff = target - now;
-    }
-
-    const d = Math.floor(diff / 86400000); diff %= 86400000;
-    const h = Math.floor(diff / 3600000);  diff %= 3600000;
-    const m = Math.floor(diff / 60000);    diff %= 60000;
-    const s = Math.floor(diff / 1000);
-
-    cdDigits.textContent = `${fmt2(d)} วัน ${fmt2(h)}:${fmt2(m)}:${fmt2(s)}`;
-    setTimeout(tick, 1000);
-  }
-
-  tick();
-})();
-/* ===== TOAST ===== */
-function toast(msg){
-  const t = document.getElementById('toast');
-  if(!t) return;
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(()=> t.classList.remove('show'), 2200);
-}
-function promoHintOnce(){
-  const K = 'ev_promo_hint_shown';
-  if(localStorage.getItem(K) === '1') return;
-  localStorage.setItem(K, '1');
-  toast('🎁 โปรปีใหม่ถูกเปิดใช้งาน — ราคาในการ์ดคือราคาหลังลดแล้ว');
-}
-
-/* ===== MINI ASSISTANT ===== */
-const asToggle = document.getElementById('evAssistantToggle');
-const asBox = document.getElementById('evAssistant');
-const asMsgWrap = document.getElementById('evAssistantMessages');
-const asInput = document.getElementById('evAssistantInput');
-const asSend = document.getElementById('evAssistantSend');
-
-function addAssistantBubble(role, text){
-  const bubble = document.createElement('div');
-  bubble.className = 'bubble' + (role==='user' ? ' me' : '');
-  bubble.textContent = text;
-  asMsgWrap.appendChild(bubble);
-  asMsgWrap.scrollTop = asMsgWrap.scrollHeight;
-}
-function pickRandom(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
-const NORMAL_REPLIES = [
-  "บอกเลขบิล/ชื่อเกม/แพ็กเกจ/UID มา เดี๋ยวช่วยสรุปให้",
-  "ถ้าจะสั่งเติม: เลือกแพ็ก → กดยืนยันสร้างบิล → ไปชำระเงิน",
-  "กด “คัดลอกสรุปบิล” แล้วเอาไปวางในแชทแอดมินได้เลย",
-];
-const STRICT_REPLIES = [
-  "พิมพ์ให้ชัดหน่อยนะ เอาแค่ “เกม + แพ็ก + UID” พอ",
-  "ใจเย็น ๆ ส่งข้อมูลให้ครบก่อน เดี๋ยวช่วยให้ไว",
-];
-const BAD_WORDS = ["ควย","เหี้ย","สัส","fuck","shit"];
-function looksGibberish(t){
-  const s = (t||"").trim();
-  if(!s) return false;
-  const letters = s.replace(/[0-9\s\W_]/g,'');
-  return letters.length>0 && (letters.length/s.length) < 0.25;
-}
-function handleAssistantSend(){
-  const txt = (asInput.value||"").trim();
-  if(!txt) return;
-  addAssistantBubble('user', txt);
-  asInput.value = "";
-
-  const lower = txt.toLowerCase();
-  const hasBad = BAD_WORDS.some(w => lower.includes(w));
-  const gib = looksGibberish(txt);
-  const reply = (hasBad || gib) ? pickRandom(STRICT_REPLIES) : pickRandom(NORMAL_REPLIES);
-  setTimeout(()=> addAssistantBubble('bot', reply), 180);
-}
-asToggle?.addEventListener('click', ()=>{
-  const opened = asBox.classList.toggle('open');
-  if(opened && !asMsgWrap.dataset.welcomed){
-    asMsgWrap.dataset.welcomed="1";
-    addAssistantBubble('bot', "พิมพ์ “เกม + แพ็ก + UID” มาได้เลย");
-  }
-});
-asSend?.addEventListener('click', handleAssistantSend);
-asInput?.addEventListener('keydown', (e)=>{
-  if(e.key === 'Enter' && !e.shiftKey){
-    e.preventDefault();
-    handleAssistantSend();
-  }
-});
-
-/* ===== SNOW (lightweight canvas) ===== */
-(function snowInit(){
-  const c = document.getElementById('snow');
-  if(!c) return;
-
-  // ถ้า reduce motion: ไม่รัน
-  const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if(mq.matches) return;
-
-  const ctx = c.getContext('2d', { alpha:true });
-  const DPR = Math.min(window.devicePixelRatio || 1, 2);
-
-  let W=0, H=0, flakes=[];
-  let running = true;
-
-  function resize(){
-    W = Math.floor(window.innerWidth);
-    H = Math.floor(window.innerHeight);
-    c.width  = Math.floor(W * DPR);
-    c.height = Math.floor(H * DPR);
-    c.style.width = W + 'px';
-    c.style.height = H + 'px';
-    ctx.setTransform(DPR,0,0,DPR,0,0);
-  }
-
-  function makeFlake(){
-    const r = 1 + Math.random()*2.8;
-    return {
-      x: Math.random()*W,
-      y: -10 - Math.random()*H,
-      r,
-      vy: 0.55 + Math.random()*1.85,
-      vx: -0.7 + Math.random()*1.4,
-      sway: 0.6 + Math.random()*1.6,
-      a: 0.25 + Math.random()*0.55
-    };
-  }
-
-  function computeCount(){
-    const base = Math.round((W*H) / 18000);
-    return Math.max(40, Math.min(160, base));
-  }
-
-  function reset(){
-    flakes = Array.from({length: computeCount()}, makeFlake);
-  }
-
-  function draw(){
-    if(!running) return;
-    ctx.clearRect(0,0,W,H);
-
-    for(const f of flakes){
-      f.y += f.vy;
-      f.x += f.vx + Math.sin((f.y/40)) * f.sway * 0.15;
-
-      if(f.y > H + 20){ f.y = -20; f.x = Math.random()*W; }
-      if(f.x < -20) f.x = W+20;
-      if(f.x > W+20) f.x = -20;
-
-      ctx.beginPath();
-      ctx.arc(f.x, f.y, f.r, 0, Math.PI*2);
-      ctx.fillStyle = `rgba(255,215,0,${f.a})`;
-      ctx.fill();
-    }
-    requestAnimationFrame(draw);
-  }
-
-  resize();
-  reset();
-  draw();
-
-  window.addEventListener('resize', ()=>{
-    resize();
-    reset();
-  });
-
-  mq.addEventListener?.('change', (e)=>{
-    running = !e.matches;
-    if(running) draw();
-    else ctx.clearRect(0,0,W,H);
-  });
-})();
-
-/* ===== INIT ===== */
-renderGameTabs();
-setGame(currentGame);
-fillFromProfile();
-updateSummary();
-initHistoryFilters();
-renderHistory();
-</script>
+  </script>
 </body>
 </html>
